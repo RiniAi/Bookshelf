@@ -3,92 +3,128 @@ package com.example.bookshelf_anna0410;
 import java.util.Date;
 
 public class Book {
-    private String title, authors, image, publisher, language, description, status;
-    private int publishedDate, pageCount, averageRating, userRating;
-    private Date date;
-    private boolean favorite;
+
+    private String title;
+    private String authors;
+    private String imageURL;
+    private String publisher;
+    private String lang;
+    private String description;
+    private int pageCount;
+    private int userRating;
+    private float averageRating;
+    private boolean isFavorite;
+    private Date publishedDate;
+    private Date dateOfReading;
+    private Enum status;
 
 
-    // Constructor for About book
-    public Book(String title, String authors, String image, int averageRating, int userRating, String publisher, int publishedDate, String language,  int pageCount, String description) {
-        this.title = title;
-        this.authors = authors;
-        this.image = image;
-        this.averageRating = averageRating;
-        this.userRating = userRating;
-        this.publisher = publisher;
-        this.publishedDate = publishedDate;
-        this.language = language;
-        this.pageCount = pageCount;
-        this.description = description;
-    }
-
-    // Constructor for List of books and Search
-    public Book(String image,String title, String authors,  int averageRating) {
-        this.image = image;
-        this.title = title;
-        this.authors = authors;
-        this.averageRating = averageRating;
-    }
-
-    // Constructor for Edit book
-    public Book(String status, int userRating, Date date, boolean favorite) {
-        this.status = status;
-        this.userRating = userRating;
-        this.date = new Date();
-        this.favorite = favorite;
+    public Book() {
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthors() {
         return authors;
     }
 
-    public String getImage() {
-        return image;
+    public void setAuthors(String authors) {
+        this.authors = authors;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getPublisher() {
         return publisher;
     }
 
-    public String getLanguage() {
-        return language;
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getStatus() {
-        return status;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getPageCount() {
         return pageCount;
     }
 
-    public int getAverageRating() {
-        return averageRating;
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
 
     public int getUserRating() {
         return userRating;
     }
 
-    public int getPublishedDate() {
+    public void setUserRating(int userRating) {
+        this.userRating = userRating;
+    }
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public Date getPublishedDate() {
         return publishedDate;
     }
 
-    public Date getDate() {
-        return date;
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
-    public boolean getFavorite() {
-        return favorite;
+    public Date getDateOfReading() {
+        return dateOfReading;
     }
+
+    public void setDateOfReading(Date dateOfReading) {
+        this.dateOfReading = dateOfReading;
+    }
+
+    public Enum getStatus() {
+        return status;
+    }
+
+    public void setStatus(Enum status) {
+        this.status = status;
+    }
+
 
 }
