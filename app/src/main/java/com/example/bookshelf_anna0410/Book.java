@@ -15,7 +15,7 @@ public class Book {
     private float averageRating;
     private boolean isFavorite;
     private Date publishedDate;
-    private Date dateOfReading;
+    private Date readDate;
     private Enum status;
 
     public String getTitle() {
@@ -106,12 +106,12 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    public Date getDateOfReading() {
-        return dateOfReading;
+    public Date getReadDate() {
+        return readDate;
     }
 
-    public void setDateOfReading(Date dateOfReading) {
-        this.dateOfReading = dateOfReading;
+    public void setReadDate(Date dateOfReading) {
+        this.readDate = dateOfReading;
     }
 
     public Enum getStatus() {
