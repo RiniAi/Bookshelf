@@ -18,10 +18,6 @@ public class Book {
     private Date dateOfReading;
     private Enum status;
 
-
-    public Book() {
-    }
-
     public String getTitle() {
         return title;
     }
@@ -125,6 +121,5 @@ public class Book {
     public void setStatus(Enum status) {
         this.status = status;
     }
-
 
 }
