@@ -16,7 +16,14 @@ public class Book {
     private boolean isFavorite;
     private Date publishedDate;
     private Date readDate;
-    private Enum status;
+    private BookStatus status;
+
+    public enum BookStatus {
+        READ,
+        WANT_TO_READ,
+        READING,
+        NOT_READING
+    }
 
     public String getTitle() {
         return title;
@@ -114,11 +121,11 @@ public class Book {
         this.readDate = dateOfReading;
     }
 
-    public Enum getStatus() {
+    public BookStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Enum status) {
+    public void setStatus(BookStatus status) {
         this.status = status;
     }
 
