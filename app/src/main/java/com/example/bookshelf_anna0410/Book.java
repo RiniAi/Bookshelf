@@ -6,7 +6,7 @@ public class Book {
 
     private String title;
     private String authors;
-    private String imageURL;
+    private String imageUrl;
     private String publisher;
     private String lang;
     private String description;
@@ -35,11 +35,11 @@ public class Book {
     }
 
     public String getImageURL() {
-        return imageURL;
+        return imageUrl;
     }
 
     public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+        this.imageUrl = imageURL;
     }
 
     public String getPublisher() {
