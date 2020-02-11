@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="read" />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="want to read" />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="reading"  />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="not reading" />
+
+</menu>
