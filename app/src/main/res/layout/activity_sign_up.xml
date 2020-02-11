@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -24,7 +25,6 @@
         android:hint="Name"
         android:inputType="textEmailAddress" />
 
-
     <EditText
         android:id="@+id/input_password"
         android:layout_width="match_parent"
@@ -32,17 +32,17 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
-
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="create account" />
+        android:text="Create account" />
 
     <TextView
         android:id="@+id/link_signup"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Already a member? Login"/>
+        android:text="Already a member? Login" />
+
 </LinearLayout>
