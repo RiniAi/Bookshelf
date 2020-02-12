@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_of_books"
+        android:id="@+id/rv_of_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
