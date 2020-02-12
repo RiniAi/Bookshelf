@@ -1,4 +1,4 @@
-package com.example.bookshelf;
+package com.example.bookshelf.Fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,10 +7,12 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class AboutBookFragment extends Fragment {
+import com.example.bookshelf.R;
+
+public class EditBookFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_about_book, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_edit_book, container, false);
         return rootView;
     }
 }
