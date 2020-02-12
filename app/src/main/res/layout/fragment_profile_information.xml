@@ -13,13 +13,13 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/image_profile"
+            android:id="@+id/img_profile_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/name_profile"
+            android:id="@+id/tv_name_profile_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_profile" />
@@ -32,13 +32,13 @@
         android:text="@string/information_profile" />
 
     <EditText
-        android:id="@+id/edit_information_profile"
+        android:id="@+id/et_profile_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/edit_information_profile" />
 
     <Button
-        android:id="@+id/btn_log_out"
+        android:id="@+id/btn_log_out_profile_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_out" />

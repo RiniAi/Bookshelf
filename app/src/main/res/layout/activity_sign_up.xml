@@ -12,34 +12,34 @@
         android:src="@drawable/appname" />
 
     <EditText
-        android:id="@+id/input_email"
+        android:id="@+id/et_email_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email_profile"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/input_name"
+        android:id="@+id/et_name_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_profile"
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/input_password"
+        android:id="@+id/et_password_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password_profile"
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_create_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create_account" />
 
     <TextView
-        android:id="@+id/link_signup"
+        android:id="@+id/link_sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

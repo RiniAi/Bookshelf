@@ -5,6 +5,7 @@
     android:orientation="horizontal">
 
     <TextView
+        android:id="@+id/tv_title_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -12,12 +13,14 @@
         android:text="@string/title_book" />
 
     <TextView
+        android:id="@+id/tv_author_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_list_book_challenge"
         android:text="@string/author_book" />
     <TextView
+        android:id="@+id/tv_rating_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

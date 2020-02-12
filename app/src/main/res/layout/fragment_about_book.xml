@@ -7,19 +7,19 @@
     android:padding="@dimen/screen_borders">
 
     <TextView
-        android:id="@+id/title_about_book"
+        android:id="@+id/tv_title_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/title_book" />
 
     <TextView
-        android:id="@+id/author_about_book"
+        android:id="@+id/tv_author_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/author_book" />
 
     <ImageView
-        android:id="@+id/image_about_book"
+        android:id="@+id/img_about_book"
         android:layout_width="@dimen/width_image_about_book"
         android:layout_height="@dimen/height_image_about_book"
         android:src="@drawable/ic_launcher_background" />
@@ -30,7 +30,7 @@
         android:text="@string/rating_book" />
 
     <RatingBar
-        android:id="@+id/rating"
+        android:id="@+id/rb_rating_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -41,7 +41,7 @@
         android:text="@string/edit_book" />
 
     <TextView
-        android:id="@+id/description_about_book"
+        android:id="@+id/tv_description_about_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/book_description" />

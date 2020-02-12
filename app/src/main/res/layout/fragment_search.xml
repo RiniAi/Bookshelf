@@ -8,13 +8,13 @@
     android:padding="@dimen/screen_borders">
 
     <EditText
-        android:id="@+id/txt_search"
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/search" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_of_books"
+        android:id="@+id/list_book_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
