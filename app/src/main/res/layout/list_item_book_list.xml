@@ -38,7 +38,7 @@
             android:id="@+id/btn_edit_book_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_book" />
+            android:text="@string/edit_book_item_book" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

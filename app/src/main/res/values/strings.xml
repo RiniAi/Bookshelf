@@ -12,7 +12,9 @@
     <string name="edit_about_book">Edit book</string>
     <string name="rating_about_book">Rating</string>
 
-    <string name="edit__book_challenge">Edit number books</string>
+    <string name="edit_book_challenge">Edit number books</string>
+
+    <string name="edit_book_item_book">Edit book</string>
 
     <string name="date_edit_book">Date of reading</string>
     <string name="delete_edit_book">Delete book</string>
@@ -27,7 +29,7 @@
 
     <string name="not_reading_nav_fr_list">Not reading</string>
     <string name="read_nav_fr_list">Read</string>
-    <string name="reading_nav_fr_list">rReading</string>
+    <string name="reading_nav_fr_list">Reading</string>
     <string name="want_to_read_nav_fr_list">Want to read</string>
 
     <string name="challenge_nav_ac_main">Challenge</string>
