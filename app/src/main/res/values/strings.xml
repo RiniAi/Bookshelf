@@ -28,4 +28,14 @@
     <string name="log_out">Log out</string>
     <string name="search">Search</string>
 
+    <string name="read_nav_fr_list">read</string>
+    <string name="want_to_read_nav_fr_list">want to read</string>
+    <string name="reading_nav_fr_list">reading</string>
+    <string name="not_reading_nav_fr_list">not reading</string>
+
+    <string name="challenge_nav_ac_main">challenge</string>
+    <string name="list_of_books_nav_ac_main">list of books</string>
+    <string name="search_nav_ac_main">search</string>
+    <string name="profile_information_nav_ac_main">profile information</string>
+
 </resources>

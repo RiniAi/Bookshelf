@@ -3,18 +3,18 @@
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="challenge" />
+        android:title="@string/challenge_nav_ac_main" />
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="list of books" />
+        android:title="@string/list_of_books_nav_ac_main" />
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="search"  />
+        android:title="@string/search_nav_ac_main"  />
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="profile information" />
+        android:title="@string/profile_information_nav_ac_main" />
 
 </menu>
