@@ -19,25 +19,25 @@
             android:id="@+id/author_book_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Author" />
+            android:text="@string/author_book" />
 
         <TextView
             android:id="@+id/title_book_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title" />
+            android:text="@string/title_book" />
 
         <TextView
             android:id="@+id/rating_book_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rating" />
+            android:text="@string/rating_book" />
 
         <Button
             android:id="@+id/edit_book_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit" />
+            android:text="@string/edit_book" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

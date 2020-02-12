@@ -17,13 +17,13 @@
         android:id="@+id/number_books_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12 books of 50 in 3 days" />
+        android:text="@string/number_books_challenge" />
 
     <Button
-        android:id="@+id/btn_edd_number_books"
+        android:id="@+id/btn_edit_number_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit" />
+        android:text="@string/edit_number_books" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_book_challenge"

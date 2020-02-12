@@ -11,7 +11,7 @@
         android:id="@+id/txt_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="@string/search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_of_books"

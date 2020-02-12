@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">Bookshelf</string>
+
+    <string name="email_profile">Email</string>
+    <string name="password_profile">Password</string>
+    <string name="login_profile">Login</string>
+    <string name="no_account_yet_create">No account yet? Create one</string>
+    <string name="create_account">Create account</string>
+    <string name="already_a_member_login">Already a member? Login</string>
+
+    <string name="title_book">Title</string>
+    <string name="author_book">Author</string>
+    <string name="rating_book">Rating</string>
+    <string name="edit_book">Edit book</string>
+    <string name="book_description">Book description</string>
+
+    <string name="number_books_challenge">12 books of 50 in 3 days</string>
+    <string name="edit_number_books">Edit number books</string>
+
+    <string name="status_book">The status of the book</string>
+    <string name="your_rating">Your rating</string>
+    <string name="date_of_reading">Date of reading</string>
+    <string name="save">Save</string>
+    <string name="delete_book">Delete book</string>
+
+    <string name="information_profile">Information</string>
+    <string name="edit_information_profile">Edit information profile</string>
+    <string name="log_out">Log out</string>
+    <string name="search">Search</string>
+
 </resources>

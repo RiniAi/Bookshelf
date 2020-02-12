@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="The status of the book" />
+        android:text="@string/status_book" />
 
     <Spinner
         android:id="@+id/spinner_status"
@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Your rating" />
+        android:text="@string/your_rating" />
 
     <RatingBar
         android:id="@+id/rating_edit_book"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Date of reading" />
+        android:text="@string/date_of_reading" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -67,12 +67,12 @@
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="@string/save" />
 
     <Button
         android:id="@+id/btn_delete_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete book" />
+        android:text="@string/delete_book" />
 
 </LinearLayout>

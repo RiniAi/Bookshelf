@@ -22,25 +22,25 @@
             android:id="@+id/name_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name" />
+            android:text="@string/login_profile" />
 
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Information" />
+        android:text="@string/information_profile" />
 
     <EditText
         android:id="@+id/edit_information_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edit" />
+        android:hint="@string/edit_information_profile" />
 
     <Button
         android:id="@+id/btn_log_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log out" />
+        android:text="@string/log_out" />
 
 </LinearLayout>

@@ -10,13 +10,13 @@
         android:id="@+id/title_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title" />
+        android:text="@string/title_book" />
 
     <TextView
         android:id="@+id/author_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Author" />
+        android:text="@string/author_book" />
 
     <ImageView
         android:id="@+id/image_about_book"
@@ -27,7 +27,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rating" />
+        android:text="@string/rating_book" />
 
     <RatingBar
         android:id="@+id/rating"
@@ -38,12 +38,12 @@
         android:id="@+id/btn_edit_book_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit book" />
+        android:text="@string/edit_book" />
 
     <TextView
         android:id="@+id/description_about_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Book description" />
+        android:text="@string/book_description" />
 
 </LinearLayout>

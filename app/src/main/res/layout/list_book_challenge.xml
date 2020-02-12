@@ -9,20 +9,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_list_book_challenge"
-        android:text="Title" />
+        android:text="@string/title_book" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_list_book_challenge"
-        android:text="Author" />
+        android:text="@string/author_book" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_list_book_challenge"
-        android:text="Rating" />
+        android:text="@string/rating_book" />
 
 
 </LinearLayout>
