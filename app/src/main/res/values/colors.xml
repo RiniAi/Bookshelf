@@ -8,7 +8,7 @@
 
     <color name="windowBackground">#e5f7ff</color>
 
-    <color name="White">#ffffff</color>
-    <color name="DarkGrey">#1b1b1b</color>
+    <color name="white">#ffffff</color>
+    <color name="darkGrey">#1b1b1b</color>
 
 </resources>
