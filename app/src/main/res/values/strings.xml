@@ -1,41 +1,37 @@
 <resources>
     <string name="app_name">Bookshelf</string>
 
-    <string name="email_profile">Email</string>
-    <string name="password_profile">Password</string>
-    <string name="login_profile">Login</string>
-    <string name="no_account_yet_create">No account yet? Create one</string>
-    <string name="create_account">Create account</string>
-    <string name="already_a_member_login">Already a member? Login</string>
+    <string name="email_login_sign">Email</string>
+    <string name="password_login_sign">Password</string>
+    <string name="login_login_sign">Login</string>
+    <string name="no_account_yet_create_login">No account yet? Create one</string>
+    <string name="create_account_sign">Create account</string>
+    <string name="already_a_member_login_sign">Already a member? Login</string>
 
-    <string name="title_book">Title</string>
-    <string name="author_book">Author</string>
-    <string name="rating_book">Rating</string>
-    <string name="edit_book">Edit book</string>
-    <string name="book_description">Book description</string>
+    <string name="rating_about_book">Rating</string>
+    <string name="edit_about_book">Edit book</string>
 
-    <string name="number_books_challenge">12 books of 50 in 3 days</string>
-    <string name="edit_number_books">Edit number books</string>
+    <string name="edit__book_challenge">Edit number books</string>
 
-    <string name="status_book">The status of the book</string>
-    <string name="your_rating">Your rating</string>
-    <string name="date_of_reading">Date of reading</string>
-    <string name="save">Save</string>
-    <string name="delete_book">Delete book</string>
+    <string name="status_edit_book">The status of the book</string>
+    <string name="rating_edit_book">Your rating</string>
+    <string name="date_edit_book">Date of reading</string>
+    <string name="save_edit_book">Save</string>
+    <string name="delete_edit_book">Delete book</string>
 
-    <string name="information_profile">Information</string>
-    <string name="edit_information_profile">Edit information profile</string>
-    <string name="log_out">Log out</string>
+    <string name="description_profile_information">Information</string>
+    <string name="log_out_profile_information">Log out</string>
+
     <string name="search">Search</string>
 
-    <string name="read_nav_fr_list">read</string>
-    <string name="want_to_read_nav_fr_list">want to read</string>
-    <string name="reading_nav_fr_list">reading</string>
-    <string name="not_reading_nav_fr_list">not reading</string>
+    <string name="read_nav_fr_list">Read</string>
+    <string name="want_to_read_nav_fr_list">Want to read</string>
+    <string name="reading_nav_fr_list">rReading</string>
+    <string name="not_reading_nav_fr_list">Not reading</string>
 
-    <string name="challenge_nav_ac_main">challenge</string>
-    <string name="list_of_books_nav_ac_main">list of books</string>
-    <string name="search_nav_ac_main">search</string>
-    <string name="profile_information_nav_ac_main">profile information</string>
+    <string name="challenge_nav_ac_main">Challenge</string>
+    <string name="list_of_books_nav_ac_main">List of books</string>
+    <string name="search_nav_ac_main">Search</string>
+    <string name="profile_information_nav_ac_main">Profile information</string>
 
 </resources>

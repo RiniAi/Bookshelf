@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
+        tools:layoutManager="GridLayoutManager"
+        tools:spanCount="2"
         tools:listitem="@layout/list_item_book_list">
 
     </androidx.recyclerview.widget.RecyclerView>
