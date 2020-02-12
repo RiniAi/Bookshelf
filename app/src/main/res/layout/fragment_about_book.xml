@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/screen_borders">
 
     <TextView
         android:id="@+id/title_about_book"
@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/image_about_book"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/width_image_about_book"
+        android:layout_height="@dimen/height_image_about_book"
         android:src="@drawable/ic_launcher_background" />
 
     <TextView

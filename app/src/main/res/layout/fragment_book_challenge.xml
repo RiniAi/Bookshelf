@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/screen_borders">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="96dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/bookchallenge" />
 
     <TextView
