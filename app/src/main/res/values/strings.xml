@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">Bookshelf</string>
+
+    <string name="already_a_member_login_sign">Already a member? Login</string>
+    <string name="create_account_sign">Create account</string>
+    <string name="email_login_sign">Email</string>
+    <string name="login_login_sign">Login</string>
+    <string name="no_account_yet_create_login">No account yet? Create one</string>
+    <string name="password_login_sign">Password</string>
+
+
+    <string name="edit_about_book">Edit book</string>
+    <string name="rating_about_book">Rating</string>
+
+    <string name="edit_book_challenge">Edit number books</string>
+
+    <string name="edit_book_item_book">Edit book</string>
+
+    <string name="date_edit_book">Date of reading</string>
+    <string name="delete_edit_book">Delete book</string>
+    <string name="rating_edit_book">Your rating</string>
+    <string name="save_edit_book">Save</string>
+    <string name="status_edit_book">The status of the book</string>
+
+    <string name="description_profile_information">Information</string>
+    <string name="log_out_profile_information">Log out</string>
+
+    <string name="search">Search</string>
+
+    <string name="not_reading_nav_fr_list">Not reading</string>
+    <string name="read_nav_fr_list">Read</string>
+    <string name="reading_nav_fr_list">Reading</string>
+    <string name="want_to_read_nav_fr_list">Want to read</string>
+
+    <string name="challenge_nav_ac_main">Challenge</string>
+    <string name="list_of_books_nav_ac_main">List of books</string>
+    <string name="profile_information_nav_ac_main">Profile information</string>
+    <string name="search_nav_ac_main">Search</string>
+
+
 </resources>

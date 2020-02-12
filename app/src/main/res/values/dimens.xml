@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_borders">16dp</dimen>
+
+    <dimen name="width_image_about_book">100dp</dimen>
+    <dimen name="height_image_about_book">100dp</dimen>
+
+    <dimen name="width_spinner_status">100dp</dimen>
+    <dimen name="width_spinner_date">100dp</dimen>
+
+    <dimen name="margin_for_frame_layout">56dp</dimen>
+    <dimen name="margin_list_book_challenge">16dp</dimen>
+
+</resources>

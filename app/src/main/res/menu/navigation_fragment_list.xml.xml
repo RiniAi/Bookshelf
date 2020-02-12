@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/read_nav_fr_list" />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/want_to_read_nav_fr_list" />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/reading_nav_fr_list"  />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/not_reading_nav_fr_list" />
+
+</menu>

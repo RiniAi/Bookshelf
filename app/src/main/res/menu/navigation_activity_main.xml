@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/challenge_nav_ac_main" />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/list_of_books_nav_ac_main" />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/search_nav_ac_main"  />
+
+    <item
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/profile_information_nav_ac_main" />
+
+</menu>
