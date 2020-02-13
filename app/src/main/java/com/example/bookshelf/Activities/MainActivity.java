@@ -2,16 +2,11 @@ package com.example.bookshelf.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.util.Log;
-
 import com.example.bookshelf.AdapterBook;
 import com.example.bookshelf.Models.Book;
 import com.example.bookshelf.R;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
