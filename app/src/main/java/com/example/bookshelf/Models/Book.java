@@ -1,7 +1,5 @@
 package com.example.bookshelf.Models;
 
-import android.widget.Spinner;
-
 import java.util.Date;
 
 public class Book {
@@ -28,16 +26,6 @@ public class Book {
     public void setImage(int image) {
         this.image = image;
     }
-
-    // temporary constructor
-    public Book (int image, String author, String title, float rating){
-        this.image = image;
-        this.authors = author;
-        this.title = title;
-        this.averageRating = rating;
-    }
-    public Book (){}
-
 
     public enum BookStatus {
         READ,
