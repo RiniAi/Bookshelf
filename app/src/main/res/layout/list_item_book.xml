@@ -8,9 +8,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
-        android:paddingBottom="@dimen/padding_Bottom_list_of_books"
-        android:paddingLeft="@dimen/padding_LeftRight_list_of_books"
-        android:paddingRight="@dimen/padding_LeftRight_list_of_books"
+        android:paddingBottom="@dimen/padding_bottom_list_of_books"
+        android:paddingLeft="@dimen/padding_left_and_right_list_of_books"
+        android:paddingRight="@dimen/padding_left_and_right_list_of_books"
         android:orientation="vertical">
 
         <ImageView

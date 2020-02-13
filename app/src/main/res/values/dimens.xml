@@ -11,6 +11,6 @@
     <dimen name="margin_for_frame_layout">56dp</dimen>
     <dimen name="margin_list_book_challenge">16dp</dimen>
 
-    <dimen name="padding_Bottom_list_of_books">8dp</dimen>
-    <dimen name="padding_LeftRight_list_of_books">16dp</dimen>
+    <dimen name="padding_bottom_list_of_books">8dp</dimen>
+    <dimen name="padding_left_and_right_list_of_books">16dp</dimen>
 </resources>
