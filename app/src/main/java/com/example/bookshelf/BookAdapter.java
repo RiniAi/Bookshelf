@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookshelf.Models.Book;
 import java.util.ArrayList;
 
-public class AdapterBook extends RecyclerView.Adapter<AdapterBook.BookViewHolder> {
+public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private Context context;
     private ArrayList<Book> bookArrayList;
 
-    public AdapterBook(Context context, ArrayList<Book> bookArrayList) {
+    public BookAdapter(Context context, ArrayList<Book> bookArrayList) {
         this.context = context;
         this.bookArrayList = bookArrayList;
     }
