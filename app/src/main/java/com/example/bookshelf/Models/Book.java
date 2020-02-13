@@ -18,6 +18,15 @@ public class Book {
     private Date readDate;
     private BookStatus status;
 
+    // temporarily add image
+    private int image;
+    public int getImage() {
+        return image;
+    }
+    public void setImage(int image) {
+        this.image = image;
+    }
+
     public enum BookStatus {
         READ,
         WANT_TO_READ,
