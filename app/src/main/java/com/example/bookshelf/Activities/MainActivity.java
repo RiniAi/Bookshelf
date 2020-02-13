@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import com.example.bookshelf.AdapterBook;
+import com.example.bookshelf.BookAdapter;
 import com.example.bookshelf.Models.Book;
 import com.example.bookshelf.R;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         employeesList.setLayoutManager(gridLayoutManager);
 
-        bookAdapter = new AdapterBook(getApplicationContext(), bookArrayList);
+        bookAdapter = new BookAdapter(getApplicationContext(), bookArrayList);
         employeesList.setAdapter(bookAdapter);
     }
 
