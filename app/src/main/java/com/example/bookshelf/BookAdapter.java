@@ -20,9 +20,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     private Context context;
     private ArrayList<Book> bookArrayList;
 
-    public BookAdapter(Context context, ArrayList<Book> bookArrayList) {
+    public BookAdapter(Context context, ArrayList<Book> bookList) {
         this.context = context;
-        this.bookArrayList = bookArrayList;
+        this.bookArrayList = bookList;
     }
 
     @NonNull

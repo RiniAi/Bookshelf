@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView employeesList;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView.Adapter bookAdapter;
-    private ArrayList<Book> bookArrayList = new ArrayList<>();
+    private ArrayList<Book> bookList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         employeesList.setLayoutManager(gridLayoutManager);
 
-        bookAdapter = new BookAdapter(getApplicationContext(), bookArrayList);
+        bookAdapter = new BookAdapter(getApplicationContext(), bookList);
         employeesList.setAdapter(bookAdapter);
     }
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         book.setImage(R.drawable.ic_launcher_background);
         book.setAverageRating(10);
 
-        bookArrayList.addAll(Collections.nCopies(50, book));
+        bookList.addAll(Collections.nCopies(50, book));
 
     }
 }
