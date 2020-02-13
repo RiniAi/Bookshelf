@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_list_of_books);
 
         initRecyclerView();
-        getDate();
+        loadBooks();
     }
 
     private void initRecyclerView() {
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         employeesList.setAdapter(bookAdapter);
     }
 
-    private void getDate() {
+    private void loadBooks() {
         bookArrayList.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
 
     }
