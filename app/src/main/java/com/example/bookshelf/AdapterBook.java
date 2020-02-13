@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class AdapterBook extends RecyclerView.Adapter<AdapterBook.BookViewHolder> {
 
     private Context context;
-    private ArrayList<Book> books;
+    private ArrayList<Book> bookArrayList;
 
-    public AdapterBook(Context context, ArrayList<Book> books) {
+    public AdapterBook(Context context, ArrayList<Book> bookArrayList) {
         this.context = context;
-        this.books = books;
+        this.bookArrayList = bookArrayList;
     }
 
     @NonNull
@@ -31,7 +31,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book = books.get(position);
+        Book book = bookArrayList.get(position);
 
         holder.imgBook.setImageResource(book.getImage());
         holder.authorBook.setText(book.getAuthors());
@@ -43,7 +43,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.BookViewHolder
 
     @Override
     public int getItemCount() {
-        return books.size();
+        return bookArrayList.size();
 
     }
 

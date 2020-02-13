@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView rvList;
+    private RecyclerView employeesList;
     private GridLayoutManager gridLayoutManager;
-    private RecyclerView.Adapter adapterBook;
-    private ArrayList<Book> arrayListBook = new ArrayList<>();
+    private RecyclerView.Adapter bookAdapter;
+    private ArrayList<Book> bookArrayList = new ArrayList<>();
 
 
     @Override
@@ -27,38 +27,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        rvList = findViewById(R.id.rv_of_books);
-        rvList.setHasFixedSize(true);
+        employeesList = findViewById(R.id.rv_of_books);
+        employeesList.setHasFixedSize(true);
 
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-        rvList.setLayoutManager(gridLayoutManager);
+        employeesList.setLayoutManager(gridLayoutManager);
 
-        adapterBook = new AdapterBook(getApplicationContext(), arrayListBook);
-        rvList.setAdapter(adapterBook);
+        bookAdapter = new AdapterBook(getApplicationContext(), bookArrayList);
+        employeesList.setAdapter(bookAdapter);
     }
 
     private void getDate() {
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
-        arrayListBook.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
+        bookArrayList.add(new Book(R.drawable.book, "Nicholas Eames", "Kings of the Wyld", 10));
+
     }
 }
