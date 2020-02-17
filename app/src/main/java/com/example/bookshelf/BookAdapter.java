@@ -11,16 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.Models.Book;
+import com.example.bookshelf.Models.Item;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private Context context;
-    private ArrayList<Book> bookArrayList;
+    private ArrayList<Item> bookArrayList;
 
-    public BookAdapter(Context context, ArrayList<Book> bookList) {
+    String author = "";
+    String authors = "";
+    String rating = "Not rating";
+
+    public BookAdapter(Context context, ArrayList<Item> bookList) {
         this.context = context;
         this.bookArrayList = bookList;
     }
@@ -34,20 +39,36 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book = bookArrayList.get(position);
+        Item book = bookArrayList.get(position);
 
-        holder.imgBook.setImageResource(book.getImage());
-        holder.authorBook.setText(book.getAuthors());
-        holder.titleBook.setText(book.getTitle());
+        Picasso.get().load(book.getVolumeInfo().getImageLinks().getThumbnail()).into(holder.imgBook);
+        holder.titleBook.setText(book.getVolumeInfo().getTitle());
 
-        String rating = String.valueOf(book.getAverageRating());
-        holder.ratingBook.setText(rating);
+        if (!(book.getVolumeInfo().getAuthors().size() == 0)) {
+            author = book.getVolumeInfo().getAuthors().get(0);
+            holder.authorBook.setText(authors);
+        }
+
+        if (book.getVolumeInfo().getAuthors().size() == 1) {
+            authors = book.getVolumeInfo().getAuthors().get(0);
+        } else if (book.getVolumeInfo().getAuthors().size() > 1) {
+            authors = book.getVolumeInfo().getAuthors().get(0);
+            for (int j = 1; j < book.getVolumeInfo().getAuthors().size(); j++) {
+                authors = authors + ", " + book.getVolumeInfo().getAuthors().get(j);
+            }
+        }
+
+        if (book.getVolumeInfo().getAverageRating() == null) {
+            holder.ratingBook.setText(rating);
+        } else {
+            String rating = String.valueOf(book.getVolumeInfo().getAverageRating());
+            holder.ratingBook.setText(rating);
+        }
     }
 
     @Override
     public int getItemCount() {
         return bookArrayList.size();
-
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
