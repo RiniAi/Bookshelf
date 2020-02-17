@@ -1,54 +1,58 @@
 package com.example.bookshelf.Activities;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-
 import com.example.bookshelf.BookAdapter;
-import com.example.bookshelf.Models.Book;
+import com.example.bookshelf.Models.BookItem;
+import com.example.bookshelf.GetDataService;
+import com.example.bookshelf.Models.Item;
 import com.example.bookshelf.R;
+import com.example.bookshelf.RetrofitClientInstance;
 
 import java.util.ArrayList;
-import java.util.Collections;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
+     ArrayList<Item> bookList = new ArrayList<>();
 
-    private RecyclerView employeesList;
-    private GridLayoutManager gridLayoutManager;
-    private RecyclerView.Adapter bookAdapter;
-    private ArrayList<Book> bookList = new ArrayList<>();
+        private RecyclerView employeesList;
+        private GridLayoutManager gridLayoutManager;
+        private RecyclerView.Adapter bookAdapter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_list_of_books);
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.fragment_list_of_books);
 
-        initRecyclerView();
-        loadBooks();
-    }
+            GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
+            Call<BookItem> call = service.getData();
+            call.enqueue(new Callback<BookItem>() {
+                @Override
+                public void onResponse(Call<BookItem> call, Response<BookItem> response) {
+                    bookList = response.body().getItems();
 
-    private void initRecyclerView() {
-        employeesList = findViewById(R.id.rv_of_books);
-        employeesList.setHasFixedSize(true);
+                    employeesList = findViewById(R.id.rv_of_books);
+                    bookAdapter = new BookAdapter(getApplicationContext(),bookList);
+                    gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+                    employeesList.setLayoutManager(gridLayoutManager);
+                    employeesList.setAdapter(bookAdapter);
+                }
 
-        gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-        employeesList.setLayoutManager(gridLayoutManager);
+                @Override
+                public void onFailure(Call<BookItem> call, Throwable t) {
+                    Log.e("error", t.toString());
+                    Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-        bookAdapter = new BookAdapter(getApplicationContext(), bookList);
-        employeesList.setAdapter(bookAdapter);
-    }
-
-    private void loadBooks() {
-        Book book = new Book();
-
-        book.setAuthors("Nicholas Eames");
-        book.setTitle("Kings of the Wyld");
-        book.setImage(R.drawable.ic_launcher_background);
-        book.setAverageRating(10);
-
-        bookList.addAll(Collections.nCopies(50, book));
-
-    }
+        }
 }
