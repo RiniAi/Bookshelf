@@ -15,6 +15,9 @@ import com.example.bookshelf.Models.BookItem;
 import com.example.bookshelf.Models.Item;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
+import com.example.bookshelf.Room.BookDao;
+import com.example.bookshelf.Room.BookDatabase;
+import com.example.bookshelf.Room.BookEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     List<Book> bookList = new ArrayList<>();
     Book book;
 
+
     private RecyclerView books;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView.Adapter bookAdapter;
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         books = findViewById(R.id.rv_of_books);
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         books.setLayoutManager(gridLayoutManager);
+
+        BookDatabase db = BookDatabase.getInstance(this);
+        final BookDao bookDao = db.bookDao();
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<BookItem> call = service.getData();
@@ -55,6 +62,15 @@ public class MainActivity extends AppCompatActivity {
                     book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
 
                     bookList.add(book);
+
+                    BookEntity bookEntity = new BookEntity();
+                    bookEntity.authors = book.getAuthors();
+                    bookEntity.title = book.getTitle();
+                    bookEntity.imageLinks = book.getImageURL();
+                    bookEntity.averageRating = book.getAverageRating();
+
+                    bookDao.insertBookEntity(bookEntity);
+
                 }
                 bookAdapter = new BookAdapter(getApplicationContext(), bookList);
                 books.setAdapter(bookAdapter);
