@@ -16,13 +16,14 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Item> bookList = new ArrayList<>();
+    List<Item> bookList = new ArrayList<>();
 
     private RecyclerView employeesList;
     private GridLayoutManager gridLayoutManager;

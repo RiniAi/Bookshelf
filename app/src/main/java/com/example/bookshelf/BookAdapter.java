@@ -14,18 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookshelf.Models.Item;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private Context context;
-    private ArrayList<Item> books;
+    private List<Item> books;
 
     String author = "";
     String authors = "";
     String rating = "Not rating";
 
-    public BookAdapter(Context context, ArrayList<Item> books) {
+    public BookAdapter(Context context, List<Item> books) {
         this.context = context;
         this.books = books;
     }
