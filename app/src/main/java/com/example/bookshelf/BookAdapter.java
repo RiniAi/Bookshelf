@@ -12,17 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.Models.Book;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private Context context;
-    private ArrayList<Book> bookArrayList;
+    private List<Book> books;
 
-    public BookAdapter(Context context, ArrayList<Book> bookList) {
+    public BookAdapter(Context context, List<Book> books) {
         this.context = context;
-        this.bookArrayList = bookList;
+        this.books = books;
     }
 
     @NonNull
@@ -34,9 +35,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book = bookArrayList.get(position);
+        Book book = books.get(position);
 
-        holder.imgBook.setImageResource(book.getImage());
+        Picasso.get().load(book.getImageURL()).into(holder.imgBook);
         holder.authorBook.setText(book.getAuthors());
         holder.titleBook.setText(book.getTitle());
 
@@ -46,8 +47,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public int getItemCount() {
-        return bookArrayList.size();
-
+        return books.size();
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
