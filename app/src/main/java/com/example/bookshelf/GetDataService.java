@@ -9,6 +9,3 @@ public interface GetDataService {
     @GET("volumes?q=harry+potter")
     Call<BookItem> getData();
 }
-
-
-
