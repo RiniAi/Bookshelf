@@ -23,7 +23,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     String author = "";
     String authors = "";
-    String rating = "Not rating";
 
     public BookAdapter(Context context, List<Item> books) {
         this.context = context;
@@ -59,7 +58,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         }
 
         if (book.getVolumeInfo().getAverageRating() == null) {
-            holder.ratingBook.setText(rating);
+            holder.ratingBook.setText(R.string.no_rating);
         } else {
             String rating = String.valueOf(book.getVolumeInfo().getAverageRating());
             holder.ratingBook.setText(rating);

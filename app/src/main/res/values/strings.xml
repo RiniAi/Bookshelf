@@ -37,5 +37,6 @@
     <string name="profile_information_nav_ac_main">Profile information</string>
     <string name="search_nav_ac_main">Search</string>
 
+    <string name="no_rating">No rating</string>
 
 </resources>
