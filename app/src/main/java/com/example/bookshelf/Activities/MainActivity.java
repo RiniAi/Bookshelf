@@ -23,9 +23,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    List<Item> bookList = new ArrayList<>();
+    List<Item> books = new ArrayList<>();
 
-    private RecyclerView employeesList;
+    private RecyclerView bookList;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView.Adapter bookAdapter;
 
@@ -33,19 +33,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list_of_books);
+        bookList = findViewById(R.id.rv_of_books);
+        gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+        bookList.setLayoutManager(gridLayoutManager);
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<BookItem> call = service.getData();
         call.enqueue(new Callback<BookItem>() {
             @Override
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
-                bookList = response.body().getItems();
-
-                employeesList = findViewById(R.id.rv_of_books);
-                bookAdapter = new BookAdapter(getApplicationContext(), bookList);
-                gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-                employeesList.setLayoutManager(gridLayoutManager);
-                employeesList.setAdapter(bookAdapter);
+                books = response.body().getItems();
+                bookAdapter = new BookAdapter(getApplicationContext(), books);
+                bookList.setAdapter(bookAdapter);
             }
 
             @Override
