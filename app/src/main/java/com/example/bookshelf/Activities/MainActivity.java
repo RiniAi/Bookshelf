@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.BookAdapter;
 import com.example.bookshelf.GetDataService;
 import com.example.bookshelf.Models.Book;
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     List<Book> bookList = new ArrayList<>();
     Book book;
 
-
     private RecyclerView books;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView.Adapter bookAdapter;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         books.setLayoutManager(gridLayoutManager);
 
-        BookDatabase db = BookDatabase.getInstance(this);
+        BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
