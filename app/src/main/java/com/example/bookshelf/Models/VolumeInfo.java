@@ -6,7 +6,7 @@ public class VolumeInfo {
     private String title;
     private List<String> authors;
     private String description;
-    private Double averageRating;
+    private float averageRating;
     private ImageLinks imageLinks;
 
     public String getTitle() {
@@ -25,11 +25,11 @@ public class VolumeInfo {
         this.description = description;
     }
 
-    public Double getAverageRating() {
+    public float getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(Double averageRating) {
+    public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
     }
 

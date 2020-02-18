@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.Models.Item;
+import com.example.bookshelf.Models.Book;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,12 +19,9 @@ import java.util.List;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private Context context;
-    private List<Item> books;
+    private List<Book> books;
 
-    String author = "";
-    String authors = "";
-
-    public BookAdapter(Context context, List<Item> books) {
+    public BookAdapter(Context context, List<Book> books) {
         this.context = context;
         this.books = books;
     }
@@ -38,31 +35,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Item book = books.get(position);
+        Book book = books.get(position);
 
-        Picasso.get().load(book.getVolumeInfo().getImageLinks().getThumbnail()).into(holder.imgBook);
-        holder.titleBook.setText(book.getVolumeInfo().getTitle());
+        Picasso.get().load(book.getImageURL()).into(holder.imgBook);
+        holder.authorBook.setText(book.getAuthors());
+        holder.titleBook.setText(book.getTitle());
 
-        if (!(book.getVolumeInfo().getAuthors().size() == 0)) {
-            author = book.getVolumeInfo().getAuthors().get(0);
-            holder.authorBook.setText(authors);
-        }
-
-        if (book.getVolumeInfo().getAuthors().size() == 1) {
-            authors = book.getVolumeInfo().getAuthors().get(0);
-        } else if (book.getVolumeInfo().getAuthors().size() > 1) {
-            authors = book.getVolumeInfo().getAuthors().get(0);
-            for (int j = 1; j < book.getVolumeInfo().getAuthors().size(); j++) {
-                authors = authors + ", " + book.getVolumeInfo().getAuthors().get(j);
-            }
-        }
-
-        if (book.getVolumeInfo().getAverageRating() == null) {
-            holder.ratingBook.setText(R.string.no_rating);
-        } else {
-            String rating = String.valueOf(book.getVolumeInfo().getAverageRating());
-            holder.ratingBook.setText(rating);
-        }
+        String rating = String.valueOf(book.getAverageRating());
+        holder.ratingBook.setText(rating);
     }
 
     @Override
