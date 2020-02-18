@@ -19,15 +19,15 @@ import java.util.ArrayList;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
 
     private Context context;
-    private ArrayList<Item> bookArrayList;
+    private ArrayList<Item> books;
 
     String author = "";
     String authors = "";
     String rating = "Not rating";
 
-    public BookAdapter(Context context, ArrayList<Item> bookList) {
+    public BookAdapter(Context context, ArrayList<Item> books) {
         this.context = context;
-        this.bookArrayList = bookList;
+        this.books = books;
     }
 
     @NonNull
@@ -39,7 +39,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Item book = bookArrayList.get(position);
+        Item book = books.get(position);
 
         Picasso.get().load(book.getVolumeInfo().getImageLinks().getThumbnail()).into(holder.imgBook);
         holder.titleBook.setText(book.getVolumeInfo().getTitle());
@@ -68,7 +68,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public int getItemCount() {
-        return bookArrayList.size();
+        return books.size();
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
