@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     List<Book> bookList = new ArrayList<>();
     Book book;
 
-    private RecyclerView employeesList;
+    private RecyclerView books;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView.Adapter bookAdapter;
 
@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list_of_books);
-        employeesList = findViewById(R.id.rv_of_books);
+        books = findViewById(R.id.rv_of_books);
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-        employeesList.setLayoutManager(gridLayoutManager);
+        books.setLayoutManager(gridLayoutManager);
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<BookItem> call = service.getData();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     bookList.add(book);
                 }
                 bookAdapter = new BookAdapter(getApplicationContext(), bookList);
-                employeesList.setAdapter(bookAdapter);
+                books.setAdapter(bookAdapter);
             }
 
             @Override
