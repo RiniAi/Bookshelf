@@ -3,6 +3,12 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
     defaultConfig {
         applicationId "com.example.bookshelf"
         minSdkVersion 21
@@ -29,8 +35,8 @@ dependencies {
 
     implementation 'com.android.support:design:29.0.0'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.7.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation("com.squareup.okhttp3:okhttp:4.3.1")
@@ -41,5 +47,4 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.2.3"
 
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
-
 }
