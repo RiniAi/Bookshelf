@@ -1,6 +1,5 @@
 package com.example.bookshelf.Room;
 
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -8,17 +7,9 @@ import androidx.room.PrimaryKey;
 public class BookEntity {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
-    @ColumnInfo(name = "title")
     public String title;
-
-    @ColumnInfo(name = "authors")
     public String authors;
-
-    @ColumnInfo(name = "averageRating")
     public float averageRating;
-
-    @ColumnInfo(name = "imageLinks")
     public String imageLinks;
 
     public int getId() {
