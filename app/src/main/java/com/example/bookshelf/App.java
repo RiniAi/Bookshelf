@@ -13,6 +13,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        createDatabase();
+    }
+
+    private void createDatabase() {
         instance = this;
         database = Room.databaseBuilder(this, BookDatabase.class, "database_book")
                 .allowMainThreadQueries()
