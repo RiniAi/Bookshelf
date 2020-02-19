@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.BookAdapter;
 import com.example.bookshelf.GetDataService;
 import com.example.bookshelf.Models.Book;
@@ -15,6 +16,9 @@ import com.example.bookshelf.Models.BookItem;
 import com.example.bookshelf.Models.Item;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
+import com.example.bookshelf.Room.BookDao;
+import com.example.bookshelf.Room.BookDatabase;
+import com.example.bookshelf.Room.BookEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,19 +30,33 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     List<Item> bookResult = new ArrayList<>();
     List<Book> bookList = new ArrayList<>();
+    List<BookEntity> bookListDao = new ArrayList<>();
     Book book;
 
     private RecyclerView books;
     private GridLayoutManager gridLayoutManager;
-    private RecyclerView.Adapter bookAdapter;
+    private BookAdapter bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list_of_books);
+
+        initAdapter();
+        loadSaveData();
+    }
+
+    private void initAdapter() {
         books = findViewById(R.id.rv_of_books);
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         books.setLayoutManager(gridLayoutManager);
+        bookAdapter = new BookAdapter(getApplicationContext());
+        books.setAdapter(bookAdapter);
+    }
+
+    private void loadSaveData() {
+        BookDatabase db = App.getInstance().getDatabase();
+        final BookDao bookDao = db.bookDao();
 
         GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
         Call<BookItem> call = service.getData();
@@ -49,15 +67,23 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < bookResult.size(); i++) {
                     book = new Book();
-                    book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString());
+                    book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
+                            .replace("[", "")
+                            .replace("]", ""));
                     book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
                     book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
                     book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-
                     bookList.add(book);
+
+                    BookEntity bookEntity = new BookEntity();
+                    bookEntity.authors = book.getAuthors();
+                    bookEntity.title = book.getTitle();
+                    bookEntity.imageLinks = book.getImageURL();
+                    bookEntity.averageRating = book.getAverageRating();
+                    bookListDao.add(bookEntity);
                 }
-                bookAdapter = new BookAdapter(getApplicationContext(), bookList);
-                books.setAdapter(bookAdapter);
+                bookAdapter.setList(bookList);
+                bookDao.insert(bookListDao);
             }
 
             @Override
