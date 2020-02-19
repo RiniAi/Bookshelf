@@ -11,14 +11,14 @@ import java.util.List;
 @Dao
 public interface BookDao {
     @Query("SELECT * FROM books")
-    List<BookEntity> getBookEntityList();
+    List<BookEntity> getList();
 
     @Insert
-    void insertBookEntity(BookEntity bookEntity);
+    void insert(BookEntity bookEntity);
 
     @Update
-    void updateBookEntity(BookEntity bookEntity);
+    void update(BookEntity bookEntity);
 
     @Delete
-    void deleteBookEntity(BookEntity bookEntity);
+    void delete(BookEntity bookEntity);
 }
