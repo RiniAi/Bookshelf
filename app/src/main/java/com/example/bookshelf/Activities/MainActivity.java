@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     bookEntity.imageLinks = book.getImageURL();
                     bookEntity.averageRating = book.getAverageRating();
 
-                    bookDao.insertBookEntity(bookEntity);
+                    bookDao.insert(bookEntity);
 
                 }
                 bookAdapter = new BookAdapter(getApplicationContext(), bookList);
