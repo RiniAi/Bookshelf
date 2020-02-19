@@ -1,13 +1,14 @@
 package com.example.bookshelf.Room;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
-@Entity(tableName = "books", primaryKeys = {"title", "authors"})
+@Entity(tableName = "books", indices = @Index(value = {"title", "authors"}, unique = true))
 public class BookEntity {
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    public long id;
     public String title;
-    @NonNull
     public String authors;
     public float averageRating;
     public String imageLinks;
