@@ -1,6 +1,8 @@
 package com.example.bookshelf.Activities;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +31,9 @@ public class BookChallenge extends AppCompatActivity {
     List<BookEntity> listDatabase;
     List<Book> listBook;
 
+    SharedPreferences sharedPreferences;
+    public static final String STORAGE_NUMBERS = "Numbers book challenge";
+
     private RecyclerView books;
     private BookChallengeAdapter bookAdapter;
 
@@ -41,6 +46,7 @@ public class BookChallenge extends AppCompatActivity {
         numberBooksChallenge = (TextView) findViewById(R.id.tv_number_books_challenge);
         btnEditNumber = (Button) findViewById(R.id.btn_edit_number_books);
 
+        loadNumbersBooksChallenge();
         initRecyclerView();
         loadData();
     }
@@ -82,6 +88,7 @@ public class BookChallenge extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 numbersBooksChallenge.setText(String.valueOf(np.getValue()));
+                saveNumbersBooksChallenge();
                 dialog.dismiss();
             }
         });
@@ -92,5 +99,18 @@ public class BookChallenge extends AppCompatActivity {
             }
         });
         dialog.show();
+    }
+
+    private void saveNumbersBooksChallenge() {
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(STORAGE_NUMBERS, numbersBooksChallenge.getText().toString());
+        editor.apply();
+    }
+
+    private void loadNumbersBooksChallenge() {
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        String numbersBooks = sharedPreferences.getString(STORAGE_NUMBERS, "");
+        this.numbersBooksChallenge.setText(numbersBooks);
     }
 }
