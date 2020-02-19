@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < bookResult.size(); i++) {
                     book = new Book();
-                    book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString());
+                    book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
+                            .replace("[", "")
+                            .replace("]", ""));
                     book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
                     book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
                     book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
