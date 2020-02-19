@@ -14,7 +14,7 @@ public interface BookDao {
     List<BookEntity> getList();
 
     @Insert
-    void insert(BookEntity bookEntity);
+    void insert(List<BookEntity> list);
 
     @Update
     void update(BookEntity bookEntity);

@@ -30,6 +30,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     List<Item> bookResult = new ArrayList<>();
     List<Book> bookList = new ArrayList<>();
+    List<BookEntity> bookListDao = new ArrayList<>();
     Book book;
 
     private RecyclerView books;
@@ -70,10 +71,9 @@ public class MainActivity extends AppCompatActivity {
                     bookEntity.title = book.getTitle();
                     bookEntity.imageLinks = book.getImageURL();
                     bookEntity.averageRating = book.getAverageRating();
-
-                    bookDao.insert(bookEntity);
-
+                    bookListDao.add(bookEntity);
                 }
+                bookDao.insert(bookListDao);
                 bookAdapter = new BookAdapter(getApplicationContext(), bookList);
                 books.setAdapter(bookAdapter);
             }
