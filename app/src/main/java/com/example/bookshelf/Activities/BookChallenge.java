@@ -1,7 +1,10 @@
 package com.example.bookshelf.Activities;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.App;
-import com.example.bookshelf.BookAdapterChallenge;
+import com.example.bookshelf.BookChallengeAdapter;
 import com.example.bookshelf.Models.Book;
 import com.example.bookshelf.R;
 import com.example.bookshelf.Room.BookDao;
@@ -27,7 +30,7 @@ public class BookChallenge extends AppCompatActivity {
     List<Book> listBook;
 
     private RecyclerView books;
-    private BookAdapterChallenge bookAdapter;
+    private BookChallengeAdapter bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class BookChallenge extends AppCompatActivity {
     private void initRecyclerView() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(BookChallenge.this);
         books.setLayoutManager(linearLayoutManager);
-        bookAdapter = new BookAdapterChallenge(getApplicationContext());
+        bookAdapter = new BookChallengeAdapter(getApplicationContext());
         books.setAdapter(bookAdapter);
     }
 
@@ -65,5 +68,29 @@ public class BookChallenge extends AppCompatActivity {
         }
         bookAdapter.setList(listBook);
         numberBooksChallenge.setText(String.valueOf(listBook.size()));
+    }
+
+    public void editNumberChallenge(View view) {
+        final Dialog dialog = new Dialog(BookChallenge.this);
+        dialog.setContentView(R.layout.dialog_book_challenge);
+        Button btnSet = (Button) dialog.findViewById(R.id.btn_set_book_challenge);
+        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel_book_challenge);
+        final NumberPicker np = (NumberPicker) dialog.findViewById(R.id.number_picker_book_challenge);
+        np.setMaxValue(1000);
+        np.setMinValue(0);
+        btnSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numbersBooksChallenge.setText(String.valueOf(np.getValue()));
+                dialog.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
