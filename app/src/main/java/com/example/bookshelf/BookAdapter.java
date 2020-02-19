@@ -21,9 +21,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     private Context context;
     private List<Book> books;
 
-    public BookAdapter(Context context, List<Book> books) {
+    public BookAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setList(List<Book> books) {
         this.books = books;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,7 +39,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-        Book book = books.get(position);
+        Book book = getItem(position);
+        if (book == null) {
+            return;
+        }
 
         Picasso.get().load(book.getImageURL()).into(holder.imgBook);
         holder.authorBook.setText(book.getAuthors());
@@ -45,9 +52,21 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.ratingBook.setText(rating);
     }
 
+    private Book getItem(int position) {
+        if (books.isEmpty()) {
+            return null;
+        } else {
+            return books.get(position);
+        }
+    }
+
     @Override
     public int getItemCount() {
-        return books.size();
+        if (books == null) {
+            return 0;
+        } else {
+            return books.size();
+        }
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
