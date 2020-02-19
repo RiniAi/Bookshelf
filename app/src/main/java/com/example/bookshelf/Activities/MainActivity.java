@@ -35,16 +35,26 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView books;
     private GridLayoutManager gridLayoutManager;
-    private RecyclerView.Adapter bookAdapter;
+    private BookAdapter bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_list_of_books);
+
+        initAdapter();
+        loadSaveData();
+    }
+
+    private void initAdapter() {
         books = findViewById(R.id.rv_of_books);
         gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         books.setLayoutManager(gridLayoutManager);
+        bookAdapter = new BookAdapter(getApplicationContext());
+        books.setAdapter(bookAdapter);
+    }
 
+    private void loadSaveData() {
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
 
@@ -63,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                     book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
                     book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
                     book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-
                     bookList.add(book);
 
                     BookEntity bookEntity = new BookEntity();
@@ -73,9 +82,8 @@ public class MainActivity extends AppCompatActivity {
                     bookEntity.averageRating = book.getAverageRating();
                     bookListDao.add(bookEntity);
                 }
+                bookAdapter.setList(bookList);
                 bookDao.insert(bookListDao);
-                bookAdapter = new BookAdapter(getApplicationContext(), bookList);
-                books.setAdapter(bookAdapter);
             }
 
             @Override
