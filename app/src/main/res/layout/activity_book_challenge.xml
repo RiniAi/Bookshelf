@@ -33,17 +33,26 @@
             android:text="@string/books_of" />
 
         <TextView
-            android:id="@+id/tv_numbers_books_challenge"
+            android:id="@+id/tv_counter_books_challenge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="50" />
     </LinearLayout>
 
+    <SeekBar
+        android:id="@+id/sb_counter_book_challenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_bottom_list_of_books"
+        android:layout_marginBottom="@dimen/padding_bottom_list_of_books"
+        android:indeterminate="false"
+        android:max="500"/>
+
     <Button
         android:id="@+id/btn_edit_number_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="editNumberChallenge"
+        android:onClick="saveCounterNumber"
         android:text="@string/edit_book_challenge" />
 
     <Button

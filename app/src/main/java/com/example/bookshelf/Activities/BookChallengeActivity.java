@@ -1,13 +1,12 @@
 package com.example.bookshelf.Activities;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.NumberPicker;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,12 +24,13 @@ import com.example.bookshelf.Room.BookEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookChallengeActivity extends AppCompatActivity {
-    TextView number;
+public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     TextView counter;
+    TextView number;
     Button editCounter;
     List<Book> bookList;
 
+    SeekBar sb;
     SharedPreferences sharedPreferences;
     public static final String STORAGE_COUNTER = "counter";
 
@@ -41,14 +41,21 @@ public class BookChallengeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
-        books = (RecyclerView) findViewById(R.id.rv_book_challenge);
-        counter = (TextView) findViewById(R.id.tv_numbers_books_challenge);
+        counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
         number = (TextView) findViewById(R.id.tv_number_books_challenge);
+        books = (RecyclerView) findViewById(R.id.rv_book_challenge);
         editCounter = (Button) findViewById(R.id.btn_edit_number_books);
 
-        loadNumbersBooksChallenge();
+        initSeekBar();
+        loadCounterNumber();
         initRecyclerView();
         loadData();
+    }
+
+    private void initSeekBar() {
+        sb = new SeekBar(BookChallengeActivity.this);
+        sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
+        sb.setOnSeekBarChangeListener(this);
     }
 
     private void initRecyclerView() {
@@ -76,46 +83,34 @@ public class BookChallengeActivity extends AppCompatActivity {
         number.setText(String.valueOf(bookList.size()));
     }
 
-    public void editNumberChallenge(View view) {
-        final Dialog dialog = new Dialog(BookChallengeActivity.this);
-        dialog.setContentView(R.layout.dialog_book_challenge);
-        Button btnSet = (Button) dialog.findViewById(R.id.btn_set_book_challenge);
-        Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel_book_challenge);
-        final NumberPicker np = (NumberPicker) dialog.findViewById(R.id.number_picker_book_challenge);
-        np.setMaxValue(1000);
-        np.setMinValue(0);
-        btnSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter.setText(String.valueOf(np.getValue()));
-                saveNumbersBooksChallenge();
-                dialog.dismiss();
-            }
-        });
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
-    }
-
-    private void saveNumbersBooksChallenge() {
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+    public void saveCounterNumber(View view) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(STORAGE_COUNTER, counter.getText().toString());
         editor.apply();
     }
 
-    private void loadNumbersBooksChallenge() {
-        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        String numbersBooks = sharedPreferences.getString(STORAGE_COUNTER, "");
-        this.counter.setText(numbersBooks);
+    private void loadCounterNumber() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String counter = sharedPreferences.getString(STORAGE_COUNTER, "");
+        this.counter.setText(counter);
     }
 
     public void goToMainActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+        counter.setText(String.valueOf(seekBar.getProgress()));
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
     }
 }
