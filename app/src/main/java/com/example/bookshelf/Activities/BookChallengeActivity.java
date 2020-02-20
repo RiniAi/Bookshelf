@@ -24,15 +24,14 @@ import com.example.bookshelf.Room.BookEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookChallenge extends AppCompatActivity {
-    TextView numberBooksChallenge;
-    TextView numbersBooksChallenge;
-    Button btnEditNumber;
-    List<BookEntity> listDatabase;
-    List<Book> listBook;
+public class BookChallengeActivity extends AppCompatActivity {
+    TextView number;
+    TextView counter;
+    Button editCounter;
+    List<Book> bookList;
 
     SharedPreferences sharedPreferences;
-    public static final String STORAGE_NUMBERS = "Numbers book challenge";
+    public static final String STORAGE_COUNTER = "counter";
 
     private RecyclerView books;
     private BookChallengeAdapter bookAdapter;
@@ -40,11 +39,11 @@ public class BookChallenge extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_book_challenge);
+        setContentView(R.layout.activity_book_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
-        numbersBooksChallenge = (TextView) findViewById(R.id.tv_numbers_books_challenge);
-        numberBooksChallenge = (TextView) findViewById(R.id.tv_number_books_challenge);
-        btnEditNumber = (Button) findViewById(R.id.btn_edit_number_books);
+        counter = (TextView) findViewById(R.id.tv_numbers_books_challenge);
+        number = (TextView) findViewById(R.id.tv_number_books_challenge);
+        editCounter = (Button) findViewById(R.id.btn_edit_number_books);
 
         loadNumbersBooksChallenge();
         initRecyclerView();
@@ -52,7 +51,7 @@ public class BookChallenge extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(BookChallenge.this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(BookChallengeActivity.this);
         books.setLayoutManager(linearLayoutManager);
         bookAdapter = new BookChallengeAdapter(getApplicationContext());
         books.setAdapter(bookAdapter);
@@ -61,23 +60,23 @@ public class BookChallenge extends AppCompatActivity {
     private void loadData() {
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
-        listDatabase = bookDao.getList();
+        List<BookEntity> booksFromDatabase = bookDao.getList();
 
-        listBook = new ArrayList<>();
-        for (BookEntity bookEntity : listDatabase) {
+        bookList = new ArrayList<>();
+        for (BookEntity bookEntity : booksFromDatabase) {
             Book book = new Book();
             book.setTitle(bookEntity.getTitle());
             book.setAuthors(bookEntity.getAuthors());
             book.setAverageRating(bookEntity.getAverageRating());
 
-            listBook.add(book);
+            bookList.add(book);
         }
-        bookAdapter.setList(listBook);
-        numberBooksChallenge.setText(String.valueOf(listBook.size()));
+        bookAdapter.setList(bookList);
+        number.setText(String.valueOf(bookList.size()));
     }
 
     public void editNumberChallenge(View view) {
-        final Dialog dialog = new Dialog(BookChallenge.this);
+        final Dialog dialog = new Dialog(BookChallengeActivity.this);
         dialog.setContentView(R.layout.dialog_book_challenge);
         Button btnSet = (Button) dialog.findViewById(R.id.btn_set_book_challenge);
         Button btnCancel = (Button) dialog.findViewById(R.id.btn_cancel_book_challenge);
@@ -87,7 +86,7 @@ public class BookChallenge extends AppCompatActivity {
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numbersBooksChallenge.setText(String.valueOf(np.getValue()));
+                counter.setText(String.valueOf(np.getValue()));
                 saveNumbersBooksChallenge();
                 dialog.dismiss();
             }
@@ -104,13 +103,13 @@ public class BookChallenge extends AppCompatActivity {
     private void saveNumbersBooksChallenge() {
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(STORAGE_NUMBERS, numbersBooksChallenge.getText().toString());
+        editor.putString(STORAGE_COUNTER, counter.getText().toString());
         editor.apply();
     }
 
     private void loadNumbersBooksChallenge() {
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        String numbersBooks = sharedPreferences.getString(STORAGE_NUMBERS, "");
-        this.numbersBooksChallenge.setText(numbersBooks);
+        String numbersBooks = sharedPreferences.getString(STORAGE_COUNTER, "");
+        this.counter.setText(numbersBooks);
     }
 }

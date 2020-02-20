@@ -14,7 +14,6 @@ import com.example.bookshelf.Models.Book;
 import java.util.List;
 
 public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdapter.BookViewHolder> {
-
     private Context context;
     private List<Book> books;
 

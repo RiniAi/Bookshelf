@@ -39,5 +39,7 @@
     <string name="books_of">books of</string>
     <string name="cancel">Cancel</string>
     <string name="set">Set</string>
+    <string name="book_challenge">Book challenge</string>
+    <string name="main_activity">Main Activity</string>
 
 </resources>
