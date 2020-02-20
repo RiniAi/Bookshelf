@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.Adapters.BookAdapter;
 import com.example.bookshelf.App;
-import com.example.bookshelf.BookAdapter;
 import com.example.bookshelf.GetDataService;
 import com.example.bookshelf.Models.Book;
 import com.example.bookshelf.Models.BookItem;
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void goToBookChallenge(View view){
+    public void goToBookChallenge(View view) {
         Intent intent = new Intent(this, BookChallengeActivity.class);
         startActivity(intent);
     }

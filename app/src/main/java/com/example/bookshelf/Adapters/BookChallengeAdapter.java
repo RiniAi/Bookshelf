@@ -1,4 +1,4 @@
-package com.example.bookshelf;
+package com.example.bookshelf.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.Models.Book;
+import com.example.bookshelf.R;
 
 import java.util.List;
 

@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.Adapters.BookChallengeAdapter;
 import com.example.bookshelf.App;
-import com.example.bookshelf.BookChallengeAdapter;
 import com.example.bookshelf.Models.Book;
 import com.example.bookshelf.R;
 import com.example.bookshelf.Room.BookDao;
@@ -114,7 +114,7 @@ public class BookChallengeActivity extends AppCompatActivity {
         this.counter.setText(numbersBooks);
     }
 
-    public void goToMainActivity (View view){
+    public void goToMainActivity(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
