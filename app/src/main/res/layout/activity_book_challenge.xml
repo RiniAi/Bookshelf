@@ -50,7 +50,8 @@
         android:id="@+id/btn_book_challenge_go_to_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity"/>
+        android:onClick="goToMainActivity"
+        android:text="@string/main_activity" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_book_challenge"

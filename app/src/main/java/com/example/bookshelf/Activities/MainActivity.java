@@ -1,5 +1,6 @@
 package com.example.bookshelf.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void bookChallenge(View view){
-
+    public void goToBookChallenge(View view){
+        Intent intent = new Intent(this, BookChallengeActivity.class);
+        startActivity(intent);
     }
 }

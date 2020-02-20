@@ -2,6 +2,7 @@ package com.example.bookshelf.Activities;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -111,5 +112,10 @@ public class BookChallengeActivity extends AppCompatActivity {
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         String numbersBooks = sharedPreferences.getString(STORAGE_COUNTER, "");
         this.counter.setText(numbersBooks);
+    }
+
+    public void goToMainActivity (View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

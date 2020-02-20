@@ -11,8 +11,9 @@
         android:id="@+id/btn_main_go_to_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/book_challenge"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:onClick="goToBookChallenge"
+        android:text="@string/book_challenge" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_of_books"
