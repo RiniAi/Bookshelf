@@ -1,15 +1,17 @@
 package com.example.bookshelf.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.Adapters.BookAdapter;
 import com.example.bookshelf.App;
-import com.example.bookshelf.BookAdapter;
 import com.example.bookshelf.GetDataService;
 import com.example.bookshelf.Models.Book;
 import com.example.bookshelf.Models.BookItem;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_list_of_books);
+        setContentView(R.layout.activity_list_of_books);
 
         initAdapter();
         loadSaveData();
@@ -92,5 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void goToBookChallenge(View view) {
+        Intent intent = new Intent(this, BookChallengeActivity.class);
+        startActivity(intent);
     }
 }

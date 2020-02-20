@@ -1,4 +1,4 @@
-package com.example.bookshelf;
+package com.example.bookshelf.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,12 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.Models.Book;
+import com.example.bookshelf.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
-
     private Context context;
     private List<Book> books;
 

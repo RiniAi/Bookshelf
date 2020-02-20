@@ -3,31 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_author_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_list_book_challenge"
         tools:text="@tools:sample/full_names" />
 
     <TextView
         android:id="@+id/tv_title_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_list_book_challenge"
         tools:text="Title" />
 
     <TextView
         android:id="@+id/tv_rating_book_challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/margin_list_book_challenge"
+        android:layout_marginBottom="20dp"
         tools:text="10" />
-
-
 </LinearLayout>
