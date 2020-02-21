@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -88,6 +89,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(STORAGE_COUNTER, counter.getText().toString());
         editor.apply();
+        Toast.makeText(BookChallengeActivity.this, "The counter number is saved!", Toast.LENGTH_SHORT).show();
+
     }
 
     private void loadCounterNumber() {
