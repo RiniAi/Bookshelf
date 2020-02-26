@@ -10,6 +10,9 @@ public class BookEntity {
     @NonNull
     public String authors;
     public float averageRating;
+    public float userRating;
+    public boolean favorite;
+    public String status;
     public String imageLinks;
 
     public String getTitle() {
@@ -34,6 +37,30 @@ public class BookEntity {
 
     public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public float getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(float userRating) {
+        this.userRating = userRating;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getImageLinks() {

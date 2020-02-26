@@ -11,7 +11,7 @@ public class Book {
     private String lang;
     private String description;
     private int pageCount;
-    private int userRating;
+    private float userRating;
     private float averageRating;
     private boolean isFavorite;
     private Date publishedDate;
@@ -19,10 +19,19 @@ public class Book {
     private BookStatus status;
 
     public enum BookStatus {
-        READ,
-        WANT_TO_READ,
-        READING,
-        NOT_READING
+        READ("Read"),
+        WANT_TO_READ("Want to read"),
+        READING("Reading"),
+        NOT_READING("Not reading");
+
+        private String status;
+        BookStatus (String status){
+            this.status = status;
+        }
+
+        @Override public String toString(){
+            return status;
+        }
     }
 
     public String getTitle() {
@@ -81,11 +90,11 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public int getUserRating() {
+    public float getUserRating() {
         return userRating;
     }
 
-    public void setUserRating(int userRating) {
+    public void setUserRating(float userRating) {
         this.userRating = userRating;
     }
 
