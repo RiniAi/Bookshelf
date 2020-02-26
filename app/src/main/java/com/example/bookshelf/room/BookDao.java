@@ -14,7 +14,7 @@ public interface BookDao {
     @Query("SELECT * FROM books")
     List<BookEntity> getList();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(List<BookEntity> list);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
