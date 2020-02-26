@@ -2,15 +2,23 @@
 <resources>
     <dimen name="screen_borders">16dp</dimen>
 
-    <dimen name="width_image_about_book">100dp</dimen>
-    <dimen name="height_image_about_book">100dp</dimen>
-
-    <dimen name="width_spinner_status">100dp</dimen>
-    <dimen name="width_spinner_date">100dp</dimen>
-
     <dimen name="margin_for_frame_layout">56dp</dimen>
     <dimen name="margin_list_book_challenge">16dp</dimen>
 
     <dimen name="padding_bottom_list_of_books">8dp</dimen>
     <dimen name="padding_left_and_right_list_of_books">16dp</dimen>
+
+    <dimen name="image_width">150dp</dimen>
+    <dimen name="image_height">200dp</dimen>
+
+    <dimen name="spinner_width_status">200dp</dimen>
+    <dimen name="spinner_width_data">100dp</dimen>
+
+    <dimen name="spinner_height_data">50dp</dimen>
+    <dimen name="spinner_height_status">50dp</dimen>
+
+    <dimen name="spinner_edit_book">85dp</dimen>
+    <dimen name="favorite_edit_book">5dp</dimen>
+
+    <dimen name="btn_width_edit_book">120dp</dimen>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="@dimen/screen_borders">
@@ -21,30 +21,29 @@
 
     <ImageView
         android:id="@+id/img_about_book"
-        android:layout_width="@dimen/width_image_about_book"
-        android:layout_height="@dimen/height_image_about_book"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
         tools:src="@tools:sample/avatars" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rating_about_book" />
 
     <RatingBar
         android:id="@+id/rb_rating_about_book"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:isIndicator="true"
+        android:max="10"
+        android:numStars="10" />
 
-    <Button
-        android:id="@+id/btn_edit_book_about_book"
+    <RatingBar
+        android:id="@+id/rb_rating_person_about_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_about_book" />
+        android:isIndicator="true"
+        android:max="10"
+        android:numStars="10" />
 
     <TextView
         android:id="@+id/tv_description_about_book"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="@tools:sample/lorem/random" />
-
 </LinearLayout>

@@ -9,6 +9,7 @@
     <color name="window_background">#e5f7ff</color>
 
     <color name="white">#ffffff</color>
-    <color name="darkGrey">#1b1b1b</color>
+    <color name="dark_grey">#1b1b1b</color>
 
+    <color name="favorite_button">#d2d4d6</color>
 </resources>

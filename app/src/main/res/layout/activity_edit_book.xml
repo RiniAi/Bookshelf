@@ -12,10 +12,29 @@
         android:gravity="center_horizontal"
         android:text="@string/status_edit_book" />
 
-    <Spinner
-        android:id="@+id/spinner_status_edit_book"
-        android:layout_width="@dimen/width_spinner_status"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/favorite_edit_book"
+            android:background="@drawable/button_favorite"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn="" />
+
+        <Spinner
+            android:id="@+id/spinner_status_edit_book"
+            android:layout_width="@dimen/spinner_width_status"
+            android:layout_height="@dimen/spinner_height_status"
+            android:layout_marginStart="@dimen/spinner_edit_book"
+            android:spinnerMode="dialog" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,53 +45,33 @@
     <RatingBar
         android:id="@+id/rb_rating_edit_book"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:max="10"
+        android:numStars="10" />
 
-    <TextView
+    <DatePicker
+        android:id="@+id/datePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/date_edit_book" />
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/spinner_number_date_edit_book"
-            android:layout_width="@dimen/width_spinner_date"
-            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_save_edit_book"
+            android:layout_width="@dimen/btn_width_edit_book"
+            android:layout_height="wrap_content"
+            android:text="@string/save_edit_book" />
 
-        <Spinner
-            android:id="@+id/spinner_month_date_edit_book"
-            android:layout_width="@dimen/width_spinner_date"
-            android:layout_height="wrap_content" />
-
-        <Spinner
-            android:id="@+id/spinner_year_date_edit_book"
-            android:layout_width="@dimen/width_spinner_date"
-            android:layout_height="wrap_content" />
-
+        <Button
+            android:id="@+id/btn_delete_edit_book"
+            android:layout_width="@dimen/btn_width_edit_book"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_edit_book" />
     </LinearLayout>
-
-    <ToggleButton
-        android:id="@+id/btn_favorite_edit_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOff=""
-        android:textOn="" />
-
-    <Button
-        android:id="@+id/btn_save_edit_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save_edit_book" />
-
-    <Button
-        android:id="@+id/btn_delete_edit_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_edit_book" />
-
 </LinearLayout>

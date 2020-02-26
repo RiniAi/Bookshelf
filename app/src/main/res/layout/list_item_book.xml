@@ -1,23 +1,29 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:paddingBottom="@dimen/padding_bottom_list_of_books"
+        android:layout_height="350dp"
+        android:orientation="vertical"
         android:paddingLeft="@dimen/padding_left_and_right_list_of_books"
         android:paddingRight="@dimen/padding_left_and_right_list_of_books"
-        android:orientation="vertical">
+        android:paddingBottom="@dimen/padding_bottom_list_of_books">
 
         <ImageView
             android:id="@+id/img_book_list"
+            android:layout_width="@dimen/image_width"
+            android:layout_height="@dimen/image_height"
+            android:layout_gravity="center_horizontal"
+            tools:src="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/btn_edit_book_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:src="@tools:sample/avatars" />
+            android:layout_gravity="center_horizontal"
+            android:text="@string/edit_book_item_book" />
 
         <TextView
             android:id="@+id/tv_author_book_list"
@@ -36,15 +42,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="10" />
-
-        <Button
-            android:id="@+id/btn_edit_book_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit_book_item_book" />
     </LinearLayout>
-
 </androidx.cardview.widget.CardView>
-
-
-
