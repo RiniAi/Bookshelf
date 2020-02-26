@@ -13,9 +13,8 @@
         android:paddingTop="@dimen/padding_bottom_list_of_books"
         android:paddingBottom="@dimen/padding_bottom_list_of_books"
         android:scrollbars="vertical"
-        tools:layoutManager="GridLayoutManager"
-        tools:listitem="@layout/list_item_book"
-        tools:spanCount="2">
+        tools:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/list_item_book">
 
     </androidx.recyclerview.widget.RecyclerView>
 

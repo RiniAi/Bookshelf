@@ -4,15 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.models.Book;
 import com.example.bookshelf.R;
+import com.example.bookshelf.models.Book;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -28,6 +29,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     public interface OnItemClickListener {
         void onItemClick(Book book);
+
         void onEditClick(Book book);
     }
 
@@ -53,13 +55,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         if (book == null) {
             return;
         }
-
         Picasso.get().load(book.getImageURL()).into(holder.imgBook);
         holder.authorBook.setText(book.getAuthors());
         holder.titleBook.setText(book.getTitle());
-
-        String rating = String.valueOf(book.getAverageRating());
-        holder.ratingBook.setText(rating);
+        float rating = book.getAverageRating();
+        holder.ratingBook.setRating(rating);
     }
 
     public Book getItem(int position) {
@@ -83,18 +83,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         ImageView imgBook;
         TextView authorBook;
         TextView titleBook;
-        TextView ratingBook;
-        Button button;
+        RatingBar ratingBook;
+        ImageButton button;
 
         BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
-
             imgBook = (ImageView) itemView.findViewById(R.id.img_book_list);
             authorBook = (TextView) itemView.findViewById(R.id.tv_author_book_list);
             titleBook = (TextView) itemView.findViewById(R.id.tv_title_book_list);
-            ratingBook = (TextView) itemView.findViewById(R.id.tv_rating_book_list);
-            button = (Button) itemView.findViewById(R.id.btn_edit_book_list);
-
+            ratingBook = (RatingBar) itemView.findViewById(R.id.tv_rating_book_list);
+            button = (ImageButton) itemView.findViewById(R.id.btn_edit_book_list);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -105,7 +103,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
                 }
 
             });
-
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

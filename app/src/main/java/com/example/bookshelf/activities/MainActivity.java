@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.App;
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     Book book;
 
     private BookAdapter bookAdapter;
-
     public static final int ABOUT_BOOK_REQUEST = 1;
     public static final int EDIT_BOOK_REQUEST = 2;
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void buildRecyclerView() {
         RecyclerView books = findViewById(R.id.rv_of_books);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(MainActivity.this);
         bookAdapter = new BookAdapter(getApplicationContext());
 
         books.setLayoutManager(gridLayoutManager);

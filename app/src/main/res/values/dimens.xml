@@ -19,6 +19,8 @@
 
     <dimen name="spinner_edit_book">85dp</dimen>
     <dimen name="favorite_edit_book">5dp</dimen>
-
     <dimen name="btn_width_edit_book">120dp</dimen>
+
+    <dimen name="card_view_margin_list_item">4dp</dimen>
+    <dimen name="margin_and_image_list_item">8dp</dimen>
 </resources>
