@@ -20,9 +20,19 @@ import java.util.List;
 public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
     private Context context;
     private List<Book> books;
+    private OnItemClickListener listener;
 
     public BookAdapter(Context context) {
         this.context = context;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Book book);
+        void onEditClick(Book book);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     public void setList(List<Book> books) {
@@ -34,7 +44,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_item_book, parent, false);
-        return new BookViewHolder(view);
+        return new BookViewHolder(view, listener);
     }
 
     @Override
@@ -52,7 +62,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.ratingBook.setText(rating);
     }
 
-    private Book getItem(int position) {
+    public Book getItem(int position) {
         if (books.isEmpty()) {
             return null;
         } else {
@@ -76,7 +86,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         TextView ratingBook;
         Button button;
 
-        BookViewHolder(View itemView) {
+        BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
 
             imgBook = (ImageView) itemView.findViewById(R.id.img_book_list);
@@ -84,6 +94,27 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             titleBook = (TextView) itemView.findViewById(R.id.tv_title_book_list);
             ratingBook = (TextView) itemView.findViewById(R.id.tv_rating_book_list);
             button = (Button) itemView.findViewById(R.id.btn_edit_book_list);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(getItem(position));
+                    }
+                }
+
+            });
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onEditClick(getItem(position));
+                    }
+                }
+            });
         }
     }
 }

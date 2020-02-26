@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.App;
 import com.example.bookshelf.GetDataService;
+import com.example.bookshelf.R;
+import com.example.bookshelf.RetrofitClientInstance;
+import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
-import com.example.bookshelf.R;
-import com.example.bookshelf.RetrofitClientInstance;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
@@ -35,25 +35,41 @@ public class MainActivity extends AppCompatActivity {
     List<BookEntity> bookListDao = new ArrayList<>();
     Book book;
 
-    private RecyclerView books;
-    private GridLayoutManager gridLayoutManager;
     private BookAdapter bookAdapter;
+
+    public static final int ABOUT_BOOK_REQUEST = 1;
+    public static final int EDIT_BOOK_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 
-        initAdapter();
+        buildRecyclerView();
         loadSaveData();
     }
 
-    private void initAdapter() {
-        books = findViewById(R.id.rv_of_books);
-        gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-        books.setLayoutManager(gridLayoutManager);
+    private void buildRecyclerView() {
+        RecyclerView books = findViewById(R.id.rv_of_books);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
         bookAdapter = new BookAdapter(getApplicationContext());
+
+        books.setLayoutManager(gridLayoutManager);
         books.setAdapter(bookAdapter);
+
+        bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Book book) {
+                // TODO anna 26.02.2020: in the rough draft lies data transmission through intention in AboutBookActivity
+            }
+
+            @Override
+            public void onEditClick(Book book) {
+                Intent intent = new Intent(MainActivity.this, EditBookActivity.class);
+                intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
+                startActivityForResult(intent, EDIT_BOOK_REQUEST);
+            }
+        });
     }
 
     private void loadSaveData() {
@@ -75,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
                     book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
                     book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
+                    book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
                     bookList.add(book);
 
                     BookEntity bookEntity = new BookEntity();
@@ -82,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     bookEntity.title = book.getTitle();
                     bookEntity.imageLinks = book.getImageURL();
                     bookEntity.averageRating = book.getAverageRating();
+                    bookEntity.description = book.getDescription();
                     bookListDao.add(bookEntity);
                 }
                 bookAdapter.setList(bookList);

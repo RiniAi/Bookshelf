@@ -14,6 +14,7 @@ public class BookEntity {
     public boolean favorite;
     public String status;
     public String imageLinks;
+    public String description;
 
     public String getTitle() {
         return title;
@@ -69,5 +70,13 @@ public class BookEntity {
 
     public void setImageLinks(String imageLinks) {
         this.imageLinks = imageLinks;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
