@@ -1,8 +1,9 @@
 package com.example.bookshelf.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable {
 
     private String title;
     private String authors;
@@ -18,7 +19,7 @@ public class Book {
     private Date readDate;
     private BookStatus status;
 
-    public enum BookStatus {
+    public enum BookStatus implements Serializable{
         READ("Read"),
         WANT_TO_READ("Want to read"),
         READING("Reading"),

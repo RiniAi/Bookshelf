@@ -11,8 +11,13 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.Book.BookStatus;
+import com.example.bookshelf.room.BookDao;
+import com.example.bookshelf.room.BookDatabase;
+import com.example.bookshelf.room.BookEntity;
 
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
@@ -24,9 +29,6 @@ public class EditBookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
-
-        Bundle extras = getIntent().getExtras();
-        // проверка на ноль и на extra - есть ли ключ
 
         buildStatusSpinner();
         initControls();
@@ -54,7 +56,19 @@ public class EditBookActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                BookDatabase db = App.getInstance().getDatabase();
+                BookDao bookDao = db.bookDao();
+                Book book = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
+//                book.setStatus(spinner.getSelectedItem());
+                BookEntity bookEntity = new BookEntity();
+                bookEntity.authors = book.getAuthors();
+                bookEntity.title = book.getTitle();
+                bookEntity.imageLinks = book.getImageURL();
+                bookEntity.averageRating = book.getAverageRating();
+                bookEntity.userRating = ratingBar.getRating();
+                bookEntity.favorite = favorite;
+//                bookForListsEntity.status = book.getStatus().toString();
+                bookDao.insert(bookEntity);
             }
         });
     }
