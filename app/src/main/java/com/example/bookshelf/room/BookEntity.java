@@ -13,6 +13,7 @@ public class BookEntity {
     public float userRating;
     public boolean favorite;
     public String status;
+    public String readDate;
     public String imageLinks;
     public String description;
 
@@ -62,6 +63,14 @@ public class BookEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getReadDate() {
+        return readDate;
+    }
+
+    public void setReadDate(String readDate) {
+        this.readDate = readDate;
     }
 
     public String getImageLinks() {
