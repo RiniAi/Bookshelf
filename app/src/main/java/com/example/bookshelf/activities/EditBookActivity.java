@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.ToggleButton;
@@ -24,11 +25,13 @@ public class EditBookActivity extends AppCompatActivity {
 
     boolean favorite = false;
     Spinner spinner;
+    Book book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
+        book = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
 
         buildStatusSpinner();
         initControls();
@@ -45,7 +48,7 @@ public class EditBookActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.btn_save_edit_book);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
         ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
-
+        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -56,19 +59,25 @@ public class EditBookActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                StringBuilder date = new StringBuilder()
+                        .append(datePicker.getDayOfMonth()).append(".")
+                        .append(datePicker.getMonth() + 1).append(".")
+                        .append(datePicker.getYear());
+
                 BookDatabase db = App.getInstance().getDatabase();
                 BookDao bookDao = db.bookDao();
-                Book book = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
-//                book.setStatus(spinner.getSelectedItem());
-                BookEntity bookEntity = new BookEntity();
-                bookEntity.authors = book.getAuthors();
-                bookEntity.title = book.getTitle();
-                bookEntity.imageLinks = book.getImageURL();
-                bookEntity.averageRating = book.getAverageRating();
-                bookEntity.userRating = ratingBar.getRating();
-                bookEntity.favorite = favorite;
-//                bookForListsEntity.status = book.getStatus().toString();
-                bookDao.insert(bookEntity);
+                if (book != null) {
+                    BookEntity bookEntity = new BookEntity();
+                    bookEntity.authors = book.getAuthors();
+                    bookEntity.title = book.getTitle();
+                    bookEntity.imageLinks = book.getImageURL();
+                    bookEntity.averageRating = book.getAverageRating();
+                    bookEntity.userRating = ratingBar.getRating();
+                    bookEntity.favorite = favorite;
+                    bookEntity.status = spinner.getSelectedItem().toString();
+                    bookEntity.readDate = date.toString();
+                    bookDao.insert(bookEntity);
+                }
             }
         });
     }
