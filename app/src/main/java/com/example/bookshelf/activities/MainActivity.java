@@ -3,7 +3,9 @@ package com.example.bookshelf.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -116,8 +118,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void goToBookChallenge(View view) {
-        Intent intent = new Intent(this, BookChallengeActivity.class);
-        startActivity(intent);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_go_to_page:
+                Intent intent = new Intent(this, BookChallengeActivity.class);
+                startActivity(intent);
+        }
+        return true;
     }
 }

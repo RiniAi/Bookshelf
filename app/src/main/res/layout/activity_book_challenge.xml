@@ -46,27 +46,12 @@
         android:indeterminate="false"
         android:max="500" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/btn_edit_number_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_book_challenge_go_to_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="goToMainActivity"
-            android:text="@string/main_activity" />
-
-        <Button
-            android:id="@+id/btn_edit_number_books"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="saveCounterNumber"
-            android:text="@string/save" />
-
-    </LinearLayout>
+        android:onClick="saveCounterNumber"
+        android:text="@string/save" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_book_challenge"
@@ -74,5 +59,4 @@
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         tools:listitem="@layout/list_item_book_challenge" />
-
 </LinearLayout>

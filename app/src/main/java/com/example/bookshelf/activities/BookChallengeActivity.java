@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -14,10 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.adapters.BookChallengeAdapter;
 import com.example.bookshelf.App;
-import com.example.bookshelf.models.Book;
 import com.example.bookshelf.R;
+import com.example.bookshelf.adapters.BookChallengeAdapter;
+import com.example.bookshelf.models.Book;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
@@ -99,11 +102,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         this.counter.setText(counter);
     }
 
-    public void goToMainActivity(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         counter.setText(String.valueOf(seekBar.getProgress()));
@@ -115,5 +113,22 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_go_to_page:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+        }
+        return true;
     }
 }
