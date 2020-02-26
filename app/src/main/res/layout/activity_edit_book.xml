@@ -33,7 +33,7 @@
             android:layout_width="@dimen/spinner_width_status"
             android:layout_height="@dimen/spinner_height_status"
             android:layout_marginStart="@dimen/spinner_edit_book"
-            android:spinnerMode="dialog" />
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <TextView
