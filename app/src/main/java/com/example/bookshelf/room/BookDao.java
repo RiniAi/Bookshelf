@@ -17,10 +17,7 @@ public interface BookDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(List<BookEntity> list);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(BookEntity bookEntity);
-
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(BookEntity bookEntity);
 
     @Delete

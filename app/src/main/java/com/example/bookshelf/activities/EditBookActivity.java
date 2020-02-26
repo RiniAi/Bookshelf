@@ -76,7 +76,7 @@ public class EditBookActivity extends AppCompatActivity {
                     bookEntity.favorite = favorite;
                     bookEntity.status = spinner.getSelectedItem().toString();
                     bookEntity.readDate = date.toString();
-                    bookDao.insert(bookEntity);
+                    bookDao.update(bookEntity);
                 }
             }
         });
