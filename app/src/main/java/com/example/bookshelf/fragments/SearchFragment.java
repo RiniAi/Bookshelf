@@ -1,4 +1,4 @@
-package com.example.bookshelf.Fragments;
+package com.example.bookshelf.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bookshelf.R;
 
-public class BookChallengeFragment extends Fragment {
+public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.activity_book_challenge, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_search, container, false);
         return rootView;
     }
 }

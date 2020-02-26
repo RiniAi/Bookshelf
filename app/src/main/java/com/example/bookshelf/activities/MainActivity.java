@@ -1,4 +1,4 @@
-package com.example.bookshelf.Activities;
+package com.example.bookshelf.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,17 +10,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.Adapters.BookAdapter;
+import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.App;
 import com.example.bookshelf.GetDataService;
-import com.example.bookshelf.Models.Book;
-import com.example.bookshelf.Models.BookItem;
-import com.example.bookshelf.Models.Item;
+import com.example.bookshelf.models.Book;
+import com.example.bookshelf.models.BookItem;
+import com.example.bookshelf.models.Item;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
-import com.example.bookshelf.Room.BookDao;
-import com.example.bookshelf.Room.BookDatabase;
-import com.example.bookshelf.Room.BookEntity;
+import com.example.bookshelf.room.BookDao;
+import com.example.bookshelf.room.BookDatabase;
+import com.example.bookshelf.room.BookEntity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.bookshelf.Models;
+package com.example.bookshelf.models;
 
 public class Item {
     private VolumeInfo volumeInfo;

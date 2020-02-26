@@ -1,4 +1,4 @@
-package com.example.bookshelf.Fragments;
+package com.example.bookshelf.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

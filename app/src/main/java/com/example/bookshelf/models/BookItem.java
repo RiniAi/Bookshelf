@@ -1,4 +1,4 @@
-package com.example.bookshelf.Models;
+package com.example.bookshelf.models;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.bookshelf.Activities;
+package com.example.bookshelf.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,13 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.Adapters.BookChallengeAdapter;
+import com.example.bookshelf.adapters.BookChallengeAdapter;
 import com.example.bookshelf.App;
-import com.example.bookshelf.Models.Book;
+import com.example.bookshelf.models.Book;
 import com.example.bookshelf.R;
-import com.example.bookshelf.Room.BookDao;
-import com.example.bookshelf.Room.BookDatabase;
-import com.example.bookshelf.Room.BookEntity;
+import com.example.bookshelf.room.BookDao;
+import com.example.bookshelf.room.BookDatabase;
+import com.example.bookshelf.room.BookEntity;
 
 import java.util.ArrayList;
 import java.util.List;
