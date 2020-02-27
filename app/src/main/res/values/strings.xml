@@ -41,5 +41,6 @@
     <string name="set">Set</string>
     <string name="book_challenge">Book challenge</string>
     <string name="main_activity">Main Activity</string>
+    <string name="save_counter_book_challenge">The counter number is saved!</string>
 
 </resources>
