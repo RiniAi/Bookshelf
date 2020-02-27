@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void buildRecyclerView() {
         RecyclerView books = findViewById(R.id.rv_of_books);
-        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(MainActivity.this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         bookAdapter = new BookAdapter(getApplicationContext());
 
-        books.setLayoutManager(gridLayoutManager);
+        books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
 
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
