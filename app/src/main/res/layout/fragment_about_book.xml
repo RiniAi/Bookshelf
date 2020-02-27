@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/img_about_book"
-        android:layout_width="@dimen/image_width"
-        android:layout_height="@dimen/image_height"
+        android:layout_width="@dimen/img_width_about_book"
+        android:layout_height="@dimen/img_height_about_book"
         tools:src="@tools:sample/avatars" />
 
     <RatingBar

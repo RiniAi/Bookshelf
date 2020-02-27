@@ -2,27 +2,36 @@
 <resources>
     <dimen name="screen_borders">16dp</dimen>
 
-    <dimen name="margin_for_frame_layout">56dp</dimen>
+    <dimen name="fl_margin_bottom_main">56dp</dimen>
 
-    <dimen name="margin_list_book_challenge">16dp</dimen>
 
-    <dimen name="padding_bottom_list_of_books">8dp</dimen>
-    <dimen name="padding_left_and_right_list_of_books">16dp</dimen>
+    <dimen name="img_margin_end_book_challenge">56dp</dimen>
+    <dimen name="img_margin_start_book_challenge">56dp</dimen>
+    <dimen name="sb_padding_bottom_book_challenge">8dp</dimen>
+    <dimen name="sb_padding_top_book_challenge">8dp</dimen>
 
-    <dimen name="image_width">150dp</dimen>
-    <dimen name="image_height">200dp</dimen>
+    <dimen name="cv_height_list_book_challenge">320dp</dimen>
+    <dimen name="cv_margin_list_book_challenge">4dp</dimen>
+    <dimen name="ll_cv_margin_list_book_challenge">4dp</dimen>
+    <dimen name="img_width_list_book_challenge">150dp</dimen>
+    <dimen name="img_height_list_book_challenge">200dp</dimen>
+    <dimen name="tv_title_margin_bottom_list_book_challenge">16dp</dimen>
 
-    <dimen name="spinner_width_status">200dp</dimen>
-    <dimen name="spinner_width_data">100dp</dimen>
+    <dimen name="rv_padding_bottom_list_of_books">8dp</dimen>
+    <dimen name="rv_padding_top_list_of_books">8dp</dimen>
 
-    <dimen name="spinner_height_data">50dp</dimen>
-    <dimen name="spinner_height_status">50dp</dimen>
+    <dimen name="img_width_list_item_book">150dp</dimen>
+    <dimen name="img_height_list_item_book">200dp</dimen>
+    <dimen name="img_margin_end_list_item_book">8dp</dimen>
+    <dimen name="ll_cv_margin_list_item_book">4dp</dimen>
 
-    <dimen name="spinner_edit_book">85dp</dimen>
-    <dimen name="favorite_edit_book">5dp</dimen>
-    <dimen name="btn_width_edit_book">120dp</dimen>
+    <dimen name="img_width_about_book">150dp</dimen>
+    <dimen name="img_height_about_book">200dp</dimen>
 
-    <dimen name="card_view_margin_list_item">4dp</dimen>
-    <dimen name="margin_and_image_list_item">8dp</dimen>
-    <dimen name="height_card_book_challenge">320dp</dimen>
+    <dimen name="btn_save_width_edit_book">120dp</dimen>
+    <dimen name="btn_delete_width_edit_book">120dp</dimen>
+    <dimen name="sp_status_width_edit_book">200dp</dimen>
+    <dimen name="sp_status_height_edit_book">50dp</dimen>
+    <dimen name="sp_status_margin_start_edit_book">85dp</dimen>
+    <dimen name="tb_favorite_margin_start_edit_book">5dp</dimen>
 </resources>

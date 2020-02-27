@@ -21,7 +21,7 @@
             android:id="@+id/btn_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/favorite_edit_book"
+            android:layout_marginStart="@dimen/tb_favorite_margin_start_edit_book"
             android:background="@drawable/button_favorite"
             android:checked="false"
             android:text="@string/empty_string"
@@ -30,9 +30,9 @@
 
         <Spinner
             android:id="@+id/spinner_status_edit_book"
-            android:layout_width="@dimen/spinner_width_status"
-            android:layout_height="@dimen/spinner_height_status"
-            android:layout_marginStart="@dimen/spinner_edit_book"
+            android:layout_width="@dimen/sp_status_width_edit_book"
+            android:layout_height="@dimen/sp_status_height_edit_book"
+            android:layout_marginStart="@dimen/sp_status_margin_start_edit_book"
             android:spinnerMode="dropdown" />
     </LinearLayout>
 
@@ -64,13 +64,13 @@
 
         <Button
             android:id="@+id/btn_save_edit_book"
-            android:layout_width="@dimen/btn_width_edit_book"
+            android:layout_width="@dimen/btn_save_width_edit_book"
             android:layout_height="wrap_content"
             android:text="@string/save_edit_book" />
 
         <Button
             android:id="@+id/btn_delete_edit_book"
-            android:layout_width="@dimen/btn_width_edit_book"
+            android:layout_width="@dimen/btn_delete_width_edit_book"
             android:layout_height="wrap_content"
             android:text="@string/delete_edit_book" />
     </LinearLayout>

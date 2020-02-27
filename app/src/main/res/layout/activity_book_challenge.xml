@@ -24,8 +24,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginStart="@dimen/margin_for_frame_layout"
-            android:layout_marginEnd="@dimen/margin_for_frame_layout"
+            android:layout_marginStart="@dimen/img_margin_start_book_challenge"
+            android:layout_marginEnd="@dimen/img_margin_end_book_challenge"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
@@ -40,8 +40,8 @@
         android:id="@+id/sb_counter_book_challenge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/padding_bottom_list_of_books"
-        android:layout_marginBottom="@dimen/padding_bottom_list_of_books"
+        android:layout_marginTop="@dimen/sb_padding_top_book_challenge"
+        android:layout_marginBottom="@dimen/sb_padding_bottom_book_challenge"
         android:indeterminate="false"
         android:max="500" />
 
