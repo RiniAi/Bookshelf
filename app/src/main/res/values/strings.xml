@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Bookshelf</string>
 
+    <string name="empty_string"></string>
+
     <string name="book_challenge_manifest">Book challenge</string>
 
     <string name="go_to_another_activity_toolbar">Activity</string>

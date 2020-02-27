@@ -24,9 +24,9 @@
             android:layout_marginStart="@dimen/favorite_edit_book"
             android:background="@drawable/button_favorite"
             android:checked="false"
-            android:text=""
-            android:textOff=""
-            android:textOn="" />
+            android:text="@string/empty_string"
+            android:textOff="@string/empty_string"
+            android:textOn="@string/empty_string" />
 
         <Spinner
             android:id="@+id/spinner_status_edit_book"
