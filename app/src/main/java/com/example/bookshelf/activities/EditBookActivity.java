@@ -53,7 +53,8 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void initControls() {
-        Button button = (Button) findViewById(R.id.btn_save_edit_book);
+        Button save = (Button) findViewById(R.id.btn_save_edit_book);
+        Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
         ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -63,12 +64,12 @@ public class EditBookActivity extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        BookDatabase db = App.getInstance().getDatabase();
+        BookDao bookDao = db.bookDao();
+        save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDate();
-                BookDatabase db = App.getInstance().getDatabase();
-                BookDao bookDao = db.bookDao();
                 if (book != null) {
                     BookEntity bookEntity = new BookEntity();
                     bookEntity.authors = book.getAuthors();
@@ -81,6 +82,22 @@ public class EditBookActivity extends AppCompatActivity {
                     bookEntity.readDate = date;
                     bookDao.update(bookEntity);
                 }
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BookEntity bookEntity = new BookEntity();
+                bookEntity.authors = book.getAuthors();
+                bookEntity.title = book.getTitle();
+                bookEntity.imageLinks = book.getImageURL();
+                bookEntity.averageRating = book.getAverageRating();
+                bookEntity.userRating = 0;
+                bookEntity.favorite = false;
+                bookEntity.status = "";
+                bookEntity.readDate = "";
+                bookDao.update(bookEntity);
             }
         });
     }
