@@ -33,6 +33,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     SeekBar sb;
     SharedPreferences sharedPreferences;
+    String count;
     public static final String STORAGE_COUNTER = "counter";
 
     private RecyclerView books;
@@ -45,6 +46,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
         number = (TextView) findViewById(R.id.tv_number_books_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        count = sharedPreferences.getString(STORAGE_COUNTER, "");
 
         initSeekBar();
         loadCounterNumber();
@@ -56,6 +59,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         sb = new SeekBar(BookChallengeActivity.this);
         sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
         sb.setOnSeekBarChangeListener(this);
+        sb.setProgress(Integer.parseInt(count));
     }
 
     private void initRecyclerView() {
@@ -83,9 +87,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     private void loadCounterNumber() {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String counter = sharedPreferences.getString(STORAGE_COUNTER, "");
-        this.counter.setText(counter);
+        this.counter.setText(count);
     }
 
     @Override
@@ -99,7 +101,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (editor != counter) {
             editor.putString(STORAGE_COUNTER, counter.getText().toString());
