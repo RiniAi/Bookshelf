@@ -19,16 +19,24 @@ import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
     private boolean isFavorite = false;
     private Spinner spinner;
     private Book book;
+    private String date;
+    private DatePicker datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
@@ -48,7 +56,6 @@ public class EditBookActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.btn_save_edit_book);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
         ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
-        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
@@ -59,11 +66,7 @@ public class EditBookActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StringBuilder date = new StringBuilder()
-                        .append(datePicker.getDayOfMonth()).append(".")
-                        .append(datePicker.getMonth() + 1).append(".")
-                        .append(datePicker.getYear());
-
+                getDate();
                 BookDatabase db = App.getInstance().getDatabase();
                 BookDao bookDao = db.bookDao();
                 if (book != null) {
@@ -75,10 +78,20 @@ public class EditBookActivity extends AppCompatActivity {
                     bookEntity.userRating = ratingBar.getRating();
                     bookEntity.favorite = isFavorite;
                     bookEntity.status = spinner.getSelectedItem().toString();
-                    bookEntity.readDate = date.toString();
+                    bookEntity.readDate = date;
                     bookDao.update(bookEntity);
                 }
             }
         });
+    }
+
+    private void getDate() {
+        int dayOfMonth = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+
+        Calendar calendar = new GregorianCalendar(year, month, dayOfMonth);
+        DateFormat df = android.text.format.DateFormat.getDateFormat(this);
+        date = df.format(calendar.getTime());
     }
 }
