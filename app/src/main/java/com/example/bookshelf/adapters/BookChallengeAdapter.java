@@ -43,11 +43,11 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageURL()).into(holder.imgBook);
-        holder.authorBook.setText(book.getAuthors());
-        holder.titleBook.setText(book.getTitle());
+        Picasso.get().load(book.getImageURL()).into(holder.img);
+        holder.author.setText(book.getAuthors());
+        holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();
-        holder.ratingBook.setRating(rating);
+        holder.averRating.setRating(rating);
     }
 
     private Book getItem(int position) {
@@ -68,17 +68,17 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgBook;
-        TextView authorBook;
-        TextView titleBook;
-        RatingBar ratingBook;
+        ImageView img;
+        TextView author;
+        TextView title;
+        RatingBar averRating;
 
         BookViewHolder(View itemView) {
             super(itemView);
-            imgBook = (ImageView) itemView.findViewById(R.id.img_book_challenge);
-            authorBook = (TextView) itemView.findViewById(R.id.tv_author_book_challenge);
-            titleBook = (TextView) itemView.findViewById(R.id.tv_title_book_challenge);
-            ratingBook = (RatingBar) itemView.findViewById(R.id.tv_rating_book_challenge);
+            img = (ImageView) itemView.findViewById(R.id.img_book_challenge);
+            author = (TextView) itemView.findViewById(R.id.tv_author_book_challenge);
+            title = (TextView) itemView.findViewById(R.id.tv_title_book_challenge);
+            averRating = (RatingBar) itemView.findViewById(R.id.tv_rating_book_challenge);
         }
     }
 }
