@@ -36,10 +36,7 @@ public class MainActivity extends AppCompatActivity {
     List<Book> bookList = new ArrayList<>();
     List<BookEntity> bookListDao = new ArrayList<>();
     Book book;
-
     private BookAdapter bookAdapter;
-    public static final int ABOUT_BOOK_REQUEST = 1;
-    public static final int EDIT_BOOK_REQUEST = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void onEditClick(Book book) {
                 Intent intent = new Intent(MainActivity.this, EditBookActivity.class);
                 intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
-                startActivityForResult(intent, EDIT_BOOK_REQUEST);
+                startActivity(intent);
             }
         });
     }
