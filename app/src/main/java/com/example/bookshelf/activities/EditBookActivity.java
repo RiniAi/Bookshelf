@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.models.Book;
-import com.example.bookshelf.models.Book.BookStatus;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
@@ -40,7 +39,7 @@ public class EditBookActivity extends AppCompatActivity {
 
     private void buildStatusSpinner() {
         spinner = (Spinner) findViewById(R.id.spinner_status_edit_book);
-        ArrayAdapter<BookStatus> adapter = new ArrayAdapter<BookStatus>(this, android.R.layout.simple_spinner_item, BookStatus.values());
+        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.status_edit_book, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
