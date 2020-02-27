@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.App;
-import com.example.bookshelf.GetDataService;
+import com.example.bookshelf.GoogleBooksApiService;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
 import com.example.bookshelf.adapters.BookAdapter;
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
 
-        GetDataService service = RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
-        Call<BookItem> call = service.getData();
+        GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
+        Call<BookItem> call = service.getBooks();
         call.enqueue(new Callback<BookItem>() {
             @Override
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
