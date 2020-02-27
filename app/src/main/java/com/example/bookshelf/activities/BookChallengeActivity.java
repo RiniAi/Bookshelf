@@ -27,13 +27,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
-    TextView counter;
-    TextView number;
-    List<Book> bookEntities;
-
-    SeekBar sb;
-    SharedPreferences sharedPreferences;
-    String count;
+    private TextView counter;
+    private TextView number;
+    private SharedPreferences sharedPreferences;
+    private String count;
     public static final String STORAGE_COUNTER = "counter";
 
     private RecyclerView books;
@@ -56,7 +53,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     private void initSeekBar() {
-        sb = new SeekBar(BookChallengeActivity.this);
+        SeekBar sb;
         sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
         sb.setOnSeekBarChangeListener(this);
         sb.setProgress(Integer.parseInt(count));
@@ -73,7 +70,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
         List<BookEntity> booksFromDatabase = bookDao.getList();
-        bookEntities = new ArrayList<>();
+        List<Book> bookEntities = new ArrayList<>();
         for (BookEntity bookEntity : booksFromDatabase) {
             Book book = new Book();
             book.setTitle(bookEntity.getTitle());
