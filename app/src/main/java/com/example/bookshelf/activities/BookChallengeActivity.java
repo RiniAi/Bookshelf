@@ -29,7 +29,7 @@ import java.util.List;
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     TextView counter;
     TextView number;
-    List<Book> bookList;
+    List<Book> bookEntities;
 
     SeekBar sb;
     SharedPreferences sharedPreferences;
@@ -73,17 +73,17 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
         List<BookEntity> booksFromDatabase = bookDao.getList();
-        bookList = new ArrayList<>();
+        bookEntities = new ArrayList<>();
         for (BookEntity bookEntity : booksFromDatabase) {
             Book book = new Book();
             book.setTitle(bookEntity.getTitle());
             book.setAuthors(bookEntity.getAuthors());
             book.setAverageRating(bookEntity.getAverageRating());
             book.setImageURL(bookEntity.getImageLinks());
-            bookList.add(book);
+            bookEntities.add(book);
         }
-        bookAdapter.setList(bookList);
-        number.setText(String.valueOf(bookList.size()));
+        bookAdapter.setList(bookEntities);
+        number.setText(String.valueOf(bookEntities.size()));
     }
 
     private void loadCounterNumber() {
