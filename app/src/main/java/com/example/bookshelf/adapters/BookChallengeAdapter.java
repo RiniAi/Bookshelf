@@ -4,13 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.models.Book;
 import com.example.bookshelf.R;
+import com.example.bookshelf.models.Book;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,10 +43,11 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
         if (book == null) {
             return;
         }
+        Picasso.get().load(book.getImageURL()).into(holder.imgBook);
         holder.authorBook.setText(book.getAuthors());
         holder.titleBook.setText(book.getTitle());
-        String rating = String.valueOf(book.getAverageRating());
-        holder.ratingBook.setText(rating);
+        float rating = book.getAverageRating();
+        holder.ratingBook.setRating(rating);
     }
 
     private Book getItem(int position) {
@@ -64,16 +68,17 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
+        ImageView imgBook;
         TextView authorBook;
         TextView titleBook;
-        TextView ratingBook;
+        RatingBar ratingBook;
 
         BookViewHolder(View itemView) {
             super(itemView);
-
+            imgBook = (ImageView) itemView.findViewById(R.id.img_book_challenge);
             authorBook = (TextView) itemView.findViewById(R.id.tv_author_book_challenge);
             titleBook = (TextView) itemView.findViewById(R.id.tv_title_book_challenge);
-            ratingBook = (TextView) itemView.findViewById(R.id.tv_rating_book_challenge);
+            ratingBook = (RatingBar) itemView.findViewById(R.id.tv_rating_book_challenge);
         }
     }
 }

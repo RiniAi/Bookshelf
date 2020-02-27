@@ -7,14 +7,12 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.App;
@@ -31,7 +29,6 @@ import java.util.List;
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     TextView counter;
     TextView number;
-    Button editCounter;
     List<Book> bookList;
 
     SeekBar sb;
@@ -48,7 +45,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
         number = (TextView) findViewById(R.id.tv_number_books_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
-        editCounter = (Button) findViewById(R.id.btn_edit_number_books);
 
         initSeekBar();
         loadCounterNumber();
@@ -63,7 +59,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     private void initRecyclerView() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(BookChallengeActivity.this);
+        GridLayoutManager linearLayoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
         books.setLayoutManager(linearLayoutManager);
         bookAdapter = new BookChallengeAdapter(getApplicationContext());
         books.setAdapter(bookAdapter);
@@ -73,27 +69,17 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
         List<BookEntity> booksFromDatabase = bookDao.getList();
-
         bookList = new ArrayList<>();
         for (BookEntity bookEntity : booksFromDatabase) {
             Book book = new Book();
             book.setTitle(bookEntity.getTitle());
             book.setAuthors(bookEntity.getAuthors());
             book.setAverageRating(bookEntity.getAverageRating());
-
+            book.setImageURL(bookEntity.getImageLinks());
             bookList.add(book);
         }
         bookAdapter.setList(bookList);
         number.setText(String.valueOf(bookList.size()));
-    }
-
-    public void saveCounterNumber(View view) {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(STORAGE_COUNTER, counter.getText().toString());
-        editor.apply();
-        Toast.makeText(BookChallengeActivity.this, "The counter number is saved!", Toast.LENGTH_SHORT).show();
-
     }
 
     private void loadCounterNumber() {
@@ -113,6 +99,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (editor != counter) {
+            editor.putString(STORAGE_COUNTER, counter.getText().toString());
+            editor.apply();
+            Toast.makeText(BookChallengeActivity.this, "The counter number is saved!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

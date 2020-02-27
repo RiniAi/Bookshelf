@@ -23,7 +23,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="@dimen/margin_for_frame_layout"
             android:layout_marginEnd="@dimen/margin_for_frame_layout"
             android:src="@drawable/ic_launcher_background" />
@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             tools:text="50" />
-
     </LinearLayout>
 
     <SeekBar
@@ -46,17 +45,12 @@
         android:indeterminate="false"
         android:max="500" />
 
-    <Button
-        android:id="@+id/btn_edit_number_books"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="saveCounterNumber"
-        android:text="@string/save" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_book_challenge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        tools:listitem="@layout/list_item_book_challenge" />
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/list_item_book_challenge"
+        tools:spanCount="2" />
 </LinearLayout>

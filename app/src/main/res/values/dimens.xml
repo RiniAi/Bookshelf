@@ -3,6 +3,7 @@
     <dimen name="screen_borders">16dp</dimen>
 
     <dimen name="margin_for_frame_layout">56dp</dimen>
+
     <dimen name="margin_list_book_challenge">16dp</dimen>
 
     <dimen name="padding_bottom_list_of_books">8dp</dimen>
@@ -23,4 +24,5 @@
 
     <dimen name="card_view_margin_list_item">4dp</dimen>
     <dimen name="margin_and_image_list_item">8dp</dimen>
+    <dimen name="height_card_book_challenge">320dp</dimen>
 </resources>
