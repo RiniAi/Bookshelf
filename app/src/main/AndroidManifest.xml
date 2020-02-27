@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.EditBookActivity"/>
         <activity android:name=".activities.BookChallengeActivity"
-            android:label="@string/book_challenge">
+            android:label="@string/book_challenge_manifest">
         </activity>
         <activity android:name="com.example.bookshelf.activities.MainActivity">
             <intent-filter>
