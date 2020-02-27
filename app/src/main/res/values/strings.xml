@@ -43,4 +43,8 @@
     <string name="list_of_books_nav_ac_main">List of books</string>
     <string name="profile_information_nav_ac_main">Profile information</string>
     <string name="search_nav_ac_main">Search</string>
+    <string name="add_to_favorites_edit_book">Add to favorites</string>
+
+    <string name="btn_cancel_date_picker_edit_book">Cancel</string>
+    <string name="btn_set_date_picker_edit_book">Set</string>
 </resources>

@@ -6,8 +6,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import com.example.bookshelf.models.Book;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
+import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -36,13 +39,26 @@ public class EditBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
+
+        initBook();
         buildStatusSpinner();
         initControls();
+    }
+
+    private void initBook() {
+        TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
+        TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
+        ImageView imageView = (ImageView) findViewById(R.id.img_edit_book);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.tv_averRating_edit_book);
+
+        title.setText(book.getTitle());
+        author.setText(book.getAuthors());
+        Picasso.get().load(book.getImageURL()).into(imageView);
+        ratingBar.setRating(book.getAverageRating());
     }
 
     private void buildStatusSpinner() {

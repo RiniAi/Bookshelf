@@ -1,77 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="@dimen/screen_borders">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/status_edit_book" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <ToggleButton
-            android:id="@+id/btn_favorite"
+        <TextView
+            android:id="@+id/tv_title_edit_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/tb_favorite_margin_start_edit_book"
-            android:background="@drawable/button_favorite"
-            android:checked="false"
-            android:text="@string/empty_string"
-            android:textOff="@string/empty_string"
-            android:textOn="@string/empty_string" />
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="Title" />
 
-        <Spinner
-            android:id="@+id/spinner_status_edit_book"
-            android:layout_width="@dimen/sp_status_width_edit_book"
-            android:layout_height="@dimen/sp_status_height_edit_book"
-            android:layout_marginStart="@dimen/sp_status_margin_start_edit_book"
-            android:spinnerMode="dropdown" />
+        <TextView
+            android:id="@+id/tv_author_edit_book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            tools:text="@tools:sample/full_names" />
+
+        <ImageView
+            android:id="@+id/img_edit_book"
+            android:layout_width="@dimen/img_width_edit_book"
+            android:layout_height="@dimen/img_height_edit_book"
+            android:layout_gravity="center_horizontal"
+            tools:src="@tools:sample/avatars" />
+
+        <RatingBar
+            android:id="@+id/tv_averRating_edit_book"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:numStars="5"
+            tools:text="10" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/rating_edit_book" />
-
-    <RatingBar
-        android:id="@+id/rb_rating_edit_book"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:max="5"
-        android:numStars="5" />
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btn_save_edit_book"
-            android:layout_width="@dimen/btn_save_width_edit_book"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/save_edit_book" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_delete_edit_book"
-            android:layout_width="@dimen/btn_delete_width_edit_book"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_edit_book" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/status_edit_book" />
+
+            <Spinner
+                android:id="@+id/spinner_status_edit_book"
+                android:layout_width="@dimen/sp_status_width_edit_book"
+                android:layout_height="@dimen/sp_status_height_edit_book"
+                android:gravity="center_horizontal"
+                android:spinnerMode="dropdown" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/rating_edit_book" />
+
+            <RatingBar
+                android:id="@+id/rb_rating_edit_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:numStars="5" />
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/ll_favorite_margin_start_edit_book"
+                android:orientation="horizontal">
+
+                <ToggleButton
+                    android:id="@+id/btn_favorite"
+                    android:layout_width="@dimen/tb_favorite_width_edit_book"
+                    android:layout_height="@dimen/tb_favorite_height_edit_book"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/button_favorite"
+                    android:checked="false"
+                    android:text="@string/empty_string"
+                    android:textOff="@string/empty_string"
+                    android:textOn="@string/empty_string" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_to_favorites_edit_book" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_save_edit_book"
+                    android:layout_width="@dimen/btn_save_width_edit_book"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_edit_book" />
+
+                <Button
+                    android:id="@+id/btn_delete_edit_book"
+                    android:layout_width="@dimen/btn_delete_width_edit_book"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete_edit_book" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

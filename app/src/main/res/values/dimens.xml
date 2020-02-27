@@ -32,6 +32,11 @@
     <dimen name="btn_delete_width_edit_book">120dp</dimen>
     <dimen name="sp_status_width_edit_book">200dp</dimen>
     <dimen name="sp_status_height_edit_book">50dp</dimen>
-    <dimen name="sp_status_margin_start_edit_book">85dp</dimen>
-    <dimen name="tb_favorite_margin_start_edit_book">5dp</dimen>
+    <dimen name="ll_favorite_margin_start_edit_book">32dp</dimen>
+    <dimen name="tb_favorite_width_edit_book">36dp</dimen>
+    <dimen name="tb_favorite_height_edit_book">36dp</dimen>
+    <dimen name="ib_date_width_edit_book">36dp</dimen>
+    <dimen name="ib_date_height_edit_book">36dp</dimen>
+    <dimen name="img_width_edit_book">100dp</dimen>
+    <dimen name="img_height_edit_book">150dp</dimen>
 </resources>
