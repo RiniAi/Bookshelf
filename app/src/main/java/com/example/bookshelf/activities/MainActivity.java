@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_go_to_page:
+            case R.id.go_to_another_activity:
                 Intent intent = new Intent(this, BookChallengeActivity.class);
                 startActivity(intent);
         }
