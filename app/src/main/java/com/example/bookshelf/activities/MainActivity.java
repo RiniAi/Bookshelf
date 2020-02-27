@@ -67,9 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onEditClick(Book book) {
                 Intent intent = new Intent(MainActivity.this, EditBookActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(EditBookActivity.EXTRA_BOOK, book);
-                intent.putExtras(bundle);
+                intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
                 startActivityForResult(intent, EDIT_BOOK_REQUEST);
             }
         });

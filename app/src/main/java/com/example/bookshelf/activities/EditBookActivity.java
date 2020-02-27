@@ -31,8 +31,10 @@ public class EditBookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
-        book = (Book) getIntent().getSerializableExtra(EXTRA_BOOK);
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
+            book = (Book) bundle.getSerializable(EXTRA_BOOK);
+        }
         buildStatusSpinner();
         initControls();
     }
