@@ -50,7 +50,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         count = sharedPreferences.getString(STORAGE_COUNTER, "");
 
         initSeekBar();
-        loadCounterNumber();
+        loadCounter();
         initRecyclerView();
         loadData();
     }
@@ -86,7 +86,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         number.setText(String.valueOf(bookEntities.size()));
     }
 
-    private void loadCounterNumber() {
+    private void loadCounter() {
         this.counter.setText(count);
     }
 
