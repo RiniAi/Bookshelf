@@ -22,10 +22,9 @@ import com.example.bookshelf.room.BookEntity;
 
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
-
-    boolean favorite = false;
-    Spinner spinner;
-    Book book;
+    private boolean isFavorite = false;
+    private Spinner spinner;
+    private Book book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class EditBookActivity extends AppCompatActivity {
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                favorite = isChecked;
+                isFavorite = isChecked;
             }
         });
 
@@ -75,7 +74,7 @@ public class EditBookActivity extends AppCompatActivity {
                     bookEntity.imageLinks = book.getImageURL();
                     bookEntity.averageRating = book.getAverageRating();
                     bookEntity.userRating = ratingBar.getRating();
-                    bookEntity.favorite = favorite;
+                    bookEntity.favorite = isFavorite;
                     bookEntity.status = spinner.getSelectedItem().toString();
                     bookEntity.readDate = date.toString();
                     bookDao.update(bookEntity);
