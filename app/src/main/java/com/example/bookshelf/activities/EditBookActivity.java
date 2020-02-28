@@ -23,7 +23,6 @@ import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -44,21 +43,8 @@ public class EditBookActivity extends AppCompatActivity {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
 
-        initBook();
         buildStatusSpinner();
         initControls();
-    }
-
-    private void initBook() {
-        TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
-        TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
-        ImageView imageView = (ImageView) findViewById(R.id.img_edit_book);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.tv_averRating_edit_book);
-
-        title.setText(book.getTitle());
-        author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageURL()).into(imageView);
-        ratingBar.setRating(book.getAverageRating());
     }
 
     private void buildStatusSpinner() {
@@ -69,11 +55,21 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void initControls() {
+        TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
+        TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
+        ImageView imageView = (ImageView) findViewById(R.id.img_edit_book);
+        RatingBar rating = (RatingBar) findViewById(R.id.tv_averRating_edit_book);
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
+        ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
         Button save = (Button) findViewById(R.id.btn_save_edit_book);
         Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
-        ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
+
+        title.setText(book.getTitle());
+        author.setText(book.getAuthors());
+        Picasso.get().load(book.getImageURL()).into(imageView);
+        rating.setRating(book.getAverageRating());
+
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
