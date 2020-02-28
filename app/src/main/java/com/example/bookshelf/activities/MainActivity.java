@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_books);
 
         buildRecyclerView();
-        loadSaveData();
+        bookRequestFromApi();
     }
 
     private void buildRecyclerView() {
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadSaveData() {
+    private void bookRequestFromApi() {
         BookDatabase db = App.getInstance().getDatabase();
         final BookDao bookDao = db.bookDao();
 
