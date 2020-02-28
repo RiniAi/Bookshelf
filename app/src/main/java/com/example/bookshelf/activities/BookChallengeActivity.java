@@ -100,11 +100,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        if (editor != counter) {
-            editor.putString(STORAGE_COUNTER, counter.getText().toString());
-            editor.apply();
-            Toast.makeText(BookChallengeActivity.this, R.string.save_counter_book_challenge, Toast.LENGTH_SHORT).show();
-        }
+        editor.putString(STORAGE_COUNTER, counter.getText().toString());
+        editor.apply();
+        Toast.makeText(BookChallengeActivity.this, R.string.save_counter_book_challenge, Toast.LENGTH_SHORT).show();
     }
 
     @Override
