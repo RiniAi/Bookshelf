@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                // TODO anna 26.02.2020: in the rough draft lies data transmission through intention in AboutBookActivity
+                Intent intent = new Intent(MainActivity.this, AboutBookActivity.class);
+                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
+                startActivity(intent);
             }
 
             @Override
@@ -134,6 +136,11 @@ public class MainActivity extends AppCompatActivity {
                     book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
                     book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
                     book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
+                    book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
+                    // TODO anna 28.02.2020: make a Date and convert to String
+                    book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
+                    book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
+                    book.setLang(bookResult.get(i).getVolumeInfo().getLanguage());
                     book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
                     bookList.add(book);
 

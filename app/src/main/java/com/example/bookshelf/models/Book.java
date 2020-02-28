@@ -1,7 +1,5 @@
 package com.example.bookshelf.models;
 
-import com.example.bookshelf.R;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,11 +15,11 @@ public class Book implements Serializable {
     private float userRating;
     private float averageRating;
     private boolean isFavorite;
-    private Date publishedDate;
+    private String publishedDate;
     private Date readDate;
     private BookStatus status;
 
-    public enum BookStatus implements Serializable{
+    public enum BookStatus implements Serializable {
         READ,
         WANT_TO_READ,
         READING,
@@ -108,11 +106,11 @@ public class Book implements Serializable {
         isFavorite = favorite;
     }
 
-    public Date getPublishedDate() {
+    public String getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(Date publishedDate) {
+    public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
     }
 

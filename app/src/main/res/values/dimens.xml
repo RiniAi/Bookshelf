@@ -27,4 +27,7 @@
     <dimen name="edit_book_width_sp">220dp</dimen>
     <dimen name="edit_book_height_sp">56dp</dimen>
     <dimen name="edit_book_tb">36dp</dimen>
+
+    <dimen name="about_book_width_iv">160dp</dimen>
+    <dimen name="about_book_height_iv">240dp</dimen>
 </resources>
