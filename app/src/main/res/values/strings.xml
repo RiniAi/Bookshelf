@@ -3,9 +3,8 @@
 
     <string name="empty_string"></string>
 
-    <string name="book_challenge_manifest">Book challenge</string>
-
-    <string name="go_to_another_activity_toolbar">Activity</string>
+    <string name="title_main_activity">Main</string>
+    <string name="title_book_challenge">Book challenge</string>
 
     <string name="already_a_member_login_sign">Already a member? Login</string>
     <string name="create_account_sign">Create account</string>

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle(R.string.title_main_activity);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 
@@ -115,14 +116,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar, menu);
+        inflater.inflate(R.menu.toolbar_main_activity, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.go_to_another_activity:
+            case R.id.go_to_book_challenge:
                 Intent intent = new Intent(this, BookChallengeActivity.class);
                 startActivity(intent);
         }

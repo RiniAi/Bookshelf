@@ -38,6 +38,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle(R.string.title_book_challenge);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
@@ -109,14 +110,14 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar, menu);
+        inflater.inflate(R.menu.toolbar_book_challenge, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.go_to_another_activity:
+            case R.id.go_to_main_activity:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
         }
