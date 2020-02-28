@@ -17,9 +17,9 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/img_book_challenge"
-                android:layout_width="@dimen/img_width_list_book_challenge"
-                android:layout_height="@dimen/img_height_list_book_challenge"
+                android:id="@+id/iv_book_challenge"
+                android:layout_width="@dimen/iv_width_list_book_challenge"
+                android:layout_height="@dimen/iv_height_list_book_challenge"
                 android:layout_gravity="center_horizontal"
                 tools:src="@tools:sample/avatars" />
 

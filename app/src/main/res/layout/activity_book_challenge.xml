@@ -24,8 +24,8 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_marginStart="@dimen/img_margin_start_book_challenge"
-            android:layout_marginEnd="@dimen/img_margin_end_book_challenge"
+            android:layout_marginStart="@dimen/iv_margin_start_book_challenge"
+            android:layout_marginEnd="@dimen/iv_margin_end_book_challenge"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView

@@ -55,7 +55,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageURL()).into(holder.img);
+        Picasso.get().load(book.getImageURL()).into(holder.cover);
         holder.author.setText(book.getAuthors());
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();
@@ -80,7 +80,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
+        ImageView cover;
         TextView author;
         TextView title;
         RatingBar rating;
@@ -88,7 +88,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.img_book_list);
+            cover = (ImageView) itemView.findViewById(R.id.iv_book_list);
             author = (TextView) itemView.findViewById(R.id.tv_author_book_list);
             title = (TextView) itemView.findViewById(R.id.tv_title_book_list);
             rating = (RatingBar) itemView.findViewById(R.id.tv_rating_book_list);

@@ -43,7 +43,7 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageURL()).into(holder.img);
+        Picasso.get().load(book.getImageURL()).into(holder.cover);
         holder.author.setText(book.getAuthors());
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();
@@ -68,14 +68,14 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
+        ImageView cover;
         TextView author;
         TextView title;
         RatingBar averRating;
 
         BookViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.img_book_challenge);
+            cover = (ImageView) itemView.findViewById(R.id.iv_book_challenge);
             author = (TextView) itemView.findViewById(R.id.tv_author_book_challenge);
             title = (TextView) itemView.findViewById(R.id.tv_title_book_challenge);
             averRating = (RatingBar) itemView.findViewById(R.id.tv_rating_book_challenge);

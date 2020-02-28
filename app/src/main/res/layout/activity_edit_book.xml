@@ -28,9 +28,9 @@
             tools:text="@tools:sample/full_names" />
 
         <ImageView
-            android:id="@+id/img_edit_book"
-            android:layout_width="@dimen/img_width_edit_book"
-            android:layout_height="@dimen/img_height_edit_book"
+            android:id="@+id/iv_edit_book"
+            android:layout_width="@dimen/iv_width_edit_book"
+            android:layout_height="@dimen/iv_height_edit_book"
             android:layout_gravity="center_horizontal"
             tools:src="@tools:sample/avatars" />
 

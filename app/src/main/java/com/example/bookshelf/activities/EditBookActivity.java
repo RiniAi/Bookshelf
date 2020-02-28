@@ -57,7 +57,7 @@ public class EditBookActivity extends AppCompatActivity {
     private void initControls() {
         TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
         TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
-        ImageView imageView = (ImageView) findViewById(R.id.img_edit_book);
+        ImageView imageView = (ImageView) findViewById(R.id.iv_edit_book);
         RatingBar rating = (RatingBar) findViewById(R.id.tv_averRating_edit_book);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
         datePicker = (DatePicker) findViewById(R.id.datePicker);

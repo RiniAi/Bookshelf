@@ -16,10 +16,10 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/img_book_list"
-                android:layout_width="@dimen/img_width_list_item_book"
-                android:layout_height="@dimen/img_height_list_item_book"
-                android:layout_marginEnd="@dimen/img_margin_end_list_item_book"
+                android:id="@+id/iv_book_list"
+                android:layout_width="@dimen/iv_width_list_item_book"
+                android:layout_height="@dimen/iv_height_list_item_book"
+                android:layout_marginEnd="@dimen/iv_margin_end_list_item_book"
                 tools:src="@tools:sample/avatars" />
 
             <LinearLayout
