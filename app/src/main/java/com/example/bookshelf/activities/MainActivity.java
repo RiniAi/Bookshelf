@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.GoogleBooksApiService;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
@@ -20,9 +19,8 @@ import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
-import com.example.bookshelf.room.BookDao;
-import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
+import com.example.bookshelf.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     List<BookEntity> bookListDao = new ArrayList<>();
     Book book;
     private BookAdapter bookAdapter;
+    Storage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bookRequestFromApi() {
-        BookDatabase db = App.getInstance().getDatabase();
-        final BookDao bookDao = db.bookDao();
-
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BookItem> call = service.getBooks();
         call.enqueue(new Callback<BookItem>() {
@@ -94,15 +90,12 @@ public class MainActivity extends AppCompatActivity {
                     bookList.add(book);
 
                     BookEntity bookEntity = new BookEntity();
-                    bookEntity.authors = book.getAuthors();
-                    bookEntity.title = book.getTitle();
-                    bookEntity.imageLinks = book.getImageURL();
-                    bookEntity.averageRating = book.getAverageRating();
-                    bookEntity.description = book.getDescription();
+                    storage = new Storage();
+                    storage.converting(bookEntity, book);
                     bookListDao.add(bookEntity);
                 }
                 bookAdapter.setList(bookList);
-                bookDao.insert(bookListDao);
+                storage.insert(bookListDao);
             }
 
             @Override
