@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.room.Room;
 
-import com.example.bookshelf.Room.BookDatabase;
+import com.example.bookshelf.room.BookDatabase;
 
 public class App extends Application {
     public static App instance;
@@ -19,7 +19,7 @@ public class App extends Application {
 
     private void createDatabase() {
         instance = this;
-        database = Room.databaseBuilder(this, BookDatabase.class, "database_book")
+        database = Room.databaseBuilder(this, BookDatabase.class, "db_books")
                 .allowMainThreadQueries()
                 .build();
     }

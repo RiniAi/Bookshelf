@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="screen_borders">16dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
 
-    <dimen name="width_image_about_book">100dp</dimen>
-    <dimen name="height_image_about_book">100dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="padding_24dp">24dp</dimen>
+    <dimen name="padding_128dp">128dp</dimen>
 
-    <dimen name="width_spinner_status">100dp</dimen>
-    <dimen name="width_spinner_date">100dp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
 
-    <dimen name="margin_for_frame_layout">56dp</dimen>
-    <dimen name="margin_list_book_challenge">16dp</dimen>
+    <dimen name="list_book_width_iv">148dp</dimen>
+    <dimen name="list_book_height_iv">228dp</dimen>
+    <dimen name="list_book_width_tv">120dp</dimen>
 
-    <dimen name="padding_bottom_list_of_books">8dp</dimen>
-    <dimen name="padding_left_and_right_list_of_books">16dp</dimen>
+    <dimen name="list_book_challenge_height_cv">344dp</dimen>
+    <dimen name="list_book_challenge_width_iv">160dp</dimen>
+    <dimen name="list_book_challenge_height_iv">240dp</dimen>
+
+    <dimen name="edit_book_width_btn">120dp</dimen>
+    <dimen name="edit_book_width_iv">104dp</dimen>
+    <dimen name="edit_book_height_iv">184dp</dimen>
+    <dimen name="edit_book_width_sp">220dp</dimen>
+    <dimen name="edit_book_height_sp">56dp</dimen>
+    <dimen name="edit_book_tb">36dp</dimen>
 </resources>

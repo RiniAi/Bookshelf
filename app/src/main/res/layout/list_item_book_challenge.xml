@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_author_book_challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@tools:sample/full_names" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_book_challenge_height_cv"
+        android:layout_margin="@dimen/margin_4dp">
 
-    <TextView
-        android:id="@+id/tv_title_book_challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Title" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_4dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_rating_book_challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        tools:text="10" />
+            <ImageView
+                android:id="@+id/iv_book_challenge"
+                android:layout_width="@dimen/list_book_challenge_width_iv"
+                android:layout_height="@dimen/list_book_challenge_height_iv"
+                android:layout_gravity="center_horizontal"
+                tools:src="@tools:sample/avatars" />
+
+            <RatingBar
+                android:id="@+id/tv_rating_book_challenge"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:numStars="5"
+                tools:text="10" />
+
+            <TextView
+                android:id="@+id/tv_title_book_challenge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                tools:text="Title" />
+
+            <TextView
+                android:id="@+id/tv_author_book_challenge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@tools:sample/full_names" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

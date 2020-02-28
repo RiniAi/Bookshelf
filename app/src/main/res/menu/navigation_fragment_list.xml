@@ -3,18 +3,18 @@
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="@string/read_nav_fr_list" />
+        android:title="@string/navigation_list_read" />
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="@string/want_to_read_nav_fr_list" />
+        android:title="@string/navigation_list_want_to_read" />
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="@string/reading_nav_fr_list"  />
+        android:title="@string/navigation_list_reading"  />
 
     <item
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="@string/not_reading_nav_fr_list" />
+        android:title="@string/navigation_list_not_reading" />
 
 </menu>
