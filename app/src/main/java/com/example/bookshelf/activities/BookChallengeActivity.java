@@ -51,7 +51,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         number = (TextView) findViewById(R.id.tv_number_books_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        count = sharedPreferences.getString(STORAGE_COUNTER, "");
+        count = sharedPreferences.getString(STORAGE_COUNTER, "0");
         this.counter.setText(count);
     }
 

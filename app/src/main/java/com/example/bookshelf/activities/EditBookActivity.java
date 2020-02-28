@@ -15,13 +15,10 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.R;
-import com.example.bookshelf.models.Book;
-import com.example.bookshelf.room.BookDao;
-import com.example.bookshelf.room.BookDatabase;
-import com.example.bookshelf.room.BookEntity;
 import com.example.bookshelf.Storage;
+import com.example.bookshelf.models.Book;
+import com.example.bookshelf.room.BookEntity;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -77,22 +74,19 @@ public class EditBookActivity extends AppCompatActivity {
             }
         });
 
-        BookDatabase db = App.getInstance().getDatabase();
-        BookDao bookDao = db.bookDao();
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDate();
-                if (book != null) {
-                    BookEntity bookEntity = new BookEntity();
-                    Storage storage = new Storage();
-                    storage.converting(bookEntity, book);
-                    bookEntity.userRating = ratingBar.getRating();
-                    bookEntity.favorite = isFavorite;
-                    bookEntity.status = spinner.getSelectedItem().toString();
-                    bookEntity.readDate = date;
-                    storage.update(bookEntity);
-                }
+                BookEntity bookEntity = new BookEntity();
+                Storage storage = new Storage();
+                storage.convertingBookToEntity(bookEntity, book);
+                bookEntity.userRating = ratingBar.getRating();
+                bookEntity.favorite = isFavorite;
+                bookEntity.status = spinner.getSelectedItem().toString();
+                bookEntity.readDate = date;
+                storage.update(bookEntity);
+                finish();
             }
         });
 
@@ -101,8 +95,10 @@ public class EditBookActivity extends AppCompatActivity {
             public void onClick(View view) {
                 BookEntity bookEntity = new BookEntity();
                 Storage storage = new Storage();
-                storage.converting(bookEntity, book);
-                storage.update(bookEntity);
+                bookEntity.authors = book.getAuthors();
+                bookEntity.title = book.getTitle();
+                storage.delete(bookEntity);
+                finish();
             }
         });
     }

@@ -43,4 +43,5 @@
     <string name="navigation_main_list_of_books">List of books</string>
     <string name="navigation_main_profile_information">Profile information</string>
     <string name="navigation_main_search">Search</string>
+    <string name="main_activity_db_empty">The database is empty...</string>
 </resources>

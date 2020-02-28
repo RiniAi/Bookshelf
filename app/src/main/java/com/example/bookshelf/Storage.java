@@ -11,7 +11,7 @@ public class Storage {
     private BookDatabase db = App.getInstance().getDatabase();
     private BookDao bookDao = db.bookDao();
 
-    public BookEntity converting(BookEntity bookEntity, Book book) {
+    public BookEntity convertingBookToEntity(BookEntity bookEntity, Book book) {
         bookEntity.authors = book.getAuthors();
         bookEntity.title = book.getTitle();
         bookEntity.imageLinks = book.getImageURL();
@@ -28,6 +28,10 @@ public class Storage {
         bookDao.update(bookEntity);
     }
 
+    public void delete(BookEntity bookEntity) {
+        bookDao.delete(bookEntity);
+    }
+
     public Book loadBooks(Book book, BookEntity bookEntity) {
         book.setTitle(bookEntity.getTitle());
         book.setAuthors(bookEntity.getAuthors());
@@ -36,7 +40,7 @@ public class Storage {
         return book;
     }
 
-    public List<BookEntity> getList () {
+    public List<BookEntity> getList() {
         List<BookEntity> list = bookDao.getList();
         return list;
     }

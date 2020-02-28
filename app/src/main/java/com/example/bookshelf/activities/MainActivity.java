@@ -6,21 +6,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.ConnectionDetector;
 import com.example.bookshelf.GoogleBooksApiService;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
+import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
 import com.example.bookshelf.room.BookEntity;
-import com.example.bookshelf.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,25 +33,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    List<Item> bookResult = new ArrayList<>();
-    List<Book> bookList = new ArrayList<>();
-    List<BookEntity> bookListDao = new ArrayList<>();
-    Book book;
+    private List<Item> bookResult = new ArrayList<>();
+    private List<Book> bookList = new ArrayList<>();
+    private List<BookEntity> bookListDao = new ArrayList<>();
+    private Book book;
     private BookAdapter bookAdapter;
-    Storage storage;
+    private Storage storage;
+    private List<Book> bookEntities;
+    private LinearLayout emptyView;
+    private RecyclerView books;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle(R.string.main_activity_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
+        emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
 
         buildRecyclerView();
-        bookRequestFromApi();
+        loadBooks();
+        checkInternetAndDb();
     }
 
     private void buildRecyclerView() {
-        RecyclerView books = findViewById(R.id.rv_of_books);
+        books = (RecyclerView) findViewById(R.id.rv_of_books);
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         bookAdapter = new BookAdapter(getApplicationContext());
 
@@ -70,6 +78,46 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void loadBooks() {
+        Storage storage = new Storage();
+        List<BookEntity> booksFromDatabase = storage.getList();
+        bookEntities = new ArrayList<>();
+        for (BookEntity bookEntity : booksFromDatabase) {
+            Book book = new Book();
+            storage.loadBooks(book, bookEntity);
+            bookEntities.add(book);
+        }
+    }
+
+    private void checkInternetAndDb() {
+        ConnectionDetector cd = new ConnectionDetector(MainActivity.this);
+        boolean isInternetPresent = cd.ConnectingToInternet();
+        if (isInternetPresent) {
+            if (bookEntities.isEmpty()) {
+                books.setVisibility(View.VISIBLE);
+                emptyView.setVisibility(View.GONE);
+                bookRequestFromApi();
+
+            } else {
+                books.setVisibility(View.VISIBLE);
+                emptyView.setVisibility(View.GONE);
+                // TODO anna 28.02.2020: add data update
+                bookAdapter.setList(bookEntities);
+            }
+
+        } else {
+            Toast.makeText(MainActivity.this, "There is no Internet connection", Toast.LENGTH_SHORT).show();
+            if (bookEntities.isEmpty()) {
+                books.setVisibility(View.GONE);
+                emptyView.setVisibility(View.VISIBLE);
+            } else {
+                books.setVisibility(View.VISIBLE);
+                emptyView.setVisibility(View.GONE);
+                bookAdapter.setList(bookEntities);
+            }
+        }
+    }
+
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BookItem> call = service.getBooks();
@@ -77,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
                 bookResult = response.body().getItems();
-
+                storage = new Storage();
                 for (int i = 0; i < bookResult.size(); i++) {
                     book = new Book();
                     book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
@@ -90,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     bookList.add(book);
 
                     BookEntity bookEntity = new BookEntity();
-                    storage = new Storage();
-                    storage.converting(bookEntity, book);
+                    storage.convertingBookToEntity(bookEntity, book);
                     bookListDao.add(bookEntity);
                 }
                 bookAdapter.setList(bookList);
