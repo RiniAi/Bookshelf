@@ -174,6 +174,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent bookChallenge = new Intent(this, BookChallengeActivity.class);
                 startActivity(bookChallenge);
                 break;
+            case R.id.go_to_search:
+                Intent search = new Intent(this, SearchActivity.class);
+                startActivity(search);
+                break;
         }
         return true;
     }

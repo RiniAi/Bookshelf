@@ -48,4 +48,7 @@
     <string name="about_book_published_date">Published date:</string>
     <string name="about_book_page_count">Page count:</string>
     <string name="about_book_language">Language:</string>
+
+    <string name="search_activity_no_internet">There is no Internet connection...</string>
+    <string name="search_title">Search</string>
 </resources>
