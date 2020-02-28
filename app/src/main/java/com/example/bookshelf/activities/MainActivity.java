@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        Call<BookItem> call = service.getBooks();
+        Call<BookItem> call = service.getBooks("Harry potter");
         call.enqueue(new Callback<BookItem>() {
             @Override
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
@@ -171,8 +171,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_book_challenge:
-                Intent intent = new Intent(this, BookChallengeActivity.class);
-                startActivity(intent);
+                Intent bookChallenge = new Intent(this, BookChallengeActivity.class);
+                startActivity(bookChallenge);
+                break;
         }
         return true;
     }
