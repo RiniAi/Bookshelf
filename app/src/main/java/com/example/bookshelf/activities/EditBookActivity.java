@@ -110,10 +110,6 @@ public class EditBookActivity extends AppCompatActivity {
                 bookEntity.title = book.getTitle();
                 bookEntity.imageLinks = book.getImageURL();
                 bookEntity.averageRating = book.getAverageRating();
-                bookEntity.userRating = 0;
-                bookEntity.favorite = false;
-                bookEntity.status = "";
-                bookEntity.readDate = "";
                 bookDao.update(bookEntity);
             }
         });
