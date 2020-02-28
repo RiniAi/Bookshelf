@@ -116,7 +116,8 @@ public class EditBookActivity extends AppCompatActivity {
         int month = datePicker.getMonth();
         int year = datePicker.getYear();
 
-        Calendar calendar = new GregorianCalendar(year, month, dayOfMonth);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
         date = DateUtils.formatDateTime(this, calendar.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_YEAR);
     }
 }
