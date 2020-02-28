@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle(R.string.title_main_activity);
+        setTitle(R.string.main_activity_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 

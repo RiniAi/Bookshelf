@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/screen_borders">
+    android:layout_margin="@dimen/margin_8dp"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:id="@+id/tv_title_edit_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="@dimen/text_size_16sp"
             android:textStyle="bold"
             tools:text="Title" />
 
@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/iv_edit_book"
-            android:layout_width="@dimen/iv_width_edit_book"
-            android:layout_height="@dimen/iv_height_edit_book"
+            android:layout_width="@dimen/edit_book_width_iv"
+            android:layout_height="@dimen/edit_book_height_iv"
             android:layout_gravity="center_horizontal"
             tools:src="@tools:sample/avatars" />
 
@@ -58,12 +58,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/status_edit_book" />
+                android:text="@string/edit_book_status" />
 
             <Spinner
                 android:id="@+id/spinner_status_edit_book"
-                android:layout_width="@dimen/sp_status_width_edit_book"
-                android:layout_height="@dimen/sp_status_height_edit_book"
+                android:layout_width="@dimen/edit_book_width_sp"
+                android:layout_height="@dimen/edit_book_height_sp"
                 android:gravity="center_horizontal"
                 android:spinnerMode="dropdown" />
 
@@ -71,13 +71,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/rating_edit_book" />
+                android:text="@string/edit_book_rating" />
 
             <RatingBar
                 android:id="@+id/rb_rating_edit_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:max="5"
                 android:numStars="5" />
 
             <DatePicker
@@ -90,16 +89,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/ll_favorite_margin_start_edit_book"
+                android:layout_marginStart="@dimen/margin_16dp"
                 android:orientation="horizontal">
 
                 <ToggleButton
                     android:id="@+id/btn_favorite"
-                    android:layout_width="@dimen/tb_favorite_width_edit_book"
-                    android:layout_height="@dimen/tb_favorite_height_edit_book"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="@dimen/edit_book_tb"
+                    android:layout_height="@dimen/edit_book_tb"
+                    android:layout_marginStart="@dimen/margin_32dp"
                     android:background="@drawable/button_favorite"
                     android:checked="false"
+                    android:paddingBottom="@dimen/padding_8dp"
                     android:text="@string/empty_string"
                     android:textOff="@string/empty_string"
                     android:textOn="@string/empty_string" />
@@ -107,27 +107,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_to_favorites_edit_book" />
+                    android:text="@string/edit_book_add_to_favorites" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_save_edit_book"
+                android:layout_width="@dimen/edit_book_width_btn"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_book_save" />
 
-                <Button
-                    android:id="@+id/btn_save_edit_book"
-                    android:layout_width="@dimen/btn_save_width_edit_book"
-                    android:layout_height="wrap_content"
-                    android:text="@string/save_edit_book" />
-
-                <Button
-                    android:id="@+id/btn_delete_edit_book"
-                    android:layout_width="@dimen/btn_delete_width_edit_book"
-                    android:layout_height="wrap_content"
-                    android:text="@string/delete_edit_book" />
-            </LinearLayout>
+            <Button
+                android:id="@+id/btn_delete_edit_book"
+                android:layout_width="@dimen/edit_book_width_btn"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_book_delete" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

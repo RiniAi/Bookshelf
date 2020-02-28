@@ -38,7 +38,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle(R.string.title_book_challenge);
+        setTitle(R.string.book_challenge_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
 
@@ -102,7 +102,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(STORAGE_COUNTER, counter.getText().toString());
         editor.apply();
-        Toast.makeText(BookChallengeActivity.this, R.string.save_counter_book_challenge, Toast.LENGTH_SHORT).show();
+        Toast.makeText(BookChallengeActivity.this, R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
     }
 
     @Override

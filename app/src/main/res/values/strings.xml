@@ -3,47 +3,44 @@
 
     <string name="empty_string"></string>
 
-    <string name="title_main_activity">Main</string>
-    <string name="title_book_challenge">Book challenge</string>
+    <string name="main_activity_title">Main</string>
+    <string name="book_challenge_title">Book challenge</string>
 
-    <string name="already_a_member_login_sign">Already a member? Login</string>
-    <string name="create_account_sign">Create account</string>
-    <string name="email_login_sign">Email</string>
-    <string name="login_login_sign">Login</string>
-    <string name="no_account_yet_create_login">No account yet? Create one</string>
-    <string name="password_login_sign">Password</string>
+    <string name="login_sign_already_a_member">Already a member? Login</string>
+    <string name="login_sign_create_account">Create account</string>
+    <string name="login_sign_email">Email</string>
+    <string name="login_sign_login">Login</string>
+    <string name="login_sign_no_account">No account yet? Create one</string>
+    <string name="login_sign_password">Password</string>
 
-    <string name="delete_edit_book">Delete book</string>
-    <string name="rating_edit_book">Your rating</string>
-    <string name="save_edit_book">Save</string>
-    <string name="status_edit_book">The status of the book</string>
-    <string-array name="status_edit_book">
+    <string name="edit_book_add_to_favorites">Add to favorites</string>
+    <string name="edit_book_delete">Delete book</string>
+    <string name="edit_book_rating">Your rating</string>
+    <string name="edit_book_save">Save</string>
+    <string name="edit_book_status">The status of the book</string>
+    <string-array name="edit_book_status">
         <item>Read</item>
         <item>Want to read</item>
         <item>Reading</item>
         <item>Not reading</item>
     </string-array>
 
-    <string name="save_counter_book_challenge">The counter number is saved!</string>
+    <string name="book_challenge_save_counter">The counter number is saved!</string>
 
     <string name="rating_about_book">Rating</string>
 
-    <string name="description_profile_information">Information</string>
-    <string name="log_out_profile_information">Log out</string>
+    <string name="profile_information_description">Information</string>
+    <string name="profile_information_log_out">Log out</string>
 
     <string name="search">Search</string>
 
-    <string name="not_reading_nav_fr_list">Not reading</string>
-    <string name="read_nav_fr_list">Read</string>
-    <string name="reading_nav_fr_list">Reading</string>
-    <string name="want_to_read_nav_fr_list">Want to read</string>
+    <string name="navigation_list_not_reading">Not reading</string>
+    <string name="navigation_list_read">Read</string>
+    <string name="navigation_list_reading">Reading</string>
+    <string name="navigation_list_want_to_read">Want to read</string>
 
-    <string name="challenge_nav_ac_main">Challenge</string>
-    <string name="list_of_books_nav_ac_main">List of books</string>
-    <string name="profile_information_nav_ac_main">Profile information</string>
-    <string name="search_nav_ac_main">Search</string>
-    <string name="add_to_favorites_edit_book">Add to favorites</string>
-
-    <string name="btn_cancel_date_picker_edit_book">Cancel</string>
-    <string name="btn_set_date_picker_edit_book">Set</string>
+    <string name="navigation_main_challenge">Challenge</string>
+    <string name="navigation_main_list_of_books">List of books</string>
+    <string name="navigation_main_profile_information">Profile information</string>
+    <string name="navigation_main_search">Search</string>
 </resources>

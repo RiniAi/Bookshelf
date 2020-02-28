@@ -24,7 +24,6 @@ import com.example.bookshelf.room.BookEntity;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
@@ -49,7 +48,7 @@ public class EditBookActivity extends AppCompatActivity {
 
     private void buildStatusSpinner() {
         spinner = (Spinner) findViewById(R.id.spinner_status_edit_book);
-        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.status_edit_book, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
