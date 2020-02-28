@@ -39,7 +39,6 @@ public class EditBookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
@@ -70,6 +69,7 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void initControls() {
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
         Button save = (Button) findViewById(R.id.btn_save_edit_book);
         Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
         RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
