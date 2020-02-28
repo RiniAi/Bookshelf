@@ -1,6 +1,5 @@
 package com.example.bookshelf;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.models.Book;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
@@ -27,5 +26,18 @@ public class Storage {
 
     public void update(BookEntity bookEntity) {
         bookDao.update(bookEntity);
+    }
+
+    public Book loadBooks(Book book, BookEntity bookEntity) {
+        book.setTitle(bookEntity.getTitle());
+        book.setAuthors(bookEntity.getAuthors());
+        book.setAverageRating(bookEntity.getAverageRating());
+        book.setImageURL(bookEntity.getImageLinks());
+        return book;
+    }
+
+    public List<BookEntity> getList () {
+        List<BookEntity> list = bookDao.getList();
+        return list;
     }
 }

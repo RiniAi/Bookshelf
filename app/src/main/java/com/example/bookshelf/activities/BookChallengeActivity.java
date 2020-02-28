@@ -15,12 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookChallengeAdapter;
 import com.example.bookshelf.models.Book;
-import com.example.bookshelf.room.BookDao;
-import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
 
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         loadCounter();
         initSeekBar();
         initRecyclerView();
-        loadData();
+        loadBooks();
     }
 
     private void loadCounter() {
@@ -71,17 +69,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         books.setAdapter(bookAdapter);
     }
 
-    private void loadData() {
-        BookDatabase db = App.getInstance().getDatabase();
-        final BookDao bookDao = db.bookDao();
-        List<BookEntity> booksFromDatabase = bookDao.getList();
+    private void loadBooks() {
+        Storage storage = new Storage();
+        List<BookEntity> booksFromDatabase = storage.getList();
         List<Book> bookEntities = new ArrayList<>();
         for (BookEntity bookEntity : booksFromDatabase) {
             Book book = new Book();
-            book.setTitle(bookEntity.getTitle());
-            book.setAuthors(bookEntity.getAuthors());
-            book.setAverageRating(bookEntity.getAverageRating());
-            book.setImageURL(bookEntity.getImageLinks());
+            storage.loadBooks(book, bookEntity);
             bookEntities.add(book);
         }
         bookAdapter.setList(bookEntities);
