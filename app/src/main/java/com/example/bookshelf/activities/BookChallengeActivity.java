@@ -41,16 +41,20 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         setTitle(R.string.title_book_challenge);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
+
+        loadCounter();
+        initSeekBar();
+        initRecyclerView();
+        loadData();
+    }
+
+    private void loadCounter() {
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
         number = (TextView) findViewById(R.id.tv_number_books_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         count = sharedPreferences.getString(STORAGE_COUNTER, "");
-
-        initSeekBar();
-        loadCounter();
-        initRecyclerView();
-        loadData();
+        this.counter.setText(count);
     }
 
     private void initSeekBar() {
@@ -82,10 +86,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         }
         bookAdapter.setList(bookEntities);
         number.setText(String.valueOf(bookEntities.size()));
-    }
-
-    private void loadCounter() {
-        this.counter.setText(count);
     }
 
     @Override
