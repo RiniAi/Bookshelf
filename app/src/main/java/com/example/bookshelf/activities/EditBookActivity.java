@@ -1,6 +1,7 @@
 package com.example.bookshelf.activities;
 
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -124,7 +125,6 @@ public class EditBookActivity extends AppCompatActivity {
         int year = datePicker.getYear();
 
         Calendar calendar = new GregorianCalendar(year, month, dayOfMonth);
-        DateFormat df = android.text.format.DateFormat.getDateFormat(this);
-        date = df.format(calendar.getTime());
+        date = DateUtils.formatDateTime(this, calendar.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_YEAR);
     }
 }
