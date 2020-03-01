@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private List<Item> bookResult = new ArrayList<>();
     private List<Book> bookList = new ArrayList<>();
     private List<BookEntity> bookListDao = new ArrayList<>();
-    private Book book;
     private BookAdapter bookAdapter;
     private Storage storage;
     private List<Book> bookEntities;
@@ -59,10 +58,8 @@ public class MainActivity extends AppCompatActivity {
         books = (RecyclerView) findViewById(R.id.rv_of_books);
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         bookAdapter = new BookAdapter(getApplicationContext());
-
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
-
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
@@ -129,23 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 bookResult = response.body().getItems();
                 storage = new Storage();
                 for (int i = 0; i < bookResult.size(); i++) {
-                    book = new Book();
-                    book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
-                            .replace("[", "")
-                            .replace("]", ""));
-                    book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
-                    book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
-                    book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-                    book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
-                    // TODO anna 28.02.2020: make a Date and convert to String
-                    book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
-                    book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
-                    book.setLang(bookResult.get(i).getVolumeInfo().getLanguage());
-                    book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
-                    bookList.add(book);
-
-                    BookEntity bookEntity = new BookEntity();
-                    storage.convertingBookToEntity(bookEntity, book);
+                    BookEntity bookEntity = storage.convertingItemToEntity(i, bookResult, bookList);
                     bookListDao.add(bookEntity);
                 }
                 bookAdapter.setList(bookList);
