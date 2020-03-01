@@ -32,4 +32,5 @@
     <dimen name="about_book_width_iv">160dp</dimen>
     <dimen name="about_book_height_iv">240dp</dimen>
     <dimen name="search_width_et">320dp</dimen>
+    <dimen name="list_search_width_tv">240dp</dimen>
 </resources>
