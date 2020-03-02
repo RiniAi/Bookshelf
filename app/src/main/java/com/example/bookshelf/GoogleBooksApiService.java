@@ -8,5 +8,5 @@ import retrofit2.http.Query;
 
 public interface GoogleBooksApiService {
     @GET("volumes/")
-    Call<BookItem> getBooks(@Query("q") String s);
+    Call<BookItem> getBooks(@Query("q") String query);
 }
