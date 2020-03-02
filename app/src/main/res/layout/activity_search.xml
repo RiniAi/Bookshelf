@@ -14,7 +14,9 @@
         <EditText
             android:id="@+id/et_query_search_activity"
             android:layout_width="@dimen/search_width_edit_text"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
 
         <ImageButton
             android:id="@+id/btn_query_search_activity"
