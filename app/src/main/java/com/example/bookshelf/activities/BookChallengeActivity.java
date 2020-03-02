@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -103,6 +104,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
             case R.id.go_to_main_activity:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                break;
+
+            case android.R.id.home:
+                Intent home = NavUtils.getParentActivityIntent(this);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                NavUtils.navigateUpTo(this, home);
+                break;
         }
         return true;
     }
