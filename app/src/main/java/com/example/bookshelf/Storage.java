@@ -14,7 +14,7 @@ public class Storage {
     private BookDao bookDao = db.bookDao();
     private Book book = new Book();
 
-    public List<Book> save(List<Item> bookResult) {
+    public void save(List<Item> bookResult) {
         List<Book> bookList = new ArrayList<>();
         List<BookEntity> bookListDao = new ArrayList<>();
         for (int i = 0; i < bookResult.size(); i++) {
@@ -24,13 +24,11 @@ public class Storage {
             book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
             book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
             book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-
             book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
             // TODO anna 28.02.2020: make a Date and convert to String
             book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
             book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
             book.setLang(bookResult.get(i).getVolumeInfo().getLanguage());
-
             book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
             bookList.add(book);
 
@@ -39,7 +37,6 @@ public class Storage {
             bookListDao.add(bookEntity);
         }
         bookDao.insert(bookListDao);
-        return bookList;
     }
 
     public BookEntity convertingBookToEntity(BookEntity bookEntity, Book book) {
@@ -47,6 +44,10 @@ public class Storage {
         bookEntity.title = book.getTitle();
         bookEntity.imageLinks = book.getImageURL();
         bookEntity.averageRating = book.getAverageRating();
+        bookEntity.publisher = book.getPublisher();
+        bookEntity.publishedDate = book.getPublishedDate();
+        bookEntity.pageCount = book.getPageCount();
+        bookEntity.lang = book.getLang();
         bookEntity.description = book.getDescription();
         return bookEntity;
     }
@@ -69,6 +70,7 @@ public class Storage {
 
     public Book loadBooks(Book book, BookEntity bookEntity) {
         loadBooksChallenge(book, bookEntity);
+        book.setPublisher(bookEntity.getPublisher());
         book.setPublishedDate(bookEntity.getPublishedDate());
         book.setPageCount(bookEntity.getPageCount());
         book.setLang(bookEntity.getLanguage());
