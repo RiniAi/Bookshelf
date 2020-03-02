@@ -1,5 +1,7 @@
 package com.example.bookshelf.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -59,21 +62,28 @@ public class SearchActivity extends AppCompatActivity {
                 query = enterQuery.getText().toString();
                 buildRecyclerView();
                 bookRequestFromApi();
+                hideKeyboard(SearchActivity.this, view);
             }
         });
 
         enterQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     query = enterQuery.getText().toString();
                     buildRecyclerView();
                     bookRequestFromApi();
+                    hideKeyboard(SearchActivity.this, view);
                     return true;
                 }
                 return false;
             }
         });
+    }
+
+    public static void hideKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void buildRecyclerView() {
