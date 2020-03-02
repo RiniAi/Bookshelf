@@ -8,22 +8,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.models.Book;
+import com.example.bookshelf.room.Book;
 import com.squareup.picasso.Picasso;
 
 public class AboutBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
     private Book book;
-
-    private TextView title;
-    private TextView author;
-    private ImageView image;
-    private RatingBar rating;
-    private TextView publishedDate;
-    private TextView publisher;
-    private TextView pageCount;
-    private TextView lang;
-    private TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +22,6 @@ public class AboutBookActivity extends AppCompatActivity {
 
         getBook();
         initControls();
-        fillFields();
     }
 
     private void getBook() {
@@ -43,26 +32,24 @@ public class AboutBookActivity extends AppCompatActivity {
     }
 
     private void initControls() {
-        title = (findViewById(R.id.tv_title_about_book));
-        author = (findViewById(R.id.tv_author_about_book));
-        image = (findViewById(R.id.img_about_book));
-        rating = (findViewById(R.id.rb_rating_about_book));
-        publishedDate = (findViewById(R.id.tv_published_date_about_book));
-        publisher = (findViewById(R.id.tv_publisher_about_book));
-        pageCount = (findViewById(R.id.tv_page_count_about_book));
-        lang = (findViewById(R.id.tv_lang_about_book));
-        description = (findViewById(R.id.tv_description_about_book));
-    }
+        TextView title = (findViewById(R.id.tv_title_about_book));
+        TextView author = (findViewById(R.id.tv_author_about_book));
+        ImageView image = (findViewById(R.id.img_about_book));
+        RatingBar rating = (findViewById(R.id.rb_rating_about_book));
+        TextView publishedDate = (findViewById(R.id.tv_published_date_about_book));
+        TextView publisher = (findViewById(R.id.tv_publisher_about_book));
+        TextView pageCount = (findViewById(R.id.tv_page_count_about_book));
+        TextView lang = (findViewById(R.id.tv_lang_about_book));
+        TextView description = (findViewById(R.id.tv_description_about_book));
 
-    private void fillFields() {
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageURL()).into(image);
+        Picasso.get().load(book.getImageLinks()).into(image);
         rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());
         pageCount.setText(String.valueOf(book.getPageCount()));
-        lang.setText(book.getLang());
+        lang.setText(book.getLanguage());
         description.setText(book.getDescription());
     }
 }

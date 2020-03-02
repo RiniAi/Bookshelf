@@ -17,21 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
-import com.example.bookshelf.models.Book;
-import com.example.bookshelf.room.BookEntity;
+import com.example.bookshelf.room.Book;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
+    private Storage storage = new Storage();
     private boolean isFavorite = false;
     private Spinner spinner;
     private Book book;
     private String date;
     private DatePicker datePicker;
-    private Storage storage = new Storage();
-    BookEntity bookEntity = new BookEntity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,6 @@ public class EditBookActivity extends AppCompatActivity {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
-
         buildStatusSpinner();
         initControls();
     }
@@ -66,7 +63,7 @@ public class EditBookActivity extends AppCompatActivity {
 
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageURL()).into(imageView);
+        Picasso.get().load(book.getImageLinks()).into(imageView);
         rating.setRating(book.getAverageRating());
 
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -80,12 +77,11 @@ public class EditBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getDate();
-                storage.convertingBookToEntity(bookEntity, book);
-                bookEntity.userRating = ratingBar.getRating();
-                bookEntity.favorite = isFavorite;
-                bookEntity.status = spinner.getSelectedItem().toString();
-                bookEntity.readDate = date;
-                storage.update(bookEntity);
+                book.userRating = ratingBar.getRating();
+                book.isFavorite = isFavorite;
+                book.status = spinner.getSelectedItem().toString();
+                book.readDate = date;
+                storage.update(book);
                 finish();
             }
         });
@@ -93,9 +89,9 @@ public class EditBookActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bookEntity.authors = book.getAuthors();
-                bookEntity.title = book.getTitle();
-                storage.delete(bookEntity);
+                book.authors = book.getAuthors();
+                book.title = book.getTitle();
+                storage.delete(book);
                 finish();
             }
         });

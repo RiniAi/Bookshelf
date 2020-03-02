@@ -18,19 +18,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookChallengeAdapter;
-import com.example.bookshelf.models.Book;
-import com.example.bookshelf.room.BookEntity;
+import com.example.bookshelf.room.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+    public static final String STORAGE_COUNTER = "counter";
     private TextView counter;
     private TextView number;
     private SharedPreferences sharedPreferences;
     private String count;
-    public static final String STORAGE_COUNTER = "counter";
-
     private RecyclerView books;
     private BookChallengeAdapter bookAdapter;
 
@@ -71,15 +68,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void loadBooks() {
         Storage storage = new Storage();
-        List<BookEntity> booksFromDatabase = storage.getList();
-        List<Book> bookEntities = new ArrayList<>();
-        for (BookEntity bookEntity : booksFromDatabase) {
-            Book book = new Book();
-            storage.loadBooksChallenge(book, bookEntity);
-            bookEntities.add(book);
-        }
-        bookAdapter.setList(bookEntities);
-        number.setText(String.valueOf(bookEntities.size()));
+        List<Book> booksFromDatabase = storage.getList();
+        bookAdapter.setList(booksFromDatabase);
+        number.setText(String.valueOf(booksFromDatabase.size()));
     }
 
     @Override

@@ -3,15 +3,17 @@ package com.example.bookshelf.room;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
+import java.io.Serializable;
+
 @Entity(tableName = "books", primaryKeys = {"title", "authors"})
-public class BookEntity {
+public class Book implements Serializable {
     @NonNull
     public String title;
     @NonNull
     public String authors;
     public float averageRating;
     public float userRating;
-    public boolean favorite;
+    public boolean isFavorite;
     public String status;
     public String readDate;
     public String imageLinks;
@@ -54,11 +56,11 @@ public class BookEntity {
     }
 
     public boolean isFavorite() {
-        return favorite;
+        return isFavorite;
     }
 
     public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
+        this.isFavorite = favorite;
     }
 
     public String getStatus() {

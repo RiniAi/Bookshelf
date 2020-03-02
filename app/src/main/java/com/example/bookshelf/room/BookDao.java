@@ -12,14 +12,14 @@ import java.util.List;
 @Dao
 public interface BookDao {
     @Query("SELECT * FROM books")
-    List<BookEntity> getList();
+    List<Book> getList();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(List<BookEntity> list);
+    void insert(List<Book> books);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void update(BookEntity bookEntity);
+    void update(Book book);
 
     @Delete
-    void delete(BookEntity bookEntity);
+    void delete(Book book);
 }

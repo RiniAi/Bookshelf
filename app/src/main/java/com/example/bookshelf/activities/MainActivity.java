@@ -19,10 +19,9 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
-import com.example.bookshelf.room.BookEntity;
+import com.example.bookshelf.room.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +32,10 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private List<Item> bookResult = new ArrayList<>();
-    private Storage storage;
-    private List<Book> bookEntities;
+    private Storage storage = new Storage();
+    RecyclerView books;
+    LinearLayout emptyView;
+    BookAdapter bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +44,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_books);
 
         bookRequestFromApi();
-        loadBooks();
         buildRecyclerView();
+        loadBooks();
     }
 
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        bookEntities = new ArrayList<>();
-        Call<BookItem> call = service.getBooks("Pop");
+        Call<BookItem> call = service.getBooks("Harry potter");
         call.enqueue(new Callback<BookItem>() {
             @Override
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
                 bookResult = response.body().getItems();
-                storage = new Storage();
                 storage.save(bookResult);
             }
 
@@ -67,21 +66,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadBooks() {
-        Storage storage = new Storage();
-        List<BookEntity> booksFromDatabase = storage.getList();
-        for (BookEntity bookEntity : booksFromDatabase) {
-            Book book = new Book();
-            storage.loadBooks(book, bookEntity);
-            bookEntities.add(book);
-        }
-    }
-
     private void buildRecyclerView() {
-        RecyclerView books = (RecyclerView) findViewById(R.id.rv_of_books);
-        LinearLayout emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
+        books = (RecyclerView) findViewById(R.id.rv_of_books);
+        emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        BookAdapter bookAdapter = new BookAdapter(getApplicationContext());
+        bookAdapter = new BookAdapter(getApplicationContext());
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
@@ -99,8 +88,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        if (bookEntities.isEmpty()) {
+    private void loadBooks() {
+        List<Book> booksFromDatabase = storage.getList();
+        if (booksFromDatabase.isEmpty()) {
             books.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
 
@@ -108,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             books.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
         }
-        bookAdapter.setList(bookEntities);
+        bookAdapter.setList(booksFromDatabase);
     }
 
     @Override
