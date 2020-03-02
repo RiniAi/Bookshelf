@@ -19,7 +19,7 @@ public class App extends Application {
 
     private void createDatabase() {
         instance = this;
-        database = Room.databaseBuilder(this, BookDatabase.class, "db_books")
+        database = Room.databaseBuilder(this, BookDatabase.class, "db_book")
                 .allowMainThreadQueries()
                 .build();
     }

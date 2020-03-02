@@ -30,6 +30,8 @@ public class EditBookActivity extends AppCompatActivity {
     private Book book;
     private String date;
     private DatePicker datePicker;
+    private Storage storage = new Storage();
+    BookEntity bookEntity = new BookEntity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +80,6 @@ public class EditBookActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getDate();
-                BookEntity bookEntity = new BookEntity();
-                Storage storage = new Storage();
                 storage.convertingBookToEntity(bookEntity, book);
                 bookEntity.userRating = ratingBar.getRating();
                 bookEntity.favorite = isFavorite;
@@ -93,8 +93,6 @@ public class EditBookActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BookEntity bookEntity = new BookEntity();
-                Storage storage = new Storage();
                 bookEntity.authors = book.getAuthors();
                 bookEntity.title = book.getTitle();
                 storage.delete(bookEntity);

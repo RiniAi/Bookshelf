@@ -16,6 +16,10 @@ public class BookEntity {
     public String readDate;
     public String imageLinks;
     public String description;
+    public String publisher;
+    public String publishedDate;
+    public int pageCount;
+    public String lang;
 
     public String getTitle() {
         return title;
@@ -87,5 +91,37 @@ public class BookEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public String getLanguage() {
+        return lang;
+    }
+
+    public void setLanguage(String language) {
+        this.lang = language;
     }
 }

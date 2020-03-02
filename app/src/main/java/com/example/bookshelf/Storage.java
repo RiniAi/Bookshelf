@@ -6,31 +6,40 @@ import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
 import com.example.bookshelf.room.BookEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Storage {
     private BookDatabase db = App.getInstance().getDatabase();
     private BookDao bookDao = db.bookDao();
+    private Book book = new Book();
 
-    public BookEntity convertingItemToEntity(int i, List<Item> bookResult, List<Book> bookList) {
-        Book book = new Book();
-        book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
-                .replace("[", "")
-                .replace("]", ""));
-        book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
-        book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
-        book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-        book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
-        // TODO anna 28.02.2020: make a Date and convert to String
-        book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
-        book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
-        book.setLang(bookResult.get(i).getVolumeInfo().getLanguage());
-        book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
-        bookList.add(book);
+    public List<Book> save(List<Item> bookResult) {
+        List<Book> bookList = new ArrayList<>();
+        List<BookEntity> bookListDao = new ArrayList<>();
+        for (int i = 0; i < bookResult.size(); i++) {
+            book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
+                    .replace("[", "")
+                    .replace("]", ""));
+            book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
+            book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
+            book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
 
-        BookEntity bookEntity = new BookEntity();
-        convertingBookToEntity(bookEntity, book);
-        return bookEntity;
+            book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
+            // TODO anna 28.02.2020: make a Date and convert to String
+            book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
+            book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
+            book.setLang(bookResult.get(i).getVolumeInfo().getLanguage());
+
+            book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
+            bookList.add(book);
+
+            BookEntity bookEntity = new BookEntity();
+            convertingBookToEntity(bookEntity, book);
+            bookListDao.add(bookEntity);
+        }
+        bookDao.insert(bookListDao);
+        return bookList;
     }
 
     public BookEntity convertingBookToEntity(BookEntity bookEntity, Book book) {
@@ -42,10 +51,6 @@ public class Storage {
         return bookEntity;
     }
 
-    public void insert(List<BookEntity> list) {
-        bookDao.insert(list);
-    }
-
     public void update(BookEntity bookEntity) {
         bookDao.update(bookEntity);
     }
@@ -54,11 +59,20 @@ public class Storage {
         bookDao.delete(bookEntity);
     }
 
-    public Book loadBooks(Book book, BookEntity bookEntity) {
+    public Book loadBooksChallenge(Book book, BookEntity bookEntity) {
         book.setTitle(bookEntity.getTitle());
         book.setAuthors(bookEntity.getAuthors());
         book.setAverageRating(bookEntity.getAverageRating());
         book.setImageURL(bookEntity.getImageLinks());
+        return book;
+    }
+
+    public Book loadBooks(Book book, BookEntity bookEntity) {
+        loadBooksChallenge(book, bookEntity);
+        book.setPublishedDate(bookEntity.getPublishedDate());
+        book.setPageCount(bookEntity.getPageCount());
+        book.setLang(bookEntity.getLanguage());
+        book.setDescription(bookEntity.getDescription());
         return book;
     }
 

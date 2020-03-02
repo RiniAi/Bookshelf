@@ -75,7 +75,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         List<Book> bookEntities = new ArrayList<>();
         for (BookEntity bookEntity : booksFromDatabase) {
             Book book = new Book();
-            storage.loadBooks(book, bookEntity);
+            storage.loadBooksChallenge(book, bookEntity);
             bookEntities.add(book);
         }
         bookAdapter.setList(bookEntities);
