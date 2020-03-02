@@ -51,7 +51,7 @@ public class Storage {
             if (bookResult.get(i).getVolumeInfo().getPageCount() == 0)
                 book.setPageCount(0);
             else
-                book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
+                book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
             if (bookResult.get(i).getVolumeInfo().getLanguage() == null)
                 book.setLanguage("");
             else
