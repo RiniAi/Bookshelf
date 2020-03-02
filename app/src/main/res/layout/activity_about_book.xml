@@ -19,7 +19,7 @@
                 android:id="@+id/tv_title_about_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_20sp"
+                android:textSize="@dimen/text_size_title"
                 android:textStyle="bold"
                 tools:text="@tools:sample/lorem" />
 
@@ -31,8 +31,8 @@
 
             <ImageView
                 android:id="@+id/img_about_book"
-                android:layout_width="@dimen/about_book_width_iv"
-                android:layout_height="@dimen/about_book_height_iv"
+                android:layout_width="@dimen/about_book_width_image_view"
+                android:layout_height="@dimen/about_book_height_image_view"
                 android:layout_gravity="center_horizontal"
                 tools:src="@tools:sample/avatars" />
 

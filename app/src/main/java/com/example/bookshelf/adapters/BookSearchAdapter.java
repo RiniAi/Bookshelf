@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.models.Book;
+import com.example.bookshelf.room.Book;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class BookSearchAdapter extends RecyclerView.Adapter<BookSearchAdapter.Bo
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageURL()).into(holder.cover);
+        Picasso.get().load(book.getImageLinks()).into(holder.cover);
         holder.author.setText(book.getAuthors());
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();

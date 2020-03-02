@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.models.Book;
+import com.example.bookshelf.room.Book;
 import com.squareup.picasso.Picasso;
 
 public class AboutBookActivity extends AppCompatActivity {
@@ -19,6 +19,19 @@ public class AboutBookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
+
+        getBook();
+        initControls();
+    }
+
+    private void getBook() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
+            book = (Book) bundle.getSerializable(EXTRA_BOOK);
+        }
+    }
+
+    private void initControls() {
         TextView title = (findViewById(R.id.tv_title_about_book));
         TextView author = (findViewById(R.id.tv_author_about_book));
         ImageView image = (findViewById(R.id.img_about_book));
@@ -29,19 +42,14 @@ public class AboutBookActivity extends AppCompatActivity {
         TextView lang = (findViewById(R.id.tv_lang_about_book));
         TextView description = (findViewById(R.id.tv_description_about_book));
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
-            book = (Book) bundle.getSerializable(EXTRA_BOOK);
-        }
-
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageURL()).into(image);
+        Picasso.get().load(book.getImageLinks()).into(image);
         rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());
         pageCount.setText(String.valueOf(book.getPageCount()));
-        lang.setText(book.getLang());
+        lang.setText(book.getLanguage());
         description.setText(book.getDescription());
     }
 }

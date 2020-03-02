@@ -9,21 +9,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.ConnectionDetector;
 import com.example.bookshelf.GoogleBooksApiService;
 import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
+import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookSearchAdapter;
-import com.example.bookshelf.models.Book;
 import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
+import com.example.bookshelf.room.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,57 +33,37 @@ import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
     private List<Item> bookResult = new ArrayList<>();
-    private List<Book> bookList;
-    private Book book;
-    private BookSearchAdapter bookAdapter;
     private String query = "";
-    private RecyclerView books;
-    private LinearLayout emptyView;
+    private BookSearchAdapter bookAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle(R.string.search_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        emptyView = (LinearLayout) findViewById(R.id.ll_empty_search_activity);
-        books = findViewById(R.id.rv_of_books_search_activity);
 
+        searchBooks();
+    }
+
+    private void searchBooks() {
         EditText enterQuery = (EditText) findViewById(R.id.et_query_search_activity);
         ImageButton sendQuery = (ImageButton) findViewById(R.id.btn_query_search_activity);
         sendQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 query = enterQuery.getText().toString();
-
                 buildRecyclerView();
                 bookRequestFromApi();
             }
-
         });
-        checkInternet();
-    }
-
-    private void checkInternet() {
-        ConnectionDetector cd = new ConnectionDetector(SearchActivity.this);
-        boolean isInternetPresent = cd.ConnectingToInternet();
-        if (isInternetPresent) {
-            books.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-
-        } else {
-            books.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        }
-
     }
 
     private void buildRecyclerView() {
+        RecyclerView books = findViewById(R.id.rv_of_books_search_activity);
         LinearLayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
         bookAdapter = new BookSearchAdapter(getApplicationContext());
-
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
-
         bookAdapter.setOnItemClickListener(new BookSearchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
@@ -105,7 +84,6 @@ public class SearchActivity extends AppCompatActivity {
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BookItem> call = service.getBooks(query);
-        bookList = new ArrayList<>();
         call.enqueue(new Callback<BookItem>() {
             @Override
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
@@ -113,46 +91,8 @@ public class SearchActivity extends AppCompatActivity {
                     Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
                 } else {
                     bookResult = response.body().getItems();
-                    for (int i = 0; i < bookResult.size(); i++) {
-                        book = new Book();
-
-                        book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
-                                .replace("[", "")
-                                .replace("]", ""));
-                        if (bookResult.get(i).getVolumeInfo().getTitle() == null)
-                            book.setTitle("");
-                        else
-                            book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
-                        if (bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail() == null)
-                            book.setImageURL("");
-                        else
-                            book.setImageURL(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
-                        if (bookResult.get(i).getVolumeInfo().getAverageRating() == 0)
-                            book.setAverageRating(0);
-                        else
-                            book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-                        if (bookResult.get(i).getVolumeInfo().getPublisher() == null)
-                            book.setPublisher("");
-                        else
-                            book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
-                        if (bookResult.get(i).getVolumeInfo().getPublishedDate() == null)
-                            book.setPublishedDate("");
-                        else
-                            book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
-                        if (bookResult.get(i).getVolumeInfo().getPageCount() == 0)
-                            book.setPageCount(0);
-                        else
-                            book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
-                        if (bookResult.get(i).getVolumeInfo().getLanguage() == null)
-                            book.setLang("");
-                        else
-                            book.setLang(bookResult.get(i).getVolumeInfo().getLanguage());
-                        if (bookResult.get(i).getVolumeInfo().getDescription() == null)
-                            book.setDescription("");
-                        else
-                            book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
-                        bookList.add(book);
-                    }
+                    Storage storage = new Storage();
+                    List<Book> bookList = storage.search(bookResult);
                     bookAdapter.setList(bookList);
                 }
             }
