@@ -3,19 +3,25 @@ package com.example.bookshelf.room;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
+import java.io.Serializable;
+
 @Entity(tableName = "books", primaryKeys = {"title", "authors"})
-public class BookEntity {
+public class Book implements Serializable {
     @NonNull
     public String title;
     @NonNull
     public String authors;
     public float averageRating;
     public float userRating;
-    public boolean favorite;
+    public boolean isFavorite;
     public String status;
     public String readDate;
     public String imageLinks;
     public String description;
+    public String publisher;
+    public String publishedDate;
+    public int pageCount;
+    public String lang;
 
     public String getTitle() {
         return title;
@@ -50,11 +56,11 @@ public class BookEntity {
     }
 
     public boolean isFavorite() {
-        return favorite;
+        return isFavorite;
     }
 
     public void setFavorite(boolean favorite) {
-        this.favorite = favorite;
+        this.isFavorite = favorite;
     }
 
     public String getStatus() {
@@ -87,5 +93,37 @@ public class BookEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getPublishedDate() {
+        return publishedDate;
+    }
+
+    public void setPublishedDate(String publishedDate) {
+        this.publishedDate = publishedDate;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public String getLanguage() {
+        return lang;
+    }
+
+    public void setLanguage(String language) {
+        this.lang = language;
     }
 }

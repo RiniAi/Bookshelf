@@ -44,4 +44,8 @@
     <string name="navigation_main_profile_information">Profile information</string>
     <string name="navigation_main_search">Search</string>
     <string name="main_activity_db_empty">The database is empty...</string>
+    <string name="about_book_publisher">Publisher:</string>
+    <string name="about_book_published_date">Published date:</string>
+    <string name="about_book_page_count">Page count:</string>
+    <string name="about_book_language">Language:</string>
 </resources>

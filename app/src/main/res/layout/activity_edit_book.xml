@@ -16,7 +16,7 @@
             android:id="@+id/tv_title_edit_book"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_16sp"
+            android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
             tools:text="Title" />
 
@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/iv_edit_book"
-            android:layout_width="@dimen/edit_book_width_iv"
-            android:layout_height="@dimen/edit_book_height_iv"
+            android:layout_width="@dimen/edit_book_width_image_view"
+            android:layout_height="@dimen/edit_book_height_image_view"
             android:layout_gravity="center_horizontal"
             tools:src="@tools:sample/avatars" />
 
@@ -62,8 +62,8 @@
 
             <Spinner
                 android:id="@+id/spinner_status_edit_book"
-                android:layout_width="@dimen/edit_book_width_sp"
-                android:layout_height="@dimen/edit_book_height_sp"
+                android:layout_width="@dimen/edit_book_width_spinner"
+                android:layout_height="@dimen/edit_book_height_spinner"
                 android:gravity="center_horizontal"
                 android:spinnerMode="dropdown" />
 
@@ -94,8 +94,8 @@
 
                 <ToggleButton
                     android:id="@+id/btn_favorite"
-                    android:layout_width="@dimen/edit_book_tb"
-                    android:layout_height="@dimen/edit_book_tb"
+                    android:layout_width="@dimen/edit_book_toggle_button"
+                    android:layout_height="@dimen/edit_book_toggle_button"
                     android:layout_marginStart="@dimen/margin_32dp"
                     android:background="@drawable/button_favorite"
                     android:checked="false"
@@ -112,13 +112,13 @@
 
             <Button
                 android:id="@+id/btn_save_edit_book"
-                android:layout_width="@dimen/edit_book_width_btn"
+                android:layout_width="@dimen/edit_book_width_button"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_book_save" />
 
             <Button
                 android:id="@+id/btn_delete_edit_book"
-                android:layout_width="@dimen/edit_book_width_btn"
+                android:layout_width="@dimen/edit_book_width_button"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_book_delete" />
         </LinearLayout>
