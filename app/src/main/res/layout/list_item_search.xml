@@ -35,7 +35,7 @@
 
                     <TextView
                         android:id="@+id/tv_title_search_activity"
-                        android:layout_width="@dimen/list_search_width_tv"
+                        android:layout_width="@dimen/list_search_width_text_view"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"

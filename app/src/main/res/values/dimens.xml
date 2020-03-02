@@ -31,6 +31,6 @@
     <dimen name="about_book_width_image_view">160dp</dimen>
     <dimen name="about_book_height_image_view">240dp</dimen>
 
-    <dimen name="search_width_et">320dp</dimen>
-    <dimen name="list_search_width_tv">240dp</dimen>
+    <dimen name="search_width_edit_text">320dp</dimen>
+    <dimen name="list_search_width_text_view">240dp</dimen>
 </resources>

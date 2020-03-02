@@ -13,7 +13,7 @@
 
         <EditText
             android:id="@+id/et_query_search_activity"
-            android:layout_width="@dimen/search_width_et"
+            android:layout_width="@dimen/search_width_edit_text"
             android:layout_height="wrap_content" />
 
         <ImageButton
