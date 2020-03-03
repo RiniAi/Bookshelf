@@ -18,9 +18,10 @@
 
             <ImageView
                 android:id="@+id/iv_book_list"
-                android:layout_width="@dimen/list_book_width_image_view"
-                android:layout_height="@dimen/list_book_height_image_view"
-                android:layout_marginEnd="@dimen/margin_8dp"
+                android:layout_width="@dimen/width_image_view"
+                android:layout_height="@dimen/height_image_view"
+                android:layout_marginEnd="@dimen/margin_16dp"
+                android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
 
             <LinearLayout
@@ -37,7 +38,9 @@
                         android:id="@+id/tv_title_book_list"
                         android:layout_width="@dimen/list_book_width_text_view"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_16dp"
+                        android:layout_marginEnd="@dimen/margin_48dp"
+                        android:ellipsize="end"
+                        android:maxLines="3"
                         android:textSize="@dimen/text_size_title"
                         android:textStyle="bold"
                         tools:text="@tools:sample/full_names" />
@@ -53,6 +56,8 @@
                     android:id="@+id/tv_author_book_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     tools:text="@tools:sample/lorem" />
 
                 <RatingBar

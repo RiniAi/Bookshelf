@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/iv_search_activity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/search_activity_width_image_view"
+                android:layout_height="@dimen/search_activity_height_image_view"
                 android:layout_marginEnd="@dimen/margin_8dp"
                 tools:src="@tools:sample/avatars" />
 
@@ -51,10 +51,10 @@
 
                 <TextView
                     android:id="@+id/tv_author_search_activity"
-                    android:ellipsize="end"
-                    android:maxLines="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     tools:text="@tools:sample/lorem" />
 
                 <RatingBar

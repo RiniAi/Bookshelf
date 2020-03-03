@@ -31,9 +31,10 @@
 
             <ImageView
                 android:id="@+id/img_about_book"
-                android:layout_width="@dimen/about_book_width_image_view"
-                android:layout_height="@dimen/about_book_height_image_view"
+                android:layout_width="@dimen/width_image_view"
+                android:layout_height="@dimen/height_image_view"
                 android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
 
             <RatingBar
