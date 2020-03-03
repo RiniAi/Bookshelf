@@ -43,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 
-        bookRequestFromApi();
+        bookRequestFromBooksApi();
         buildRecyclerView();
-        loadBooks();
     }
 
-    private void bookRequestFromApi() {
+    private void bookRequestFromBooksApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BookItem> call = service.getBooks("Harry potter");
         call.enqueue(new Callback<BookItem>() {
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<BookItem> call, Response<BookItem> response) {
                 bookResult = response.body().getItems();
                 storage.save(bookResult);
+                loadBooks();
             }
 
             @Override
@@ -95,12 +95,11 @@ public class MainActivity extends AppCompatActivity {
         if (booksFromDatabase.isEmpty()) {
             books.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
-
         } else {
             books.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
+            bookAdapter.setList(booksFromDatabase);
         }
-        bookAdapter.setList(booksFromDatabase);
     }
 
     @Override
