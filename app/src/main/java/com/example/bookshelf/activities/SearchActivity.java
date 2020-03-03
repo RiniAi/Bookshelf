@@ -113,6 +113,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
+        // TODO anna 03.03.2020: move the countQuery to the GoogleBooksApiService
         int countQuery = 40;
         Call<BookItem> call = service.getBooks(query, countQuery);
         call.enqueue(new Callback<BookItem>() {
