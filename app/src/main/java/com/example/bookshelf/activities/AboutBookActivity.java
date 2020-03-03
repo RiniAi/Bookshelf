@@ -44,8 +44,11 @@ public class AboutBookActivity extends AppCompatActivity {
 
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageLinks()).into(image);
-        rating.setRating(book.getAverageRating());
+        if (book.getImageLinks() == null) {
+            image.setImageResource(R.drawable.ic_broken_image);
+        } else {
+            Picasso.get().load(book.getImageLinks()).into(image);
+        }        rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());
         pageCount.setText(String.valueOf(book.getPageCount()));
