@@ -55,7 +55,11 @@ public class BookSearchAdapter extends RecyclerView.Adapter<BookSearchAdapter.Bo
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageLinks()).into(holder.cover);
+        if (book.getImageLinks() == null) {
+            holder.cover.setImageResource(R.drawable.ic_broken_image);
+        } else {
+            Picasso.get().load(book.getImageLinks()).into(holder.cover);
+        }
         holder.author.setText(book.getAuthors());
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();

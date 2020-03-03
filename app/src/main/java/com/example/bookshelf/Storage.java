@@ -17,50 +17,56 @@ public class Storage {
         bookDao.insert(booksFromDatabase);
     }
 
-    // TODO anna 03.03.2020: check whether there is a line in VolumeInfo (for example, ImageLinks)
     public List<Book> search(List<Item> bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (int i = 0; i < bookResult.size(); i++) {
             Book book = new Book();
-            if (bookResult.get(i).getVolumeInfo().getAuthors() == null)
+            if (bookResult.get(i).getVolumeInfo().getAuthors() == null) {
                 book.setTitle("");
-            else
+            } else {
                 book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
                         .replace("[", "")
                         .replace("]", ""));
-            if (bookResult.get(i).getVolumeInfo().getTitle() == null)
+            }
+            if (bookResult.get(i).getVolumeInfo().getTitle() == null) {
                 book.setTitle("");
-            else
+            } else {
                 book.setTitle(bookResult.get(i).getVolumeInfo().getTitle());
-            if (bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail() == null)
-                book.setImageLinks("");
-            else
+            }
+            if (bookResult.get(i).getVolumeInfo().getImageLinks() != null
+                    && bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail() != null) {
                 book.setImageLinks(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
-            if (bookResult.get(i).getVolumeInfo().getAverageRating() == 0)
+            }
+            if (bookResult.get(i).getVolumeInfo().getAverageRating() == 0) {
                 book.setAverageRating(0);
-            else
+            } else {
                 book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-            if (bookResult.get(i).getVolumeInfo().getPublisher() == null)
+            }
+            if (bookResult.get(i).getVolumeInfo().getPublisher() == null) {
                 book.setPublisher("");
-            else
+            } else {
                 book.setPublisher(bookResult.get(i).getVolumeInfo().getPublisher());
-            // TODO anna 28.02.2020: make a Date and convert to String
-            if (bookResult.get(i).getVolumeInfo().getPublishedDate() == null)
+            }
+            if (bookResult.get(i).getVolumeInfo().getPublishedDate() == null) {
                 book.setPublishedDate("");
-            else
+            } else {
                 book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
-            if (bookResult.get(i).getVolumeInfo().getPageCount() == 0)
+            }
+            if (bookResult.get(i).getVolumeInfo().getPageCount() == 0) {
                 book.setPageCount(0);
-            else
+            } else {
                 book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
-            if (bookResult.get(i).getVolumeInfo().getLanguage() == null)
+            }
+            if (bookResult.get(i).getVolumeInfo().getLanguage() == null) {
                 book.setLanguage("");
-            else
+            } else {
                 book.setLanguage(bookResult.get(i).getVolumeInfo().getLanguage());
-            if (bookResult.get(i).getVolumeInfo().getDescription() == null)
+            }
+            if (bookResult.get(i).getVolumeInfo().getDescription() == null) {
                 book.setDescription("");
-            else
+            } else {
                 book.setDescription(bookResult.get(i).getVolumeInfo().getDescription());
+            }
             booksSearch.add(book);
         }
         return booksSearch;
@@ -75,7 +81,6 @@ public class Storage {
     }
 
     public List<Book> getList() {
-        List<Book> list = bookDao.getList();
-        return list;
+        return bookDao.getList();
     }
 }
