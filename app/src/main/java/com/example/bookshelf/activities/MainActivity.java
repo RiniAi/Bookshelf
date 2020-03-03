@@ -23,6 +23,8 @@ import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
 import com.example.bookshelf.room.Book;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,17 +51,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void bookRequestFromBooksApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        Call<BookItem> call = service.getBooks("Harry potter");
+        int countQuery = 10;
+        Call<BookItem> call = service.getBooks("Harry potter", countQuery);
         call.enqueue(new Callback<BookItem>() {
             @Override
-            public void onResponse(Call<BookItem> call, Response<BookItem> response) {
+            public void onResponse(@NotNull Call<BookItem> call, @NotNull Response<BookItem> response) {
+                assert response.body() != null;
                 bookResult = response.body().getItems();
                 storage.save(bookResult);
                 loadBooks();
             }
 
             @Override
-            public void onFailure(Call<BookItem> call, Throwable t) {
+            public void onFailure(@NotNull Call<BookItem> call, @NotNull Throwable t) {
                 Log.e("error", t.toString());
                 Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }

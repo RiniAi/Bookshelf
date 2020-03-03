@@ -31,6 +31,8 @@ import com.example.bookshelf.models.BookItem;
 import com.example.bookshelf.models.Item;
 import com.example.bookshelf.room.Book;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,6 @@ public class SearchActivity extends AppCompatActivity {
         searchBooks();
     }
 
-    // TODO anna 02.03.2020: add loading the list
     private void searchBooks() {
         EditText enterQuery = (EditText) findViewById(R.id.et_query_search_activity);
         ImageButton sendQuery = (ImageButton) findViewById(R.id.btn_query_search_activity);
@@ -83,6 +84,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public static void hideKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
@@ -111,10 +113,11 @@ public class SearchActivity extends AppCompatActivity {
 
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        Call<BookItem> call = service.getBooks(query);
+        int countQuery = 40;
+        Call<BookItem> call = service.getBooks(query, countQuery);
         call.enqueue(new Callback<BookItem>() {
             @Override
-            public void onResponse(Call<BookItem> call, Response<BookItem> response) {
+            public void onResponse(@NotNull Call<BookItem> call, @NotNull Response<BookItem> response) {
                 if (response.body() == null) {
                     Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -126,7 +129,7 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BookItem> call, Throwable t) {
+            public void onFailure(@NotNull Call<BookItem> call, @NotNull Throwable t) {
                 Log.e("error", t.toString());
                 Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }
