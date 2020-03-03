@@ -155,12 +155,6 @@ public class SearchActivity extends AppCompatActivity {
                 Intent challenge = new Intent(this, BookChallengeActivity.class);
                 startActivity(challenge);
                 break;
-
-            case android.R.id.home:
-                Intent home = NavUtils.getParentActivityIntent(this);
-                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                NavUtils.navigateUpTo(this, home);
-                break;
         }
         return true;
     }

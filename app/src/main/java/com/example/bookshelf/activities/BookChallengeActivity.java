@@ -105,12 +105,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
-
-            case android.R.id.home:
-                Intent home = NavUtils.getParentActivityIntent(this);
-                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                NavUtils.navigateUpTo(this, home);
-                break;
         }
         return true;
     }
