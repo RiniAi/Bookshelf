@@ -30,17 +30,24 @@ public class EditBookActivity extends AppCompatActivity {
     private Book book;
     private String date;
     private DatePicker datePicker;
+    public static Button delete;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
+
+        getBook();
+        buildStatusSpinner();
+        initControls();
+    }
+
+    private void getBook() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
-        buildStatusSpinner();
-        initControls();
     }
 
     private void buildStatusSpinner() {
@@ -59,7 +66,8 @@ public class EditBookActivity extends AppCompatActivity {
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
         Button save = (Button) findViewById(R.id.btn_save_edit_book);
-        Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
+        delete = (Button) findViewById(R.id.btn_delete_edit_book);
+        storage.hideOrDisplayButton(book);
 
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
@@ -81,7 +89,7 @@ public class EditBookActivity extends AppCompatActivity {
                 book.isFavorite = isFavorite;
                 book.status = spinner.getSelectedItem().toString();
                 book.readDate = date;
-                storage.update(book);
+                storage.insertOrUpdate(book);
                 finish();
             }
         });

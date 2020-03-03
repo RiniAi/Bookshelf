@@ -1,5 +1,8 @@
 package com.example.bookshelf;
 
+import android.view.View;
+
+import com.example.bookshelf.activities.EditBookActivity;
 import com.example.bookshelf.models.Item;
 import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookDao;
@@ -11,6 +14,7 @@ import java.util.List;
 public class Storage {
     private BookDatabase db = App.getInstance().getDatabase();
     private BookDao bookDao = db.bookDao();
+    private Book bookDb;
 
     public void save(List<Item> bookResult) {
         List<Book> booksFromDatabase = search(bookResult);
@@ -72,8 +76,29 @@ public class Storage {
         return booksSearch;
     }
 
-    public void update(Book book) {
-        bookDao.update(book);
+    private Book searchBookDb(Book book) {
+        String title = book.title = book.getTitle();
+        String authors = book.authors = book.getAuthors();
+        return bookDao.findBookTitleAndAuthor(title, authors);
+    }
+
+    public void hideOrDisplayButton(Book book) {
+        bookDb = searchBookDb(book);
+        if (bookDb != null) {
+            EditBookActivity.delete.setVisibility(View.VISIBLE);
+        } else {
+            EditBookActivity.delete.setVisibility(View.GONE);
+        }
+    }
+
+    public void insertOrUpdate(Book book) {
+        bookDb = searchBookDb(book);
+        if (bookDb != null) {
+            bookDao.update(book);
+
+        } else {
+            bookDao.insert(book);
+        }
     }
 
     public void delete(Book book) {
