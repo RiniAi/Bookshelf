@@ -52,7 +52,7 @@ public class SearchActivity extends AppCompatActivity {
         searchBooks();
     }
 
-    // TODO anna 02.03.2020: add page flipping
+    // TODO anna 02.03.2020: add loading the list
     private void searchBooks() {
         EditText enterQuery = (EditText) findViewById(R.id.et_query_search_activity);
         ImageButton sendQuery = (ImageButton) findViewById(R.id.btn_query_search_activity);

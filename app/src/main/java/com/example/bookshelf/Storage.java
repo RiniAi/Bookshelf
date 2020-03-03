@@ -17,6 +17,7 @@ public class Storage {
         bookDao.insert(booksFromDatabase);
     }
 
+    // TODO anna 03.03.2020: check whether there is a line in VolumeInfo (for example, ImageLinks)
     public List<Book> search(List<Item> bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (int i = 0; i < bookResult.size(); i++) {
