@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(@NotNull Call<BookItem> call, @NotNull Throwable t) {
                 Log.e("error", t.toString());
                 Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                loadBooks();
             }
         });
     }
