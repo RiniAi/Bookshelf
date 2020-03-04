@@ -16,14 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private Storage storage = new Storage();
     private RecyclerView books;
     private LinearLayout emptyView;
@@ -36,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
         buildRecyclerView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadBooks();
     }
 

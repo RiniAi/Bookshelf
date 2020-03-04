@@ -56,4 +56,5 @@
     <string name="toolbar_go_to_search_activity">Go to search activity</string>
     <string name="toolbar_go_to_book_challenge_activity">Go to book challenge</string>
     <string name="list_item_book_text_view_status">Status:</string>
+    <string name="list_item_book_text_view_read_data">Read data:</string>
 </resources>

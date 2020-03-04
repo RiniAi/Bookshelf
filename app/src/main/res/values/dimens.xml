@@ -21,7 +21,8 @@
     <dimen name="search_activity_image_view_width">48dp</dimen>
     <dimen name="search_activity_image_view_height">80dp</dimen>
 
-    <dimen name="list_book_text_view_width">120dp</dimen>
+    <dimen name="list_book_text_view_width_120">120dp</dimen>
+    <dimen name="list_book_text_view_width_80">120dp</dimen>
 
     <dimen name="list_book_challenge_card_view_height">232dp</dimen>
 

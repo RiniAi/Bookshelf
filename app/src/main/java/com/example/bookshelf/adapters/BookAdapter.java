@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -60,6 +61,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();
         holder.rating.setRating(rating);
+        holder.userRating.setRating(book.getUserRating());
+        if (book.getReadDate() == null) {
+            holder.data.setVisibility(View.GONE);
+        }
+        else {
+            holder.readData.setText(book.getReadDate());
+        }
+        if (book.isFavorite() == false) {
+            holder.favorite.setImageResource(R.drawable.ic_favorite_off);
+        }
+        else {
+            holder.favorite.setImageResource(R.drawable.ic_favorite_on);
+        }
         holder.status.setText(book.getStatus());
     }
 
@@ -85,8 +99,12 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         TextView author;
         TextView title;
         RatingBar rating;
-        ImageButton button;
+        RatingBar userRating;
+        LinearLayout data;
+        TextView readData;
         TextView status;
+        ImageView favorite;
+        ImageButton button;
 
         BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
@@ -94,7 +112,11 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             author = (TextView) itemView.findViewById(R.id.tv_author_book_list);
             title = (TextView) itemView.findViewById(R.id.tv_title_book_list);
             rating = (RatingBar) itemView.findViewById(R.id.tv_rating_book_list);
+            userRating = (RatingBar) itemView.findViewById(R.id.tv_user_rating_book_list);
+            data = (LinearLayout) itemView.findViewById(R.id.ll_readData_book_list);
+            readData = (TextView) itemView.findViewById(R.id.tv_read_data_book_list);
             status = (TextView) itemView.findViewById(R.id.tv_status_book_list);
+            favorite = (ImageView) itemView.findViewById(R.id.iv_favorite_book_list);
             button = (ImageButton) itemView.findViewById(R.id.btn_edit_book_list);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
