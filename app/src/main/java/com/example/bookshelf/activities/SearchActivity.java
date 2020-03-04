@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,8 +52,15 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        initToolbar();
         buildRecyclerView();
         searchBooks();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_search_activity);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.search_activity_title);
     }
 
     private void searchBooks() {
@@ -157,4 +165,3 @@ public class SearchActivity extends AppCompatActivity {
         return true;
     }
 }
-

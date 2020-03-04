@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
@@ -36,8 +37,15 @@ public class EditBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
 
+        initToolbar();
         getBook();
         initControls();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_book);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.edit_book_title);
     }
 
     private void getBook() {

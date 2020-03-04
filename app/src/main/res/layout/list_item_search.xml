@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/iv_search_activity"
-                android:layout_width="@dimen/search_activity_width_image_view"
-                android:layout_height="@dimen/search_activity_height_image_view"
+                android:layout_width="@dimen/search_activity_image_view_width"
+                android:layout_height="@dimen/search_activity_image_view_height"
                 android:layout_marginEnd="@dimen/margin_8dp"
                 tools:src="@tools:sample/avatars" />
 
@@ -35,7 +35,7 @@
 
                     <TextView
                         android:id="@+id/tv_title_search_activity"
-                        android:layout_width="@dimen/list_search_width_text_view"
+                        android:layout_width="@dimen/list_search_text_view_width"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"

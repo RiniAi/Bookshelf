@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/list_book_challenge_height_card_view"
+        android:layout_height="@dimen/list_book_challenge_card_view_height"
         android:layout_margin="@dimen/margin_4dp">
 
         <LinearLayout
@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/iv_book_challenge"
-                android:layout_width="@dimen/width_image_view"
-                android:layout_height="@dimen/height_image_view"
+                android:layout_width="@dimen/default_image_view_width"
+                android:layout_height="@dimen/default_image_view_height"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />

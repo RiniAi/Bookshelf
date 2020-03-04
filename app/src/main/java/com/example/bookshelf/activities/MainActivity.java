@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.bookshelf.GoogleBooksApiService.QUERY_COUNTER;
-// TODO anna 04.03.2020: add change label in Toolbar
+
 public class MainActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private Storage storage = new Storage();
@@ -46,8 +47,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 
+        initToolbar();
         requestBooksFromApi();
         buildRecyclerView();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main_activity);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.main_activity_title);
     }
 
     private void requestBooksFromApi() {
@@ -130,4 +138,3 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 }
-

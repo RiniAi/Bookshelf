@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/iv_book_list"
-                android:layout_width="@dimen/width_image_view"
-                android:layout_height="@dimen/height_image_view"
+                android:layout_width="@dimen/default_image_view_width"
+                android:layout_height="@dimen/default_image_view_height"
                 android:layout_marginEnd="@dimen/margin_16dp"
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
@@ -36,7 +36,7 @@
 
                     <TextView
                         android:id="@+id/tv_title_book_list"
-                        android:layout_width="@dimen/list_book_width_text_view"
+                        android:layout_width="@dimen/list_book_text_view_width"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_48dp"
                         android:ellipsize="end"
