@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/list_book_challenge_height_card_view"
+        android:layout_height="@dimen/list_book_challenge_card_view_height"
         android:layout_margin="@dimen/margin_4dp">
 
         <LinearLayout
@@ -18,9 +18,10 @@
 
             <ImageView
                 android:id="@+id/iv_book_challenge"
-                android:layout_width="@dimen/list_book_challenge_width_image_view"
-                android:layout_height="@dimen/list_book_challenge_height_image_view"
+                android:layout_width="@dimen/default_image_view_width"
+                android:layout_height="@dimen/default_image_view_height"
                 android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
 
             <RatingBar
@@ -36,6 +37,8 @@
                 android:id="@+id/tv_title_book_challenge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:textStyle="bold"
                 tools:text="Title" />
 
@@ -43,6 +46,8 @@
                 android:id="@+id/tv_author_book_challenge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
                 tools:text="@tools:sample/full_names" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

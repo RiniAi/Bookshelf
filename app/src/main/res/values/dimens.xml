@@ -4,30 +4,35 @@
     <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_16dp">16dp</dimen>
     <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_48dp">48dp</dimen>
 
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_16dp">16dp</dimen>
     <dimen name="padding_24dp">24dp</dimen>
+    <dimen name="padding_32dp">32dp</dimen>
     <dimen name="padding_128dp">128dp</dimen>
 
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_title">20sp</dimen>
 
-    <dimen name="list_book_width_image_view">148dp</dimen>
-    <dimen name="list_book_height_image_view">228dp</dimen>
-    <dimen name="list_book_width_text_view">120dp</dimen>
+    <dimen name="default_image_view_width">112dp</dimen>
+    <dimen name="default_image_view_height">160dp</dimen>
 
-    <dimen name="list_book_challenge_height_card_view">344dp</dimen>
-    <dimen name="list_book_challenge_width_image_view">160dp</dimen>
-    <dimen name="list_book_challenge_height_image_view">240dp</dimen>
+    <dimen name="search_activity_image_view_width">48dp</dimen>
+    <dimen name="search_activity_image_view_height">80dp</dimen>
 
-    <dimen name="edit_book_width_button">120dp</dimen>
-    <dimen name="edit_book_width_image_view">104dp</dimen>
-    <dimen name="edit_book_height_image_view">184dp</dimen>
-    <dimen name="edit_book_width_spinner">220dp</dimen>
-    <dimen name="edit_book_height_spinner">56dp</dimen>
+    <dimen name="list_book_text_view_width_120">120dp</dimen>
+    <dimen name="list_book_text_view_width_80">120dp</dimen>
+
+    <dimen name="list_book_challenge_card_view_height">232dp</dimen>
+
+    <dimen name="edit_book_button_width">120dp</dimen>
+    <dimen name="edit_book_image_view_width">104dp</dimen>
+    <dimen name="edit_book_image_view_height">184dp</dimen>
+    <dimen name="edit_book_spinner_width">220dp</dimen>
+    <dimen name="edit_book_spinner_height">56dp</dimen>
     <dimen name="edit_book_toggle_button">36dp</dimen>
 
-    <dimen name="about_book_width_image_view">160dp</dimen>
-    <dimen name="about_book_height_image_view">240dp</dimen>
+    <dimen name="search_edit_text_width">320dp</dimen>
+    <dimen name="list_search_text_view_width">240dp</dimen>
 </resources>

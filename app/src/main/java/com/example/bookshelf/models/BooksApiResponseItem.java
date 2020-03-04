@@ -1,6 +1,6 @@
 package com.example.bookshelf.models;
 
-public class Item {
+public class BooksApiResponseItem {
     private VolumeInfo volumeInfo;
 
     public VolumeInfo getVolumeInfo() {

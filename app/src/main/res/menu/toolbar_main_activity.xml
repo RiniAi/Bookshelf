@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/go_to_book_challenge"
-        android:title="@string/main_activity_title"
         android:icon="@android:drawable/ic_menu_revert"
+        android:title="@string/toolbar_go_to_book_challenge_activity"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/go_to_search"
+        android:icon="@android:drawable/ic_search_category_default"
+        android:title="@string/toolbar_go_to_search_activity"
         app:showAsAction="ifRoom" />
 </menu>

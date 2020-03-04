@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
@@ -35,12 +36,23 @@ public class EditBookActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
+
+        initToolbar();
+        getBook();
+        initControls();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_book);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.edit_book_title);
+    }
+
+    private void getBook() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
-        buildStatusSpinner();
-        initControls();
     }
 
     private void buildStatusSpinner() {
@@ -51,6 +63,7 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void initControls() {
+        buildStatusSpinner();
         TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
         TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
         ImageView imageView = (ImageView) findViewById(R.id.iv_edit_book);
@@ -61,6 +74,12 @@ public class EditBookActivity extends AppCompatActivity {
         Button save = (Button) findViewById(R.id.btn_save_edit_book);
         Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
 
+        Book bookDb = storage.searchBookDb(book);
+        if (bookDb != null) {
+            delete.setVisibility(View.VISIBLE);
+        } else {
+            delete.setVisibility(View.GONE);
+        }
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
         Picasso.get().load(book.getImageLinks()).into(imageView);
@@ -80,8 +99,12 @@ public class EditBookActivity extends AppCompatActivity {
                 book.userRating = ratingBar.getRating();
                 book.isFavorite = isFavorite;
                 book.status = spinner.getSelectedItem().toString();
-                book.readDate = date;
-                storage.update(book);
+                if (book.status.equals("Reading") || book.status.equals("Not reading")) {
+                    book.readDate = date;
+                } else {
+                    book.readDate = "";
+                }
+                storage.insertOrUpdate(book);
                 finish();
             }
         });

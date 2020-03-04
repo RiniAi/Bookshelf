@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,14 +34,20 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle(R.string.book_challenge_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
 
+        initToolbar();
         loadCounter();
         initSeekBar();
         initRecyclerView();
         loadBooks();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_books_challenge);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.book_challenge_title);
     }
 
     private void loadCounter() {
@@ -68,7 +75,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void loadBooks() {
         Storage storage = new Storage();
-        List<Book> booksFromDatabase = storage.getList();
+        List<Book> booksFromDatabase = storage.searchForReadBooks();
         bookAdapter.setList(booksFromDatabase);
         number.setText(String.valueOf(booksFromDatabase.size()));
     }
@@ -103,6 +110,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
             case R.id.go_to_main_activity:
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                break;
         }
         return true;
     }

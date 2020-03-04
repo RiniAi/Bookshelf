@@ -6,6 +6,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.room.Book;
@@ -20,8 +21,15 @@ public class AboutBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
 
+        initToolbar();
         getBook();
         initControls();
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_about_book);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.about_book_title);
     }
 
     private void getBook() {
@@ -44,7 +52,11 @@ public class AboutBookActivity extends AppCompatActivity {
 
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageLinks()).into(image);
+        if (book.getImageLinks() == null) {
+            image.setImageResource(R.drawable.ic_broken_image);
+        } else {
+            Picasso.get().load(book.getImageLinks()).into(image);
+        }
         rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());
@@ -53,4 +65,3 @@ public class AboutBookActivity extends AppCompatActivity {
         description.setText(book.getDescription());
     }
 }
-

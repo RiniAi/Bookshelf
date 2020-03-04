@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -19,12 +18,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
+public class BookSearchAdapter extends RecyclerView.Adapter<BookSearchAdapter.BookViewHolder> {
     private Context context;
     private List<Book> books;
     private OnItemClickListener listener;
 
-    public BookAdapter(Context context) {
+    public BookSearchAdapter(Context context) {
         this.context = context;
     }
 
@@ -46,7 +45,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_book, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_search, parent, false);
         return new BookViewHolder(view, listener);
     }
 
@@ -56,29 +55,18 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageLinks()).into(holder.cover);
+        if (book.getImageLinks() == null) {
+            holder.cover.setImageResource(R.drawable.ic_broken_image);
+        } else {
+            Picasso.get().load(book.getImageLinks()).into(holder.cover);
+        }
         holder.author.setText(book.getAuthors());
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();
         holder.rating.setRating(rating);
-        holder.userRating.setRating(book.getUserRating());
-        if (book.getReadDate().equals("")) {
-            holder.data.setVisibility(View.GONE);
-        }
-        else {
-            holder.data.setVisibility(View.VISIBLE);
-            holder.readData.setText(book.getReadDate());
-        }
-        if (!book.isFavorite()) {
-            holder.favorite.setImageResource(R.drawable.ic_favorite_off);
-        }
-        else {
-            holder.favorite.setImageResource(R.drawable.ic_favorite_on);
-        }
-        holder.status.setText(book.getStatus());
     }
 
-    private Book getItem(int position) {
+    public Book getItem(int position) {
         if (books.isEmpty()) {
             return null;
         } else {
@@ -100,25 +88,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         TextView author;
         TextView title;
         RatingBar rating;
-        RatingBar userRating;
-        LinearLayout data;
-        TextView readData;
-        TextView status;
-        ImageView favorite;
         ImageButton button;
 
         BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.iv_book_list);
-            author = (TextView) itemView.findViewById(R.id.tv_author_book_list);
-            title = (TextView) itemView.findViewById(R.id.tv_title_book_list);
-            rating = (RatingBar) itemView.findViewById(R.id.tv_rating_book_list);
-            userRating = (RatingBar) itemView.findViewById(R.id.tv_user_rating_book_list);
-            data = (LinearLayout) itemView.findViewById(R.id.ll_readData_book_list);
-            readData = (TextView) itemView.findViewById(R.id.tv_read_data_book_list);
-            status = (TextView) itemView.findViewById(R.id.tv_status_book_list);
-            favorite = (ImageView) itemView.findViewById(R.id.iv_favorite_book_list);
-            button = (ImageButton) itemView.findViewById(R.id.btn_edit_book_list);
+            cover = (ImageView) itemView.findViewById(R.id.iv_search_activity);
+            author = (TextView) itemView.findViewById(R.id.tv_author_search_activity);
+            title = (TextView) itemView.findViewById(R.id.tv_title_search_activity);
+            rating = (RatingBar) itemView.findViewById(R.id.tv_rating_search_activity);
+            button = (ImageButton) itemView.findViewById(R.id.btn_search_activity);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

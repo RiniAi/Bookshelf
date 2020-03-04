@@ -5,6 +5,9 @@
 
     <string name="main_activity_title">Main</string>
     <string name="book_challenge_title">Book challenge</string>
+    <string name="search_activity_title">Search</string>
+    <string name="edit_book_title">Edit book</string>
+    <string name="about_book_title">About book</string>
 
     <string name="login_sign_already_a_member">Already a member? Login</string>
     <string name="login_sign_create_account">Create account</string>
@@ -32,8 +35,6 @@
     <string name="profile_information_description">Information</string>
     <string name="profile_information_log_out">Log out</string>
 
-    <string name="search">Search</string>
-
     <string name="navigation_list_not_reading">Not reading</string>
     <string name="navigation_list_read">Read</string>
     <string name="navigation_list_reading">Reading</string>
@@ -48,4 +49,12 @@
     <string name="about_book_published_date">Published date:</string>
     <string name="about_book_page_count">Page count:</string>
     <string name="about_book_language">Language:</string>
+
+    <string name="search_activity_no_internet">There is no Internet connection...</string>
+
+    <string name="toolbar_go_to_main_activity">Go to main activity</string>
+    <string name="toolbar_go_to_search_activity">Go to search activity</string>
+    <string name="toolbar_go_to_book_challenge_activity">Go to book challenge</string>
+    <string name="list_item_book_text_view_status">Status:</string>
+    <string name="list_item_book_text_view_read_data">Read data:</string>
 </resources>

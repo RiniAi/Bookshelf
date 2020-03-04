@@ -8,41 +8,40 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_main_activity"
+        android:id="@+id/toolbar_search_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_primary"
         app:titleTextColor="@color/color_toolbar_title" />
 
     <LinearLayout
-        android:id="@+id/ll_empty_main_activity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <ImageView
+        <EditText
+            android:id="@+id/et_query_search_activity"
+            android:layout_width="@dimen/search_edit_text_width"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/btn_query_search_activity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_on" />
+            android:src="@drawable/ic_search" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingTop="8dp"
-            android:text="@string/main_activity_db_empty"
-            android:textAppearance="?android:textAppearanceSmall"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_of_books"
+        android:id="@+id/rv_of_books_search_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="@dimen/padding_8dp"
         android:paddingBottom="@dimen/padding_8dp"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_item_book">
+        tools:listitem="@layout/list_item_search">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
