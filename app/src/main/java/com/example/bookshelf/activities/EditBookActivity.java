@@ -99,8 +99,11 @@ public class EditBookActivity extends AppCompatActivity {
                 book.userRating = ratingBar.getRating();
                 book.isFavorite = isFavorite;
                 book.status = spinner.getSelectedItem().toString();
-                // TODO anna 04.03.2020: add change fill in the date or not
-                book.readDate = date;
+                if (book.status.equals("Reading") || book.status.equals("Not reading")) {
+                    book.readDate = date;
+                } else {
+                    book.readDate = "";
+                }
                 storage.insertOrUpdate(book);
                 finish();
             }
