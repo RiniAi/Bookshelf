@@ -63,7 +63,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 query = enterQuery.getText().toString();
-                bookRequestFromApi();
+                requestBooksFromApi();
                 hideKeyboard(SearchActivity.this, view);
             }
         });
@@ -73,7 +73,7 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     query = enterQuery.getText().toString();
-                    bookRequestFromApi();
+                    requestBooksFromApi();
                     hideKeyboard(SearchActivity.this, view);
                     return true;
                 }
@@ -111,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void bookRequestFromApi() {
+    private void requestBooksFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BooksApiResponse> call = service.getBooks(query, QUERY_COUNTER);
         call.enqueue(new Callback<BooksApiResponse>() {
