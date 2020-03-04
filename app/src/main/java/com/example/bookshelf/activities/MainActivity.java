@@ -32,6 +32,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.bookshelf.GoogleBooksApiService.QUERY_COUNTER;
+
 public class MainActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private Storage storage = new Storage();
@@ -45,21 +47,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 
-        bookRequestFromBooksApi();
+        requestBooksFromApi();
         buildRecyclerView();
     }
 
-    private void bookRequestFromBooksApi() {
+    private void requestBooksFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        int countQuery = 10;
-        Call<BooksApiResponse> call = service.getBooks("Harry potter", countQuery);
+        Call<BooksApiResponse> call = service.getBooks("Harry potter", QUERY_COUNTER);
         call.enqueue(new Callback<BooksApiResponse>() {
             @Override
             public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
-                assert response.body() != null;
-                bookResult = response.body().getItems();
-                storage.save(bookResult);
-                loadBooks();
+                if (response.body() != null) {
+                    bookResult = response.body().getItems();
+                    storage.save(bookResult);
+                    loadBooks();
+                }
             }
 
             @Override

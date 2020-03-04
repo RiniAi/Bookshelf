@@ -7,6 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface GoogleBooksApiService {
+    int QUERY_COUNTER = 40;
     /**
      * Requests books list from the Google API using keyword
      * @param query user request

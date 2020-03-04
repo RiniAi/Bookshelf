@@ -39,6 +39,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.bookshelf.GoogleBooksApiService.QUERY_COUNTER;
+
 public class SearchActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private String query = "";
@@ -82,8 +84,8 @@ public class SearchActivity extends AppCompatActivity {
 
     public static void hideKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        assert imm != null;
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        if (imm != null)
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void buildRecyclerView() {
@@ -111,9 +113,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void bookRequestFromApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        // TODO anna 03.03.2020: move the countQuery to the GoogleBooksApiService
-        int countQuery = 40;
-        Call<BooksApiResponse> call = service.getBooks(query, countQuery);
+        Call<BooksApiResponse> call = service.getBooks(query, QUERY_COUNTER);
         call.enqueue(new Callback<BooksApiResponse>() {
             @Override
             public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
