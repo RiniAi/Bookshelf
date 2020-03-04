@@ -37,7 +37,6 @@ public class EditBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_book);
 
         getBook();
-        buildStatusSpinner();
         initControls();
     }
 
@@ -56,6 +55,7 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void initControls() {
+        buildStatusSpinner();
         TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
         TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
         ImageView imageView = (ImageView) findViewById(R.id.iv_edit_book);

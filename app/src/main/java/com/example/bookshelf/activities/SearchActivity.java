@@ -50,6 +50,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        buildRecyclerView();
         searchBooks();
     }
 
@@ -60,7 +61,6 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 query = enterQuery.getText().toString();
-                buildRecyclerView();
                 bookRequestFromApi();
                 hideKeyboard(SearchActivity.this, view);
             }
@@ -71,7 +71,6 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     query = enterQuery.getText().toString();
-                    buildRecyclerView();
                     bookRequestFromApi();
                     hideKeyboard(SearchActivity.this, view);
                     return true;
