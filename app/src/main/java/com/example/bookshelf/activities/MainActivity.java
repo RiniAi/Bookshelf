@@ -19,8 +19,8 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.models.BookItem;
-import com.example.bookshelf.models.Item;
+import com.example.bookshelf.models.BooksApiResponse;
+import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private List<Item> bookResult = new ArrayList<>();
+    private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private Storage storage = new Storage();
     private RecyclerView books;
     private LinearLayout emptyView;
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
     private void bookRequestFromBooksApi() {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         int countQuery = 10;
-        Call<BookItem> call = service.getBooks("Harry potter", countQuery);
-        call.enqueue(new Callback<BookItem>() {
+        Call<BooksApiResponse> call = service.getBooks("Harry potter", countQuery);
+        call.enqueue(new Callback<BooksApiResponse>() {
             @Override
-            public void onResponse(@NotNull Call<BookItem> call, @NotNull Response<BookItem> response) {
+            public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
                 assert response.body() != null;
                 bookResult = response.body().getItems();
                 storage.save(bookResult);
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NotNull Call<BookItem> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<BooksApiResponse> call, @NotNull Throwable t) {
                 Log.e("error", t.toString());
                 Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
                 loadBooks();

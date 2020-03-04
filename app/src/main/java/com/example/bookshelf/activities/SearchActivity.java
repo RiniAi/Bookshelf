@@ -18,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,8 +26,8 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.RetrofitClientInstance;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookSearchAdapter;
-import com.example.bookshelf.models.BookItem;
-import com.example.bookshelf.models.Item;
+import com.example.bookshelf.models.BooksApiResponse;
+import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +40,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
-    private List<Item> bookResult = new ArrayList<>();
+    private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private String query = "";
     private BookSearchAdapter bookAdapter;
 
@@ -115,10 +114,10 @@ public class SearchActivity extends AppCompatActivity {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         // TODO anna 03.03.2020: move the countQuery to the GoogleBooksApiService
         int countQuery = 40;
-        Call<BookItem> call = service.getBooks(query, countQuery);
-        call.enqueue(new Callback<BookItem>() {
+        Call<BooksApiResponse> call = service.getBooks(query, countQuery);
+        call.enqueue(new Callback<BooksApiResponse>() {
             @Override
-            public void onResponse(@NotNull Call<BookItem> call, @NotNull Response<BookItem> response) {
+            public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
                 if (response.body() == null) {
                     Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
                 } else {
@@ -130,7 +129,7 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NotNull Call<BookItem> call, @NotNull Throwable t) {
+            public void onFailure(@NotNull Call<BooksApiResponse> call, @NotNull Throwable t) {
                 Log.e("error", t.toString());
                 Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
             }

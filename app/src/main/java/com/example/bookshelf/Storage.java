@@ -3,7 +3,7 @@ package com.example.bookshelf;
 import android.view.View;
 
 import com.example.bookshelf.activities.EditBookActivity;
-import com.example.bookshelf.models.Item;
+import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
@@ -16,12 +16,12 @@ public class Storage {
     private BookDao bookDao = db.bookDao();
     private Book bookDb;
 
-    public void save(List<Item> bookResult) {
+    public void save(List<BooksApiResponseItem> bookResult) {
         List<Book> booksFromDatabase = search(bookResult);
         bookDao.insert(booksFromDatabase);
     }
 
-    public List<Book> search(List<Item> bookResult) {
+    public List<Book> search(List<BooksApiResponseItem> bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (int i = 0; i < bookResult.size(); i++) {
             Book book = new Book();
