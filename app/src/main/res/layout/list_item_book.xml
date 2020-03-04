@@ -115,9 +115,9 @@
 
                     <ImageView
                         android:id="@+id/iv_favorite_book_list"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_48dp" />
+                        android:layout_width="@dimen/padding_24dp"
+                        android:layout_height="@dimen/padding_24dp"
+                        android:layout_marginStart="@dimen/margin_8dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

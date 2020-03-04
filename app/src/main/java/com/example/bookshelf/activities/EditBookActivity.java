@@ -95,15 +95,12 @@ public class EditBookActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getDate();
                 book.userRating = ratingBar.getRating();
                 book.isFavorite = isFavorite;
                 book.status = spinner.getSelectedItem().toString();
-                if (book.status == "Reading" || book.status == "Not reading") {
-                    getDate();
-                    book.readDate = date;
-                } else {
-                    book.readDate = "";
-                }
+                // TODO anna 04.03.2020: add change fill in the date or not
+                book.readDate = date;
                 storage.insertOrUpdate(book);
                 finish();
             }

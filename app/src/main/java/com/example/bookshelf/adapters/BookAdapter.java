@@ -62,13 +62,14 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         float rating = book.getAverageRating();
         holder.rating.setRating(rating);
         holder.userRating.setRating(book.getUserRating());
-        if (book.getReadDate() == null) {
+        if (book.getReadDate() == null ) {
             holder.data.setVisibility(View.GONE);
         }
         else {
+            holder.data.setVisibility(View.VISIBLE);
             holder.readData.setText(book.getReadDate());
         }
-        if (book.isFavorite() == false) {
+        if (book.isFavorite()) {
             holder.favorite.setImageResource(R.drawable.ic_favorite_off);
         }
         else {
