@@ -123,7 +123,7 @@ public class SearchActivity extends AppCompatActivity {
                 } else {
                     bookResult = response.body().getItems();
                     Storage storage = new Storage();
-                    List<Book> bookList = storage.search(bookResult);
+                    List<Book> bookList = storage.mapResponseDomain(bookResult);
                     bookAdapter.setList(bookList);
                 }
             }

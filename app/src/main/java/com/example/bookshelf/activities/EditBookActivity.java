@@ -30,8 +30,6 @@ public class EditBookActivity extends AppCompatActivity {
     private Book book;
     private String date;
     private DatePicker datePicker;
-    public static Button delete;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +64,14 @@ public class EditBookActivity extends AppCompatActivity {
         datePicker = (DatePicker) findViewById(R.id.datePicker);
         ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
         Button save = (Button) findViewById(R.id.btn_save_edit_book);
-        delete = (Button) findViewById(R.id.btn_delete_edit_book);
-        storage.hideOrDisplayButton(book);
+        Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
 
+        Book bookDb = storage.searchBookDb(book);
+        if (bookDb != null) {
+            delete.setVisibility(View.VISIBLE);
+        } else {
+            delete.setVisibility(View.GONE);
+        }
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
         Picasso.get().load(book.getImageLinks()).into(imageView);

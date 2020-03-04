@@ -1,8 +1,5 @@
 package com.example.bookshelf;
 
-import android.view.View;
-
-import com.example.bookshelf.activities.EditBookActivity;
 import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookDao;
@@ -14,14 +11,13 @@ import java.util.List;
 public class Storage {
     private BookDatabase db = App.getInstance().getDatabase();
     private BookDao bookDao = db.bookDao();
-    private Book bookDb;
 
     public void save(List<BooksApiResponseItem> bookResult) {
-        List<Book> booksFromDatabase = search(bookResult);
+        List<Book> booksFromDatabase = mapResponseDomain(bookResult);
         bookDao.insert(booksFromDatabase);
     }
 
-    public List<Book> search(List<BooksApiResponseItem> bookResult) {
+    public List<Book> mapResponseDomain(List<BooksApiResponseItem> bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (int i = 0; i < bookResult.size(); i++) {
             Book book = new Book();
@@ -76,26 +72,16 @@ public class Storage {
         return booksSearch;
     }
 
-    private Book searchBookDb(Book book) {
-        String title = book.title = book.getTitle();
-        String authors = book.authors = book.getAuthors();
-        return bookDao.findBookTitleAndAuthor(title, authors);
-    }
-
-    public void hideOrDisplayButton(Book book) {
-        bookDb = searchBookDb(book);
-        if (bookDb != null) {
-            EditBookActivity.delete.setVisibility(View.VISIBLE);
-        } else {
-            EditBookActivity.delete.setVisibility(View.GONE);
-        }
+    public Book searchBookDb(Book book) {
+        book.title = book.getTitle();
+        book.authors = book.getAuthors();
+        return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
     public void insertOrUpdate(Book book) {
-        bookDb = searchBookDb(book);
+        Book bookDb = searchBookDb(book);
         if (bookDb != null) {
             bookDao.update(book);
-
         } else {
             bookDao.insert(book);
         }
