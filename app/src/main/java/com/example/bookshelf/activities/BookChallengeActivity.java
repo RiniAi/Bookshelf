@@ -75,7 +75,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void loadBooks() {
         Storage storage = new Storage();
-        List<Book> booksFromDatabase = storage.getList();
+        List<Book> booksFromDatabase = storage.searchForReadBooks();
         bookAdapter.setList(booksFromDatabase);
         number.setText(String.valueOf(booksFromDatabase.size()));
     }

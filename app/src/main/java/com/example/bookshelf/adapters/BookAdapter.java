@@ -60,9 +60,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.title.setText(book.getTitle());
         float rating = book.getAverageRating();
         holder.rating.setRating(rating);
+        holder.status.setText(book.getStatus());
     }
 
-    public Book getItem(int position) {
+    private Book getItem(int position) {
         if (books.isEmpty()) {
             return null;
         } else {
@@ -85,6 +86,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         TextView title;
         RatingBar rating;
         ImageButton button;
+        TextView status;
 
         BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
@@ -92,6 +94,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             author = (TextView) itemView.findViewById(R.id.tv_author_book_list);
             title = (TextView) itemView.findViewById(R.id.tv_title_book_list);
             rating = (RatingBar) itemView.findViewById(R.id.tv_rating_book_list);
+            status = (TextView) itemView.findViewById(R.id.tv_status_book_list);
             button = (ImageButton) itemView.findViewById(R.id.btn_edit_book_list);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -2,38 +2,25 @@ package com.example.bookshelf.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.GoogleBooksApiService;
 import com.example.bookshelf.R;
-import com.example.bookshelf.RetrofitClientInstance;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.models.BooksApiResponse;
 import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.example.bookshelf.GoogleBooksApiService.QUERY_COUNTER;
 
 public class MainActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
@@ -48,36 +35,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_books);
 
         initToolbar();
-        requestBooksFromApi();
         buildRecyclerView();
+        loadBooks();
     }
 
     private void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.main_activity_title);
-    }
-
-    private void requestBooksFromApi() {
-        GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        Call<BooksApiResponse> call = service.getBooks("Harry potter", QUERY_COUNTER);
-        call.enqueue(new Callback<BooksApiResponse>() {
-            @Override
-            public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
-                if (response.body() != null) {
-                    bookResult = response.body().getItems();
-                    storage.save(bookResult);
-                    loadBooks();
-                }
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<BooksApiResponse> call, @NotNull Throwable t) {
-                Log.e("error", t.toString());
-                Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-                loadBooks();
-            }
-        });
     }
 
     private void buildRecyclerView() {
@@ -105,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadBooks() {
-        List<Book> booksFromDatabase = storage.getList();
+        List<Book> booksFromDatabase = storage.searchForStatusBooks();
         if (booksFromDatabase.isEmpty()) {
             books.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);

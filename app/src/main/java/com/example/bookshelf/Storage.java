@@ -78,6 +78,14 @@ public class Storage {
         return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
+    public List<Book> searchForReadBooks() {
+        return bookDao.getBookStatusReading("Reading");
+    }
+
+    public List<Book> searchForStatusBooks() {
+        return bookDao.getBookStatus("Read", "Want to read", "Reading", "Not reading");
+    }
+
     public void insertOrUpdate(Book book) {
         Book bookDb = searchBookDb(book);
         if (bookDb != null) {
