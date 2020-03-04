@@ -69,7 +69,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             holder.data.setVisibility(View.VISIBLE);
             holder.readData.setText(book.getReadDate());
         }
-        if (book.isFavorite()) {
+        if (book.isFavorite() == false) {
             holder.favorite.setImageResource(R.drawable.ic_favorite_off);
         }
         else {
