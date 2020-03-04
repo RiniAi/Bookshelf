@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.bookshelf.GoogleBooksApiService.QUERY_COUNTER;
-
+// TODO anna 04.03.2020: add change label in Toolbar
 public class MainActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private Storage storage = new Storage();
@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle(R.string.main_activity_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 

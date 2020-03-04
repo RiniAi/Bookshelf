@@ -34,7 +34,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle(R.string.book_challenge_title);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
 
