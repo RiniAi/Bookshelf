@@ -93,12 +93,8 @@ public class EditBookActivity extends AppCompatActivity {
         if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
             stringConvertingToDatePicker();
         }
-
-        if (book.isFavorite()) {
-            favoriteClick.setChecked(true);
-        } else {
-            favoriteClick.setChecked(false);
-        }
+        favoriteClick.setChecked(book.isFavorite());
+        isFavorite = book.isFavorite;
 
         if (book.getStatus() != null) {
             switch (book.getStatus()) {
