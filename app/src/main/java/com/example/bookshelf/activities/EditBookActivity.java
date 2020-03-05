@@ -112,8 +112,6 @@ public class EditBookActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                book.authors = book.getAuthors();
-                book.title = book.getTitle();
                 storage.delete(book);
                 finish();
             }

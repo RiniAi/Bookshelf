@@ -12,11 +12,6 @@ public class Storage {
     private BookDatabase db = App.getInstance().getDatabase();
     private BookDao bookDao = db.bookDao();
 
-    public void save(List<BooksApiResponseItem> bookResult) {
-        List<Book> booksFromDatabase = mapResponseDomain(bookResult);
-        bookDao.insert(booksFromDatabase);
-    }
-
     public List<Book> mapResponseDomain(List<BooksApiResponseItem> bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (int i = 0; i < bookResult.size(); i++) {
@@ -73,8 +68,6 @@ public class Storage {
     }
 
     public Book searchBookDb(Book book) {
-        book.title = book.getTitle();
-        book.authors = book.getAuthors();
         return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
@@ -82,7 +75,7 @@ public class Storage {
         return bookDao.getBookStatusReading("Reading");
     }
 
-    public List<Book> searchForStatusBooks() {
+    public List<Book> searchForBooksWithStatus() {
         return bookDao.getBookStatus("Read", "Want to read", "Reading", "Not reading");
     }
 

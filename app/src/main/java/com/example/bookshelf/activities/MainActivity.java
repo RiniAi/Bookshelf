@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadBooks() {
-        List<Book> booksFromDatabase = storage.searchForStatusBooks();
+        List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
         if (booksFromDatabase.isEmpty()) {
             books.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
