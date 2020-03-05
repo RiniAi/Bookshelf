@@ -100,19 +100,21 @@ public class EditBookActivity extends AppCompatActivity {
             favoriteClick.setChecked(false);
         }
 
-        switch (book.getStatus()) {
-            case IN_THE_PROCESS_OF_READING:
-                status.setSelection(0);
-                break;
-            case PLAN_READING:
-                status.setSelection(1);
-                break;
-            case FINISH_READING:
-                status.setSelection(2);
-                break;
-            case QUIT_READING:
-                status.setSelection(3);
-                break;
+        if (book.getStatus() != null) {
+            switch (book.getStatus()) {
+                case IN_THE_PROCESS_OF_READING:
+                    status.setSelection(0);
+                    break;
+                case PLAN_READING:
+                    status.setSelection(1);
+                    break;
+                case FINISH_READING:
+                    status.setSelection(2);
+                    break;
+                case QUIT_READING:
+                    status.setSelection(3);
+                    break;
+            }
         }
 
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
