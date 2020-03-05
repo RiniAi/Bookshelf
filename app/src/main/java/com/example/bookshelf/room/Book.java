@@ -2,6 +2,7 @@ package com.example.bookshelf.room;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.TypeConverters;
 
 import java.io.Serializable;
 
@@ -14,14 +15,23 @@ public class Book implements Serializable {
     public float averageRating;
     public float userRating;
     public boolean isFavorite;
-    public String status;
     public String readDate;
-    public String imageLinks;
-    public String description;
     public String publisher;
     public String publishedDate;
     public int pageCount;
     public String lang;
+    @TypeConverters(BookStatusConverter.class)
+    BookStatus status;
+
+    public enum BookStatus implements Serializable {
+        IN_THE_PROCESS_OF_READING,
+        PLAN_READING,
+        FINISH_READING,
+        QUIT_READING
+    }
+
+    public String imageLinks;
+    public String description;
 
     public String getTitle() {
         return title;
@@ -61,14 +71,6 @@ public class Book implements Serializable {
 
     public void setFavorite(boolean favorite) {
         this.isFavorite = favorite;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getReadDate() {
@@ -125,5 +127,13 @@ public class Book implements Serializable {
 
     public void setLanguage(String language) {
         this.lang = language;
+    }
+
+    public BookStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(BookStatus status) {
+        this.status = status;
     }
 }

@@ -21,7 +21,7 @@
                 android:layout_width="@dimen/default_image_view_width"
                 android:layout_height="@dimen/default_image_view_height"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/margin_16dp"
+                android:layout_marginEnd="@dimen/margin_8dp"
                 android:scaleType="centerCrop"
                 tools:src="@tools:sample/avatars" />
 
@@ -79,11 +79,28 @@
                     tools:text="10" />
 
                 <LinearLayout
-                    android:id="@+id/ll_readData_book_list"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingTop="@dimen/padding_16dp">
+
+                    <TextView
+                        android:id="@+id/tv_status_book_list"
+                        android:layout_width="@dimen/list_book_text_view_width_160"
+                        android:layout_height="wrap_content" />
+
+                    <ImageView
+                        android:id="@+id/iv_favorite_book_list"
+                        android:layout_width="@dimen/padding_24dp"
+                        android:layout_height="@dimen/padding_24dp"
+                        android:layout_marginStart="@dimen/margin_16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_readData_book_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -95,29 +112,6 @@
                         android:id="@+id/tv_read_data_book_list"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/margin_4dp"
-                        android:text="@string/list_item_book_text_view_status" />
-
-                    <TextView
-                        android:id="@+id/tv_status_book_list"
-                        android:layout_width="@dimen/list_book_text_view_width_80"
-                        android:layout_height="wrap_content" />
-
-                    <ImageView
-                        android:id="@+id/iv_favorite_book_list"
-                        android:layout_width="@dimen/padding_24dp"
-                        android:layout_height="@dimen/padding_24dp"
-                        android:layout_marginStart="@dimen/margin_8dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

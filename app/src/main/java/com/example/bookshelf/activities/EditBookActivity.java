@@ -19,15 +19,19 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.room.Book;
+import com.example.bookshelf.room.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
     private Storage storage = new Storage();
     private boolean isFavorite = false;
-    private Spinner spinner;
+    private Spinner status;
     private Book book;
     private String date;
     private DatePicker datePicker;
@@ -56,10 +60,10 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void buildStatusSpinner() {
-        spinner = (Spinner) findViewById(R.id.spinner_status_edit_book);
+        status = (Spinner) findViewById(R.id.spinner_status_edit_book);
         ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        status.setAdapter(adapter);
     }
 
     private void initControls() {
@@ -84,6 +88,32 @@ public class EditBookActivity extends AppCompatActivity {
         author.setText(book.getAuthors());
         Picasso.get().load(book.getImageLinks()).into(imageView);
         rating.setRating(book.getAverageRating());
+        ratingBar.setRating(book.getUserRating());
+
+        if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
+            stringConvertingToDatePicker();
+        }
+
+        if (book.isFavorite()) {
+            favoriteClick.setChecked(true);
+        } else {
+            favoriteClick.setChecked(false);
+        }
+
+        switch (book.getStatus()) {
+            case IN_THE_PROCESS_OF_READING:
+                status.setSelection(0);
+                break;
+            case PLAN_READING:
+                status.setSelection(1);
+                break;
+            case FINISH_READING:
+                status.setSelection(2);
+                break;
+            case QUIT_READING:
+                status.setSelection(3);
+                break;
+        }
 
         favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -98,8 +128,8 @@ public class EditBookActivity extends AppCompatActivity {
                 getDate();
                 book.userRating = ratingBar.getRating();
                 book.isFavorite = isFavorite;
-                book.status = spinner.getSelectedItem().toString();
-                if (book.status.equals("Reading") || book.status.equals("Not reading")) {
+                book.setStatus(BookStatusConverter.fromStringToStatus(status.getSelectedItem().toString()));
+                if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
                     book.readDate = date;
                 } else {
                     book.readDate = "";
@@ -126,5 +156,21 @@ public class EditBookActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, dayOfMonth);
         date = DateUtils.formatDateTime(this, calendar.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_YEAR);
+    }
+
+    private void stringConvertingToDatePicker() {
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        Date date = null;
+        try {
+            date = format.parse(book.getReadDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+        datePicker.updateDate(year, month, dayOfMonth);
     }
 }

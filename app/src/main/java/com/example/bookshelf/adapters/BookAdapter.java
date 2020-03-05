@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.room.Book;
+import com.example.bookshelf.room.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -64,18 +65,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.userRating.setRating(book.getUserRating());
         if (book.getReadDate().equals("")) {
             holder.data.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             holder.data.setVisibility(View.VISIBLE);
             holder.readData.setText(book.getReadDate());
         }
         if (!book.isFavorite()) {
             holder.favorite.setImageResource(R.drawable.ic_favorite_off);
-        }
-        else {
+        } else {
             holder.favorite.setImageResource(R.drawable.ic_favorite_on);
         }
-        holder.status.setText(book.getStatus());
+        holder.status.setText(BookStatusConverter.fromStatusToString(book.getStatus()));
     }
 
     private Book getItem(int position) {
