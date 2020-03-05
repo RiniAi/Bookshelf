@@ -22,10 +22,10 @@
     <string name="edit_book_save">Save</string>
     <string name="edit_book_status">The status of the book</string>
     <string-array name="edit_book_status">
-        <item>Read</item>
-        <item>Want to read</item>
-        <item>Reading</item>
-        <item>Not reading</item>
+        <item>In the process of reading</item>
+        <item>Plan to read</item>
+        <item>Finish reading</item>
+        <item>Quit reading</item>
     </string-array>
 
     <string name="book_challenge_save_counter">The counter number is saved!</string>
@@ -49,8 +49,6 @@
     <string name="about_book_published_date">Published date:</string>
     <string name="about_book_page_count">Page count:</string>
     <string name="about_book_language">Language:</string>
-
-    <string name="search_activity_no_internet">There is no Internet connection...</string>
 
     <string name="toolbar_go_to_main_activity">Go to main activity</string>
     <string name="toolbar_go_to_search_activity">Go to search activity</string>

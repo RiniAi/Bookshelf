@@ -72,11 +72,11 @@ public class Storage {
     }
 
     public List<Book> searchForReadBooks() {
-        return bookDao.getBookStatusReading("Reading");
+        return bookDao.getBookStatusReading("Finish reading");
     }
 
     public List<Book> searchForBooksWithStatus() {
-        return bookDao.getBookStatus("Read", "Want to read", "Reading", "Not reading");
+        return bookDao.getBookStatus("In the process of reading", "Plan to read", "Finish reading", "Quit reading");
     }
 
     public void insertOrUpdate(Book book) {
