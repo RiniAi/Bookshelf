@@ -4,6 +4,7 @@ import com.example.bookshelf.models.BooksApiResponseItem;
 import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookDao;
 import com.example.bookshelf.room.BookDatabase;
+import com.example.bookshelf.room.BookStatusConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,11 +73,15 @@ public class Storage {
     }
 
     public List<Book> searchForReadBooks() {
-        return bookDao.getBookStatusReading("Finish reading");
+        return bookDao.getBookStatusReading(BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING));
     }
 
     public List<Book> searchForBooksWithStatus() {
-        return bookDao.getBookStatus("In the process of reading", "Plan to read", "Finish reading", "Quit reading");
+        return bookDao.getBookStatus(
+                BookStatusConverter.fromStatusToString(Book.BookStatus.IN_THE_PROCESS_OF_READING),
+                BookStatusConverter.fromStatusToString(Book.BookStatus.PLAN_READING),
+                BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING),
+                BookStatusConverter.fromStatusToString(Book.BookStatus.QUIT_READING));
     }
 
     public void insertOrUpdate(Book book) {
