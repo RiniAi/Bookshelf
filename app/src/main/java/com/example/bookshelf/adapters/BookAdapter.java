@@ -18,11 +18,8 @@ import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
+public class BookAdapter extends Adapter {
     private Context context;
-    private List<Book> books;
     private OnItemClickListener listener;
 
     public BookAdapter(Context context) {
@@ -39,10 +36,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         this.listener = listener;
     }
 
-    public void setList(List<Book> books) {
-        this.books = books;
-        notifyDataSetChanged();
-    }
 
     @NonNull
     @Override
@@ -75,23 +68,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             holder.favorite.setImageResource(R.drawable.ic_favorite_on);
         }
         holder.status.setText(BookStatusConverter.fromStatusToString(book.getStatus()));
-    }
-
-    private Book getItem(int position) {
-        if (books.isEmpty()) {
-            return null;
-        } else {
-            return books.get(position);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (books == null) {
-            return 0;
-        } else {
-            return books.size();
-        }
     }
 
     class BookViewHolder extends RecyclerView.ViewHolder {
