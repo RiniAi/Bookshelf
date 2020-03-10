@@ -1,54 +1,46 @@
 package com.example.bookshelf.adapters;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.room.Book;
+import java.util.List;
 
-public abstract class Adapter extends RecyclerView.Adapter<Adapter.BookViewHolder> {
-    private List<T> books;
+public abstract class Adapter<T> extends RecyclerView.Adapter<Adapter.ViewHolder> {
+    private Context context;
+    private List<T> list;
 
-    public void setList(List<T> books) {
-        this.books = books;
+    public Adapter(Context context) {
+        this.context = context;
+    }
+
+    public void setList(List<T> list) {
+        this.list = list;
         notifyDataSetChanged();
     }
 
-    public abstract void onBindViewHolder(@NonNull BookAdapter.BookViewHolder holder, int position);
-
-    Book getItem(int position) {
-        if (books.isEmpty()) {
+    T getItem(int position) {
+        if (list.isEmpty()) {
             return null;
         } else {
-            return books.get(position);
+            return list.get(position);
         }
     }
 
     @Override
     public int getItemCount() {
-        if (books == null) {
+        if (list == null) {
             return 0;
         } else {
-            return books.size();
+            return list.size();
         }
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder {
-        public BookViewHolder(@NonNull View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
-    }
-
-    @NonNull
-    @Override
-    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
-
     }
 }

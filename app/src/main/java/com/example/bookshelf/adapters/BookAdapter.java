@@ -18,13 +18,10 @@ import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
-public class BookAdapter extends Adapter {
+
+public class BookAdapter extends Adapter<Book> {
     private Context context;
     private OnItemClickListener listener;
-
-    public BookAdapter(Context context) {
-        this.context = context;
-    }
 
     public interface OnItemClickListener {
         void onItemClick(Book book);
@@ -35,7 +32,6 @@ public class BookAdapter extends Adapter {
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
 
     @NonNull
     @Override
