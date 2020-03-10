@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,12 +47,16 @@ public class SearchActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private String query = "";
     private BookSearchAdapter bookAdapter;
+    private ProgressBar progressBar;
+    private RecyclerView books;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        progressBar = (ProgressBar) findViewById(R.id.bar_search_activity);
+        progressBar.setVisibility(View.GONE);
         initToolbar();
         buildRecyclerView();
         searchBooks();
@@ -72,6 +77,8 @@ public class SearchActivity extends AppCompatActivity {
                 query = enterQuery.getText().toString();
                 requestBooksFromApi();
                 hideKeyboard(SearchActivity.this, view);
+                progressBar.setVisibility(ProgressBar.VISIBLE);
+                books.setVisibility(View.GONE);
             }
         });
 
@@ -82,6 +89,8 @@ public class SearchActivity extends AppCompatActivity {
                     query = enterQuery.getText().toString();
                     requestBooksFromApi();
                     hideKeyboard(SearchActivity.this, view);
+                    progressBar.setVisibility(ProgressBar.VISIBLE);
+                    books.setVisibility(View.GONE);
                     return true;
                 }
                 return false;
@@ -96,7 +105,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        RecyclerView books = findViewById(R.id.rv_of_books_search_activity);
+        books = findViewById(R.id.rv_of_books_search_activity);
         LinearLayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
         bookAdapter = new BookSearchAdapter(getApplicationContext());
         books.setLayoutManager(layoutManager);
@@ -129,6 +138,8 @@ public class SearchActivity extends AppCompatActivity {
                 } else {
                     bookResult = response.body().getItems();
                     Storage storage = new Storage();
+                    progressBar.setVisibility(View.GONE);
+                    books.setVisibility(View.VISIBLE);
                     List<Book> bookList = storage.mapResponseDomain(bookResult);
                     bookAdapter.setList(bookList);
                 }

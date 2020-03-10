@@ -31,8 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_search" />
-
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/bar_search_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_of_books_search_activity"
@@ -42,6 +47,5 @@
         android:paddingBottom="@dimen/padding_8dp"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_item_search">
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/list_item_search"></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>
