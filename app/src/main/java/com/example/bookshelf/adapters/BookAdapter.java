@@ -18,36 +18,21 @@ import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder> {
-    private Context context;
-    private List<Book> books;
+public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
     private OnItemClickListener listener;
 
     public BookAdapter(Context context) {
-        this.context = context;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(Book book);
-
-        void onEditClick(Book book);
+        super(context);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public void setList(List<Book> books) {
-        this.books = books;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_book, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_book, parent, false);
         return new BookViewHolder(view, listener);
     }
 
@@ -77,24 +62,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.status.setText(BookStatusConverter.fromStatusToString(book.getStatus()));
     }
 
-    private Book getItem(int position) {
-        if (books.isEmpty()) {
-            return null;
-        } else {
-            return books.get(position);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (books == null) {
-            return 0;
-        } else {
-            return books.size();
-        }
-    }
-
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    class BookViewHolder extends BaseViewHolder {
         ImageView cover;
         TextView author;
         TextView title;
