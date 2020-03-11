@@ -16,36 +16,21 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.room.Book;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-public class BookSearchAdapter extends RecyclerView.Adapter<BookSearchAdapter.BookViewHolder> {
-    private Context context;
-    private List<Book> books;
+public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
     private OnItemClickListener listener;
 
     public BookSearchAdapter(Context context) {
-        this.context = context;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(Book book);
-
-        void onEditClick(Book book);
+        super(context);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public void setList(List<Book> books) {
-        this.books = books;
-        notifyDataSetChanged();
-    }
-
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_search, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_search, parent, false);
         return new BookViewHolder(view, listener);
     }
 
@@ -66,24 +51,7 @@ public class BookSearchAdapter extends RecyclerView.Adapter<BookSearchAdapter.Bo
         holder.rating.setRating(rating);
     }
 
-    public Book getItem(int position) {
-        if (books.isEmpty()) {
-            return null;
-        } else {
-            return books.get(position);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (books == null) {
-            return 0;
-        } else {
-            return books.size();
-        }
-    }
-
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    class BookViewHolder extends BaseViewHolder {
         ImageView cover;
         TextView author;
         TextView title;

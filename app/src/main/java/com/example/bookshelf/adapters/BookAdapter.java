@@ -18,15 +18,11 @@ import com.example.bookshelf.room.Book;
 import com.example.bookshelf.room.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
-
-public class BookAdapter extends Adapter<Book> {
-    private Context context;
+public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
     private OnItemClickListener listener;
 
-    public interface OnItemClickListener {
-        void onItemClick(Book book);
-
-        void onEditClick(Book book);
+    public BookAdapter(Context context) {
+        super(context);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -36,7 +32,7 @@ public class BookAdapter extends Adapter<Book> {
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_book, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_book, parent, false);
         return new BookViewHolder(view, listener);
     }
 
@@ -66,7 +62,7 @@ public class BookAdapter extends Adapter<Book> {
         holder.status.setText(BookStatusConverter.fromStatusToString(book.getStatus()));
     }
 
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    class BookViewHolder extends BaseViewHolder {
         ImageView cover;
         TextView author;
         TextView title;

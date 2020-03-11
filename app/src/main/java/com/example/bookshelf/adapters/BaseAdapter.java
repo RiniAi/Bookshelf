@@ -1,18 +1,18 @@
 package com.example.bookshelf.adapters;
 
 import android.content.Context;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.bookshelf.room.Book;
 
 import java.util.List;
 
-public abstract class Adapter<T> extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public abstract class BaseAdapter<T, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
     private Context context;
     private List<T> list;
 
-    public Adapter(Context context) {
+    public BaseAdapter(Context context) {
         this.context = context;
     }
 
@@ -38,9 +38,13 @@ public abstract class Adapter<T> extends RecyclerView.Adapter<Adapter.ViewHolder
         }
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
+    public Context getContext() {
+        return context;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Book book);
+
+        void onEditClick(Book book);
     }
 }

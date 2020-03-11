@@ -9,31 +9,21 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.room.Book;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
-public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdapter.BookViewHolder> {
-    private Context context;
-    private List<Book> books;
+public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter.BookViewHolder> {
 
     public BookChallengeAdapter(Context context) {
-        this.context = context;
-    }
-
-    public void setList(List<Book> books) {
-        this.books = books;
-        notifyDataSetChanged();
+        super(context);
     }
 
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_book_challenge, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_book_challenge, parent, false);
         return new BookViewHolder(view);
     }
 
@@ -50,24 +40,7 @@ public class BookChallengeAdapter extends RecyclerView.Adapter<BookChallengeAdap
         holder.averRating.setRating(rating);
     }
 
-    private Book getItem(int position) {
-        if (books.isEmpty()) {
-            return null;
-        } else {
-            return books.get(position);
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (books == null) {
-            return 0;
-        } else {
-            return books.size();
-        }
-    }
-
-    class BookViewHolder extends RecyclerView.ViewHolder {
+    class BookViewHolder extends BaseViewHolder {
         ImageView cover;
         TextView author;
         TextView title;
