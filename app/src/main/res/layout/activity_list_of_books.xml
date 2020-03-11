@@ -18,8 +18,8 @@
         android:id="@+id/ll_empty_main_activity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -32,17 +32,14 @@
             android:fontFamily="sans-serif"
             android:paddingTop="8dp"
             android:text="@string/main_activity_db_empty"
-            android:textAppearance="?android:textAppearanceSmall"/>
+            android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_of_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/padding_8dp"
-        android:paddingBottom="@dimen/padding_8dp"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_item_book">
-    </androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/list_item_book"></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

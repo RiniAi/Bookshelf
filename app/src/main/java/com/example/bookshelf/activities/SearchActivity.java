@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -106,7 +107,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void buildRecyclerView() {
         books = findViewById(R.id.rv_of_books_search_activity);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
+        LinearLayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 2);
         bookAdapter = new BookSearchAdapter(getApplicationContext());
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);

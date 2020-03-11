@@ -6,4 +6,6 @@
 
     <color name="color_favorite_button">#d2d4d6</color>
     <color name="color_toolbar_title">#F1F1F1</color>
+
+    <color name="fon">#FBFBFB</color>
 </resources>

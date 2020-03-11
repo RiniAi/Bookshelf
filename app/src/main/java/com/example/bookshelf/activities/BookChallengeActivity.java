@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.Storage;
+import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.adapters.BookChallengeAdapter;
 import com.example.bookshelf.room.Book;
 
@@ -71,6 +72,19 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         books.setLayoutManager(layoutManager);
         bookAdapter = new BookChallengeAdapter(getApplicationContext());
         books.setAdapter(bookAdapter);
+        bookAdapter.setOnItemClickListener(new BookChallengeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Book book) {
+                Intent intent = new Intent(BookChallengeActivity.this, AboutBookActivity.class);
+                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onEditClick(Book book) {
+
+            }
+        });
     }
 
     private void loadBooks() {
