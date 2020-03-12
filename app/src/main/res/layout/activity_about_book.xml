@@ -67,113 +67,119 @@
                             android:textColor="@color/fon"
                             tools:text="@tools:sample/full_names" />
 
-                        <ImageView
-                            android:id="@+id/iv_about_book"
-                            android:layout_width="@dimen/default_image_view_width"
-                            android:layout_height="@dimen/default_image_view_height"
-                            android:background="@drawable/round_outline"
-                            android:scaleType="centerCrop"
-                            tools:src="@tools:sample/avatars" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/margin_4dp"
-                        android:orientation="vertical"
-                        android:paddingTop="152dp"
-                        android:weightSum="1">
-
-                        <RatingBar
-                            android:id="@+id/rb_rating_about_book"
-                            style="@style/Widget.AppCompat.RatingBar.Indicator"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:numStars="5"
-                            android:paddingTop="@dimen/padding_8dp"
-                            android:paddingBottom="@dimen/padding_8dp" />
-
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_4dp"
-                            android:orientation="horizontal"
-                            android:paddingBottom="@dimen/padding_8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/margin_4dp"
-                                android:text="@string/about_book_publisher"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tv_publisher_about_book"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="@tools:sample/full_names" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_4dp"
-                            android:orientation="horizontal"
-                            android:paddingBottom="@dimen/padding_8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/margin_4dp"
-                                android:text="@string/about_book_published_date"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tv_published_date_about_book"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="@tools:sample/full_names" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_4dp"
-                            android:orientation="horizontal"
-                            android:paddingBottom="@dimen/padding_8dp">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/margin_4dp"
-                                android:text="@string/about_book_page_count"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tv_page_count_about_book"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                tools:text="@tools:sample/full_names" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_4dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/margin_4dp"
-                                android:text="@string/about_book_language"
-                                android:textStyle="bold" />
+                            <ImageView
+                                android:id="@+id/iv_about_book"
+                                android:layout_width="@dimen/default_image_view_width"
+                                android:layout_height="@dimen/default_image_view_height"
+                                android:background="@drawable/round_outline"
+                                android:scaleType="centerCrop"
+                                tools:src="@tools:sample/avatars" />
 
-                            <TextView
-                                android:id="@+id/tv_lang_about_book"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                tools:text="@tools:sample/full_names" />
+                                android:layout_marginStart="@dimen/margin_4dp"
+                                android:orientation="vertical"
+                                android:paddingTop="@dimen/padding_32dp"
+                                android:weightSum="1">
+
+                                <RatingBar
+                                    android:id="@+id/rb_rating_about_book"
+                                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:numStars="5"
+                                    android:paddingTop="@dimen/padding_8dp"
+                                    android:paddingBottom="@dimen/padding_8dp" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_4dp"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="@dimen/padding_8dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="@dimen/margin_4dp"
+                                        android:text="@string/about_book_publisher"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_publisher_about_book"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="@tools:sample/full_names" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_4dp"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="@dimen/padding_8dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="@dimen/margin_4dp"
+                                        android:text="@string/about_book_published_date"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_published_date_about_book"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="@tools:sample/full_names" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_4dp"
+                                    android:orientation="horizontal"
+                                    android:paddingBottom="@dimen/padding_8dp">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="@dimen/margin_4dp"
+                                        android:text="@string/about_book_page_count"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_page_count_about_book"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="@tools:sample/full_names" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/margin_4dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="@dimen/margin_4dp"
+                                        android:text="@string/about_book_language"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:id="@+id/tv_lang_about_book"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        tools:text="@tools:sample/full_names" />
+                                </LinearLayout>
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
