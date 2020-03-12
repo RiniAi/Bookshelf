@@ -21,15 +21,8 @@ public class AboutBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
 
-        initToolbar();
         getBook();
         initControls();
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_about_book);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.about_book_title);
     }
 
     private void getBook() {
@@ -42,7 +35,8 @@ public class AboutBookActivity extends AppCompatActivity {
     private void initControls() {
         TextView title = (findViewById(R.id.tv_title_about_book));
         TextView author = (findViewById(R.id.tv_author_about_book));
-        ImageView image = (findViewById(R.id.img_about_book));
+        ImageView cover = (findViewById(R.id.iv_about_book));
+        ImageView coverBack = (findViewById(R.id.iv_back_about_book));
         RatingBar rating = (findViewById(R.id.rb_rating_about_book));
         TextView publishedDate = (findViewById(R.id.tv_published_date_about_book));
         TextView publisher = (findViewById(R.id.tv_publisher_about_book));
@@ -53,10 +47,13 @@ public class AboutBookActivity extends AppCompatActivity {
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
         if (book.getImageLinks() == null) {
-            image.setImageResource(R.drawable.ic_broken_image);
+            cover.setImageResource(R.drawable.ic_broken_image);
+            coverBack.setImageResource(R.drawable.ic_broken_image);
         } else {
-            Picasso.get().load(book.getImageLinks()).into(image);
+            Picasso.get().load(book.getImageLinks()).into(cover);
+            Picasso.get().load(book.getImageLinks()).into(coverBack);
         }
+        cover.setClipToOutline(true);
         rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());

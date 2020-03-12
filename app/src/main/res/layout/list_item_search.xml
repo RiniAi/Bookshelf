@@ -25,8 +25,8 @@
 
                 <ImageView
                     android:id="@+id/iv_search_activity"
-                    android:layout_width="@dimen/search_activity_image_view_width"
-                    android:layout_height="@dimen/search_activity_image_view_height"
+                    android:layout_width="@dimen/default_image_view_width"
+                    android:layout_height="@dimen/default_image_view_height"
                     android:background="@drawable/round_outline"
                     android:scaleType="centerCrop"
                     tools:src="@tools:sample/avatars" />

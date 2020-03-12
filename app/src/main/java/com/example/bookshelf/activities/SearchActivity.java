@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class SearchActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
     private String query = "";
     private BookSearchAdapter bookAdapter;
-    private ProgressBar progressBar;
+    private LinearLayout progressBar;
     private RecyclerView books;
 
     @Override
@@ -56,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        progressBar = (ProgressBar) findViewById(R.id.bar_search_activity);
+        progressBar = (LinearLayout) findViewById(R.id.bar_search_activity);
         progressBar.setVisibility(View.GONE);
         initToolbar();
         buildRecyclerView();
@@ -135,6 +136,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
                 if (response.body() == null) {
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
                 } else {
                     bookResult = response.body().getItems();

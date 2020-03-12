@@ -17,11 +17,8 @@
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_title">20sp</dimen>
 
-    <dimen name="default_image_view_width">112dp</dimen>
+    <dimen name="default_image_view_width">120dp</dimen>
     <dimen name="default_image_view_height">184dp</dimen>
-
-    <dimen name="search_activity_image_view_width">120dp</dimen>
-    <dimen name="search_activity_image_view_height">176dp</dimen>
 
     <dimen name="list_book_text_view_width_176">176dp</dimen>
     <dimen name="list_book_text_view_width_160">160dp</dimen>
