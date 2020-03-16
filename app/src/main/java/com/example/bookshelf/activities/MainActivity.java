@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,23 +51,21 @@ public class MainActivity extends AppCompatActivity {
     private void buildRecyclerView() {
         books = (RecyclerView) findViewById(R.id.rv_of_books);
         emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+
+        mainPresenter = new MainPresenter(this);
         bookAdapter = new BookAdapter(getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                Intent intent = new Intent(MainActivity.this, AboutBookActivity.class);
-                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
+                mainPresenter.onItemClick(book);
             }
 
             @Override
             public void onEditClick(Book book) {
-                Intent intent = new Intent(MainActivity.this, EditBookActivity.class);
-                intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
+                mainPresenter.onEditClick(book);
             }
         });
     }
