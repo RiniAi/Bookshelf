@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.room.Book;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
-    private Storage storage = new Storage();
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
@@ -34,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
         buildRecyclerView();
+        mainPresenter = new MainPresenter(this, books, emptyView, bookAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadBooks();
+        mainPresenter.loadBooks();
     }
 
     private void initToolbar() {
@@ -51,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private void buildRecyclerView() {
         books = (RecyclerView) findViewById(R.id.rv_of_books);
         emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
-
-        mainPresenter = new MainPresenter(this);
         bookAdapter = new BookAdapter(getApplicationContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         books.setLayoutManager(layoutManager);
@@ -68,18 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 mainPresenter.onEditClick(book);
             }
         });
-    }
-
-    private void loadBooks() {
-        List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
-        if (booksFromDatabase.isEmpty()) {
-            books.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            books.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-            bookAdapter.setList(booksFromDatabase);
-        }
     }
 
     @Override
