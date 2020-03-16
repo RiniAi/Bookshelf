@@ -15,11 +15,11 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.room.Book;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainContract.View {
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
-    private MainPresenter mainPresenter;
+    private MainContract.Presenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +37,15 @@ public class MainActivity extends AppCompatActivity {
         mainPresenter.loadBooks();
     }
 
-    private void initToolbar() {
+    @Override
+    public void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main_activity);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.main_activity_title);
     }
 
-    private void buildRecyclerView() {
+    @Override
+    public void buildRecyclerView() {
         books = (RecyclerView) findViewById(R.id.rv_of_books);
         emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
         bookAdapter = new BookAdapter(getApplicationContext());

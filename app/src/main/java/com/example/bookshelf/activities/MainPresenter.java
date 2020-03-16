@@ -1,5 +1,6 @@
 package com.example.bookshelf.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,33 +13,36 @@ import com.example.bookshelf.room.Book;
 
 import java.util.List;
 
-public class MainPresenter {
+public class MainPresenter implements MainContract.Presenter {
     private Intent intent;
-    private MainActivity mainActivity;
+    private MainContract.View context;
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
 
-    public MainPresenter(MainActivity mainActivity, RecyclerView books, LinearLayout emptyView,
+    public MainPresenter(MainContract.View context, RecyclerView books, LinearLayout emptyView,
                          BookAdapter bookAdapter) {
-        this.mainActivity = mainActivity;
+        this.context = context;
         this.books = books;
         this.emptyView = emptyView;
         this.bookAdapter = bookAdapter;
     }
 
+    @Override
     public void onItemClick(Book book) {
-        intent = new Intent(mainActivity, AboutBookActivity.class);
+        intent = new Intent((Context) context, AboutBookActivity.class);
         intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-        mainActivity.startActivity(intent);
+        ((Context) context).startActivity(intent);
     }
 
+    @Override
     public void onEditClick(Book book) {
-        intent = new Intent(mainActivity, EditBookActivity.class);
+        intent = new Intent((Context) context, EditBookActivity.class);
         intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
-        mainActivity.startActivity(intent);
+        ((Context) context).startActivity(intent);
     }
 
+    @Override
     public void loadBooks() {
         Storage storage = new Storage();
         List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
@@ -52,13 +56,15 @@ public class MainPresenter {
         }
     }
 
+    @Override
     public void goToBookChallenge() {
-        Intent bookChallenge = new Intent(mainActivity, BookChallengeActivity.class);
-        mainActivity.startActivity(bookChallenge);
+        Intent bookChallenge = new Intent((Context) context, BookChallengeActivity.class);
+        ((Context) context).startActivity(bookChallenge);
     }
 
+    @Override
     public void goToSearchActivity() {
-        Intent search = new Intent(mainActivity, SearchActivity.class);
-        mainActivity.startActivity(search);
+        Intent search = new Intent((Context) context, SearchActivity.class);
+        ((Context) context).startActivity(search);
     }
 }
