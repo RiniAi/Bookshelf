@@ -51,4 +51,14 @@ public class MainPresenter {
             bookAdapter.setList(booksFromDatabase);
         }
     }
+
+    public void goToBookChallenge() {
+        Intent bookChallenge = new Intent(mainActivity, BookChallengeActivity.class);
+        mainActivity.startActivity(bookChallenge);
+    }
+
+    public void goToSearchActivity() {
+        Intent search = new Intent(mainActivity, SearchActivity.class);
+        mainActivity.startActivity(search);
+    }
 }

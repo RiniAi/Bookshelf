@@ -1,6 +1,5 @@
 package com.example.bookshelf.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -75,12 +74,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_book_challenge:
-                Intent bookChallenge = new Intent(this, BookChallengeActivity.class);
-                startActivity(bookChallenge);
+                mainPresenter.goToBookChallenge();
                 break;
             case R.id.go_to_search:
-                Intent search = new Intent(this, SearchActivity.class);
-                startActivity(search);
+                mainPresenter.goToSearchActivity();
                 break;
         }
         return true;
