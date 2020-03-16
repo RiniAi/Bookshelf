@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,13 +29,25 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         initToolbar();
         buildRecyclerView();
-        mainPresenter = new MainPresenter(this, books, emptyView, bookAdapter);
+        mainPresenter = new MainPresenter(this, bookAdapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mainPresenter.loadBooks();
+        loadBooks();
+    }
+
+    @Override
+    public void loadBooks() {
+        boolean isListEmpty = mainPresenter.loadBooks();
+        if (isListEmpty) {
+            books.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            books.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+        }
     }
 
     @Override

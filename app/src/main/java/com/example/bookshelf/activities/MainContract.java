@@ -7,13 +7,19 @@ import com.example.bookshelf.room.Book;
 public interface MainContract {
     interface View extends BaseView {
         void buildRecyclerView();
+
+        void loadBooks();
     }
 
     interface Presenter extends BasePresenter {
         void onItemClick(Book book);
+
         void onEditClick(Book book);
-        void loadBooks();
+
+        boolean loadBooks();
+
         void goToBookChallenge();
+
         void goToSearchActivity();
     }
 }

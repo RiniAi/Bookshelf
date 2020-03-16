@@ -2,10 +2,6 @@ package com.example.bookshelf.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
-import android.widget.LinearLayout;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.Storage;
 import com.example.bookshelf.adapters.BookAdapter;
@@ -16,15 +12,10 @@ import java.util.List;
 public class MainPresenter implements MainContract.Presenter {
     private Intent intent;
     private MainContract.View context;
-    private RecyclerView books;
-    private LinearLayout emptyView;
     private BookAdapter bookAdapter;
 
-    public MainPresenter(MainContract.View context, RecyclerView books, LinearLayout emptyView,
-                         BookAdapter bookAdapter) {
+    public MainPresenter(MainContract.View context, BookAdapter bookAdapter) {
         this.context = context;
-        this.books = books;
-        this.emptyView = emptyView;
         this.bookAdapter = bookAdapter;
     }
 
@@ -43,17 +34,15 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void loadBooks() {
+    public boolean loadBooks() {
+        boolean isListEmpty = true;
         Storage storage = new Storage();
         List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
-        if (booksFromDatabase.isEmpty()) {
-            books.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            books.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
+        if (!booksFromDatabase.isEmpty()) {
+            isListEmpty = false;
             bookAdapter.setList(booksFromDatabase);
         }
+        return isListEmpty;
     }
 
     @Override
