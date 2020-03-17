@@ -12,16 +12,13 @@ import java.util.List;
 @Dao
 public interface BookDao {
     @Query("SELECT * FROM books")
-    List<Book> getList();
+    List<Book> getBooks();
 
     @Query("SELECT * FROM books WHERE title = :title AND authors = :authors")
     Book findBookTitleAndAuthor(String title, String authors);
 
     @Query("SELECT * FROM books WHERE status = :status")
-    List<Book> getBookStatusReading(String status);
-
-    @Query("SELECT * FROM books WHERE status = :read OR status = :wantToRead OR status = :reading OR status = :notReading")
-    List<Book> getBookStatus(String read, String wantToRead, String reading, String notReading);
+    List<Book> getBookWithStatus(String status);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Book book);

@@ -69,16 +69,12 @@ public class BookStorage {
         return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
-    public List<Book> searchForReadBooks() {
-        return bookDao.getBookStatusReading(BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING));
+    public List<Book> getBookWithStatus(Book.BookStatus status) {
+        return bookDao.getBookWithStatus(BookStatusConverter.fromStatusToString(status));
     }
 
-    public List<Book> searchForBooksWithStatus() {
-        return bookDao.getBookStatus(
-                BookStatusConverter.fromStatusToString(Book.BookStatus.IN_THE_PROCESS_OF_READING),
-                BookStatusConverter.fromStatusToString(Book.BookStatus.PLAN_READING),
-                BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING),
-                BookStatusConverter.fromStatusToString(Book.BookStatus.QUIT_READING));
+    public List<Book> getBooks() {
+        return bookDao.getBooks();
     }
 
     public void insertOrUpdate(Book book) {
@@ -92,9 +88,5 @@ public class BookStorage {
 
     public void delete(Book book) {
         bookDao.delete(book);
-    }
-
-    public List<Book> getList() {
-        return bookDao.getList();
     }
 }

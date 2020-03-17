@@ -24,6 +24,8 @@ import com.example.bookshelf.features.main.MainActivity;
 
 import java.util.List;
 
+import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
+
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     public static final String STORAGE_COUNTER = "counter";
     private TextView counter;
@@ -89,7 +91,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void loadBooks() {
         BookStorage storage = new BookStorage();
-        List<Book> booksFromDatabase = storage.searchForReadBooks();
+        List<Book> booksFromDatabase = storage.getBookWithStatus(FINISH_READING);
         bookAdapter.setList(booksFromDatabase);
         number.setText(String.valueOf(booksFromDatabase.size()));
     }
