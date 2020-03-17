@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
     private MainContract.Presenter presenter;
+    private MainNavigator navigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         initToolbar();
         buildRecyclerView();
         presenter = new MainPresenter(this);
+        navigator = new MainNavigator(this);
     }
 
     @Override
@@ -41,15 +43,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void hideList(){
+    public void hideList() {
         books.setVisibility(View.GONE);
         emptyView.setVisibility(View.VISIBLE);
     }
+
     @Override
-    public void showList(){
+    public void showList() {
         books.setVisibility(View.VISIBLE);
         emptyView.setVisibility(View.GONE);
     }
+
     @Override
     public void loadBooks(List<Book> booksFromDatabase) {
         bookAdapter.setList(booksFromDatabase);
@@ -73,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                presenter.onItemClick(book);
+                navigator.onItemClick(book);
             }
 
             @Override
             public void onEditClick(Book book) {
-                presenter.onEditClick(book);
+                navigator.onEditClick(book);
             }
         });
     }
@@ -94,10 +98,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_book_challenge:
-                presenter.goToBookChallenge();
+                navigator.goToBookChallenge();
                 break;
             case R.id.go_to_search:
-                presenter.goToSearchActivity();
+                navigator.goToSearchActivity();
                 break;
         }
         return true;

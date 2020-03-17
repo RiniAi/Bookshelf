@@ -18,14 +18,6 @@ public interface MainContract {
     }
 
     interface Presenter extends BasePresenter {
-        void onItemClick(Book book);
-
-        void onEditClick(Book book);
-
         void loadBooks();
-
-        void goToBookChallenge();
-
-        void goToSearchActivity();
     }
 }
