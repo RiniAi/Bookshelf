@@ -27,7 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
 import com.example.bookshelf.features.bookabout.AboutBookActivity;
 import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
@@ -46,6 +45,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.bookshelf.network.BookMapper.mapResponseToDomain;
 import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
 
 public class SearchActivity extends AppCompatActivity {
@@ -143,10 +143,9 @@ public class SearchActivity extends AppCompatActivity {
                     Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
                 } else {
                     bookResult = response.body().getItems();
-                    BookStorage storage = new BookStorage();
                     progressBar.setVisibility(View.GONE);
                     books.setVisibility(View.VISIBLE);
-                    List<Book> bookList = storage.mapResponseDomain(bookResult);
+                    List<Book> bookList = mapResponseToDomain(bookResult);
                     bookAdapter.setList(bookList);
                 }
             }
