@@ -1,15 +1,12 @@
-package com.example.bookshelf;
+package com.example.bookshelf.database;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.models.BooksApiResponseItem;
-import com.example.bookshelf.room.Book;
-import com.example.bookshelf.room.BookDao;
-import com.example.bookshelf.room.BookDatabase;
-import com.example.bookshelf.room.BookStatusConverter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Storage {
+public class BookStorage {
     private BookDatabase db = App.getInstance().getDatabase();
     private BookDao bookDao = db.bookDao();
 

@@ -1,8 +1,8 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.main;
 
-import com.example.bookshelf.BasePresenter;
-import com.example.bookshelf.BaseView;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.base.BasePresenter;
+import com.example.bookshelf.base.BaseView;
+import com.example.bookshelf.database.Book;
 
 import java.util.List;
 

@@ -1,7 +1,8 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.main;
 
-import com.example.bookshelf.Storage;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.Navigator;
+import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.BookStorage;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void loadBooks() {
-        Storage storage = new Storage();
+        BookStorage storage = new BookStorage();
         List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
         if (booksFromDatabase.isEmpty()) {
             view.hideList();

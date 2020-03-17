@@ -1,9 +1,14 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf;
 
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.database.Book;
+import com.example.bookshelf.features.bookabout.AboutBookActivity;
+import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
+import com.example.bookshelf.features.bookedit.EditBookActivity;
+import com.example.bookshelf.features.bookssearch.SearchActivity;
+import com.example.bookshelf.features.main.MainContract;
 
 public class Navigator {
     private Context view;

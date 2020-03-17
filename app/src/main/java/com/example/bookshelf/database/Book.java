@@ -1,4 +1,4 @@
-package com.example.bookshelf.room;
+package com.example.bookshelf.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

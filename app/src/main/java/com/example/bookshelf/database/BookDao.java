@@ -1,4 +1,4 @@
-package com.example.bookshelf.room;
+package com.example.bookshelf.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

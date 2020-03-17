@@ -1,4 +1,4 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.bookchallenge;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,10 +17,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.Storage;
-import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.adapters.BookChallengeAdapter;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.features.bookabout.AboutBookActivity;
+import com.example.bookshelf.features.main.MainActivity;
 
 import java.util.List;
 
@@ -88,7 +88,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     private void loadBooks() {
-        Storage storage = new Storage();
+        BookStorage storage = new BookStorage();
         List<Book> booksFromDatabase = storage.searchForReadBooks();
         bookAdapter.setList(booksFromDatabase);
         number.setText(String.valueOf(booksFromDatabase.size()));

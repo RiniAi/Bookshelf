@@ -1,4 +1,4 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.main;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,8 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.database.Book;
 
 import java.util.List;
 

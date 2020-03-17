@@ -1,4 +1,4 @@
-package com.example.bookshelf.adapters;
+package com.example.bookshelf.features.bookchallenge;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.base.BaseAdapter;
+import com.example.bookshelf.base.BaseViewHolder;
+import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
 public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter.BookViewHolder> {
