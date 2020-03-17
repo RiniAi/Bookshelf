@@ -11,26 +11,26 @@ import java.util.List;
 
 public class MainPresenter implements MainContract.Presenter {
     private Intent intent;
-    private MainContract.View context;
+    private MainContract.View view;
     private BookAdapter bookAdapter;
 
     public MainPresenter(MainContract.View context, BookAdapter bookAdapter) {
-        this.context = context;
+        this.view = context;
         this.bookAdapter = bookAdapter;
     }
 
     @Override
     public void onItemClick(Book book) {
-        intent = new Intent((Context) context, AboutBookActivity.class);
+        intent = new Intent((Context) view, AboutBookActivity.class);
         intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-        ((Context) context).startActivity(intent);
+        ((Context) view).startActivity(intent);
     }
 
     @Override
     public void onEditClick(Book book) {
-        intent = new Intent((Context) context, EditBookActivity.class);
+        intent = new Intent((Context) view, EditBookActivity.class);
         intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
-        ((Context) context).startActivity(intent);
+        ((Context) view).startActivity(intent);
     }
 
     @Override
@@ -47,13 +47,13 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void goToBookChallenge() {
-        Intent bookChallenge = new Intent((Context) context, BookChallengeActivity.class);
-        ((Context) context).startActivity(bookChallenge);
+        Intent bookChallenge = new Intent((Context) view, BookChallengeActivity.class);
+        ((Context) view).startActivity(bookChallenge);
     }
 
     @Override
     public void goToSearchActivity() {
-        Intent search = new Intent((Context) context, SearchActivity.class);
-        ((Context) context).startActivity(search);
+        Intent search = new Intent((Context) view, SearchActivity.class);
+        ((Context) view).startActivity(search);
     }
 }
