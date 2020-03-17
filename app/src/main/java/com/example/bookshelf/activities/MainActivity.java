@@ -16,6 +16,8 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.room.Book;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements MainContract.View {
     private RecyclerView books;
     private LinearLayout emptyView;
@@ -29,25 +31,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         initToolbar();
         buildRecyclerView();
-        presenter = new MainPresenter(this, bookAdapter);
+        presenter = new MainPresenter(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadBooks();
+        presenter.loadBooks();
     }
 
     @Override
-    public void loadBooks() {
-        boolean isListEmpty = presenter.loadBooks();
-        if (isListEmpty) {
-            books.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            books.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-        }
+    public void hideList(){
+        books.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+    @Override
+    public void showList(){
+        books.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
+    }
+    @Override
+    public void loadBooks(List<Book> booksFromDatabase) {
+        bookAdapter.setList(booksFromDatabase);
     }
 
     @Override

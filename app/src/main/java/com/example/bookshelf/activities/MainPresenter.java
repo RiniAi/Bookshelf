@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.example.bookshelf.Storage;
-import com.example.bookshelf.adapters.BookAdapter;
 import com.example.bookshelf.room.Book;
 
 import java.util.List;
@@ -12,11 +11,9 @@ import java.util.List;
 public class MainPresenter implements MainContract.Presenter {
     private Intent intent;
     private MainContract.View view;
-    private BookAdapter bookAdapter;
 
-    public MainPresenter(MainContract.View context, BookAdapter bookAdapter) {
+    public MainPresenter(MainContract.View context) {
         this.view = context;
-        this.bookAdapter = bookAdapter;
     }
 
     @Override
@@ -34,15 +31,15 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public boolean loadBooks() {
-        boolean isListEmpty = true;
+    public void loadBooks() {
         Storage storage = new Storage();
         List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
-        if (!booksFromDatabase.isEmpty()) {
-            isListEmpty = false;
-            bookAdapter.setList(booksFromDatabase);
+        if (booksFromDatabase.isEmpty()) {
+            view.hideList();
+        } else {
+            view.showList();
+            view.loadBooks(booksFromDatabase);
         }
-        return isListEmpty;
     }
 
     @Override

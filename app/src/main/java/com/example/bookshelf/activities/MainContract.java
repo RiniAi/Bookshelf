@@ -4,11 +4,17 @@ import com.example.bookshelf.BasePresenter;
 import com.example.bookshelf.BaseView;
 import com.example.bookshelf.room.Book;
 
+import java.util.List;
+
 public interface MainContract {
     interface View extends BaseView {
         void buildRecyclerView();
 
-        void loadBooks();
+        void hideList();
+
+        void showList();
+
+        void loadBooks(List<Book> booksFromDatabase);
     }
 
     interface Presenter extends BasePresenter {
@@ -16,7 +22,7 @@ public interface MainContract {
 
         void onEditClick(Book book);
 
-        boolean loadBooks();
+        void loadBooks();
 
         void goToBookChallenge();
 
