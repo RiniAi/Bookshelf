@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main_activity);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.main_activity_title);
     }

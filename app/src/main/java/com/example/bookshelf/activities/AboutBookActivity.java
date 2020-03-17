@@ -21,8 +21,15 @@ public class AboutBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
 
+        initToolbar();
         getBook();
         initControls();
+    }
+
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.about_book_title);
     }
 
     private void getBook() {

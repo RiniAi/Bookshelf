@@ -46,7 +46,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_books_challenge);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.book_challenge_title);
     }
