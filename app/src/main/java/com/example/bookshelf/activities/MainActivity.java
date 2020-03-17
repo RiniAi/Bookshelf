@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
     private MainContract.Presenter presenter;
-    private MainNavigator navigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         initToolbar();
         buildRecyclerView();
         presenter = new MainPresenter(this);
-        navigator = new MainNavigator(this);
     }
 
     @Override
@@ -77,12 +75,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                navigator.onItemClick(book);
+                presenter.openBook(book);
             }
 
             @Override
             public void onEditClick(Book book) {
-                navigator.onEditClick(book);
+                presenter.editBook(book);
             }
         });
     }
@@ -98,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_book_challenge:
-                navigator.goToBookChallenge();
+                presenter.openBookChallenge();
                 break;
             case R.id.go_to_search:
-                navigator.goToSearchActivity();
+                presenter.openSearchActivity();
                 break;
         }
         return true;
