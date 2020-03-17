@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
-    private MainContract.Presenter mainPresenter;
+    private MainContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         initToolbar();
         buildRecyclerView();
-        mainPresenter = new MainPresenter(this, bookAdapter);
+        presenter = new MainPresenter(this, bookAdapter);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void loadBooks() {
-        boolean isListEmpty = mainPresenter.loadBooks();
+        boolean isListEmpty = presenter.loadBooks();
         if (isListEmpty) {
             books.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                mainPresenter.onItemClick(book);
+                presenter.onItemClick(book);
             }
 
             @Override
             public void onEditClick(Book book) {
-                mainPresenter.onEditClick(book);
+                presenter.onEditClick(book);
             }
         });
     }
@@ -89,10 +89,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_book_challenge:
-                mainPresenter.goToBookChallenge();
+                presenter.goToBookChallenge();
                 break;
             case R.id.go_to_search:
-                mainPresenter.goToSearchActivity();
+                presenter.goToSearchActivity();
                 break;
         }
         return true;
