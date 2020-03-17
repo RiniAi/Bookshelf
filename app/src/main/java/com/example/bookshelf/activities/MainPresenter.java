@@ -12,8 +12,8 @@ public class MainPresenter implements MainContract.Presenter {
     private Intent intent;
     private MainContract.View view;
 
-    public MainPresenter(MainContract.View context) {
-        this.view = context;
+    public MainPresenter(MainContract.View view) {
+        this.view = view;
     }
 
     @Override
