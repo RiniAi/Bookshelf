@@ -122,7 +122,8 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
                 startActivity(intent);
             }
-
+        });
+        bookAdapter.setOnEditClickListener(new BookSearchAdapter.OnEditClickListener() {
             @Override
             public void onEditClick(Book book) {
                 Intent intent = new Intent(SearchActivity.this, EditBookActivity.class);

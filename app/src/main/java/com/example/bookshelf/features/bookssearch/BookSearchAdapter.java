@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
     private OnItemClickListener listener;
+    private OnEditClickListener listenerEdit;
 
     public BookSearchAdapter(Context context) {
         super(context);
@@ -28,11 +29,15 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
         this.listener = listener;
     }
 
+    public void setOnEditClickListener(OnEditClickListener listenerEdit) {
+        this.listenerEdit = listenerEdit;
+    }
+
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_search, parent, false);
-        return new BookViewHolder(view, listener);
+        return new BookViewHolder(view, listener, listenerEdit);
     }
 
     @Override
@@ -56,7 +61,7 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
         TextView title;
         ImageButton button;
 
-        BookViewHolder(View itemView, OnItemClickListener listener) {
+        BookViewHolder(View itemView, OnItemClickListener listener, OnEditClickListener listenerEdit) {
             super(itemView);
             cover = (ImageView) itemView.findViewById(R.id.iv_search_activity);
             cover.setClipToOutline(true);
@@ -77,8 +82,8 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onEditClick(getItem(position));
+                    if (listenerEdit != null && position != RecyclerView.NO_POSITION) {
+                        listenerEdit.onEditClick(getItem(position));
                     }
                 }
             });

@@ -44,7 +44,9 @@ public abstract class BaseAdapter<T, VH extends BaseViewHolder> extends Recycler
 
     public interface OnItemClickListener {
         void onItemClick(Book book);
+    }
 
+    public interface OnEditClickListener {
         void onEditClick(Book book);
     }
 }

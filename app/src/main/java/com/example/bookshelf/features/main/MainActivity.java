@@ -72,7 +72,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             public void onItemClick(Book book) {
                 presenter.openBook(book);
             }
-
+        });
+        bookAdapter.setOnEditClickListener(new BookAdapter.OnEditClickListener() {
             @Override
             public void onEditClick(Book book) {
                 presenter.editBook(book);
