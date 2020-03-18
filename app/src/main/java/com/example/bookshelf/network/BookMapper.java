@@ -13,7 +13,7 @@ public class BookMapper {
         for (int i = 0; i < bookResult.size(); i++) {
             Book book = new Book();
             if (bookResult.get(i).getVolumeInfo().getAuthors() == null) {
-                book.setTitle("");
+                book.setAuthors("");
             } else {
                 book.setAuthors(bookResult.get(i).getVolumeInfo().getAuthors().toString()
                         .replace("[", "")
