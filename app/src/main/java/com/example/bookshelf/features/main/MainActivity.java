@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         initToolbar();
         buildRecyclerView();
-        presenter = new MainPresenter(this);
+        presenter = new MainPresenter(this, this);
     }
 
     @Override

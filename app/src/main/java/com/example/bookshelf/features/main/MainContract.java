@@ -16,8 +16,6 @@ public interface MainContract {
     }
 
     interface Presenter extends BasePresenter {
-        void initNavigator();
-
         void loadBooks();
 
         void openBook(Book book);
