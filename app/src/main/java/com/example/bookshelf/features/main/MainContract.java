@@ -14,7 +14,7 @@ public interface MainContract {
 
         void showList();
 
-        void loadBooks(List<Book> booksFromDatabase);
+        void loadBooks(List<Book> books);
     }
 
     interface Presenter extends BasePresenter {

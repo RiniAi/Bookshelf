@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void loadBooks(List<Book> booksFromDatabase) {
-        bookAdapter.setList(booksFromDatabase);
+    public void loadBooks(List<Book> books) {
+        bookAdapter.setList(books);
     }
 
     @Override
