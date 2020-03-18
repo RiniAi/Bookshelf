@@ -28,11 +28,9 @@ public class BookMapper {
                     && bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail() != null) {
                 book.setImageLinks(bookResult.get(i).getVolumeInfo().getImageLinks().getThumbnail());
             }
-            if (bookResult.get(i).getVolumeInfo().getAverageRating() == 0) {
-                book.setAverageRating(0);
-            } else {
-                book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
-            }
+
+            book.setAverageRating(bookResult.get(i).getVolumeInfo().getAverageRating());
+
             if (bookResult.get(i).getVolumeInfo().getPublisher() == null) {
                 book.setPublisher("");
             } else {
@@ -43,11 +41,9 @@ public class BookMapper {
             } else {
                 book.setPublishedDate(bookResult.get(i).getVolumeInfo().getPublishedDate());
             }
-            if (bookResult.get(i).getVolumeInfo().getPageCount() == 0) {
-                book.setPageCount(0);
-            } else {
-                book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
-            }
+
+            book.setPageCount(bookResult.get(i).getVolumeInfo().getPageCount());
+
             if (bookResult.get(i).getVolumeInfo().getLanguage() == null) {
                 book.setLanguage("");
             } else {
