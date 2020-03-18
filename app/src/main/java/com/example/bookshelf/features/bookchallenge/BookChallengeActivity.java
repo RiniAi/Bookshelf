@@ -1,9 +1,6 @@
 package com.example.bookshelf.features.bookchallenge;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,58 +15,49 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
-import com.example.bookshelf.features.bookabout.AboutBookActivity;
-import com.example.bookshelf.features.main.MainActivity;
 
 import java.util.List;
 
-import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
-
-public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
-    public static final String STORAGE_COUNTER = "counter";
+public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
     private TextView counter;
-    private TextView number;
-    private SharedPreferences sharedPreferences;
-    private String count;
-    private RecyclerView books;
     private BookChallengeAdapter bookAdapter;
+    private BookChallengeContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
 
+        presenter = new BookChallengePresenter(this, this);
         initToolbar();
-        loadCounter();
-        initSeekBar();
+        presenter.loadCounter();
         initRecyclerView();
-        loadBooks();
+        presenter.loadBooks();
     }
 
-    private void initToolbar() {
+    @Override
+    public void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.book_challenge_title);
     }
 
-    private void loadCounter() {
+    @Override
+    public void initCounter(String count) {
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
-        number = (TextView) findViewById(R.id.tv_number_books_challenge);
-        books = (RecyclerView) findViewById(R.id.rv_book_challenge);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        count = sharedPreferences.getString(STORAGE_COUNTER, "0");
-        this.counter.setText(count);
+        counter.setText(count);
     }
 
-    private void initSeekBar() {
-        SeekBar sb;
-        sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
+    @Override
+    public void initSeekBar(int count) {
+        SeekBar sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
         sb.setOnSeekBarChangeListener(this);
-        sb.setProgress(Integer.parseInt(count));
+        sb.setProgress(count);
     }
 
-    private void initRecyclerView() {
+    @Override
+    public void initRecyclerView() {
+        RecyclerView books = (RecyclerView) findViewById(R.id.rv_book_challenge);
         GridLayoutManager layoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
         books.setLayoutManager(layoutManager);
         bookAdapter = new BookChallengeAdapter(getApplicationContext());
@@ -77,28 +65,26 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         bookAdapter.setOnItemClickListener(new BookChallengeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                Intent intent = new Intent(BookChallengeActivity.this, AboutBookActivity.class);
-                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onEditClick(Book book) {
-
+                presenter.openBook(book);
             }
         });
     }
 
-    private void loadBooks() {
-        BookStorage storage = new BookStorage();
-        List<Book> books = storage.getAllWithStatus(FINISH_READING);
+    @Override
+    public void showList(List<Book> books, String size) {
         bookAdapter.setList(books);
-        number.setText(String.valueOf(books.size()));
+        TextView number = (TextView) findViewById(R.id.tv_number_books_challenge);
+        number.setText(size);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        counter.setText(String.valueOf(seekBar.getProgress()));
+        presenter.convertCount(seekBar);
+    }
+
+    @Override
+    public void setProgress(String count) {
+        counter.setText(count);
     }
 
     @Override
@@ -107,9 +93,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(STORAGE_COUNTER, counter.getText().toString());
-        editor.apply();
+        String count = counter.getText().toString();
+        presenter.saveCount(seekBar, count);
         Toast.makeText(BookChallengeActivity.this, R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
     }
 
@@ -124,8 +109,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_main_activity:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+                presenter.openMain();
                 break;
         }
         return true;
