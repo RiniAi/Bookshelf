@@ -12,12 +12,12 @@ public class BookStorage {
         return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
-    public List<Book> getBookWithStatus(Book.BookStatus status) {
-        return bookDao.getBookWithStatus(BookStatusConverter.fromStatusToString(status));
+    public List<Book> getAllWithStatus(Book.BookStatus status) {
+        return bookDao.getAllWithStatus(BookStatusConverter.fromStatusToString(status));
     }
 
-    public List<Book> getBooks() {
-        return bookDao.getBooks();
+    public List<Book> getAll() {
+        return bookDao.getAll();
     }
 
     public void insertOrUpdate(Book book) {

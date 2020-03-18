@@ -22,7 +22,7 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void loadBooks() {
         BookStorage storage = new BookStorage();
-        List<Book> booksFromDatabase = storage.getBooks();
+        List<Book> booksFromDatabase = storage.getAll();
         if (booksFromDatabase.isEmpty()) {
             view.hideList();
         } else {
