@@ -26,8 +26,7 @@ public class MainPresenter implements MainContract.Presenter {
         if (books.isEmpty()) {
             view.hideList();
         } else {
-            view.showList();
-            view.loadBooks(books);
+            view.showList(books);
         }
     }
 

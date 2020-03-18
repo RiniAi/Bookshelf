@@ -12,9 +12,7 @@ public interface MainContract {
 
         void hideList();
 
-        void showList();
-
-        void loadBooks(List<Book> books);
+        void showList(List<Book> books);
     }
 
     interface Presenter extends BasePresenter {

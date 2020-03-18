@@ -46,14 +46,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void showList() {
+    public void showList(List<Book> booksList) {
         books.setVisibility(View.VISIBLE);
         emptyView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void loadBooks(List<Book> books) {
-        bookAdapter.setList(books);
+        bookAdapter.setList(booksList);
     }
 
     @Override
