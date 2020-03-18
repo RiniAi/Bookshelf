@@ -24,6 +24,6 @@ public interface MainContract {
 
         void openBookChallenge();
 
-        void openSearchActivity();
+        void openSearch();
     }
 }

@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 presenter.openBookChallenge();
                 break;
             case R.id.go_to_search:
-                presenter.openSearchActivity();
+                presenter.openSearch();
                 break;
         }
         return true;

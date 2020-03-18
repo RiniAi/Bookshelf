@@ -33,7 +33,7 @@ public class Navigator {
         context.startActivity(bookChallenge);
     }
 
-    public void openSearchActivity() {
+    public void openSearch() {
         Intent search = new Intent(context, SearchActivity.class);
         context.startActivity(search);
     }
