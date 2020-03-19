@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.features.bookabout.AboutBookActivity;
+import com.example.bookshelf.features.bookabout.AboutBookPresenter;
 import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
 import com.example.bookshelf.features.main.MainActivity;
@@ -119,7 +120,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Book book) {
                 Intent intent = new Intent(SearchActivity.this, AboutBookActivity.class);
-                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
+                intent.putExtra(AboutBookPresenter.EXTRA_BOOK, book);
                 startActivity(intent);
             }
         });
