@@ -1,7 +1,6 @@
 package com.example.bookshelf.features.bookedit;
 
 import android.os.Bundle;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,102 +17,47 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStatusConverter;
-import com.example.bookshelf.database.BookStorage;
 import com.squareup.picasso.Picasso;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-public class EditBookActivity extends AppCompatActivity {
-    public static final String EXTRA_BOOK = "book";
-    private BookStorage storage = new BookStorage();
+public class EditBookActivity extends AppCompatActivity implements EditBookContract.View {
     private boolean isFavorite = false;
+    private EditBookContract.Presenter presenter;
+    private Toolbar toolbar;
     private Spinner status;
-    private Book book;
-    private String date;
+    private TextView title;
+    private TextView author;
+    private ImageView cover;
+    private RatingBar averRating;
+    private RatingBar userRating;
     private DatePicker datePicker;
+    private ToggleButton addFavorite;
+    private Button save;
+    private Button delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_book);
 
-        initToolbar();
-        getBook();
         initControls();
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.edit_book_title);
-    }
-
-    private void getBook() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
-            book = (Book) bundle.getSerializable(EXTRA_BOOK);
-        }
-    }
-
-    private void buildStatusSpinner() {
-        status = (Spinner) findViewById(R.id.spinner_status_edit_book);
-        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        status.setAdapter(adapter);
+        presenter = new EditBookPresenter(this, this, getIntent().getExtras());
+        presenter.onStart();
     }
 
     private void initControls() {
-        buildStatusSpinner();
-        TextView title = (TextView) findViewById(R.id.tv_title_edit_book);
-        TextView author = (TextView) findViewById(R.id.tv_author_edit_book);
-        ImageView imageView = (ImageView) findViewById(R.id.iv_edit_book);
-        RatingBar rating = (RatingBar) findViewById(R.id.tv_averRating_edit_book);
-        RatingBar ratingBar = (RatingBar) findViewById(R.id.rb_rating_edit_book);
-        datePicker = (DatePicker) findViewById(R.id.datePicker);
-        ToggleButton favoriteClick = (ToggleButton) findViewById(R.id.btn_favorite);
-        Button save = (Button) findViewById(R.id.btn_save_edit_book);
-        Button delete = (Button) findViewById(R.id.btn_delete_edit_book);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        title = (TextView) findViewById(R.id.tv_title_edit_book);
+        author = (TextView) findViewById(R.id.tv_author_edit_book);
+        cover = (ImageView) findViewById(R.id.iv_edit_book);
+        averRating = (RatingBar) findViewById(R.id.rb_aver_rating_edit_book);
+        userRating = (RatingBar) findViewById(R.id.rb_user_rating_edit_book);
+        status = (Spinner) findViewById(R.id.spinner_status_edit_book);
+        datePicker = (DatePicker) findViewById(R.id.date_picker);
+        addFavorite = (ToggleButton) findViewById(R.id.btn_favorite);
+        save = (Button) findViewById(R.id.btn_save_edit_book);
+        delete = (Button) findViewById(R.id.btn_delete_edit_book);
 
-        Book bookDb = storage.searchBookDb(book);
-        if (bookDb != null) {
-            delete.setVisibility(View.VISIBLE);
-        } else {
-            delete.setVisibility(View.GONE);
-        }
-        title.setText(book.getTitle());
-        author.setText(book.getAuthors());
-        Picasso.get().load(book.getImageLinks()).into(imageView);
-        rating.setRating(book.getAverageRating());
-        ratingBar.setRating(book.getUserRating());
-
-        if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
-            stringConvertingToDatePicker();
-        }
-        favoriteClick.setChecked(book.isFavorite());
-        isFavorite = book.isFavorite;
-
-        if (book.getStatus() != null) {
-            switch (book.getStatus()) {
-                case IN_THE_PROCESS_OF_READING:
-                    status.setSelection(0);
-                    break;
-                case PLAN_READING:
-                    status.setSelection(1);
-                    break;
-                case FINISH_READING:
-                    status.setSelection(2);
-                    break;
-                case QUIT_READING:
-                    status.setSelection(3);
-                    break;
-            }
-        }
-
-        favoriteClick.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        addFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 isFavorite = isChecked;
@@ -123,16 +67,8 @@ public class EditBookActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDate();
-                book.userRating = ratingBar.getRating();
-                book.isFavorite = isFavorite;
-                book.setStatus(BookStatusConverter.fromStringToStatus(status.getSelectedItem().toString()));
-                if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
-                    book.readDate = date;
-                } else {
-                    book.readDate = "";
-                }
-                storage.insertOrUpdate(book);
+                presenter.insertOrUpdateBook(userRating.getRating(),
+                        status.getSelectedItem().toString(), isFavorite);
                 finish();
             }
         });
@@ -140,35 +76,100 @@ public class EditBookActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                storage.delete(book);
+                presenter.deleteBook();
                 finish();
             }
         });
+
+        buildToolbar();
+        buildStatusSpinner();
     }
 
-    private void getDate() {
-        int dayOfMonth = datePicker.getDayOfMonth();
-        int month = datePicker.getMonth();
-        int year = datePicker.getYear();
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, dayOfMonth);
-        date = DateUtils.formatDateTime(this, calendar.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_NUMERIC_DATE | DateUtils.FORMAT_SHOW_YEAR);
+    private void buildToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.edit_book_title);
     }
 
-    private void stringConvertingToDatePicker() {
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        Date date = null;
-        try {
-            date = format.parse(book.getReadDate());
-        } catch (ParseException e) {
-            e.printStackTrace();
+    private void buildStatusSpinner() {
+        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        status.setAdapter(adapter);
+    }
+
+    @Override
+    public void setTitle(String title) {
+        this.title.setText(title);
+    }
+
+    @Override
+    public void setAuthors(String authors) {
+        this.author.setText(authors);
+    }
+
+    @Override
+    public void setImage(String image) {
+        Picasso.get().load(image).into(cover);
+    }
+
+    @Override
+    public void setBrokenImage() {
+        this.cover.setImageResource(R.drawable.ic_broken_image);
+    }
+
+    @Override
+    public void setAverRating(float averRating) {
+        this.averRating.setRating(averRating);
+    }
+
+    @Override
+    public void setUserRating(float userRating) {
+        this.userRating.setRating(userRating);
+    }
+
+    @Override
+    public void setStatus(Book.BookStatus s) {
+        switch (s) {
+            case IN_THE_PROCESS_OF_READING:
+                status.setSelection(0);
+                break;
+            case PLAN_READING:
+                status.setSelection(1);
+                break;
+            case FINISH_READING:
+                status.setSelection(2);
+                break;
+            case QUIT_READING:
+                status.setSelection(3);
+                break;
         }
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    @Override
+    public void updateDate(int year, int month, int dayOfMonth) {
         datePicker.updateDate(year, month, dayOfMonth);
+    }
+
+    @Override
+    public void setFavorite(boolean isFavorite) {
+        addFavorite.setChecked(isFavorite);
+        this.isFavorite = isFavorite;
+    }
+
+    @Override
+    public void showDelete() {
+        delete.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideDelete() {
+        delete.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void getDate() {
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int dayOfMonth = datePicker.getDayOfMonth();
+        presenter.setDate(year, month, dayOfMonth);
     }
 }

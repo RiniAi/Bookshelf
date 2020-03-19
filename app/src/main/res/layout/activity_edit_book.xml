@@ -37,7 +37,7 @@
             tools:src="@tools:sample/avatars" />
 
         <RatingBar
-            android:id="@+id/tv_averRating_edit_book"
+            android:id="@+id/rb_aver_rating_edit_book"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,13 +76,13 @@
                 android:text="@string/edit_book_rating" />
 
             <RatingBar
-                android:id="@+id/rb_rating_edit_book"
+                android:id="@+id/rb_user_rating_edit_book"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5" />
 
             <DatePicker
-                android:id="@+id/datePicker"
+                android:id="@+id/date_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"
