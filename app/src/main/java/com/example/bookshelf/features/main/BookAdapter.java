@@ -21,26 +21,26 @@ import com.example.bookshelf.database.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
 public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
-    private OnItemClickListener listener;
-    private OnEditClickListener listenerEdit;
+    private OnItemClickListener onClickListener;
+    private OnEditClickListener onEditListener;
 
     public BookAdapter(Context context) {
         super(context);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+    public void setOnItemClickListener(OnItemClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 
-    public void setOnEditClickListener(OnEditClickListener listenerEdit) {
-        this.listenerEdit = listenerEdit;
+    public void setOnEditClickListener(OnEditClickListener onEditListener) {
+        this.onEditListener = onEditListener;
     }
 
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_book, parent, false);
-        return new BookViewHolder(view, listener, listenerEdit);
+        return new BookViewHolder(view, onClickListener, onEditListener);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
         TextView status;
         ImageButton button;
 
-        BookViewHolder(View itemView, OnItemClickListener listener, OnEditClickListener listenerEdit) {
+        BookViewHolder(View itemView, OnItemClickListener onClickListener, OnEditClickListener onEditListener) {
             super(itemView);
             cover = (ImageView) itemView.findViewById(R.id.iv_book_list);
             cover.setClipToOutline(true);
@@ -87,8 +87,8 @@ public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(getItem(position));
+                    if (onClickListener != null && position != RecyclerView.NO_POSITION) {
+                        onClickListener.onItemClick(getItem(position));
                     }
                 }
 
@@ -97,8 +97,8 @@ public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    if (listenerEdit != null && position != RecyclerView.NO_POSITION) {
-                        listenerEdit.onEditClick(getItem(position));
+                    if (onEditListener != null && position != RecyclerView.NO_POSITION) {
+                        onEditListener.onEditClick(getItem(position));
                     }
                 }
             });

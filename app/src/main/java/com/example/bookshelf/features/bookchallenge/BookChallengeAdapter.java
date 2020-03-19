@@ -17,10 +17,10 @@ import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
 public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter.BookViewHolder> {
-    private OnItemClickListener listener;
+    private OnItemClickListener onClickListener;
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
+    public void setOnItemClickListener(OnItemClickListener onClickListener) {
+        this.onClickListener = onClickListener;
     }
 
     public BookChallengeAdapter(Context context) {
@@ -31,7 +31,7 @@ public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_book_challenge, parent, false);
-        return new BookViewHolder(view, listener);
+        return new BookViewHolder(view, onClickListener);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter
         TextView title;
         TextView userRating;
 
-        BookViewHolder(View itemView, OnItemClickListener listener) {
+        BookViewHolder(View itemView, OnItemClickListener onClickListener) {
             super(itemView);
             cover = (ImageView) itemView.findViewById(R.id.iv_book_challenge);
             cover.setClipToOutline(true);
@@ -63,8 +63,8 @@ public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(getItem(position));
+                    if (onClickListener != null && position != RecyclerView.NO_POSITION) {
+                        onClickListener.onItemClick(getItem(position));
                     }
                 }
 
