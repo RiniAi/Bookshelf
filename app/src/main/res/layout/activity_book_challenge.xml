@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_number_books_challenge"
+            android:id="@+id/tv_size_list_books_challenge"
             android:layout_width="@dimen/padding_24dp"
             android:layout_height="wrap_content"
             tools:text="12" />

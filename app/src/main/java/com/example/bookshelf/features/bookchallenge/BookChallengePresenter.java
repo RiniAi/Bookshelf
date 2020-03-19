@@ -3,7 +3,6 @@ package com.example.bookshelf.features.bookchallenge;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.widget.SeekBar;
 
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.database.Book;
@@ -33,29 +32,39 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
 
     private void loadCounter() {
         String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
-        view.initCounter(count);
+        view.setCounter(count);
+        getProgress(count);
+    }
+
+    private void getProgress(String count) {
         int counter = Integer.parseInt(count);
-        view.initSeekBar(counter);
+        view.setProgressBar(counter);
     }
 
     private void loadBooks() {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAllWithStatus(FINISH_READING);
+        view.showList(books);
+        getSizeBooks(books);
+    }
+
+    private void getSizeBooks(List<Book> books) {
         String size = String.valueOf(books.size());
-        view.showList(books, size);
+        view.setSizeList(size);
     }
 
     @Override
-    public void convertCount(SeekBar seekBar) {
-        String count = String.valueOf(seekBar.getProgress());
-        view.setProgress(count);
+    public void onProgressChanged(int i) {
+        String progress = String.valueOf(i);
+        view.setProgressCounter(progress);
     }
 
     @Override
-    public void saveCount(SeekBar seekBar, String count) {
+    public void saveCounter(String count) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(STORAGE_COUNTER, count);
         editor.apply();
+        view.showSaveCounter();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.example.bookshelf.features.bookchallenge;
 
-import android.widget.SeekBar;
-
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.base.BaseView;
 import com.example.bookshelf.database.Book;
@@ -26,6 +24,9 @@ public interface BookChallengeContract {
 
     interface Presenter extends BasePresenter {
 
+        void onProgressChanged(int i);
+
+        void saveCounter(String count);
 
         void openBook(Book book);
 
