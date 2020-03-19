@@ -9,13 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
-public class AboutBookActivity extends AppCompatActivity {
-    public static final String EXTRA_BOOK = "book";
+public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
+    private AboutBookPresenter presenter;
     private Toolbar toolbar;
-    private Book book;
     private TextView title;
     private TextView author;
     private ImageView cover;
@@ -33,7 +31,8 @@ public class AboutBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_book);
 
         initControls();
-        getBook();
+        presenter = new AboutBookPresenter(this);
+        presenter.onStart();
     }
 
     private void initControls() {
@@ -69,17 +68,9 @@ public class AboutBookActivity extends AppCompatActivity {
         buildToolbar();
     }
 
-    public void buildToolbar() {
+    private void buildToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.about_book_title);
     }
-
-    private void getBook() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
-            book = (Book) bundle.getSerializable(EXTRA_BOOK);
-        }
-    }
-
 
 }
