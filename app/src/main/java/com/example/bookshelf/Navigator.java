@@ -17,29 +17,29 @@ public class Navigator {
     }
 
     public void openBook(Book book) {
-        Intent aboutBook = new Intent(context, AboutBookActivity.class);
-        aboutBook.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-        context.startActivity(aboutBook);
+        Intent intent = new Intent(context, AboutBookActivity.class);
+        intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
+        context.startActivity(intent);
     }
 
     public void editBook(Book book) {
-        Intent editBook = new Intent(context, EditBookActivity.class);
-        editBook.putExtra(EditBookActivity.EXTRA_BOOK, book);
-        context.startActivity(editBook);
+        Intent intent = new Intent(context, EditBookActivity.class);
+        intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
+        context.startActivity(intent);
     }
 
     public void openMain() {
-        Intent main = new Intent(context, SearchActivity.class);
-        context.startActivity(main);
+        Intent intent = new Intent(context, SearchActivity.class);
+        context.startActivity(intent);
     }
 
     public void openBookChallenge() {
-        Intent bookChallenge = new Intent(context, BookChallengeActivity.class);
-        context.startActivity(bookChallenge);
+        Intent intent = new Intent(context, BookChallengeActivity.class);
+        context.startActivity(intent);
     }
 
     public void openSearch() {
-        Intent search = new Intent(context, SearchActivity.class);
-        context.startActivity(search);
+        Intent intent = new Intent(context, SearchActivity.class);
+        context.startActivity(intent);
     }
 }
