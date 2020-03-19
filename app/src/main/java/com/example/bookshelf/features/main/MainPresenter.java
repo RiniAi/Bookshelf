@@ -47,4 +47,7 @@ public class MainPresenter implements MainContract.Presenter {
     public void openSearch() {
         navigator.openSearch();
     }
+
+    @Override
+    public void onStart() {}
 }

@@ -26,15 +26,19 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     }
 
     @Override
-    public void loadCounter() {
+    public void onStart() {
+        loadCounter();
+        loadBooks();
+    }
+
+    private void loadCounter() {
         String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
         view.initCounter(count);
         int counter = Integer.parseInt(count);
         view.initSeekBar(counter);
     }
 
-    @Override
-    public void loadBooks() {
+    private void loadBooks() {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAllWithStatus(FINISH_READING);
         String size = String.valueOf(books.size());

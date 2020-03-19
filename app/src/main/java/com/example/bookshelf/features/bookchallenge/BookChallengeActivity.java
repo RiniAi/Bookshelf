@@ -34,9 +34,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
         initControls();
         presenter = new BookChallengePresenter(this, this);
-        presenter.loadCounter();
-        initRecyclerView();
-        presenter.loadBooks();
+        presenter.onStart();
     }
 
     private void initControls() {
