@@ -10,25 +10,22 @@ import java.util.List;
 
 public interface BookChallengeContract {
     interface View extends BaseView {
-        void initCounter(String count);
 
-        void initSeekBar(int count);
+        void setCounter(String count);
 
-        void initRecyclerView();
+        void setProgressBar(int count);
 
-        void showList(List<Book> books, String size);
+        void showList(List<Book> books);
 
-        void setProgress(String counter);
+        void setSizeList(String size);
+
+        void setProgressCounter(String count);
+
+        void showSaveCounter();
     }
 
     interface Presenter extends BasePresenter {
-        void loadCounter();
 
-        void loadBooks();
-
-        void convertCount(SeekBar seekBar);
-
-        void saveCount(SeekBar seekBar, String count);
 
         void openBook(Book book);
 

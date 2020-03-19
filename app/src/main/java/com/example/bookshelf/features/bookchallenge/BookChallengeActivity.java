@@ -40,9 +40,10 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
-        sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
         number = (TextView) findViewById(R.id.tv_number_books_challenge);
+        sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
+        sb.setOnSeekBarChangeListener(this);
         buildToolbar();
         buildRecyclerView();
     }
@@ -66,21 +67,37 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void initCounter(String count) {
+    public void setCounter(String count) {
         counter.setText(count);
     }
 
     @Override
-    public void initSeekBar(int count) {
-        sb.setOnSeekBarChangeListener(this);
+    public void setProgressBar (int count) {
         sb.setProgress(count);
     }
 
+    @Override
+    public void showList(List<Book> books) {
+        bookAdapter.setList(books);
+    }
 
     @Override
-    public void showList(List<Book> books, String size) {
-        bookAdapter.setList(books);
+    public void setSizeList(String size) {
         number.setText(size);
+    }
+
+    @Override
+    public void setProgressCounter(String count) {
+        counter.setText(count);
+    }
+
+    @Override
+    public void showSaveCounter() {
+        Toast.makeText(BookChallengeActivity.this, R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
     }
 
     @Override
@@ -89,19 +106,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setProgress(String count) {
-        counter.setText(count);
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-    }
-
-    @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         String count = counter.getText().toString();
-        presenter.saveCount(seekBar, count);
-        Toast.makeText(BookChallengeActivity.this, R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
+        presenter.saveCount(count);
     }
 
     @Override
