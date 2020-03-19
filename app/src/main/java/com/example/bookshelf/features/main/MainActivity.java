@@ -1,6 +1,5 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,17 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.Storage;
-import com.example.bookshelf.adapters.BookAdapter;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    private Storage storage = new Storage();
+public class MainActivity extends AppCompatActivity implements MainContract.View {
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
+    private MainContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,54 +30,54 @@ public class MainActivity extends AppCompatActivity {
 
         initToolbar();
         buildRecyclerView();
+        presenter = new MainPresenter(this, this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadBooks();
+        presenter.loadBooks();
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main_activity);
+    @Override
+    public void hideList() {
+        books.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showList(List<Book> booksList) {
+        books.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
+        bookAdapter.setList(booksList);
+    }
+
+    @Override
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.main_activity_title);
     }
 
-    private void buildRecyclerView() {
+    @Override
+    public void buildRecyclerView() {
         books = (RecyclerView) findViewById(R.id.rv_of_books);
         emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         bookAdapter = new BookAdapter(getApplicationContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                Intent intent = new Intent(MainActivity.this, AboutBookActivity.class);
-                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
+                presenter.openBook(book);
             }
 
             @Override
             public void onEditClick(Book book) {
-                Intent intent = new Intent(MainActivity.this, EditBookActivity.class);
-                intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
+                presenter.editBook(book);
             }
         });
-    }
-
-    private void loadBooks() {
-        List<Book> booksFromDatabase = storage.searchForBooksWithStatus();
-        if (booksFromDatabase.isEmpty()) {
-            books.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
-            books.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-            bookAdapter.setList(booksFromDatabase);
-        }
     }
 
     @Override
@@ -94,12 +91,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_book_challenge:
-                Intent bookChallenge = new Intent(this, BookChallengeActivity.class);
-                startActivity(bookChallenge);
+                presenter.openBookChallenge();
                 break;
             case R.id.go_to_search:
-                Intent search = new Intent(this, SearchActivity.class);
-                startActivity(search);
+                presenter.openSearch();
                 break;
         }
         return true;

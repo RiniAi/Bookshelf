@@ -1,4 +1,4 @@
-package com.example.bookshelf.adapters;
+package com.example.bookshelf.features.main;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,19 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.base.BaseAdapter;
+import com.example.bookshelf.base.BaseViewHolder;
+import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
-public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
+public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
     private OnItemClickListener listener;
 
-    public BookSearchAdapter(Context context) {
+    public BookAdapter(Context context) {
         super(context);
     }
 
@@ -29,7 +34,7 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
     @NonNull
     @Override
     public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_search, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_book, parent, false);
         return new BookViewHolder(view, listener);
     }
 
@@ -39,28 +44,40 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
         if (book == null) {
             return;
         }
-        if (book.getImageLinks() == null) {
-            holder.cover.setImageResource(R.drawable.ic_broken_image);
-        } else {
-            Picasso.get().load(book.getImageLinks()).into(holder.cover);
-        }
+        Picasso.get().load(book.getImageLinks()).into(holder.cover);
         holder.author.setText(book.getAuthors());
         holder.title.setText(book.getTitle());
+        holder.userRating.setRating(book.getUserRating());
+        if (book.getReadDate().equals("")) {
+            holder.data.setVisibility(View.GONE);
+        } else {
+            holder.data.setVisibility(View.VISIBLE);
+            holder.readData.setText(book.getReadDate());
+        }
+        holder.status.setText(BookStatusConverter.fromStatusToString(book.getStatus()));
     }
 
     class BookViewHolder extends BaseViewHolder {
         ImageView cover;
         TextView author;
         TextView title;
+        RatingBar userRating;
+        LinearLayout data;
+        TextView readData;
+        TextView status;
         ImageButton button;
 
         BookViewHolder(View itemView, OnItemClickListener listener) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.iv_search_activity);
+            cover = (ImageView) itemView.findViewById(R.id.iv_book_list);
             cover.setClipToOutline(true);
-            author = (TextView) itemView.findViewById(R.id.tv_author_search_activity);
-            title = (TextView) itemView.findViewById(R.id.tv_title_search_activity);
-            button = (ImageButton) itemView.findViewById(R.id.btn_search_activity);
+            author = (TextView) itemView.findViewById(R.id.tv_author_book_list);
+            title = (TextView) itemView.findViewById(R.id.tv_title_book_list);
+            userRating = (RatingBar) itemView.findViewById(R.id.tv_user_rating_book_list);
+            data = (LinearLayout) itemView.findViewById(R.id.ll_readData_book_list);
+            readData = (TextView) itemView.findViewById(R.id.tv_read_data_book_list);
+            status = (TextView) itemView.findViewById(R.id.tv_status_book_list);
+            button = (ImageButton) itemView.findViewById(R.id.btn_edit_book_list);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

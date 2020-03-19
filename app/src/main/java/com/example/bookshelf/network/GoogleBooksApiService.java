@@ -1,4 +1,4 @@
-package com.example.bookshelf;
+package com.example.bookshelf.network;
 
 import com.example.bookshelf.models.BooksApiResponse;
 

@@ -1,4 +1,4 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.bookedit;
 
 import android.os.Bundle;
 import android.text.format.DateUtils;
@@ -17,9 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.Storage;
-import com.example.bookshelf.room.Book;
-import com.example.bookshelf.room.BookStatusConverter;
+import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.BookStatusConverter;
+import com.example.bookshelf.database.BookStorage;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -29,7 +29,7 @@ import java.util.Date;
 
 public class EditBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
-    private Storage storage = new Storage();
+    private BookStorage storage = new BookStorage();
     private boolean isFavorite = false;
     private Spinner status;
     private Book book;
@@ -47,7 +47,7 @@ public class EditBookActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_edit_book);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.edit_book_title);
     }

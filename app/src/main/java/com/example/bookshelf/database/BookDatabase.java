@@ -1,5 +1,5 @@
 
-package com.example.bookshelf.room;
+package com.example.bookshelf.database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.room.Room;
 
-import com.example.bookshelf.room.BookDatabase;
+import com.example.bookshelf.database.BookDatabase;
 
 public class App extends Application {
     public static App instance;

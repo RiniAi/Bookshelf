@@ -1,4 +1,4 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.bookssearch;
 
 import android.app.Activity;
 import android.content.Context;
@@ -25,14 +25,16 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.GoogleBooksApiService;
 import com.example.bookshelf.R;
-import com.example.bookshelf.RetrofitClientInstance;
-import com.example.bookshelf.Storage;
-import com.example.bookshelf.adapters.BookSearchAdapter;
+import com.example.bookshelf.database.Book;
+import com.example.bookshelf.features.bookabout.AboutBookActivity;
+import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
+import com.example.bookshelf.features.bookedit.EditBookActivity;
+import com.example.bookshelf.features.main.MainActivity;
 import com.example.bookshelf.models.BooksApiResponse;
 import com.example.bookshelf.models.BooksApiResponseItem;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.network.GoogleBooksApiService;
+import com.example.bookshelf.network.RetrofitClientInstance;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -43,7 +45,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.bookshelf.GoogleBooksApiService.QUERY_COUNTER;
+import static com.example.bookshelf.network.BookMapper.mapResponseToDomain;
+import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
 
 public class SearchActivity extends AppCompatActivity {
     private List<BooksApiResponseItem> bookResult = new ArrayList<>();
@@ -65,7 +68,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_search_activity);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.search_activity_title);
     }
@@ -140,10 +143,9 @@ public class SearchActivity extends AppCompatActivity {
                     Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
                 } else {
                     bookResult = response.body().getItems();
-                    Storage storage = new Storage();
                     progressBar.setVisibility(View.GONE);
                     books.setVisibility(View.VISIBLE);
-                    List<Book> bookList = storage.mapResponseDomain(bookResult);
+                    List<Book> bookList = mapResponseToDomain(bookResult);
                     bookAdapter.setList(bookList);
                 }
             }

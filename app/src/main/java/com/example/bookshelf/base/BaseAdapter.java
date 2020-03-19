@@ -1,10 +1,10 @@
-package com.example.bookshelf.adapters;
+package com.example.bookshelf.base;
 
 import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public abstract class BaseAdapter<T, VH extends BaseViewHolder> extends Recycler
         notifyDataSetChanged();
     }
 
-    T getItem(int position) {
+    public T getItem(int position) {
         if (list.isEmpty()) {
             return null;
         } else {

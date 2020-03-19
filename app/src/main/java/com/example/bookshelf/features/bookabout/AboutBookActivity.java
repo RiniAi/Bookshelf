@@ -1,4 +1,4 @@
-package com.example.bookshelf.activities;
+package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.room.Book;
+import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
 public class AboutBookActivity extends AppCompatActivity {
@@ -21,8 +21,15 @@ public class AboutBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
 
+        initToolbar();
         getBook();
         initControls();
+    }
+
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.about_book_title);
     }
 
     private void getBook() {
