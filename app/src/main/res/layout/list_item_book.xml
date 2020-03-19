@@ -43,7 +43,7 @@
 
                         <TextView
                             android:id="@+id/tv_title_book_list"
-                            android:layout_width="@dimen/list_book_text_view_width_176"
+                            android:layout_width="@dimen/list_book_text_view_width"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="1"
@@ -54,7 +54,7 @@
 
                         <TextView
                             android:id="@+id/tv_author_book_list"
-                            android:layout_width="@dimen/list_book_text_view_width_176"
+                            android:layout_width="@dimen/list_book_text_view_width"
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="1"
