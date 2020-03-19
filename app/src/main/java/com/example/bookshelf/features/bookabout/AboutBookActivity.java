@@ -14,42 +14,40 @@ import com.squareup.picasso.Picasso;
 
 public class AboutBookActivity extends AppCompatActivity {
     public static final String EXTRA_BOOK = "book";
+    private Toolbar toolbar;
     private Book book;
+    private TextView title;
+    private TextView author;
+    private ImageView cover;
+    private ImageView coverBack;
+    private RatingBar rating;
+    private TextView publishedDate;
+    private TextView publisher;
+    private TextView pageCount;
+    private TextView lang;
+    private TextView description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_book);
 
-        initToolbar();
-        getBook();
         initControls();
-    }
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.about_book_title);
-    }
-
-    private void getBook() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
-            book = (Book) bundle.getSerializable(EXTRA_BOOK);
-        }
+        getBook();
     }
 
     private void initControls() {
-        TextView title = (findViewById(R.id.tv_title_about_book));
-        TextView author = (findViewById(R.id.tv_author_about_book));
-        ImageView cover = (findViewById(R.id.iv_about_book));
-        ImageView coverBack = (findViewById(R.id.iv_back_about_book));
-        RatingBar rating = (findViewById(R.id.rb_rating_about_book));
-        TextView publishedDate = (findViewById(R.id.tv_published_date_about_book));
-        TextView publisher = (findViewById(R.id.tv_publisher_about_book));
-        TextView pageCount = (findViewById(R.id.tv_page_count_about_book));
-        TextView lang = (findViewById(R.id.tv_lang_about_book));
-        TextView description = (findViewById(R.id.tv_description_about_book));
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        title = (findViewById(R.id.tv_title_about_book));
+        author = (findViewById(R.id.tv_author_about_book));
+        cover = (findViewById(R.id.iv_about_book));
+        coverBack = (findViewById(R.id.iv_back_about_book));
+        rating = (findViewById(R.id.rb_rating_about_book));
+        publishedDate = (findViewById(R.id.tv_published_date_about_book));
+        publisher = (findViewById(R.id.tv_publisher_about_book));
+        pageCount = (findViewById(R.id.tv_page_count_about_book));
+        lang = (findViewById(R.id.tv_lang_about_book));
+        description = (findViewById(R.id.tv_description_about_book));
 
         title.setText(book.getTitle());
         author.setText(book.getAuthors());
@@ -67,5 +65,21 @@ public class AboutBookActivity extends AppCompatActivity {
         pageCount.setText(String.valueOf(book.getPageCount()));
         lang.setText(book.getLanguage());
         description.setText(book.getDescription());
+
+        buildToolbar();
     }
+
+    public void buildToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.about_book_title);
+    }
+
+    private void getBook() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
+            book = (Book) bundle.getSerializable(EXTRA_BOOK);
+        }
+    }
+
+
 }
