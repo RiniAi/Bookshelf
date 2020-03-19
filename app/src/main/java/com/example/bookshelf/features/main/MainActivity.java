@@ -18,6 +18,7 @@ import com.example.bookshelf.database.Book;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
+    private Toolbar toolbar;
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
@@ -28,41 +29,30 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_books);
 
-        initToolbar();
-        buildRecyclerView();
+        initControls();
         presenter = new MainPresenter(this, this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.loadBooks();
+        presenter.onStart();
     }
 
-    @Override
-    public void hideList() {
-        books.setVisibility(View.GONE);
-        emptyView.setVisibility(View.VISIBLE);
+    private void initControls() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        books = (RecyclerView) findViewById(R.id.rv_of_books);
+        emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
+        buildToolbar();
+        buildRecyclerView();
     }
 
-    @Override
-    public void showList(List<Book> booksList) {
-        books.setVisibility(View.VISIBLE);
-        emptyView.setVisibility(View.GONE);
-        bookAdapter.setList(booksList);
-    }
-
-    @Override
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void buildToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.main_activity_title);
     }
 
-    @Override
-    public void buildRecyclerView() {
-        books = (RecyclerView) findViewById(R.id.rv_of_books);
-        emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
+    private void buildRecyclerView() {
         bookAdapter = new BookAdapter(getApplicationContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         books.setLayoutManager(layoutManager);
@@ -79,6 +69,19 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                 presenter.editBook(book);
             }
         });
+    }
+
+    @Override
+    public void hideList() {
+        books.setVisibility(View.GONE);
+        emptyView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showList(List<Book> booksList) {
+        books.setVisibility(View.VISIBLE);
+        emptyView.setVisibility(View.GONE);
+        bookAdapter.setList(booksList);
     }
 
     @Override

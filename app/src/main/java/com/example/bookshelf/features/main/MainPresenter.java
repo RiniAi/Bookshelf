@@ -18,7 +18,11 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void loadBooks() {
+    public void onStart() {
+        loadBooks();
+    }
+
+    private void loadBooks() {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAll();
         if (books.isEmpty()) {
@@ -47,7 +51,4 @@ public class MainPresenter implements MainContract.Presenter {
     public void openSearch() {
         navigator.openSearch();
     }
-
-    @Override
-    public void onStart() {}
 }

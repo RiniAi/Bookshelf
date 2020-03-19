@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface MainContract {
     interface View extends BaseView {
-        void buildRecyclerView();
 
         void hideList();
 
@@ -16,7 +15,6 @@ public interface MainContract {
     }
 
     interface Presenter extends BasePresenter {
-        void loadBooks();
 
         void openBook(Book book);
 
