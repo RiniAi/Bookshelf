@@ -2,9 +2,7 @@ package com.example.bookshelf.features.bookssearch;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,63 +25,49 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.bookabout.AboutBookActivity;
-import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
-import com.example.bookshelf.features.bookedit.EditBookActivity;
-import com.example.bookshelf.features.main.MainActivity;
-import com.example.bookshelf.models.BooksApiResponse;
-import com.example.bookshelf.models.BooksApiResponseItem;
-import com.example.bookshelf.network.GoogleBooksApiService;
-import com.example.bookshelf.network.RetrofitClientInstance;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static com.example.bookshelf.network.BookMapper.mapResponseToDomain;
-import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
-
-public class SearchActivity extends AppCompatActivity {
-    private List<BooksApiResponseItem> bookResult = new ArrayList<>();
-    private String query = "";
-    private BookSearchAdapter bookAdapter;
+public class SearchActivity extends AppCompatActivity implements SearchContract.View {
+    private SearchContract.Presenter presenter;
+    private Toolbar toolbar;
     private LinearLayout progressBar;
+    private BookSearchAdapter bookAdapter;
     private RecyclerView books;
+    private EditText enterQuery;
+    private ImageButton sendQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        progressBar = (LinearLayout) findViewById(R.id.bar_search_activity);
-        progressBar.setVisibility(View.GONE);
-        initToolbar();
-        buildRecyclerView();
-        searchBooks();
+        initControls();
+        presenter = new SearchPresenter(this, this);
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void initControls() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        progressBar = (LinearLayout) findViewById(R.id.bar_search_activity);
+        progressBar.setVisibility(View.GONE);
+        enterQuery = (EditText) findViewById(R.id.et_query_search_activity);
+        sendQuery = (ImageButton) findViewById(R.id.btn_query_search_activity);
+
+        buildToolbar();
+        buildRecyclerView();
+        buildButtons();
+    }
+
+    private void buildToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.search_activity_title);
     }
 
-    private void searchBooks() {
-        EditText enterQuery = (EditText) findViewById(R.id.et_query_search_activity);
-        ImageButton sendQuery = (ImageButton) findViewById(R.id.btn_query_search_activity);
+    private void buildButtons() {
         sendQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                query = enterQuery.getText().toString();
-                requestBooksFromApi();
-                hideKeyboard(SearchActivity.this, view);
-                progressBar.setVisibility(ProgressBar.VISIBLE);
-                books.setVisibility(View.GONE);
+                buildSearch(view);
             }
         });
 
@@ -91,22 +75,12 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    query = enterQuery.getText().toString();
-                    requestBooksFromApi();
-                    hideKeyboard(SearchActivity.this, view);
-                    progressBar.setVisibility(ProgressBar.VISIBLE);
-                    books.setVisibility(View.GONE);
+                    buildSearch(view);
                     return true;
                 }
                 return false;
             }
         });
-    }
-
-    public static void hideKeyboard(Context context, View view) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if (imm != null)
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     private void buildRecyclerView() {
@@ -118,45 +92,47 @@ public class SearchActivity extends AppCompatActivity {
         bookAdapter.setOnItemClickListener(new BookSearchAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Book book) {
-                Intent intent = new Intent(SearchActivity.this, AboutBookActivity.class);
-                intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
+                presenter.openBook(book);
             }
         });
         bookAdapter.setOnEditClickListener(new BookSearchAdapter.OnEditClickListener() {
             @Override
             public void onEditClick(Book book) {
-                Intent intent = new Intent(SearchActivity.this, EditBookActivity.class);
-                intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
-                startActivity(intent);
+                presenter.editBook(book);
             }
         });
     }
 
-    private void requestBooksFromApi() {
-        GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
-        Call<BooksApiResponse> call = service.getBooks(query, QUERY_COUNTER);
-        call.enqueue(new Callback<BooksApiResponse>() {
-            @Override
-            public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
-                if (response.body() == null) {
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
-                } else {
-                    bookResult = response.body().getItems();
-                    progressBar.setVisibility(View.GONE);
-                    books.setVisibility(View.VISIBLE);
-                    List<Book> bookList = mapResponseToDomain(bookResult);
-                    bookAdapter.setList(bookList);
-                }
-            }
+    private void buildSearch(View view) {
+        String query = enterQuery.getText().toString();
+        presenter.searchBook(query);
+        hideKeyboard(SearchActivity.this, view);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        books.setVisibility(View.GONE);
+    }
 
-            @Override
-            public void onFailure(@NotNull Call<BooksApiResponse> call, @NotNull Throwable t) {
-                Log.e("error", t.toString());
-                Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
-            }
-        });
+    public static void hideKeyboard(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (imm != null)
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void unSuccessfulRequest() {
+        progressBar.setVisibility(View.GONE);
+        Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void successfulRequest(List<Book> bookList) {
+        bookAdapter.setList(bookList);
+        progressBar.setVisibility(View.GONE);
+        books.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void errorRequest() {
+        Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -170,13 +146,11 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.go_to_main:
-                Intent main = new Intent(this, MainActivity.class);
-                startActivity(main);
+                presenter.openMain();
                 break;
 
             case R.id.go_to_challenge:
-                Intent challenge = new Intent(this, BookChallengeActivity.class);
-                startActivity(challenge);
+                presenter.openBookChallenge();
                 break;
         }
         return true;
