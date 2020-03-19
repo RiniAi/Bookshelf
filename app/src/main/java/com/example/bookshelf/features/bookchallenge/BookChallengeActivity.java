@@ -22,42 +22,39 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     private TextView counter;
     private BookChallengeAdapter bookAdapter;
     private BookChallengeContract.Presenter presenter;
+    private Toolbar toolbar;
+    private SeekBar sb;
+    private RecyclerView books;
+    private TextView number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_challenge);
 
+        initControls();
         presenter = new BookChallengePresenter(this, this);
-        initToolbar();
         presenter.loadCounter();
         initRecyclerView();
         presenter.loadBooks();
     }
 
-    @Override
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    private void initControls() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
+        sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
+        books = (RecyclerView) findViewById(R.id.rv_book_challenge);
+        number = (TextView) findViewById(R.id.tv_number_books_challenge);
+        buildToolbar();
+        buildRecyclerView();
+    }
+
+    private void buildToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.book_challenge_title);
     }
 
-    @Override
-    public void initCounter(String count) {
-        counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
-        counter.setText(count);
-    }
-
-    @Override
-    public void initSeekBar(int count) {
-        SeekBar sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
-        sb.setOnSeekBarChangeListener(this);
-        sb.setProgress(count);
-    }
-
-    @Override
-    public void initRecyclerView() {
-        RecyclerView books = (RecyclerView) findViewById(R.id.rv_book_challenge);
+    private void buildRecyclerView() {
         GridLayoutManager layoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
         books.setLayoutManager(layoutManager);
         bookAdapter = new BookChallengeAdapter(getApplicationContext());
@@ -71,9 +68,20 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
+    public void initCounter(String count) {
+        counter.setText(count);
+    }
+
+    @Override
+    public void initSeekBar(int count) {
+        sb.setOnSeekBarChangeListener(this);
+        sb.setProgress(count);
+    }
+
+
+    @Override
     public void showList(List<Book> books, String size) {
         bookAdapter.setList(books);
-        TextView number = (TextView) findViewById(R.id.tv_number_books_challenge);
         number.setText(size);
     }
 
