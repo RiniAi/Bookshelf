@@ -15,11 +15,11 @@ public interface BookChallengeContract {
 
         void showList(List<Book> books);
 
-        void setSizeList(String size);
+        void setBooksCount(String size);
 
         void setProgressCounter(String count);
 
-        void showSaveCounter();
+        void showCounterSavedMessage();
     }
 
     interface Presenter extends BasePresenter {

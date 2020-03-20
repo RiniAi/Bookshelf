@@ -2,6 +2,7 @@ package com.example.bookshelf.features.bookchallenge;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.example.bookshelf.Navigator;
@@ -30,13 +31,18 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
         loadBooks();
     }
 
+    @Override
+    public void onStartWitchData(Bundle bundle) {
+
+    }
+
     private void loadCounter() {
         String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
         view.setCounter(count);
-        getProgress(count);
+        setProgress(count);
     }
 
-    private void getProgress(String count) {
+    private void setProgress(String count) {
         int counter = Integer.parseInt(count);
         view.setProgressBar(counter);
     }
@@ -45,12 +51,12 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAllWithStatus(FINISH_READING);
         view.showList(books);
-        getSizeBooks(books);
+        setBooksCount(books);
     }
 
-    private void getSizeBooks(List<Book> books) {
+    private void setBooksCount(List<Book> books) {
         String size = String.valueOf(books.size());
-        view.setSizeList(size);
+        view.setBooksCount(size);
     }
 
     @Override
@@ -64,7 +70,7 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(STORAGE_COUNTER, count);
         editor.apply();
-        view.showSaveCounter();
+        view.showCounterSavedMessage();
     }
 
     @Override
