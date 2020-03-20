@@ -22,6 +22,11 @@ public class MainPresenter implements MainContract.Presenter {
         loadBooks();
     }
 
+    @Override
+    public void onStartWitchData() {
+
+    }
+
     private void loadBooks() {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAll();

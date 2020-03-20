@@ -30,6 +30,11 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
         loadBooks();
     }
 
+    @Override
+    public void onStartWitchData() {
+
+    }
+
     private void loadCounter() {
         String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
         view.setCounter(count);
