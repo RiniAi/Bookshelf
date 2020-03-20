@@ -1,6 +1,7 @@
 package com.example.bookshelf.features.bookssearch;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.bookshelf.Navigator;
@@ -61,5 +62,10 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     @Override
     public void onStart() {
+    }
+
+    @Override
+    public void onStartWitchData(Bundle bundle) {
+
     }
 }

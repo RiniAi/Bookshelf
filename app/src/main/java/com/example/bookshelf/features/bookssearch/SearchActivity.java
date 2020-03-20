@@ -48,10 +48,10 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        progressBar = (LinearLayout) findViewById(R.id.bar_search_activity);
+        progressBar = (LinearLayout) findViewById(R.id.bar);
         progressBar.setVisibility(View.GONE);
-        enterQuery = (EditText) findViewById(R.id.et_query_search_activity);
-        sendQuery = (ImageButton) findViewById(R.id.btn_query_search_activity);
+        enterQuery = (EditText) findViewById(R.id.et_query);
+        sendQuery = (ImageButton) findViewById(R.id.btn_query);
 
         buildToolbar();
         buildRecyclerView();
@@ -84,7 +84,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     private void buildRecyclerView() {
-        books = findViewById(R.id.rv_of_books_search_activity);
+        books = findViewById(R.id.rv_of_books);
         LinearLayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 2);
         bookAdapter = new BookSearchAdapter(getApplicationContext());
         books.setLayoutManager(layoutManager);
