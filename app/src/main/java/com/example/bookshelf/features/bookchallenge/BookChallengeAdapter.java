@@ -54,11 +54,11 @@ public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter
 
         BookViewHolder(View itemView, OnItemClickListener onClickListener) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.iv_book_challenge);
+            cover = (ImageView) itemView.findViewById(R.id.iv_cover);
             cover.setClipToOutline(true);
-            author = (TextView) itemView.findViewById(R.id.tv_author_book_challenge);
-            title = (TextView) itemView.findViewById(R.id.tv_title_book_challenge);
-            userRating = (TextView) itemView.findViewById(R.id.tv_rating_book_challenge);
+            author = (TextView) itemView.findViewById(R.id.tv_author);
+            title = (TextView) itemView.findViewById(R.id.tv_title);
+            userRating = (TextView) itemView.findViewById(R.id.tv_rating);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
