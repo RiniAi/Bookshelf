@@ -39,10 +39,10 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
-        books = (RecyclerView) findViewById(R.id.rv_book_challenge);
-        booksCount = (TextView) findViewById(R.id.tv_size_list_books_challenge);
-        seekBar = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
+        counter = (TextView) findViewById(R.id.tv_counter);
+        books = (RecyclerView) findViewById(R.id.rv_list);
+        booksCount = (TextView) findViewById(R.id.tv_books_count);
+        seekBar = (SeekBar) findViewById(R.id.sb_counter);
         seekBar.setOnSeekBarChangeListener(this);
         buildToolbar();
         buildRecyclerView();
