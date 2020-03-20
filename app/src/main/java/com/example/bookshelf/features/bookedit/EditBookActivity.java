@@ -47,16 +47,16 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title = (TextView) findViewById(R.id.tv_title_edit_book);
-        author = (TextView) findViewById(R.id.tv_author_edit_book);
-        cover = (ImageView) findViewById(R.id.iv_edit_book);
-        averRating = (RatingBar) findViewById(R.id.rb_aver_rating_edit_book);
-        userRating = (RatingBar) findViewById(R.id.rb_user_rating_edit_book);
-        status = (Spinner) findViewById(R.id.spinner_status_edit_book);
+        title = (TextView) findViewById(R.id.tv_title);
+        author = (TextView) findViewById(R.id.tv_author);
+        cover = (ImageView) findViewById(R.id.iv_cover);
+        averRating = (RatingBar) findViewById(R.id.rb_aver_rating);
+        userRating = (RatingBar) findViewById(R.id.rb_user_rating);
+        status = (Spinner) findViewById(R.id.spinner_status);
         datePicker = (DatePicker) findViewById(R.id.date_picker);
         addFavorite = (ToggleButton) findViewById(R.id.btn_favorite);
-        save = (Button) findViewById(R.id.btn_save_edit_book);
-        delete = (Button) findViewById(R.id.btn_delete_edit_book);
+        save = (Button) findViewById(R.id.btn_save);
+        delete = (Button) findViewById(R.id.btn_delete);
 
         addFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
