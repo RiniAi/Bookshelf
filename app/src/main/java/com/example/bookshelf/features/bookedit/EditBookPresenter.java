@@ -18,44 +18,40 @@ public class EditBookPresenter implements EditBookContract.Presenter {
     private BookStorage storage = new BookStorage();
     private EditBookContract.View view;
     private Context context;
-    private Bundle bundle;
     private Book book;
     private String date;
 
-    public EditBookPresenter(EditBookContract.View view, Context context, Bundle bundle) {
+    public EditBookPresenter(EditBookContract.View view, Context context) {
         this.view = view;
         this.context = context;
-        this.bundle = bundle;
     }
 
     @Override
     public void onStart() {
-        getBook();
         searchBook();
     }
 
-    private void getBook() {
+    @Override
+    public void onStartWitchData(Bundle bundle) {
+        getBook(bundle);
+    }
+
+    private void getBook(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
 
-            getTitle();
-            getAuthors();
+            getBookView();
             getCover();
-            getAverRating();
-            getUserRating();
             getStatus();
-            getFavorite();
         }
     }
 
-    private void getTitle() {
-        String title = book.getTitle();
-        view.setTitle(title);
-    }
-
-    private void getAuthors() {
-        String authors = book.getAuthors();
-        view.setAuthors(authors);
+    private void getBookView() {
+        view.setBookView(book.getTitle(),
+                book.getAuthors(),
+                book.getAverageRating(),
+                book.getUserRating(),
+                book.isFavorite());
     }
 
     private void getCover() {
@@ -65,16 +61,6 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         } else {
             view.setImage(image);
         }
-    }
-
-    private void getAverRating() {
-        float averRating = book.getAverageRating();
-        view.setAverRating(averRating);
-    }
-
-    private void getUserRating() {
-        float userRating = book.getUserRating();
-        view.setUserRating(userRating);
     }
 
     private void getStatus() {
@@ -100,11 +86,6 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         int month = cal.get(Calendar.MONTH);
         int dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
         view.updateDate(year, month, dayOfMonth);
-    }
-
-    private void getFavorite() {
-        boolean isFavorite = book.isFavorite();
-        view.setFavorite(isFavorite);
     }
 
     private void searchBook() {

@@ -40,7 +40,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         setContentView(R.layout.activity_edit_book);
 
         initControls();
-        presenter = new EditBookPresenter(this, this, getIntent().getExtras());
+        presenter = new EditBookPresenter(this, this);
+        presenter.onStartWitchData(getIntent().getExtras());
         presenter.onStart();
     }
 
@@ -97,13 +98,18 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title.setText(title);
-    }
+    public void setBookView(String title,
+                            String authors,
+                            float averRating,
+                            float userRating,
+                            boolean isFavorite) {
 
-    @Override
-    public void setAuthors(String authors) {
+        this.title.setText(title);
         this.author.setText(authors);
+        this.averRating.setRating(averRating);
+        this.userRating.setRating(userRating);
+        addFavorite.setChecked(isFavorite);
+        this.isFavorite = isFavorite;
     }
 
     @Override
@@ -117,18 +123,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     @Override
-    public void setAverRating(float averRating) {
-        this.averRating.setRating(averRating);
-    }
-
-    @Override
-    public void setUserRating(float userRating) {
-        this.userRating.setRating(userRating);
-    }
-
-    @Override
-    public void setStatus(Book.BookStatus s) {
-        switch (s) {
+    public void setStatus(Book.BookStatus bookStatus) {
+        switch (bookStatus) {
             case IN_THE_PROCESS_OF_READING:
                 status.setSelection(0);
                 break;
@@ -147,12 +143,6 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     @Override
     public void updateDate(int year, int month, int dayOfMonth) {
         datePicker.updateDate(year, month, dayOfMonth);
-    }
-
-    @Override
-    public void setFavorite(boolean isFavorite) {
-        addFavorite.setChecked(isFavorite);
-        this.isFavorite = isFavorite;
     }
 
     @Override

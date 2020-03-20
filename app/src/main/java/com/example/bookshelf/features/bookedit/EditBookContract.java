@@ -6,23 +6,20 @@ import com.example.bookshelf.database.Book;
 
 public interface EditBookContract {
     interface View extends BaseView {
-        void setTitle(String title);
 
-        void setAuthors(String authors);
+        void setBookView(String title,
+                         String authors,
+                         float averRating,
+                         float userRating,
+                         boolean isFavorite);
 
         void setImage(String image);
 
         void setBrokenImage();
 
-        void setAverRating(float averRating);
-
-        void setUserRating(float userRating);
-
-        void setStatus(Book.BookStatus s);
+        void setStatus(Book.BookStatus bookStatus);
 
         void updateDate(int year, int month, int dayOfMonth);
-
-        void setFavorite(boolean isFavorite);
 
         void showDelete();
 
