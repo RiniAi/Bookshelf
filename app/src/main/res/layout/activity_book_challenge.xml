@@ -17,7 +17,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/tv_size_list_books_challenge"
+            android:id="@+id/tv_books_count"
             android:layout_width="@dimen/padding_24dp"
             android:layout_height="wrap_content"
             tools:text="12" />
@@ -30,14 +30,14 @@
             android:src="@drawable/ic_favorite_on" />
 
         <TextView
-            android:id="@+id/tv_counter_books_challenge"
+            android:id="@+id/tv_counter"
             android:layout_width="@dimen/padding_24dp"
             android:layout_height="wrap_content"
             tools:text="500" />
     </LinearLayout>
 
     <SeekBar
-        android:id="@+id/sb_counter_book_challenge"
+        android:id="@+id/sb_counter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="false"
@@ -46,7 +46,7 @@
         android:paddingBottom="@dimen/padding_8dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_book_challenge"
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
