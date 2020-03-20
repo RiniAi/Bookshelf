@@ -9,7 +9,7 @@
     <include layout="@layout/toolbar" />
 
     <LinearLayout
-        android:id="@+id/ll_empty_main_activity"
+        android:id="@+id/ll_empty_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_of_books"
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
