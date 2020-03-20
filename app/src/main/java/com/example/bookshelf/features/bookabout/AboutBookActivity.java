@@ -32,7 +32,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
 
         initControls();
         presenter = new AboutBookPresenter(this);
-        presenter.getBook(getIntent().getExtras());
+        presenter.onStartWitchData(getIntent().getExtras());
     }
 
     private void initControls() {
@@ -57,13 +57,22 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     }
 
     @Override
-    public void setTitle(String title) {
+    public void setBookView(String title,
+                            String authors,
+                            float rating,
+                            String publishedDate,
+                            String publisher,
+                            String pageCount,
+                            String lang,
+                            String description) {
         this.title.setText(title);
-    }
-
-    @Override
-    public void setAuthors(String authors) {
         this.author.setText(authors);
+        this.rating.setRating(rating);
+        this.publishedDate.setText(publishedDate);
+        this.publisher.setText(publisher);
+        this.pageCount.setText(pageCount);
+        this.lang.setText(lang);
+        this.description.setText(description);
     }
 
     @Override
@@ -76,35 +85,5 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     public void setBrokenImage() {
         this.cover.setImageResource(R.drawable.ic_broken_image);
         this.coverBack.setImageResource(R.drawable.ic_broken_image);
-    }
-
-    @Override
-    public void setRating(float rating) {
-        this.rating.setRating(rating);
-    }
-
-    @Override
-    public void setPublishedDate(String publishedDate) {
-        this.publishedDate.setText(publishedDate);
-    }
-
-    @Override
-    public void setPublisher(String publisher) {
-        this.publisher.setText(publisher);
-    }
-
-    @Override
-    public void setPageCount(String pageCount) {
-        this.pageCount.setText(pageCount);
-    }
-
-    @Override
-    public void setLanguage(String lang) {
-        this.lang.setText(lang);
-    }
-
-    @Override
-    public void setDescription(String description) {
-        this.description.setText(description);
     }
 }

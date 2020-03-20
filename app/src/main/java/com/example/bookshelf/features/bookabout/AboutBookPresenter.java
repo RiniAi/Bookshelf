@@ -14,70 +14,37 @@ public class AboutBookPresenter implements AboutBookContract.Presenter {
     }
 
     @Override
-    public void getBook(Bundle bundle) {
+    public void onStartWitchData(Bundle bundle) {
+        getBook(bundle);
+    }
+
+    private void getBook(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
 
-        getTitle();
-        getAuthors();
-        getImage();
-        getRating();
-        getDate();
-        getPublisher();
-        getPageCount();
-        getLanguage();
-        getDescription();
+        getBookView();
+        getCover();
     }
 
-
-    private void getTitle() {
-        String title = book.getTitle();
-        view.setTitle(title);
+    private void getBookView() {
+        view.setBookView(book.getTitle(),
+                book.getAuthors(),
+                book.getAverageRating(),
+                book.getPublishedDate(),
+                book.getPublisher(),
+                String.valueOf(book.getPageCount()),
+                book.getLanguage(),
+                book.getDescription());
     }
 
-    private void getAuthors() {
-        String authors = book.getAuthors();
-        view.setAuthors(authors);
-    }
-
-    private void getImage() {
-        String image = book.getImageLinks();
-        if (image == null) {
+    private void getCover() {
+        String cover = book.getImageLinks();
+        if (cover == null) {
             view.setBrokenImage();
         } else {
-            view.setImage(image);
+            view.setImage(cover);
         }
-    }
-
-    private void getRating() {
-        float rating = book.getAverageRating();
-        view.setRating(rating);
-    }
-
-    private void getDate() {
-        String date = book.getPublishedDate();
-        view.setPublishedDate(date);
-    }
-
-    private void getPublisher() {
-        String publisher = book.getPublisher();
-        view.setPublisher(publisher);
-    }
-
-    private void getPageCount() {
-        String pageCount = String.valueOf(book.getPageCount());
-        view.setPageCount(pageCount);
-    }
-
-    private void getLanguage() {
-        String language = book.getLanguage();
-        view.setLanguage(language);
-    }
-
-    private void getDescription() {
-        String description = book.getDescription();
-        view.setDescription(description);
     }
 
     @Override
