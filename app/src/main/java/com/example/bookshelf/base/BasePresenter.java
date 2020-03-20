@@ -1,6 +1,8 @@
 package com.example.bookshelf.base;
 
+import android.os.Bundle;
+
 public interface BasePresenter {
     void onStart();
-    void onStartWitchData();
+    void onStartWitchData(Bundle bundle);
 }
