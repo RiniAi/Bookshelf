@@ -23,9 +23,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     private BookChallengeAdapter bookAdapter;
     private BookChallengeContract.Presenter presenter;
     private Toolbar toolbar;
-    private SeekBar sb;
+    private SeekBar seekBar;
     private RecyclerView books;
-    private TextView sizeList;
+    private TextView booksCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +41,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         counter = (TextView) findViewById(R.id.tv_counter_books_challenge);
         books = (RecyclerView) findViewById(R.id.rv_book_challenge);
-        sizeList = (TextView) findViewById(R.id.tv_size_list_books_challenge);
-        sb = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
-        sb.setOnSeekBarChangeListener(this);
+        booksCount = (TextView) findViewById(R.id.tv_size_list_books_challenge);
+        seekBar = (SeekBar) findViewById(R.id.sb_counter_book_challenge);
+        seekBar.setOnSeekBarChangeListener(this);
         buildToolbar();
         buildRecyclerView();
     }
@@ -73,7 +73,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void setProgressBar(int count) {
-        sb.setProgress(count);
+        seekBar.setProgress(count);
     }
 
     @Override
@@ -82,8 +82,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setSizeList(String size) {
-        sizeList.setText(size);
+    public void setBooksCount(String size) {
+        booksCount.setText(size);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void showSaveCounter() {
+    public void showCounterSavedMessage() {
         Toast.makeText(BookChallengeActivity.this, R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
     }
 
@@ -101,8 +101,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-        presenter.onProgressChanged(i);
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        presenter.onProgressChanged(progress);
     }
 
     @Override
