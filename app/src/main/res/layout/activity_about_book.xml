@@ -22,7 +22,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/iv_back_about_book"
+                    android:id="@+id/iv_cover_back"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:background="@android:color/transparent"
@@ -51,7 +51,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tv_title_about_book"
+                            android:id="@+id/tv_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingTop="@dimen/padding_8dp"
@@ -62,7 +62,7 @@
                             tools:text="@tools:sample/lorem" />
 
                         <TextView
-                            android:id="@+id/tv_author_about_book"
+                            android:id="@+id/tv_author"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="64dp"
@@ -75,7 +75,7 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:id="@+id/iv_about_book"
+                                android:id="@+id/iv_cover"
                                 android:layout_width="@dimen/default_image_view_width"
                                 android:layout_height="@dimen/default_image_view_height"
                                 android:background="@drawable/round_outline"
@@ -91,7 +91,7 @@
                                 android:weightSum="1">
 
                                 <RatingBar
-                                    android:id="@+id/rb_rating_about_book"
+                                    android:id="@+id/rb_rating"
                                     style="@style/Widget.AppCompat.RatingBar.Indicator"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/tv_publisher_about_book"
+                                        android:id="@+id/tv_publisher"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         tools:text="@tools:sample/full_names" />
@@ -135,7 +135,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/tv_published_date_about_book"
+                                        android:id="@+id/tv_published_date"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         tools:text="@tools:sample/full_names" />
@@ -156,7 +156,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/tv_page_count_about_book"
+                                        android:id="@+id/tv_page_count"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         tools:text="@tools:sample/full_names" />
@@ -176,7 +176,7 @@
                                         android:textStyle="bold" />
 
                                     <TextView
-                                        android:id="@+id/tv_lang_about_book"
+                                        android:id="@+id/tv_lang"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         tools:text="@tools:sample/full_names" />
@@ -188,7 +188,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tv_description_about_book"
+                android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_8dp"

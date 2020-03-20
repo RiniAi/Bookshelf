@@ -37,16 +37,16 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title = (findViewById(R.id.tv_title_about_book));
-        author = (findViewById(R.id.tv_author_about_book));
-        coverBack = (findViewById(R.id.iv_back_about_book));
-        rating = (findViewById(R.id.rb_rating_about_book));
-        publishedDate = (findViewById(R.id.tv_published_date_about_book));
-        publisher = (findViewById(R.id.tv_publisher_about_book));
-        pageCount = (findViewById(R.id.tv_page_count_about_book));
-        lang = (findViewById(R.id.tv_lang_about_book));
-        description = (findViewById(R.id.tv_description_about_book));
-        cover = (findViewById(R.id.iv_about_book));
+        title = (findViewById(R.id.tv_title));
+        author = (findViewById(R.id.tv_author));
+        coverBack = (findViewById(R.id.iv_cover_back));
+        rating = (findViewById(R.id.rb_rating));
+        publishedDate = (findViewById(R.id.tv_published_date));
+        publisher = (findViewById(R.id.tv_publisher));
+        pageCount = (findViewById(R.id.tv_page_count));
+        lang = (findViewById(R.id.tv_lang));
+        description = (findViewById(R.id.tv_description));
+        cover = (findViewById(R.id.iv_cover));
         cover.setClipToOutline(true);
         buildToolbar();
     }
