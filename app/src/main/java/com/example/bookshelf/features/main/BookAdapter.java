@@ -74,15 +74,15 @@ public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
 
         BookViewHolder(View itemView, OnItemClickListener onClickListener, OnEditClickListener onEditListener) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.iv_book_list);
+            cover = (ImageView) itemView.findViewById(R.id.iv_cover);
             cover.setClipToOutline(true);
-            author = (TextView) itemView.findViewById(R.id.tv_author_book_list);
-            title = (TextView) itemView.findViewById(R.id.tv_title_book_list);
-            userRating = (RatingBar) itemView.findViewById(R.id.tv_user_rating_book_list);
-            data = (LinearLayout) itemView.findViewById(R.id.ll_readData_book_list);
-            readData = (TextView) itemView.findViewById(R.id.tv_read_data_book_list);
-            status = (TextView) itemView.findViewById(R.id.tv_status_book_list);
-            button = (ImageButton) itemView.findViewById(R.id.btn_edit_book_list);
+            author = (TextView) itemView.findViewById(R.id.tv_author);
+            title = (TextView) itemView.findViewById(R.id.tv_title);
+            userRating = (RatingBar) itemView.findViewById(R.id.tv_user_rating);
+            data = (LinearLayout) itemView.findViewById(R.id.ll_read_data);
+            readData = (TextView) itemView.findViewById(R.id.tv_read_data);
+            status = (TextView) itemView.findViewById(R.id.tv_status);
+            button = (ImageButton) itemView.findViewById(R.id.btn_edit);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
