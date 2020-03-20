@@ -118,20 +118,19 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void unSuccessfulRequest() {
-        progressBar.setVisibility(View.GONE);
-        Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void successfulRequest(List<Book> bookList) {
-        bookAdapter.setList(bookList);
         progressBar.setVisibility(View.GONE);
         books.setVisibility(View.VISIBLE);
+        if (bookList == null) {
+            Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
+        } else {
+            bookAdapter.setList(bookList);
+        }
     }
 
     @Override
     public void errorRequest() {
+        progressBar.setVisibility(View.GONE);
         Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
     }
 
