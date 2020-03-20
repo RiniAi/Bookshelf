@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        books = (RecyclerView) findViewById(R.id.rv_of_books);
-        emptyView = (LinearLayout) findViewById(R.id.ll_empty_main_activity);
+        books = (RecyclerView) findViewById(R.id.rv_list);
+        emptyView = (LinearLayout) findViewById(R.id.ll_empty_list);
         buildToolbar();
         buildRecyclerView();
     }
