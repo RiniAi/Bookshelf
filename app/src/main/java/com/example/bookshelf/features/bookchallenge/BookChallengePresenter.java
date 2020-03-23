@@ -31,32 +31,32 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     }
 
     private void loadCounter() {
-        String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
-        view.setProgressCounter(count);
-        setProgress(count);
+        String counter = sharedPreferences.getString(STORAGE_COUNTER, "0");
+        view.changeCounter(counter);
+        changeCounterForBar(counter);
     }
 
-    private void setProgress(String count) {
+    private void changeCounterForBar(String count) {
         int counter = Integer.parseInt(count);
-        view.setProgressBar(counter);
+        view.changeCounterForBar(counter);
     }
 
     private void loadBooks() {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAllWithStatus(FINISH_READING);
         view.showList(books);
-        setBooksCount(books);
+        changeProgress(books);
     }
 
-    private void setBooksCount(List<Book> books) {
-        String size = String.valueOf(books.size());
-        view.setBooksCount(size);
+    private void changeProgress(List<Book> books) {
+        String progress = String.valueOf(books.size());
+        view.changeProgress(progress);
     }
 
     @Override
     public void onProgressChanged(int i) {
         String progress = String.valueOf(i);
-        view.setProgressCounter(progress);
+        view.changeProgress(progress);
     }
 
     @Override

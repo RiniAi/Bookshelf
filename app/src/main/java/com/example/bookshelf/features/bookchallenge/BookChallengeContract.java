@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface BookChallengeContract {
     interface View {
-        void setProgressCounter(String count);
+        void changeCounter(String count);
 
-        void setProgressBar(int count);
+        void changeCounterForBar(int count);
 
         void showList(List<Book> books);
 
-        void setBooksCount(String size);
+        void changeProgress(String size);
 
         void showCounterSavedMessage();
     }

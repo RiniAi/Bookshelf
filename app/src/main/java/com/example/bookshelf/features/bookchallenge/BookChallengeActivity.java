@@ -25,7 +25,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     private Toolbar toolbar;
     private SeekBar seekBar;
     private RecyclerView books;
-    private TextView booksCount;
+    private TextView progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        progress = (TextView) findViewById(R.id.tv_progress);
         counter = (TextView) findViewById(R.id.tv_counter);
         books = (RecyclerView) findViewById(R.id.rv_list);
-        booksCount = (TextView) findViewById(R.id.tv_books_count);
         seekBar = (SeekBar) findViewById(R.id.sb_counter);
         seekBar.setOnSeekBarChangeListener(this);
         buildToolbar();
@@ -67,12 +67,12 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setProgressCounter(String count) {
+    public void changeCounter(String count) {
         counter.setText(count);
     }
 
     @Override
-    public void setProgressBar(int count) {
+    public void changeCounterForBar(int count) {
         seekBar.setProgress(count);
     }
 
@@ -82,8 +82,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setBooksCount(String size) {
-        booksCount.setText(size);
+    public void changeProgress(String cProgress) {
+        progress.setText(cProgress);
     }
 
     @Override
