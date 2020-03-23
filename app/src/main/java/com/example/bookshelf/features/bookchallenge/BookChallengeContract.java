@@ -1,32 +1,28 @@
 package com.example.bookshelf.features.bookchallenge;
 
-import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.base.BaseView;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
 public interface BookChallengeContract {
-    interface View extends BaseView {
+    interface View {
+        void changeCounter(String counter);
 
-        void setCounter(String count);
-
-        void setProgressBar(int count);
+        void changeCounterForBar(int counter);
 
         void showList(List<Book> books);
 
-        void setBooksCount(String size);
-
-        void setProgressCounter(String count);
+        void changeProgress(String progress);
 
         void showCounterSavedMessage();
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter {
+        void onStart();
 
         void onProgressChanged(int i);
 
-        void saveCounter(String count);
+        void saveCounter(String counter);
 
         void openBook(Book book);
 
