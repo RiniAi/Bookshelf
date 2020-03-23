@@ -46,9 +46,4 @@ public class AboutBookPresenter implements AboutBookContract.Presenter {
             view.setImage(cover);
         }
     }
-
-    @Override
-    public void onStart() {
-
-    }
 }

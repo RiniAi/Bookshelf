@@ -1,24 +1,24 @@
 package com.example.bookshelf.features.bookabout;
 
-import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.base.BaseView;
+import android.os.Bundle;
 
 public interface AboutBookContract {
-    interface View extends BaseView {
+    interface View {
         void setBookView(String title,
-                      String authors,
-                      float rating,
-                      String publishedDate,
-                      String publisher,
-                      String pageCount,
-                      String lang,
-                      String description);
+                         String authors,
+                         float rating,
+                         String publishedDate,
+                         String publisher,
+                         String pageCount,
+                         String lang,
+                         String description);
 
         void setImage(String image);
 
         void setBrokenImage();
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter {
+        void onStartWitchData(Bundle bundle);
     }
 }
