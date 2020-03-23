@@ -19,18 +19,8 @@ import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
 
 public class BookRepository {
     private List<BooksApiResponseItem> bookResult;
-    private SearchCall.onSuccessfulCall successfulCall;
-    private SearchCall.onUnSuccessfulCall unSuccessfulCall;
 
-    public void onSuccessfulCall(SearchCall.onSuccessfulCall successfulCall) {
-        this.successfulCall = successfulCall;
-    }
-
-    public void onUnSuccessfulCall(SearchCall.onUnSuccessfulCall unSuccessfulCall) {
-        this.unSuccessfulCall = unSuccessfulCall;
-    }
-
-    public void requestBooksFromApi(String query) {
+    public void requestBooksFromApi(String query, SearchCall.responseListener responseListener) {
         bookResult = new ArrayList<>();
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BooksApiResponse> call = service.getBooks(query, QUERY_COUNTER);
@@ -40,12 +30,12 @@ public class BookRepository {
                 if (response.body() != null) {
                     bookResult = response.body().getItems();
                 }
-                successfulCall.getBooks(mapResponseToDomain(bookResult));
+                responseListener.onSuccess(mapResponseToDomain(bookResult));
             }
 
             @Override
             public void onFailure(@NotNull Call<BooksApiResponse> call, @NotNull Throwable t) {
-                unSuccessfulCall.getThrowable(t);
+                responseListener.onFailure(t);
             }
         });
     }

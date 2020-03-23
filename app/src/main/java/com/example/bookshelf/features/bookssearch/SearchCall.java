@@ -5,11 +5,9 @@ import com.example.bookshelf.database.Book;
 import java.util.List;
 
 public interface SearchCall {
-    interface onSuccessfulCall {
-        void getBooks(List<Book> books);
-    }
+    interface responseListener {
+        void onSuccess(List<Book> books);
+        void onFailure(Throwable t);
 
-    interface onUnSuccessfulCall {
-        void getThrowable(Throwable t);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.bookshelf.features.bookssearch;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.example.bookshelf.Navigator;
@@ -21,23 +20,22 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     @Override
     public void searchBook(String query) {
-        repository = new BookRepository();
-        repository.requestBooksFromApi(query);
-
-        repository.onSuccessfulCall(new SearchCall.onSuccessfulCall() {
+        SearchCall.responseListener responseListener = new SearchCall.responseListener() {
             @Override
-            public void getBooks(List<Book> books) {
+            public void onSuccess(List<Book> books) {
                 view.successfulRequest(books);
-            }
-        });
 
-        repository.onUnSuccessfulCall(new SearchCall.onUnSuccessfulCall() {
+            }
+
             @Override
-            public void getThrowable(Throwable t) {
+            public void onFailure(Throwable t) {
                 Log.e("error", t.toString());
                 view.errorRequest();
             }
-        });
+        };
+
+        repository = new BookRepository();
+        repository.requestBooksFromApi(query, responseListener);
     }
 
     @Override
@@ -58,14 +56,5 @@ public class SearchPresenter implements SearchContract.Presenter {
     @Override
     public void openBookChallenge() {
         navigator.openBookChallenge();
-    }
-
-    @Override
-    public void onStart() {
-    }
-
-    @Override
-    public void onStartWitchData(Bundle bundle) {
-
     }
 }
