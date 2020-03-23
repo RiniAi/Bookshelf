@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.features.bookabout.AboutBookActivity;
+import com.example.bookshelf.features.bookabout.AboutBookPresenter;
 import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
 import com.example.bookshelf.features.bookedit.EditBookPresenter;
@@ -19,7 +20,7 @@ public class Navigator {
 
     public void openBook(Book book) {
         Intent intent = new Intent(context, AboutBookActivity.class);
-        intent.putExtra(AboutBookActivity.EXTRA_BOOK, book);
+        intent.putExtra(AboutBookPresenter.EXTRA_BOOK, book);
         context.startActivity(intent);
     }
 
