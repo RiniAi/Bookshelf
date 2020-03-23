@@ -82,7 +82,7 @@
                 android:numStars="5" />
 
             <DatePicker
-                android:id="@+id/date_picker"
+                android:id="@+id/date_of_reading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false"

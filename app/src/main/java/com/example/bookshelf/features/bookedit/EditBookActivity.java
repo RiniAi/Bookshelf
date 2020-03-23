@@ -27,10 +27,10 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     private TextView title;
     private TextView author;
     private ImageView cover;
-    private RatingBar averRating;
+    private RatingBar averageRating;
     private RatingBar userRating;
-    private DatePicker datePicker;
-    private ToggleButton addFavorite;
+    private DatePicker dateOfReading;
+    private ToggleButton addToFavorite;
     private Button save;
     private Button delete;
 
@@ -49,15 +49,15 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         title = (TextView) findViewById(R.id.tv_title);
         author = (TextView) findViewById(R.id.tv_author);
         cover = (ImageView) findViewById(R.id.iv_cover);
-        averRating = (RatingBar) findViewById(R.id.rb_aver_rating);
+        averageRating = (RatingBar) findViewById(R.id.rb_aver_rating);
         userRating = (RatingBar) findViewById(R.id.rb_user_rating);
         status = (Spinner) findViewById(R.id.spinner_status);
-        datePicker = (DatePicker) findViewById(R.id.date_picker);
-        addFavorite = (ToggleButton) findViewById(R.id.btn_favorite);
+        dateOfReading = (DatePicker) findViewById(R.id.date_of_reading);
+        addToFavorite = (ToggleButton) findViewById(R.id.btn_favorite);
         save = (Button) findViewById(R.id.btn_save);
         delete = (Button) findViewById(R.id.btn_delete);
 
-        addFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        addToFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 isFavorite = isChecked;
@@ -97,32 +97,27 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     @Override
-    public void setBookView(String title,
-                            String authors,
-                            float averRating,
-                            float userRating,
-                            boolean isFavorite) {
-
-        this.title.setText(title);
-        this.author.setText(authors);
-        this.averRating.setRating(averRating);
-        this.userRating.setRating(userRating);
-        addFavorite.setChecked(isFavorite);
-        this.isFavorite = isFavorite;
+    public void showBook(Book book) {
+        title.setText(book.getTitle());
+        author.setText(book.getAuthors());
+        averageRating.setRating(book.getAverageRating());
+        userRating.setRating(book.getUserRating());
+        addToFavorite.setChecked(book.isFavorite);
+        isFavorite = book.isFavorite;
     }
 
     @Override
-    public void setImage(String image) {
+    public void showCover(String image) {
         Picasso.get().load(image).into(cover);
     }
 
     @Override
-    public void setBrokenImage() {
+    public void showBrokenCover() {
         this.cover.setImageResource(R.drawable.ic_broken_image);
     }
 
     @Override
-    public void setStatus(Book.BookStatus bookStatus) {
+    public void showStatus(Book.BookStatus bookStatus) {
         switch (bookStatus) {
             case IN_THE_PROCESS_OF_READING:
                 status.setSelection(0);
@@ -141,24 +136,24 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     @Override
     public void updateDate(int year, int month, int dayOfMonth) {
-        datePicker.updateDate(year, month, dayOfMonth);
+        dateOfReading.updateDate(year, month, dayOfMonth);
     }
 
     @Override
-    public void showDelete() {
+    public void showButtonDelete() {
         delete.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideDelete() {
+    public void hideButtonDelete() {
         delete.setVisibility(View.GONE);
     }
 
     @Override
-    public void getDate() {
-        int year = datePicker.getYear();
-        int month = datePicker.getMonth();
-        int dayOfMonth = datePicker.getDayOfMonth();
+    public void showDate() {
+        int year = dateOfReading.getYear();
+        int month = dateOfReading.getMonth();
+        int dayOfMonth = dateOfReading.getDayOfMonth();
         presenter.setDate(year, month, dayOfMonth);
     }
 }

@@ -28,47 +28,39 @@ public class EditBookPresenter implements EditBookContract.Presenter {
 
     @Override
     public void onStartWitchData(Bundle bundle) {
-        getBook(bundle);
+        loadBook(bundle);
         searchBook();
     }
 
-    private void getBook(Bundle bundle) {
+    private void loadBook(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
 
-            getBookView();
-            getCover();
-            getStatus();
+            view.showBook(book);
+            loadCover();
+            loadStatus();
         }
     }
 
-    private void getBookView() {
-        view.setBookView(book.getTitle(),
-                book.getAuthors(),
-                book.getAverageRating(),
-                book.getUserRating(),
-                book.isFavorite());
-    }
-
-    private void getCover() {
+    private void loadCover() {
         String image = book.getImageLinks();
         if (image == null) {
-            view.setBrokenImage();
+            view.showBrokenCover();
         } else {
-            view.setImage(image);
+            view.showCover(image);
         }
     }
 
-    private void getStatus() {
+    private void loadStatus() {
         if (book.getStatus() != null) {
-            view.setStatus(book.getStatus());
+            view.showStatus(book.getStatus());
         }
         if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
-            stringConvertingToDatePicker();
+            getDate();
         }
     }
 
-    private void stringConvertingToDatePicker() {
+    private void getDate() {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         Date date = null;
         try {
@@ -87,9 +79,9 @@ public class EditBookPresenter implements EditBookContract.Presenter {
     private void searchBook() {
         Book bookDb = storage.searchBookDb(book);
         if (bookDb != null) {
-            view.showDelete();
+            view.showButtonDelete();
         } else {
-            view.hideDelete();
+            view.hideButtonDelete();
         }
     }
 
@@ -102,7 +94,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
 
     @Override
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
-        view.getDate();
+        view.showDate();
         book.userRating = rating;
         book.isFavorite = isFavorite;
         book.setStatus(BookStatusConverter.fromStringToStatus(status));
