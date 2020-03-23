@@ -8,6 +8,7 @@ import com.example.bookshelf.features.bookabout.AboutBookActivity;
 import com.example.bookshelf.features.bookabout.AboutBookPresenter;
 import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
+import com.example.bookshelf.features.bookedit.EditBookPresenter;
 import com.example.bookshelf.features.bookssearch.SearchActivity;
 
 public class Navigator {
@@ -25,7 +26,7 @@ public class Navigator {
 
     public void editBook(Book book) {
         Intent intent = new Intent(context, EditBookActivity.class);
-        intent.putExtra(EditBookActivity.EXTRA_BOOK, book);
+        intent.putExtra(EditBookPresenter.EXTRA_BOOK, book);
         context.startActivity(intent);
     }
 
