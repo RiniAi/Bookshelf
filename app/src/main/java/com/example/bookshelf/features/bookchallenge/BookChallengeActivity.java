@@ -67,7 +67,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setCounter(String count) {
+    public void setProgressCounter(String count) {
         counter.setText(count);
     }
 
@@ -84,11 +84,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     @Override
     public void setBooksCount(String size) {
         booksCount.setText(size);
-    }
-
-    @Override
-    public void setProgressCounter(String count) {
-        counter.setText(count);
     }
 
     @Override

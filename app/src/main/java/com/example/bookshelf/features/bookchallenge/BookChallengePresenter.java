@@ -32,7 +32,7 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
 
     private void loadCounter() {
         String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
-        view.setCounter(count);
+        view.setProgressCounter(count);
         setProgress(count);
     }
 
