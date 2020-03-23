@@ -24,7 +24,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/iv_search_activity"
+                    android:id="@+id/iv_cover"
                     android:layout_width="@dimen/default_image_view_width"
                     android:layout_height="@dimen/default_image_view_height"
                     android:background="@drawable/round_outline"
@@ -32,7 +32,7 @@
                     tools:src="@tools:sample/avatars" />
 
                 <ImageButton
-                    android:id="@+id/btn_search_activity"
+                    android:id="@+id/btn_edd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_add" />
@@ -45,7 +45,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_title_search_activity"
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -54,7 +54,7 @@
                     tools:text="@tools:sample/full_names" />
 
                 <TextView
-                    android:id="@+id/tv_author_search_activity"
+                    android:id="@+id/tv_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"

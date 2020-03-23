@@ -63,11 +63,11 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
 
         BookViewHolder(View itemView, OnItemClickListener onClickListener, OnEditClickListener onEditListener) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.iv_search_activity);
+            cover = (ImageView) itemView.findViewById(R.id.iv_cover);
             cover.setClipToOutline(true);
-            author = (TextView) itemView.findViewById(R.id.tv_author_search_activity);
-            title = (TextView) itemView.findViewById(R.id.tv_title_search_activity);
-            button = (ImageButton) itemView.findViewById(R.id.btn_search_activity);
+            author = (TextView) itemView.findViewById(R.id.tv_author);
+            title = (TextView) itemView.findViewById(R.id.tv_title);
+            button = (ImageButton) itemView.findViewById(R.id.btn_edd);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
