@@ -36,9 +36,8 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
         changeCounterForBar(counter);
     }
 
-    private void changeCounterForBar(String count) {
-        int counter = Integer.parseInt(count);
-        view.changeCounterForBar(counter);
+    private void changeCounterForBar(String counter) {
+        view.changeCounterForBar(Integer.parseInt(counter));
     }
 
     private void loadBooks() {
@@ -49,20 +48,18 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     }
 
     private void changeProgress(List<Book> books) {
-        String progress = String.valueOf(books.size());
-        view.changeProgress(progress);
+        view.changeProgress(String.valueOf(books.size()));
     }
 
     @Override
     public void onProgressChanged(int i) {
-        String progress = String.valueOf(i);
-        view.changeProgress(progress);
+        view.changeCounter(String.valueOf(i));
     }
 
     @Override
-    public void saveCounter(String count) {
+    public void saveCounter(String counter) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(STORAGE_COUNTER, count);
+        editor.putString(STORAGE_COUNTER, counter);
         editor.apply();
         view.showCounterSavedMessage();
     }
@@ -76,5 +73,4 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     public void openMain() {
         navigator.openMain();
     }
-
 }

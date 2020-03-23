@@ -19,13 +19,13 @@ import com.example.bookshelf.database.Book;
 import java.util.List;
 
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
-    private TextView counter;
-    private BookChallengeAdapter bookAdapter;
     private BookChallengeContract.Presenter presenter;
-    private Toolbar toolbar;
-    private SeekBar seekBar;
+    private BookChallengeAdapter bookAdapter;
     private RecyclerView books;
     private TextView progress;
+    private TextView counter;
+    private Toolbar toolbar;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +67,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void changeCounter(String count) {
-        counter.setText(count);
+    public void changeCounter(String counter) {
+        this.counter.setText(counter);
     }
 
     @Override
-    public void changeCounterForBar(int count) {
-        seekBar.setProgress(count);
+    public void changeCounterForBar(int counter) {
+        seekBar.setProgress(counter);
     }
 
     @Override
@@ -82,8 +82,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void changeProgress(String cProgress) {
-        progress.setText(cProgress);
+    public void changeProgress(String progress) {
+        this.progress.setText(progress);
     }
 
     @Override
@@ -96,14 +96,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        presenter.onProgressChanged(progress);
+    public void onProgressChanged(SeekBar seekBar, int counter, boolean fromUser) {
+        presenter.onProgressChanged(counter);
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        String count = counter.getText().toString();
-        presenter.saveCounter(count);
+        presenter.saveCounter(counter.getText().toString());
     }
 
     @Override
