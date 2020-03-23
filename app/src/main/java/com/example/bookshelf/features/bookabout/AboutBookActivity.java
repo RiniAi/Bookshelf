@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.R;
+import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
 public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
@@ -37,16 +38,16 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title = (findViewById(R.id.tv_title));
-        author = (findViewById(R.id.tv_author));
-        coverBack = (findViewById(R.id.iv_cover_back));
-        rating = (findViewById(R.id.rb_rating));
-        publishedDate = (findViewById(R.id.tv_published_date));
-        publisher = (findViewById(R.id.tv_publisher));
-        pageCount = (findViewById(R.id.tv_page_count));
-        lang = (findViewById(R.id.tv_lang));
-        description = (findViewById(R.id.tv_description));
-        cover = (findViewById(R.id.iv_cover));
+        title = (TextView) findViewById(R.id.tv_title);
+        author = (TextView) findViewById(R.id.tv_author);
+        coverBack = (ImageView) findViewById(R.id.iv_cover_back);
+        rating = (RatingBar) findViewById(R.id.rb_rating);
+        publishedDate = (TextView) findViewById(R.id.tv_published_date);
+        publisher = (TextView) findViewById(R.id.tv_publisher);
+        pageCount = (TextView) findViewById(R.id.tv_page_count);
+        lang = (TextView) findViewById(R.id.tv_lang);
+        description = (TextView) findViewById(R.id.tv_description);
+        cover = (ImageView) findViewById(R.id.iv_cover);
         cover.setClipToOutline(true);
         buildToolbar();
     }
@@ -57,33 +58,26 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     }
 
     @Override
-    public void setBookView(String title,
-                            String authors,
-                            float rating,
-                            String publishedDate,
-                            String publisher,
-                            String pageCount,
-                            String lang,
-                            String description) {
-        this.title.setText(title);
-        this.author.setText(authors);
-        this.rating.setRating(rating);
-        this.publishedDate.setText(publishedDate);
-        this.publisher.setText(publisher);
-        this.pageCount.setText(pageCount);
-        this.lang.setText(lang);
-        this.description.setText(description);
+    public void showBook(Book book) {
+        title.setText(book.getTitle());
+        author.setText(book.getAuthors());
+        rating.setRating(book.getAverageRating());
+        publishedDate.setText(book.getPublishedDate());
+        publisher.setText(book.getPublisher());
+        pageCount.setText(String.valueOf(book.getPageCount()));
+        lang.setText(book.getLanguage());
+        description.setText(book.getDescription());
     }
 
     @Override
-    public void setImage(String image) {
-        Picasso.get().load(image).into(cover);
-        Picasso.get().load(image).into(coverBack);
+    public void showBookCover(String cover) {
+        Picasso.get().load(cover).into(this.cover);
+        Picasso.get().load(cover).into(this.coverBack);
     }
 
     @Override
-    public void setBrokenImage() {
-        this.cover.setImageResource(R.drawable.ic_broken_image);
-        this.coverBack.setImageResource(R.drawable.ic_broken_image);
+    public void showBookBrokenCover() {
+        cover.setImageResource(R.drawable.ic_broken_image);
+        coverBack.setImageResource(R.drawable.ic_broken_image);
     }
 }

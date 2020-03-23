@@ -2,20 +2,15 @@ package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
 
+import com.example.bookshelf.database.Book;
+
 public interface AboutBookContract {
     interface View {
-        void setBookView(String title,
-                         String authors,
-                         float rating,
-                         String publishedDate,
-                         String publisher,
-                         String pageCount,
-                         String lang,
-                         String description);
+        void showBook(Book book);
 
-        void setImage(String image);
+        void showBookCover(String cover);
 
-        void setBrokenImage();
+        void showBookBrokenCover();
     }
 
     interface Presenter {
