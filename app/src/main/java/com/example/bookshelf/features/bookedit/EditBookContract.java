@@ -1,12 +1,11 @@
 package com.example.bookshelf.features.bookedit;
 
-import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.base.BaseView;
+import android.os.Bundle;
+
 import com.example.bookshelf.database.Book;
 
 public interface EditBookContract {
-    interface View extends BaseView {
-
+    interface View {
         void setBookView(String title,
                          String authors,
                          float averRating,
@@ -28,7 +27,9 @@ public interface EditBookContract {
         void getDate();
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter {
+        void onStartWitchData(Bundle bundle);
+
         void setDate(int dayOfMonth, int month, int year);
 
         void insertOrUpdateBook(float rating, String status, boolean isFavorite);

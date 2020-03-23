@@ -27,13 +27,9 @@ public class EditBookPresenter implements EditBookContract.Presenter {
     }
 
     @Override
-    public void onStart() {
-        searchBook();
-    }
-
-    @Override
     public void onStartWitchData(Bundle bundle) {
         getBook(bundle);
+        searchBook();
     }
 
     private void getBook(Bundle bundle) {
