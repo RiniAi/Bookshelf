@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface SearchContract {
     interface View {
-        void successfulRequest(List<Book> bookList);
+        void showBooks(List<Book> bookList);
 
-        void errorRequest();
+        void showError();
     }
 
     interface Presenter {

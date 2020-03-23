@@ -21,7 +21,7 @@
             android:inputType="text" />
 
         <ImageButton
-            android:id="@+id/btn_query"
+            android:id="@+id/ib_send_query"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_search" />

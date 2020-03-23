@@ -23,14 +23,14 @@ public class SearchPresenter implements SearchContract.Presenter {
         SearchCall.responseListener responseListener = new SearchCall.responseListener() {
             @Override
             public void onSuccess(List<Book> books) {
-                view.successfulRequest(books);
+                view.showBooks(books);
 
             }
 
             @Override
             public void onFailure(Throwable t) {
                 Log.e("error", t.toString());
-                view.errorRequest();
+                view.showError();
             }
         };
 

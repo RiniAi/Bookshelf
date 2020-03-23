@@ -7,7 +7,7 @@ import java.util.List;
 public interface SearchCall {
     interface responseListener {
         void onSuccess(List<Book> books);
-        void onFailure(Throwable t);
 
+        void onFailure(Throwable t);
     }
 }

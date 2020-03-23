@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     private LinearLayout progressBar;
     private BookSearchAdapter bookAdapter;
     private RecyclerView books;
-    private EditText enterQuery;
+    private EditText query;
     private ImageButton sendQuery;
 
     @Override
@@ -50,8 +50,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         progressBar = (LinearLayout) findViewById(R.id.bar);
         progressBar.setVisibility(View.GONE);
-        enterQuery = (EditText) findViewById(R.id.et_query);
-        sendQuery = (ImageButton) findViewById(R.id.btn_query);
+        query = (EditText) findViewById(R.id.et_query);
+        sendQuery = (ImageButton) findViewById(R.id.ib_send_query);
 
         buildToolbar();
         buildRecyclerView();
@@ -67,15 +67,19 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         sendQuery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                buildSearch(view);
+                presenter.searchBook(query.getText().toString());
+                hideKeyboard(SearchActivity.this, view);
+                hideList();
             }
         });
 
-        enterQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        query.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    buildSearch(view);
+                    presenter.searchBook(query.getText().toString());
+                    hideKeyboard(SearchActivity.this, view);
+                    hideList();
                     return true;
                 }
                 return false;
@@ -103,10 +107,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         });
     }
 
-    private void buildSearch(View view) {
-        String query = enterQuery.getText().toString();
-        presenter.searchBook(query);
-        hideKeyboard(SearchActivity.this, view);
+    private void hideList() {
         progressBar.setVisibility(ProgressBar.VISIBLE);
         books.setVisibility(View.GONE);
     }
@@ -118,7 +119,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void successfulRequest(List<Book> bookList) {
+    public void showBooks(List<Book> bookList) {
         progressBar.setVisibility(View.GONE);
         books.setVisibility(View.VISIBLE);
         if (bookList == null) {
@@ -129,7 +130,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
-    public void errorRequest() {
+    public void showError() {
         progressBar.setVisibility(View.GONE);
         Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
     }
