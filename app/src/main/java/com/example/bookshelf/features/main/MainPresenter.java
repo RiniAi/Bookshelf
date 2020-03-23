@@ -1,7 +1,6 @@
 package com.example.bookshelf.features.main;
 
 import android.content.Context;
-import android.os.Bundle;
 
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.database.Book;
@@ -21,11 +20,6 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void onStart() {
         loadBooks();
-    }
-
-    @Override
-    public void onStartWitchData(Bundle bundle) {
-
     }
 
     private void loadBooks() {
