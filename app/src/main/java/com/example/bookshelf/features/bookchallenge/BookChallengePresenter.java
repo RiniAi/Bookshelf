@@ -2,7 +2,6 @@ package com.example.bookshelf.features.bookchallenge;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.example.bookshelf.Navigator;
@@ -29,11 +28,6 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     public void onStart() {
         loadCounter();
         loadBooks();
-    }
-
-    @Override
-    public void onStartWitchData(Bundle bundle) {
-
     }
 
     private void loadCounter() {

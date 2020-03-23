@@ -1,14 +1,11 @@
 package com.example.bookshelf.features.bookchallenge;
 
-import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.base.BaseView;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
 public interface BookChallengeContract {
-    interface View extends BaseView {
-
+    interface View {
         void setCounter(String count);
 
         void setProgressBar(int count);
@@ -22,7 +19,8 @@ public interface BookChallengeContract {
         void showCounterSavedMessage();
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter {
+        void onStart();
 
         void onProgressChanged(int i);
 
