@@ -24,6 +24,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     private EditBookContract.Presenter presenter;
     private Toolbar toolbar;
     private Spinner status;
+    private ArrayAdapter<?> statusAdapter;
     private TextView title;
     private TextView author;
     private ImageView cover;
@@ -91,9 +92,9 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     private void buildStatusSpinner() {
-        ArrayAdapter<?> adapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        status.setAdapter(adapter);
+        statusAdapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        status.setAdapter(statusAdapter);
     }
 
     @Override
@@ -120,17 +121,26 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     public void showStatus(Book.BookStatus bookStatus) {
         switch (bookStatus) {
             case IN_THE_PROCESS_OF_READING:
-                status.setSelection(0);
+                getItemForStatus(getString(R.string.edit_book_process_status));
                 break;
             case PLAN_READING:
-                status.setSelection(1);
+                getItemForStatus(getString(R.string.edit_book_plan_status));
                 break;
             case FINISH_READING:
-                status.setSelection(2);
+                getItemForStatus(getString(R.string.edit_book_finish_status));
                 break;
             case QUIT_READING:
-                status.setSelection(3);
+                getItemForStatus(getString(R.string.edit_book_quit_status));
                 break;
+        }
+    }
+
+    private void getItemForStatus(String status) {
+        for (int i = 0; i < statusAdapter.getCount(); i++) {
+            if (status.equals(statusAdapter.getItem(i).toString())) {
+                this.status.setSelection(i);
+                break;
+            }
         }
     }
 
