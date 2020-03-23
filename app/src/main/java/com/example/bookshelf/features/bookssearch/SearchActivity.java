@@ -156,3 +156,4 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         return true;
     }
 }
+
