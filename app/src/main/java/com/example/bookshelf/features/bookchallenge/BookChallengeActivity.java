@@ -19,13 +19,13 @@ import com.example.bookshelf.database.Book;
 import java.util.List;
 
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
-    private TextView counter;
-    private BookChallengeAdapter bookAdapter;
     private BookChallengeContract.Presenter presenter;
+    private BookChallengeAdapter bookAdapter;
+    private RecyclerView books;
+    private TextView progress;
+    private TextView counter;
     private Toolbar toolbar;
     private SeekBar seekBar;
-    private RecyclerView books;
-    private TextView booksCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,9 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        progress = (TextView) findViewById(R.id.tv_progress);
         counter = (TextView) findViewById(R.id.tv_counter);
         books = (RecyclerView) findViewById(R.id.rv_list);
-        booksCount = (TextView) findViewById(R.id.tv_books_count);
         seekBar = (SeekBar) findViewById(R.id.sb_counter);
         seekBar.setOnSeekBarChangeListener(this);
         buildToolbar();
@@ -67,13 +67,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setCounter(String count) {
-        counter.setText(count);
+    public void changeCounter(String counter) {
+        this.counter.setText(counter);
     }
 
     @Override
-    public void setProgressBar(int count) {
-        seekBar.setProgress(count);
+    public void changeCounterForBar(int counter) {
+        seekBar.setProgress(counter);
     }
 
     @Override
@@ -82,13 +82,8 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void setBooksCount(String size) {
-        booksCount.setText(size);
-    }
-
-    @Override
-    public void setProgressCounter(String count) {
-        counter.setText(count);
+    public void changeProgress(String progress) {
+        this.progress.setText(progress);
     }
 
     @Override
@@ -101,14 +96,13 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        presenter.onProgressChanged(progress);
+    public void onProgressChanged(SeekBar seekBar, int counter, boolean fromUser) {
+        presenter.onProgressChanged(counter);
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        String count = counter.getText().toString();
-        presenter.saveCounter(count);
+        presenter.saveCounter(counter.getText().toString());
     }
 
     @Override

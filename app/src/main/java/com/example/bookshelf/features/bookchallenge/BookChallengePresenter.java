@@ -2,7 +2,6 @@ package com.example.bookshelf.features.bookchallenge;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 
 import com.example.bookshelf.Navigator;
@@ -31,44 +30,36 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
         loadBooks();
     }
 
-    @Override
-    public void onStartWitchData(Bundle bundle) {
-
-    }
-
     private void loadCounter() {
-        String count = sharedPreferences.getString(STORAGE_COUNTER, "0");
-        view.setCounter(count);
-        setProgress(count);
+        String counter = sharedPreferences.getString(STORAGE_COUNTER, "0");
+        view.changeCounter(counter);
+        changeCounterForBar(counter);
     }
 
-    private void setProgress(String count) {
-        int counter = Integer.parseInt(count);
-        view.setProgressBar(counter);
+    private void changeCounterForBar(String counter) {
+        view.changeCounterForBar(Integer.parseInt(counter));
     }
 
     private void loadBooks() {
         BookStorage storage = new BookStorage();
         List<Book> books = storage.getAllWithStatus(FINISH_READING);
         view.showList(books);
-        setBooksCount(books);
+        changeProgress(books);
     }
 
-    private void setBooksCount(List<Book> books) {
-        String size = String.valueOf(books.size());
-        view.setBooksCount(size);
+    private void changeProgress(List<Book> books) {
+        view.changeProgress(String.valueOf(books.size()));
     }
 
     @Override
     public void onProgressChanged(int i) {
-        String progress = String.valueOf(i);
-        view.setProgressCounter(progress);
+        view.changeCounter(String.valueOf(i));
     }
 
     @Override
-    public void saveCounter(String count) {
+    public void saveCounter(String counter) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(STORAGE_COUNTER, count);
+        editor.putString(STORAGE_COUNTER, counter);
         editor.apply();
         view.showCounterSavedMessage();
     }
@@ -82,5 +73,4 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     public void openMain() {
         navigator.openMain();
     }
-
 }
