@@ -119,29 +119,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     @Override
     public void showStatus(Book.BookStatus bookStatus) {
-        switch (bookStatus) {
-            case IN_THE_PROCESS_OF_READING:
-                getItemForStatus(getString(R.string.edit_book_process_status));
-                break;
-            case PLAN_READING:
-                getItemForStatus(getString(R.string.edit_book_plan_status));
-                break;
-            case FINISH_READING:
-                getItemForStatus(getString(R.string.edit_book_finish_status));
-                break;
-            case QUIT_READING:
-                getItemForStatus(getString(R.string.edit_book_quit_status));
-                break;
-        }
-    }
-
-    private void getItemForStatus(String status) {
-        for (int i = 0; i < statusAdapter.getCount(); i++) {
-            if (status.equals(statusAdapter.getItem(i).toString())) {
-                this.status.setSelection(i);
-                break;
-            }
-        }
+        SpinnerUtils spinnerUtils = new SpinnerUtils();
+        spinnerUtils.getSelection(status, bookStatus);
     }
 
     @Override
