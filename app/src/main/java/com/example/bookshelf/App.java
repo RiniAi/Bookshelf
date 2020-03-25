@@ -5,14 +5,25 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.bookshelf.database.BookDatabase;
+import com.example.bookshelf.di.AppModule;
 
 public class App extends Application {
     public static App instance;
     private BookDatabase database;
 
+    private static AppComponent appComponent;
+
+    public static AppComponent getAppComponent() {
+        return appComponent;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(App.this))
+                .build();
 
         createDatabase();
     }
