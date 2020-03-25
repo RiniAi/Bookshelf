@@ -4,25 +4,35 @@ import com.example.bookshelf.App;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class BookStorage {
-    private BookDatabase db = App.getInstance().getDatabase();
-    private BookDao bookDao = db.bookDao();
+
+    @Inject
+    BookDao bookDao;
+
+    public void onStart() {
+        App.getAppComponent().injectBookStorage(this);
+    }
 
     public Book searchBookDb(Book book) {
+        onStart();
         return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
     public List<Book> getAllWithStatus(Book.BookStatus status) {
+        onStart();
         return bookDao.getAllWithStatus(BookStatusConverter.fromStatusToString(status));
     }
 
     public List<Book> getAll() {
+        onStart();
         return bookDao.getAll();
     }
 
     public void insertOrUpdate(Book book) {
-        Book bookDb = searchBookDb(book);
-        if (bookDb != null) {
+        onStart();
+        if (searchBookDb(book) != null) {
             bookDao.update(book);
         } else {
             bookDao.insert(book);
@@ -30,6 +40,7 @@ public class BookStorage {
     }
 
     public void delete(Book book) {
+        onStart();
         bookDao.delete(book);
     }
 }
