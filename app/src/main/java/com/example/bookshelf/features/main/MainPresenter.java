@@ -1,7 +1,5 @@
 package com.example.bookshelf.features.main;
 
-import android.content.Context;
-
 import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.database.Book;
@@ -13,14 +11,15 @@ import javax.inject.Inject;
 
 public class MainPresenter implements MainContract.Presenter {
     private MainContract.View view;
-    private Navigator navigator;
 
     @Inject
     BookStorage storage;
 
-    public MainPresenter(MainContract.View view, Context context) {
+    @Inject
+    Navigator navigator;
+
+    public MainPresenter(MainContract.View view) {
         this.view = view;
-        this.navigator = new Navigator(context);
     }
 
     @Override
