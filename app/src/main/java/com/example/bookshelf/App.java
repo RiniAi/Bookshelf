@@ -5,7 +5,9 @@ import android.app.Application;
 import androidx.room.Room;
 
 import com.example.bookshelf.database.BookDatabase;
+import com.example.bookshelf.di.AppComponent;
 import com.example.bookshelf.di.AppModule;
+import com.example.bookshelf.di.DaggerAppComponent;
 
 public class App extends Application {
     public static App instance;

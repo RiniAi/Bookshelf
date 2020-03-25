@@ -2,15 +2,21 @@ package com.example.bookshelf.features.main;
 
 import android.content.Context;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainPresenter implements MainContract.Presenter {
     private MainContract.View view;
     private Navigator navigator;
+
+    @Inject
+    BookStorage storage;
 
     public MainPresenter(MainContract.View view, Context context) {
         this.view = view;
@@ -19,11 +25,11 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void onStart() {
+        App.getAppComponent().injectMainPresenter(this);
         loadBooks();
     }
 
     private void loadBooks() {
-        BookStorage storage = new BookStorage();
         List<Book> books = storage.getAll();
         if (books.isEmpty()) {
             view.hideList();
