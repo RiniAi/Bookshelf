@@ -31,7 +31,6 @@ public class BookStorage {
     }
 
     public void insertOrUpdate(Book book) {
-        onStart();
         if (searchBookDb(book) != null) {
             bookDao.update(book);
         } else {
@@ -40,7 +39,6 @@ public class BookStorage {
     }
 
     public void delete(Book book) {
-        onStart();
         bookDao.delete(book);
     }
 }
