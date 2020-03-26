@@ -56,7 +56,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         if (book.getStatus() != null) {
             view.showStatus(book.getStatus());
         }
-        if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
+        if (book.isFinishedOrQuit()) {
             getDate();
         }
     }
@@ -99,7 +99,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         book.userRating = rating;
         book.isFavorite = isFavorite;
         book.setStatus(BookStatusConverter.fromStringToStatus(status));
-        if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
+        if (book.isFinishedOrQuit()) {
             book.readDate = date;
         } else {
             book.readDate = "";

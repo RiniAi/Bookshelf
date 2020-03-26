@@ -21,17 +21,6 @@
     <string name="edit_book_rating">Your rating</string>
     <string name="edit_book_save">Save</string>
     <string name="edit_book_status">The status of the book</string>
-    <string-array name="edit_book_status">
-        <item>@string/edit_book_process_status</item>
-        <item>@string/edit_book_plan_status</item>
-        <item>@string/edit_book_finish_status</item>
-        <item>@string/edit_book_quit_status</item>
-    </string-array>
-
-    <string name="edit_book_process_status">In the process of reading</string>
-    <string name="edit_book_plan_status">Plan to read</string>
-    <string name="edit_book_finish_status">Finish reading</string>
-    <string name="edit_book_quit_status">Quit reading</string>
 
     <string name="book_challenge_save_counter">The counter number is saved!</string>
 
