@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private Toolbar toolbar;
     private RecyclerView books;
     private LinearLayout emptyView;
-    private BookAdapter bookAdapter;
+    @Inject
+    BookAdapter bookAdapter;
     @Inject
     MainContract.Presenter presenter;
 
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     private void buildRecyclerView() {
-        bookAdapter = new BookAdapter(getApplicationContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);

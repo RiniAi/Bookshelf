@@ -20,10 +20,13 @@ import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStatusConverter;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
     private OnItemClickListener onClickListener;
     private OnEditClickListener onEditListener;
 
+    @Inject
     public BookAdapter(Context context) {
         super(context);
     }
