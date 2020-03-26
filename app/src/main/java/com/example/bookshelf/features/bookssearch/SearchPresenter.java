@@ -31,8 +31,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                 view.showError();
             }
         };
-
-        repository = new BookRepository();
+        App.getAppComponent().injectSearchPresenter(this);
         repository.requestBooksFromApi(query, responseListener);
     }
 
