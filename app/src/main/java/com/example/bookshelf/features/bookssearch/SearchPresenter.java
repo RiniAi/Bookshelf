@@ -1,22 +1,21 @@
 package com.example.bookshelf.features.bookssearch;
 
-import android.content.Context;
 import android.util.Log;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
-public class SearchPresenter implements SearchContract.Presenter {
-    private SearchContract.View view;
-    private BookRepository repository;
-    private Navigator navigator;
+import javax.inject.Inject;
 
-    public SearchPresenter(SearchContract.View view, Context context) {
-        this.view = view;
-        this.navigator = new Navigator(context);
-    }
+public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
+    @Inject
+    BookRepository repository;
+    @Inject
+    Navigator navigator;
 
     @Override
     public void searchBook(String query) {
@@ -24,7 +23,6 @@ public class SearchPresenter implements SearchContract.Presenter {
             @Override
             public void onSuccess(List<Book> books) {
                 view.showBooks(books);
-
             }
 
             @Override
@@ -40,21 +38,25 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     @Override
     public void openBook(Book book) {
+        App.getAppComponent().injectSearchPresenter(this);
         navigator.openBook(book);
     }
 
     @Override
     public void editBook(Book book) {
+        App.getAppComponent().injectSearchPresenter(this);
         navigator.editBook(book);
     }
 
     @Override
     public void openMain() {
+        App.getAppComponent().injectSearchPresenter(this);
         navigator.openMain();
     }
 
     @Override
     public void openBookChallenge() {
+        App.getAppComponent().injectSearchPresenter(this);
         navigator.openBookChallenge();
     }
 }

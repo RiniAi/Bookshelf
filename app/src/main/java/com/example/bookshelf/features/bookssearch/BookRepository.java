@@ -10,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,6 +21,9 @@ import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
 
 public class BookRepository {
     private List<BooksApiResponseItem> bookResult;
+    @Inject
+    public BookRepository() {
+    }
 
     public void requestBooksFromApi(String query, SearchCall.responseListener responseListener) {
         bookResult = new ArrayList<>();

@@ -23,27 +23,34 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
-    private SearchContract.Presenter presenter;
     private Toolbar toolbar;
     private LinearLayout progressBar;
     private BookSearchAdapter bookAdapter;
     private RecyclerView books;
     private EditText query;
     private ImageButton sendQuery;
+    @Inject
+    Context context;
+    @Inject
+    SearchContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getAppComponent().injectSearchActivity(this);
+        ((BasePresenter)presenter).setView(this);
         setContentView(R.layout.activity_search);
-
         initControls();
-        presenter = new SearchPresenter(this, this);
     }
 
     private void initControls() {
