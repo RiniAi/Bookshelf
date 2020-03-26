@@ -19,8 +19,6 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
-
 public class EditBookActivity extends AppCompatActivity implements EditBookContract.View {
     private boolean isFavorite = false;
     private EditBookContract.Presenter presenter;
@@ -85,6 +83,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         });
 
         buildToolbar();
+        buildStatusSpinner();
     }
 
     private void buildToolbar() {
@@ -92,9 +91,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         getSupportActionBar().setTitle(R.string.edit_book_title);
     }
 
-    @Override
-    public void buildStatusSpinner(List<StatusBook> list) {
-        statusAdapter = new ArrayAdapter<StatusBook> (this, android.R.layout.simple_spinner_item, list);
+    private void buildStatusSpinner() {
+        statusAdapter = new ArrayAdapter<Book.BookStatus>(this, android.R.layout.simple_spinner_item, Book.BookStatus.values());
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         status.setAdapter(statusAdapter);
     }

@@ -8,8 +8,7 @@ public class SpinnerUtils {
 
     public void getSelection(Spinner spinner, Book.BookStatus bookStatus) {
         for (int i = 0; i < spinner.getCount(); i++) {
-            StatusBook status = (StatusBook) spinner.getItemAtPosition(i);
-            if (status.getId() == bookStatus) {
+            if (spinner.getItemAtPosition(i) == bookStatus) {
                 spinner.setSelection(i);
             }
         }

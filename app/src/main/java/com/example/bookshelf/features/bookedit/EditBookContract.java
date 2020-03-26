@@ -4,12 +4,8 @@ import android.os.Bundle;
 
 import com.example.bookshelf.database.Book;
 
-import java.util.List;
-
 public interface EditBookContract {
     interface View {
-        void buildStatusSpinner(List<StatusBook> list);
-
         void showBook(Book book);
 
         void showCover(String image);

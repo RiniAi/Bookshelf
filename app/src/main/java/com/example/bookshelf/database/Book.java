@@ -24,10 +24,29 @@ public class Book implements Serializable {
     BookStatus status;
 
     public enum BookStatus implements Serializable {
-        IN_THE_PROCESS_OF_READING,
-        PLAN_READING,
-        FINISH_READING,
-        QUIT_READING
+        IN_THE_PROCESS_OF_READING("In the process of reading"),
+        PLAN_READING("Plan to read"),
+        FINISH_READING("Finish reading"),
+        QUIT_READING("Quit reading");
+
+        private String status;
+
+        BookStatus(String status) {
+            this.status = status;
+        }
+
+        @Override
+        public String toString() {
+            return status;
+        }
+    }
+
+    public boolean isFinishedOrQuit() {
+        if (getStatus() == BookStatus.FINISH_READING || getStatus() == BookStatus.QUIT_READING)
+            return true;
+        else {
+            return false;
+        }
     }
 
     public String imageLinks;
