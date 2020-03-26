@@ -8,12 +8,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
-    private AboutBookContract.Presenter presenter;
     private Toolbar toolbar;
     private TextView title;
     private TextView author;
@@ -25,14 +28,16 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     private TextView pageCount;
     private TextView lang;
     private TextView description;
+    @Inject
+    AboutBookContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getAppComponent().injectAboutBookActivity(this);
+        ((BasePresenter)presenter).setView(this);
         setContentView(R.layout.activity_about_book);
-
         initControls();
-        presenter = new AboutBookPresenter(this);
         presenter.onStartWitchData(getIntent().getExtras());
     }
 
