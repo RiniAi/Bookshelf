@@ -2,6 +2,7 @@ package com.example.bookshelf.features.main;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;
 
@@ -9,18 +10,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MainPresenter implements MainContract.Presenter {
-    private MainContract.View view;
-
+public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
     BookStorage storage;
 
     @Inject
     Navigator navigator;
-
-    public MainPresenter(MainContract.View view) {
-        this.view = view;
-    }
 
     @Override
     public void onStart() {

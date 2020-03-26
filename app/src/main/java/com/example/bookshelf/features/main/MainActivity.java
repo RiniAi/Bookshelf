@@ -12,25 +12,30 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
     private Toolbar toolbar;
     private RecyclerView books;
     private LinearLayout emptyView;
     private BookAdapter bookAdapter;
-    private MainContract.Presenter presenter;
+    @Inject
+    MainContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getAppComponent().injectMainActivity(this);
         setContentView(R.layout.activity_list_of_books);
-
+        ((BasePresenter)presenter).setView(this);
         initControls();
-        presenter = new MainPresenter(this, this);
     }
 
     @Override
