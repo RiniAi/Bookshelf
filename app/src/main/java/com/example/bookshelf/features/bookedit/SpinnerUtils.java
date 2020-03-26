@@ -5,7 +5,12 @@ import android.widget.Spinner;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStatusConverter;
 
+import javax.inject.Inject;
+
 public class SpinnerUtils {
+    @Inject
+    public SpinnerUtils() {
+    }
 
     public void getSelection(Spinner spinner, Book.BookStatus bookStatus) {
         for (int i = 0; i < spinner.getCount(); i++) {

@@ -15,16 +15,18 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class EditBookActivity extends AppCompatActivity implements EditBookContract.View {
     private boolean isFavorite = false;
-    private EditBookContract.Presenter presenter;
     private Toolbar toolbar;
     private Spinner status;
-    private ArrayAdapter<?> statusAdapter;
     private TextView title;
     private TextView author;
     private ImageView cover;
@@ -34,14 +36,18 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     private ToggleButton addToFavorite;
     private Button save;
     private Button delete;
+    @Inject
+    EditBookContract.Presenter presenter;
+    @Inject
+    SpinnerUtils spinnerUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getAppComponent().injectEditBookActivity(this);
+        ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_edit_book);
-
         initControls();
-        presenter = new EditBookPresenter(this, this);
         presenter.onStartWitchData(getIntent().getExtras());
     }
 
@@ -92,7 +98,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     private void buildStatusSpinner() {
-        statusAdapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
+        ArrayAdapter<?> statusAdapter = ArrayAdapter.createFromResource(this, R.array.edit_book_status, android.R.layout.simple_spinner_item);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         status.setAdapter(statusAdapter);
     }
@@ -119,7 +125,6 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     @Override
     public void showStatus(Book.BookStatus bookStatus) {
-        SpinnerUtils spinnerUtils = new SpinnerUtils();
         spinnerUtils.getSelection(status, bookStatus);
     }
 

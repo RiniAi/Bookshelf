@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 
+import com.example.bookshelf.App;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStatusConverter;
 import com.example.bookshelf.database.BookStorage;
@@ -13,21 +15,20 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class EditBookPresenter implements EditBookContract.Presenter {
+import javax.inject.Inject;
+
+public class EditBookPresenter extends BasePresenter<EditBookContract.View> implements EditBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";
-    private BookStorage storage = new BookStorage();
-    private EditBookContract.View view;
-    private Context context;
     private Book book;
     private String date;
-
-    public EditBookPresenter(EditBookContract.View view, Context context) {
-        this.view = view;
-        this.context = context;
-    }
+    @Inject
+    Context context;
+    @Inject
+    BookStorage storage;
 
     @Override
     public void onStartWitchData(Bundle bundle) {
+        App.getAppComponent().injectEditBookPresenter(this);
         loadBook(bundle);
         searchBook();
     }

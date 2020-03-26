@@ -1,4 +1,7 @@
-package com.example.bookshelf.features.bookabout;
+package com.example.bookshelf.di;
+
+import com.example.bookshelf.features.bookabout.AboutBookContract;
+import com.example.bookshelf.features.bookabout.AboutBookPresenter;
 
 import dagger.Module;
 import dagger.Provides;
