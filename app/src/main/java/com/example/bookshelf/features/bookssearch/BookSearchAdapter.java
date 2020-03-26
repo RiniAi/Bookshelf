@@ -17,10 +17,12 @@ import com.example.bookshelf.base.BaseViewHolder;
 import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
     private OnItemClickListener onClickListener;
     private OnEditClickListener onEditListener;
-
+    @Inject
     public BookSearchAdapter(Context context) {
         super(context);
     }

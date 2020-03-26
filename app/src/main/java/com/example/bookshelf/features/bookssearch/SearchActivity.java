@@ -35,12 +35,11 @@ import javax.inject.Inject;
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
     private Toolbar toolbar;
     private LinearLayout progressBar;
-    private BookSearchAdapter bookAdapter;
     private RecyclerView books;
     private EditText query;
     private ImageButton sendQuery;
     @Inject
-    Context context;
+    BookSearchAdapter bookAdapter;
     @Inject
     SearchContract.Presenter presenter;
 
@@ -97,7 +96,6 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     private void buildRecyclerView() {
         books = findViewById(R.id.rv_of_books);
         LinearLayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 2);
-        bookAdapter = new BookSearchAdapter(getApplicationContext());
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(new BookSearchAdapter.OnItemClickListener() {
