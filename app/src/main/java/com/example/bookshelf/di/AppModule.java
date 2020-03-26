@@ -1,6 +1,7 @@
 package com.example.bookshelf.di;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.bookshelf.App;
 
@@ -18,5 +19,10 @@ public class AppModule {
     @Provides
     public Context providesContext() {
         return app.getApplicationContext();
+    }
+
+    @Provides
+    SharedPreferences providesSharedPreference() {
+        return app.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE);
     }
 }

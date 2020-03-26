@@ -13,27 +13,33 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
-    private BookChallengeContract.Presenter presenter;
-    private BookChallengeAdapter bookAdapter;
     private RecyclerView books;
     private TextView progress;
     private TextView counter;
     private Toolbar toolbar;
     private SeekBar seekBar;
+    @Inject
+    BookChallengeAdapter bookAdapter;
+    @Inject
+    BookChallengeContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getAppComponent().injectBookChallengeActivity(this);
+        ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_book_challenge);
-
         initControls();
-        presenter = new BookChallengePresenter(this, this);
         presenter.onStart();
     }
 
