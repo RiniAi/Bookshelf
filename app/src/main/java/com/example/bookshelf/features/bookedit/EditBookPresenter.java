@@ -39,6 +39,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
 
             view.showBook(book);
             loadCover();
+            initStatus();
             loadStatus();
         }
     }
@@ -50,6 +51,10 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         } else {
             view.showCover(image);
         }
+    }
+
+    private void initStatus() {
+        Book.BookStatus.resolveStatuses(context,Book.BookStatus.values());
     }
 
     private void loadStatus() {

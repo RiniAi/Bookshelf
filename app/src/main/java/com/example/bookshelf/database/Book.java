@@ -1,8 +1,12 @@
 package com.example.bookshelf.database;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.TypeConverters;
+
+import com.example.bookshelf.R;
 
 import java.io.Serializable;
 
@@ -24,15 +28,38 @@ public class Book implements Serializable {
     BookStatus status;
 
     public enum BookStatus implements Serializable {
-        IN_THE_PROCESS_OF_READING("In the process of reading"),
-        PLAN_READING("Plan to read"),
-        FINISH_READING("Finish reading"),
-        QUIT_READING("Quit reading");
+        IN_THE_PROCESS_OF_READING(R.string.edit_book_process_status),
+        PLAN_READING(R.string.edit_book_plan_status),
+        FINISH_READING(R.string.edit_book_finish_status),
+        QUIT_READING(R.string.edit_book_quit_status);
 
         private String status;
+        private int statusResId;
 
-        BookStatus(String status) {
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
             this.status = status;
+        }
+
+        public int getStatusResId() {
+            return statusResId;
+        }
+
+        public void setStatusResId(int statusResId) {
+            this.statusResId = statusResId;
+        }
+
+        BookStatus(int statusResId) {
+            this.statusResId = statusResId;
+        }
+
+        public static void resolveStatuses(Context context, BookStatus[] statuses){
+            for (BookStatus status: statuses){
+                status.setStatus(context.getString(status.getStatusResId()));
+            }
         }
 
         @Override
