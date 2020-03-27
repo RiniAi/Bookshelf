@@ -38,6 +38,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
 
             view.showBook(book);
             loadCover();
+            initStatus();
             loadStatus();
         }
     }
@@ -49,6 +50,10 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         } else {
             view.showCover(image);
         }
+    }
+
+    private void initStatus() {
+        Book.BookStatus.resolveStatuses(context,Book.BookStatus.values());
     }
 
     private void loadStatus() {
