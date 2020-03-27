@@ -1,4 +1,4 @@
-package com.example.bookshelf.di;
+package com.example.bookshelf.di.bookabout;
 
 import com.example.bookshelf.features.bookabout.AboutBookContract;
 import com.example.bookshelf.features.bookabout.AboutBookPresenter;

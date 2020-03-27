@@ -1,4 +1,4 @@
-package com.example.bookshelf.di;
+package com.example.bookshelf.di.bookssearch;
 
 import com.example.bookshelf.features.bookssearch.SearchContract;
 import com.example.bookshelf.features.bookssearch.SearchPresenter;

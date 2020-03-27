@@ -1,4 +1,4 @@
-package com.example.bookshelf.di;
+package com.example.bookshelf.di.bookchallenge;
 
 import com.example.bookshelf.features.bookchallenge.BookChallengeContract;
 import com.example.bookshelf.features.bookchallenge.BookChallengePresenter;

@@ -31,7 +31,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                 view.showError();
             }
         };
-        App.getAppComponent().injectSearchPresenter(this);
+        App.getAppComponent().searchPresenterComponent().inject(this);
         repository.requestBooksFromApi(query, responseListener);
     }
 
@@ -47,13 +47,13 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void openMain() {
-        App.getAppComponent().injectSearchPresenter(this);
+        App.getAppComponent().searchPresenterComponent().inject(this);
         navigator.openMain();
     }
 
     @Override
     public void openBookChallenge() {
-        App.getAppComponent().injectSearchPresenter(this);
+        App.getAppComponent().searchPresenterComponent().inject(this);
         navigator.openBookChallenge();
     }
 }

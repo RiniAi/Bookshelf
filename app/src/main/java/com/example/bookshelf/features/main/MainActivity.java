@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        App.getAppComponent().injectMainActivity(this);
+        App.getAppComponent().mainActivityComponent().inject(this);
         setContentView(R.layout.activity_list_of_books);
         ((BasePresenter)presenter).setView(this);
         initControls();

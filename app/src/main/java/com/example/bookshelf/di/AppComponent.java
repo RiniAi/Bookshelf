@@ -1,16 +1,19 @@
 package com.example.bookshelf.di;
 
-import android.content.Context;
-
-import com.example.bookshelf.features.bookabout.AboutBookActivity;
-import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
-import com.example.bookshelf.features.bookchallenge.BookChallengePresenter;
-import com.example.bookshelf.features.bookedit.EditBookActivity;
-import com.example.bookshelf.features.bookedit.EditBookPresenter;
-import com.example.bookshelf.features.bookssearch.SearchActivity;
-import com.example.bookshelf.features.bookssearch.SearchPresenter;
-import com.example.bookshelf.features.main.MainActivity;
-import com.example.bookshelf.features.main.MainPresenter;
+import com.example.bookshelf.di.bookabout.AboutBookActivityComponent;
+import com.example.bookshelf.di.bookabout.AboutBookPresenterModule;
+import com.example.bookshelf.di.bookchallenge.BookChallengeActivityComponent;
+import com.example.bookshelf.di.bookchallenge.BookChallengePresenterComponent;
+import com.example.bookshelf.di.bookchallenge.BookChallengePresenterModule;
+import com.example.bookshelf.di.bookedit.EditBookActivityComponent;
+import com.example.bookshelf.di.bookedit.EditBookPresenterComponent;
+import com.example.bookshelf.di.bookedit.EditBookPresenterModule;
+import com.example.bookshelf.di.bookssearch.SearchActivityComponent;
+import com.example.bookshelf.di.bookssearch.SearchPresenterComponent;
+import com.example.bookshelf.di.bookssearch.SearchPresenterModule;
+import com.example.bookshelf.di.main.MainActivityComponent;
+import com.example.bookshelf.di.main.MainPresenterComponent;
+import com.example.bookshelf.di.main.MainPresenterModule;
 
 import dagger.Component;
 
@@ -21,28 +24,24 @@ import dagger.Component;
         SearchPresenterModule.class,
         EditBookPresenterModule.class,
         AboutBookPresenterModule.class,
-        BookChallengePresenterModule.class,
-
-})
+        BookChallengePresenterModule.class})
 
 public interface AppComponent {
-    Context context();
+    MainActivityComponent mainActivityComponent();
 
-    void injectMainPresenter(MainPresenter presenter);
+    MainPresenterComponent mainPresenterComponent();
 
-    void injectSearchPresenter(SearchPresenter presenter);
+    SearchActivityComponent searchActivityComponent();
 
-    void injectEditBookPresenter(EditBookPresenter presenter);
+    SearchPresenterComponent searchPresenterComponent();
 
-    void injectBookChallengePresenter(BookChallengePresenter presenter);
+    EditBookActivityComponent editBookActivityComponent();
 
-    void injectMainActivity(MainActivity activity);
+    EditBookPresenterComponent editBookPresenterComponent();
 
-    void injectSearchActivity(SearchActivity activity);
+    AboutBookActivityComponent aboutBookActivityComponent();
 
-    void injectEditBookActivity(EditBookActivity activity);
+    BookChallengeActivityComponent bookChallengeActivityComponent();
 
-    void injectAboutBookActivity(AboutBookActivity activity);
-
-    void injectBookChallengeActivity(BookChallengeActivity activity);
+    BookChallengePresenterComponent bookChallengePresenterComponent();
 }

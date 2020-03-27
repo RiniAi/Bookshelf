@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        App.getAppComponent().injectSearchActivity(this);
+        App.getAppComponent().searchActivityComponent().inject(this);
         ((BasePresenter)presenter).setView(this);
         setContentView(R.layout.activity_search);
         initControls();

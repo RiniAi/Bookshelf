@@ -25,7 +25,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
 
     @Override
     public void onStart() {
-        App.getAppComponent().injectBookChallengePresenter(this);
+        App.getAppComponent().bookChallengePresenterComponent().inject(this);
         loadCounter();
         loadBooks();
     }

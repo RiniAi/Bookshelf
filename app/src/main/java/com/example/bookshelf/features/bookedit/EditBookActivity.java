@@ -44,7 +44,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        App.getAppComponent().injectEditBookActivity(this);
+        App.getAppComponent().editBookActivityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_edit_book);
         initControls();
