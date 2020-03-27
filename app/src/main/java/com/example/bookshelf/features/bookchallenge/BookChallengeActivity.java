@@ -62,7 +62,6 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     private void buildRecyclerView() {
         GridLayoutManager layoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
         books.setLayoutManager(layoutManager);
-        bookAdapter = new BookChallengeAdapter(getApplicationContext());
         books.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(new BookChallengeAdapter.OnItemClickListener() {
             @Override
