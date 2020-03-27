@@ -13,7 +13,6 @@ import javax.inject.Inject;
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
     BookStorage storage;
-
     @Inject
     Navigator navigator;
 
