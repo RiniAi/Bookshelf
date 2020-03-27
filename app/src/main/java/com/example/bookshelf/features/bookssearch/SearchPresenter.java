@@ -37,13 +37,11 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void openBook(Book book) {
-        App.getAppComponent().injectSearchPresenter(this);
         navigator.openBook(book);
     }
 
     @Override
     public void editBook(Book book) {
-        App.getAppComponent().injectSearchPresenter(this);
         navigator.editBook(book);
     }
 
