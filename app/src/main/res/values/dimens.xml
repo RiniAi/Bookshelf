@@ -21,14 +21,15 @@
     <dimen name="default_image_view_height">184dp</dimen>
 
     <dimen name="list_book_text_view_width">176dp</dimen>
+    <dimen name="list_book_linear_layout_width">176dp</dimen>
 
     <dimen name="list_book_challenge_card_view_height">248dp</dimen>
 
     <dimen name="edit_book_button_width">120dp</dimen>
     <dimen name="edit_book_image_view_width">104dp</dimen>
     <dimen name="edit_book_image_view_height">184dp</dimen>
-    <dimen name="edit_book_spinner_width">220dp</dimen>
-    <dimen name="edit_book_spinner_height">56dp</dimen>
+    <dimen name="edit_book_spinner_width">238dp</dimen>
+    <dimen name="edit_book_spinner_height">40dp</dimen>
     <dimen name="edit_book_toggle_button">36dp</dimen>
 
     <dimen name="search_edit_text_width">320dp</dimen>

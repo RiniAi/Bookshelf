@@ -33,6 +33,7 @@
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_item_book"></androidx.recyclerview.widget.RecyclerView>

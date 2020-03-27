@@ -9,7 +9,6 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,10 +26,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     private boolean isFavorite = false;
     private Toolbar toolbar;
     private Spinner status;
-    private TextView title;
-    private TextView author;
     private ImageView cover;
-    private RatingBar averageRating;
     private RatingBar userRating;
     private DatePicker dateOfReading;
     private ToggleButton addToFavorite;
@@ -53,10 +49,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title = (TextView) findViewById(R.id.tv_title);
-        author = (TextView) findViewById(R.id.tv_author);
         cover = (ImageView) findViewById(R.id.iv_cover);
-        averageRating = (RatingBar) findViewById(R.id.rb_aver_rating);
         userRating = (RatingBar) findViewById(R.id.rb_user_rating);
         status = (Spinner) findViewById(R.id.spinner_status);
         dateOfReading = (DatePicker) findViewById(R.id.date_of_reading);
@@ -88,13 +81,12 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
             }
         });
 
-        buildToolbar();
         buildStatusSpinner();
     }
 
-    private void buildToolbar() {
+    private void buildToolbar(Book book) {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.edit_book_title);
+        getSupportActionBar().setTitle(book.getAuthors() + "." + " " + book.getTitle());
     }
 
     private void buildStatusSpinner() {
@@ -105,12 +97,10 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     @Override
     public void showBook(Book book) {
-        title.setText(book.getTitle());
-        author.setText(book.getAuthors());
-        averageRating.setRating(book.getAverageRating());
         userRating.setRating(book.getUserRating());
         addToFavorite.setChecked(book.isFavorite);
         isFavorite = book.isFavorite;
+        buildToolbar(book);
     }
 
     @Override

@@ -18,10 +18,7 @@ import javax.inject.Inject;
 
 public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
     private Toolbar toolbar;
-    private TextView title;
-    private TextView author;
     private ImageView cover;
-    private ImageView coverBack;
     private RatingBar rating;
     private TextView publishedDate;
     private TextView publisher;
@@ -43,9 +40,6 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
 
     private void initControls() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title = (TextView) findViewById(R.id.tv_title);
-        author = (TextView) findViewById(R.id.tv_author);
-        coverBack = (ImageView) findViewById(R.id.iv_cover_back);
         rating = (RatingBar) findViewById(R.id.rb_rating);
         publishedDate = (TextView) findViewById(R.id.tv_published_date);
         publisher = (TextView) findViewById(R.id.tv_publisher);
@@ -54,18 +48,16 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         description = (TextView) findViewById(R.id.tv_description);
         cover = (ImageView) findViewById(R.id.iv_cover);
         cover.setClipToOutline(true);
-        buildToolbar();
     }
 
-    private void buildToolbar() {
+    private void buildToolbar(Book book) {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.about_book_title);
+        getSupportActionBar().setTitle(book.getAuthors() + "." + " " + book.getTitle());
     }
 
     @Override
     public void showBook(Book book) {
-        title.setText(book.getTitle());
-        author.setText(book.getAuthors());
+        buildToolbar(book);
         rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());
@@ -77,12 +69,10 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     @Override
     public void showBookCover(String cover) {
         Picasso.get().load(cover).into(this.cover);
-        Picasso.get().load(cover).into(this.coverBack);
     }
 
     @Override
     public void showBookBrokenCover() {
         cover.setImageResource(R.drawable.ic_broken_image);
-        coverBack.setImageResource(R.drawable.ic_broken_image);
     }
 }
