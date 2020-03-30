@@ -84,9 +84,9 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         buildStatusSpinner();
     }
 
-    private void buildToolbar(Book book) {
+    private void showToolbar(String title) {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(book.getAuthors() + "." + " " + book.getTitle());
+        getSupportActionBar().setTitle(title);
     }
 
     private void buildStatusSpinner() {
@@ -100,7 +100,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         userRating.setRating(book.getUserRating());
         addToFavorite.setChecked(book.isFavorite);
         isFavorite = book.isFavorite;
-        buildToolbar(book);
+        String title = getString(R.string.edit_book_title, book.getAuthors(), book.getTitle());
+        showToolbar(title);
     }
 
     @Override

@@ -138,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/padding_4dp"
-                android:text="@string/about_book_title"
+                android:text="@string/about_book_description"
                 android:textSize="@dimen/text_size_medium"
                 android:textStyle="bold"
                 tools:text="@tools:sample/full_names" />

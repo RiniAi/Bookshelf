@@ -50,20 +50,21 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         cover.setClipToOutline(true);
     }
 
-    private void showToolbar(Book book) {
+    private void showToolbar(String title) {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(book.getAuthors() + "." + " " + book.getTitle());
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
     public void showBook(Book book) {
-        showToolbar(book);
         rating.setRating(book.getAverageRating());
         publishedDate.setText(book.getPublishedDate());
         publisher.setText(book.getPublisher());
         pageCount.setText(String.valueOf(book.getPageCount()));
         lang.setText(book.getLanguage());
         description.setText(book.getDescription());
+        String title = getString(R.string.about_book_title, book.getAuthors(), book.getTitle());
+        showToolbar(title);
     }
 
     @Override
