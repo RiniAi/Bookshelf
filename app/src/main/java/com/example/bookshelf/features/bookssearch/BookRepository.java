@@ -19,7 +19,7 @@ import retrofit2.Response;
 import static com.example.bookshelf.network.BookMapper.mapResponseToDomain;
 import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
 
-public class BookRepository {
+public class BookRepository implements Repository {
     private List<BooksApiResponseItem> bookResult;
     @Inject
     public BookRepository() {
