@@ -4,7 +4,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.LocalBookStorage;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
-    BookStorage storage;
+    LocalBookStorage storage;
     @Inject
     Navigator navigator;
 

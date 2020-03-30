@@ -6,7 +6,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.LocalBookStorage;
 
 import java.util.List;
 
@@ -17,15 +17,18 @@ import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     private static final String STORAGE_COUNTER = "counter";
     @Inject
-    BookStorage storage;
+    LocalBookStorage storage;
     @Inject
     SharedPreferences sharedPreferences;
     @Inject
     Navigator navigator;
 
+    public BookChallengePresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
+    }
+
     @Override
     public void onStart() {
-        App.getAppComponent().presenterComponent().inject(this);
         loadCounter();
         loadBooks();
     }

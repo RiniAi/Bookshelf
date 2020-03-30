@@ -2,36 +2,14 @@ package com.example.bookshelf.database;
 
 import java.util.List;
 
-import javax.inject.Inject;
+public interface BookStorage {
+    Book searchBookDb(Book book);
 
-public class BookStorage {
-    @Inject
-    BookDao bookDao;
-    @Inject
-    public BookStorage() {
-    }
+    List<Book> getAllWithStatus(Book.BookStatus status);
 
-    public Book searchBookDb(Book book) {
-        return bookDao.findBookTitleAndAuthor(book.title, book.authors);
-    }
+    List<Book> getAll();
 
-    public List<Book> getAllWithStatus(Book.BookStatus status) {
-        return bookDao.getAllWithStatus(BookStatusConverter.fromStatusToString(status));
-    }
+    void insertOrUpdate(Book book);
 
-    public List<Book> getAll() {
-        return bookDao.getAll();
-    }
-
-    public void insertOrUpdate(Book book) {
-        if (searchBookDb(book) != null) {
-            bookDao.update(book);
-        } else {
-            bookDao.insert(book);
-        }
-    }
-
-    public void delete(Book book) {
-        bookDao.delete(book);
-    }
+    void delete(Book book);
 }

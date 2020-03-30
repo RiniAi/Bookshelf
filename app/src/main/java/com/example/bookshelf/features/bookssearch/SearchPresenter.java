@@ -17,6 +17,10 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Inject
     Navigator navigator;
 
+    public SearchPresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
+    }
+
     @Override
     public void searchBook(String query) {
         SearchCall.responseListener responseListener = new SearchCall.responseListener() {
@@ -31,7 +35,6 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                 view.showError();
             }
         };
-        App.getAppComponent().presenterComponent().inject(this);
         repository.requestBooksFromApi(query, responseListener);
     }
 
@@ -47,13 +50,11 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void openMain() {
-        App.getAppComponent().presenterComponent().inject(this);
         navigator.openMain();
     }
 
     @Override
     public void openBookChallenge() {
-        App.getAppComponent().presenterComponent().inject(this);
         navigator.openBookChallenge();
     }
 }

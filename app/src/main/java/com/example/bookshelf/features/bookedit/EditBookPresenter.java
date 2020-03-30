@@ -8,7 +8,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStatusConverter;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.LocalBookStorage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +24,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     Context context;
     @Inject
-    BookStorage storage;
+    LocalBookStorage storage;
 
     @Override
     public void onStartWitchData(Bundle bundle) {
@@ -54,7 +54,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     }
 
     private void initStatus() {
-        Book.BookStatus.resolveStatuses(context,Book.BookStatus.values());
+        Book.BookStatus.resolveStatuses(context, Book.BookStatus.values());
     }
 
     private void loadStatus() {
