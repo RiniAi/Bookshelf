@@ -19,6 +19,7 @@
     <string name="edit_book_add_to_favorites">Add to favorites</string>
     <string name="edit_book_delete">Delete book</string>
     <string name="edit_book_rating">Your rating</string>
+    <string name="edit_book_date_of_reading">Date of reading</string>
     <string name="edit_book_save">Save</string>
     <string name="edit_book_status">The status of the book</string>
 

@@ -90,8 +90,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     private void buildStatusSpinner() {
-        ArrayAdapter<?> statusAdapter = new ArrayAdapter<Book.BookStatus>(this, android.R.layout.simple_spinner_item, Book.BookStatus.values());
-        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<?> statusAdapter = new ArrayAdapter<Book.BookStatus>(this, R.layout.spinner_item, Book.BookStatus.values());
+        statusAdapter.setDropDownViewResource(R.layout.spinner_item);
         status.setAdapter(statusAdapter);
     }
 

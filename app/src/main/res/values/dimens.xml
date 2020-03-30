@@ -6,6 +6,7 @@
     <dimen name="margin_32dp">32dp</dimen>
     <dimen name="margin_48dp">48dp</dimen>
     <dimen name="margin_184dp">184dp</dimen>
+    <dimen name="margin_204dp">204dp</dimen>
 
     <dimen name="padding_4dp">4dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
@@ -27,10 +28,12 @@
 
     <dimen name="edit_book_button_width">120dp</dimen>
     <dimen name="edit_book_image_view_width">104dp</dimen>
-    <dimen name="edit_book_image_view_height">184dp</dimen>
+    <dimen name="edit_book_image_height">160dp</dimen>
     <dimen name="edit_book_spinner_width">238dp</dimen>
     <dimen name="edit_book_spinner_height">40dp</dimen>
     <dimen name="edit_book_toggle_button">36dp</dimen>
+    <dimen name="edit_book_date_picker_top">-24dp</dimen>
+    <dimen name="edit_book_date_picker_bottom">-8dp</dimen>
 
     <dimen name="search_edit_text_width">320dp</dimen>
     <dimen name="list_search_text_view_width">200dp</dimen>
