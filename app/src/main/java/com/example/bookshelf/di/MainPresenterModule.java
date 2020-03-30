@@ -1,4 +1,4 @@
-package com.example.bookshelf.di.main;
+package com.example.bookshelf.di;
 
 import com.example.bookshelf.features.main.MainContract;
 import com.example.bookshelf.features.main.MainPresenter;

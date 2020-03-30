@@ -1,4 +1,4 @@
-package com.example.bookshelf.di.bookedit;
+package com.example.bookshelf.di;
 
 import com.example.bookshelf.features.bookedit.EditBookContract;
 import com.example.bookshelf.features.bookedit.EditBookPresenter;
