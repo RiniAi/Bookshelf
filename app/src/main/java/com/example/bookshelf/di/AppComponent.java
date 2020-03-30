@@ -10,11 +10,5 @@ import dagger.Component;
 public interface AppComponent {
     ActivityComponent activityComponent();
 
-    MainPresenterComponent mainPresenterComponent();
-
-    SearchPresenterComponent searchPresenterComponent();
-
-    EditBookPresenterComponent editBookPresenterComponent();
-
-    BookChallengePresenterComponent bookChallengePresenterComponent();
+    PresenterComponent presenterComponent();
 }

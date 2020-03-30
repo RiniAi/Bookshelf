@@ -18,7 +18,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void onStart() {
-        App.getAppComponent().mainPresenterComponent().inject(this);
+        App.getAppComponent().presenterComponent().inject(this);
         loadBooks();
     }
 

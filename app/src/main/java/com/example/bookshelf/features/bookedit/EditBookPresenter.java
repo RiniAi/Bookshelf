@@ -28,7 +28,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
 
     @Override
     public void onStartWitchData(Bundle bundle) {
-        App.getAppComponent().editBookPresenterComponent().inject(this);
+        App.getAppComponent().presenterComponent().inject(this);
         loadBook(bundle);
         searchBook();
     }
