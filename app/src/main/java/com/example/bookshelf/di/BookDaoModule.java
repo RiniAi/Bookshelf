@@ -8,8 +8,9 @@ import dagger.Provides;
 
 @Module
 public class BookDaoModule {
+
     @Provides
-    public BookDao providesBookDao(){
-        return App.getInstance().getDatabase().bookDao();
+    public BookDao providesBookDao(App app){
+        return app.getDatabase().bookDao();
     }
 }
