@@ -59,12 +59,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         query = (EditText) findViewById(R.id.et_query);
         sendQuery = (ImageButton) findViewById(R.id.ib_send_query);
 
-        buildToolbar();
+        showToolbar();
         buildRecyclerView();
         buildButtons();
     }
 
-    private void buildToolbar() {
+    private void showToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.search_activity_title);
     }

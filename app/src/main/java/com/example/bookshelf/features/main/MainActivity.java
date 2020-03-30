@@ -49,11 +49,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         books = (RecyclerView) findViewById(R.id.rv_list);
         emptyView = (LinearLayout) findViewById(R.id.ll_empty_list);
-        buildToolbar();
+        showToolbar();
         buildRecyclerView();
     }
 
-    private void buildToolbar() {
+    private void showToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.main_activity_title);
     }
