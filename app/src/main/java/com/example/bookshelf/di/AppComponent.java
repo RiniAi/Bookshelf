@@ -5,11 +5,7 @@ import dagger.Component;
 @Component(modules = {
         AppModule.class,
         BookDaoModule.class,
-        MainPresenterModule.class,
-        SearchPresenterModule.class,
-        EditBookPresenterModule.class,
-        AboutBookPresenterModule.class,
-        BookChallengePresenterModule.class})
+        PresenterModule.class})
 
 public interface AppComponent {
     ActivityComponent activityComponent();
