@@ -4,7 +4,7 @@ import dagger.Component;
 
 @Component(modules = {
         AppModule.class,
-        BookDaoModule.class,
+        BookDataBaseModule.class,
         PresenterModule.class})
 
 public interface AppComponent {
