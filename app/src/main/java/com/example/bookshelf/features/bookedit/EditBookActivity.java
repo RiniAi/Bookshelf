@@ -3,12 +3,6 @@ package com.example.bookshelf.features.bookedit;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.Spinner;
-import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,6 +11,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
+import com.example.bookshelf.databinding.ActivityEditBookBinding;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -24,13 +19,7 @@ import javax.inject.Inject;
 public class EditBookActivity extends AppCompatActivity implements EditBookContract.View {
     private boolean isFavorite = false;
     private Toolbar toolbar;
-    private Spinner status;
-    private ImageView cover;
-    private RatingBar userRating;
-    private DatePicker dateOfReading;
-    private ToggleButton addToFavorite;
-    private Button save;
-    private Button delete;
+    private ActivityEditBookBinding binding;
     @Inject
     EditBookContract.Presenter presenter;
     @Inject
@@ -41,31 +30,23 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         super.onCreate(savedInstanceState);
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        setContentView(R.layout.activity_edit_book);
+        binding = ActivityEditBookBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setSupportActionBar(toolbar);
-        initControls();
+        buildButtons();
         presenter.onStartWithData(getIntent().getExtras());
     }
 
-    private void initControls() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        cover = (ImageView) findViewById(R.id.iv_cover);
-        userRating = (RatingBar) findViewById(R.id.rb_user_rating);
-        status = (Spinner) findViewById(R.id.spinner_status);
-        dateOfReading = (DatePicker) findViewById(R.id.date_of_reading);
-        addToFavorite = (ToggleButton) findViewById(R.id.btn_favorite);
-        save = (Button) findViewById(R.id.btn_save);
-        delete = (Button) findViewById(R.id.btn_delete);
+    private void buildButtons() {
+        binding.btnFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> isFavorite = isChecked);
 
-        addToFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> isFavorite = isChecked);
-
-        save.setOnClickListener(view -> {
-            presenter.insertOrUpdateBook(userRating.getRating(),
-                    status.getSelectedItem().toString(), isFavorite);
+        binding.btnSave.setOnClickListener(view -> {
+            presenter.insertOrUpdateBook(binding.rbUserRating.getRating(),
+                    binding.spinnerStatus.getSelectedItem().toString(), isFavorite);
             finish();
         });
 
-        delete.setOnClickListener(view -> {
+        binding.btnDelete.setOnClickListener(view -> {
             presenter.deleteBook();
             finish();
         });
@@ -74,19 +55,20 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     private void updateToolbar(String title) {
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(title);
     }
 
     private void buildStatusSpinner() {
         ArrayAdapter<?> statusAdapter = new ArrayAdapter<Book.BookStatus>(this, R.layout.spinner_item, Book.BookStatus.values());
         statusAdapter.setDropDownViewResource(R.layout.spinner_item);
-        status.setAdapter(statusAdapter);
+        binding.spinnerStatus.setAdapter(statusAdapter);
     }
 
     @Override
     public void showBook(Book book) {
-        userRating.setRating(book.getUserRating());
-        addToFavorite.setChecked(book.isFavorite);
+        binding.rbUserRating.setRating(book.getUserRating());
+        binding.btnFavorite.setChecked(book.isFavorite);
         isFavorite = book.isFavorite;
         String title = getString(R.string.edit_book_title, book.getAuthors(), book.getTitle());
         updateToolbar(title);
@@ -94,39 +76,39 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     @Override
     public void showCover(String image) {
-        Picasso.get().load(image).into(cover);
+        Picasso.get().load(image).into(binding.ivCover);
     }
 
     @Override
     public void showBrokenCover() {
-        this.cover.setImageResource(R.drawable.ic_broken_image);
+        binding.ivCover.setImageResource(R.drawable.ic_broken_image);
     }
 
     @Override
     public void showStatus(Book.BookStatus bookStatus) {
-        spinnerUtils.getSelection(status, bookStatus);
+        spinnerUtils.getSelection(binding.spinnerStatus, bookStatus);
     }
 
     @Override
     public void updateDate(int year, int month, int dayOfMonth) {
-        dateOfReading.updateDate(year, month, dayOfMonth);
+        binding.dateOfReading.updateDate(year, month, dayOfMonth);
     }
 
     @Override
     public void showButtonDelete() {
-        delete.setVisibility(View.VISIBLE);
+        binding.btnDelete.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideButtonDelete() {
-        delete.setVisibility(View.GONE);
+        binding.btnDelete.setVisibility(View.GONE);
     }
 
     @Override
     public void showDate() {
-        int year = dateOfReading.getYear();
-        int month = dateOfReading.getMonth();
-        int dayOfMonth = dateOfReading.getDayOfMonth();
+        int year = binding.dateOfReading.getYear();
+        int month = binding.dateOfReading.getMonth();
+        int dayOfMonth = binding.dateOfReading.getDayOfMonth();
         presenter.setDate(year, month, dayOfMonth);
     }
 }
