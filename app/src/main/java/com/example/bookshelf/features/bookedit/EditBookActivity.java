@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -58,28 +57,17 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         save = (Button) findViewById(R.id.btn_save);
         delete = (Button) findViewById(R.id.btn_delete);
 
-        addToFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                isFavorite = isChecked;
-            }
+        addToFavorite.setOnCheckedChangeListener((compoundButton, isChecked) -> isFavorite = isChecked);
+
+        save.setOnClickListener(view -> {
+            presenter.insertOrUpdateBook(userRating.getRating(),
+                    status.getSelectedItem().toString(), isFavorite);
+            finish();
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.insertOrUpdateBook(userRating.getRating(),
-                        status.getSelectedItem().toString(), isFavorite);
-                finish();
-            }
-        });
-
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.deleteBook();
-                finish();
-            }
+        delete.setOnClickListener(view -> {
+            presenter.deleteBook();
+            finish();
         });
 
         buildStatusSpinner();

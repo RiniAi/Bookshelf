@@ -62,18 +62,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Book book) {
-                presenter.openBook(book);
-            }
-        });
-        bookAdapter.setOnEditClickListener(new BookAdapter.OnEditClickListener() {
-            @Override
-            public void onEditClick(Book book) {
-                presenter.editBook(book);
-            }
-        });
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
+        bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
     }
 
     @Override

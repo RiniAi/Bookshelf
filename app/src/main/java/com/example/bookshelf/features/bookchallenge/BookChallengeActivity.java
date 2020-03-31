@@ -63,12 +63,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         GridLayoutManager layoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(new BookChallengeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Book book) {
-                presenter.openBook(book);
-            }
-        });
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
     }
 
     @Override

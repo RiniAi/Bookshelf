@@ -3,7 +3,6 @@ package com.example.bookshelf.features.bookssearch;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,26 +68,20 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     private void buildButtons() {
-        sendQuery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        sendQuery.setOnClickListener(view -> {
+            presenter.searchBook(query.getText().toString());
+            hideKeyboard(SearchActivity.this, view);
+            hideList();
+        });
+
+        query.setOnEditorActionListener((view, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 presenter.searchBook(query.getText().toString());
                 hideKeyboard(SearchActivity.this, view);
                 hideList();
+                return true;
             }
-        });
-
-        query.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    presenter.searchBook(query.getText().toString());
-                    hideKeyboard(SearchActivity.this, view);
-                    hideList();
-                    return true;
-                }
-                return false;
-            }
+            return false;
         });
     }
 
@@ -98,18 +90,8 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         LinearLayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 2);
         books.setLayoutManager(layoutManager);
         books.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(new BookSearchAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Book book) {
-                presenter.openBook(book);
-            }
-        });
-        bookAdapter.setOnEditClickListener(new BookSearchAdapter.OnEditClickListener() {
-            @Override
-            public void onEditClick(Book book) {
-                presenter.editBook(book);
-            }
-        });
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
+        bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
     }
 
     private void hideList() {
