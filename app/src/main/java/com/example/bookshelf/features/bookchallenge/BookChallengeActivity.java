@@ -50,11 +50,11 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         books = (RecyclerView) findViewById(R.id.rv_list);
         seekBar = (SeekBar) findViewById(R.id.sb_counter);
         seekBar.setOnSeekBarChangeListener(this);
-        showToolbar();
+        updateToolbar();
         buildRecyclerView();
     }
 
-    private void showToolbar() {
+    private void updateToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.book_challenge_title);
     }
