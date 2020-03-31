@@ -34,6 +34,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter)presenter).setView(this);
         setContentView(R.layout.activity_about_book);
+        setSupportActionBar(toolbar);
         initControls();
         presenter.onStartWithData(getIntent().getExtras());
     }
@@ -51,8 +52,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     }
 
     private void updateToolbar(String title) {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
+        toolbar.setTitle(title);
     }
 
     @Override

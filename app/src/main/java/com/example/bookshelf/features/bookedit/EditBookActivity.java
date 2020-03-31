@@ -43,6 +43,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_edit_book);
+        setSupportActionBar(toolbar);
         initControls();
         presenter.onStartWithData(getIntent().getExtras());
     }
@@ -85,8 +86,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     private void updateToolbar(String title) {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
+        toolbar.setTitle(title);
     }
 
     private void buildStatusSpinner() {

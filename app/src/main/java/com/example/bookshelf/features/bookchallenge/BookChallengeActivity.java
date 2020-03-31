@@ -40,6 +40,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_book_challenge);
         initControls();
+        setSupportActionBar(toolbar);
         presenter.onStart();
     }
 
@@ -55,8 +56,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     private void updateToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.book_challenge_title);
+        toolbar.setTitle(R.string.book_challenge_title);
     }
 
     private void buildRecyclerView() {

@@ -34,9 +34,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.getAppComponent().activityComponent().inject(this);
-        setContentView(R.layout.activity_list_of_books);
         ((BasePresenter)presenter).setView(this);
+        setContentView(R.layout.activity_list_of_books);
         initControls();
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -54,8 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     private void updateToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.main_activity_title);
+        toolbar.setTitle(R.string.main_activity_title);
     }
 
     private void buildRecyclerView() {

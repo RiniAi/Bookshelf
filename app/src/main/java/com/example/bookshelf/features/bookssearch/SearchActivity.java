@@ -50,6 +50,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         ((BasePresenter)presenter).setView(this);
         setContentView(R.layout.activity_search);
         initControls();
+        setSupportActionBar(toolbar);
     }
 
     private void initControls() {
@@ -65,8 +66,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     private void updateToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.search_activity_title);
+        toolbar.setTitle(R.string.search_activity_title);
     }
 
     private void buildButtons() {
