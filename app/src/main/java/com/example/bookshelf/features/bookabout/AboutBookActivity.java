@@ -32,7 +32,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.getAppComponent().activityComponent().inject(this);
-        ((BasePresenter)presenter).setView(this);
+        ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_about_book);
         setSupportActionBar(toolbar);
         initControls();

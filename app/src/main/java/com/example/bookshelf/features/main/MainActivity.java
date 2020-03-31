@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         App.getAppComponent().activityComponent().inject(this);
-        ((BasePresenter)presenter).setView(this);
+        ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_list_of_books);
         initControls();
         setSupportActionBar(toolbar);
