@@ -20,18 +20,16 @@ import static com.example.bookshelf.network.BookMapper.mapResponseToDomain;
 import static com.example.bookshelf.network.GoogleBooksApiService.QUERY_COUNTER;
 
 public class BookRepository implements Repository {
-    private List<BooksApiResponseItem> bookResult;
     @Inject
     public BookRepository() {
     }
-
     public void requestBooksFromApi(String query, SearchCall.responseListener responseListener) {
-        bookResult = new ArrayList<>();
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BooksApiResponse> call = service.getBooks(query, QUERY_COUNTER);
         call.enqueue(new Callback<BooksApiResponse>() {
             @Override
             public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
+                List<BooksApiResponseItem> bookResult = new ArrayList<>();
                 if (response.body() != null) {
                     bookResult = response.body().getItems();
                 }
