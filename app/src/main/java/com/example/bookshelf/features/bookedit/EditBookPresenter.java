@@ -55,7 +55,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
     }
 
     private void resolveBookStatus() {
-        resolveStatuses(context,Book.BookStatus.values());
+        resolveStatuses(context, Book.BookStatus.values());
     }
 
     private void loadStatus() {
