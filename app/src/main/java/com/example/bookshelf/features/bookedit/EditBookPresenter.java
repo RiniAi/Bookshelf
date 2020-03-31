@@ -26,9 +26,12 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     LocalBookStorage storage;
 
+    public EditBookPresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
+    }
+
     @Override
     public void onStartWithData(Bundle bundle) {
-        App.getAppComponent().presenterComponent().inject(this);
         loadBook(bundle);
         searchBook();
     }

@@ -16,9 +16,12 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Inject
     Navigator navigator;
 
+    public MainPresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
+    }
+
     @Override
     public void onStart() {
-        App.getAppComponent().presenterComponent().inject(this);
         loadBooks();
     }
 
