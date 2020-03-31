@@ -44,7 +44,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         ((BasePresenter) presenter).setView(this);
         setContentView(R.layout.activity_edit_book);
         initControls();
-        presenter.onStartWitchData(getIntent().getExtras());
+        presenter.onStartWithData(getIntent().getExtras());
     }
 
     private void initControls() {

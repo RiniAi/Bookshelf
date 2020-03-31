@@ -24,7 +24,7 @@ public interface EditBookContract {
     }
 
     interface Presenter {
-        void onStartWitchData(Bundle bundle);
+        void onStartWithData(Bundle bundle);
 
         void setDate(int dayOfMonth, int month, int year);
 

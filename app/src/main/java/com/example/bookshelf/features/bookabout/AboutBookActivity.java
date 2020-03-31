@@ -35,7 +35,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         ((BasePresenter)presenter).setView(this);
         setContentView(R.layout.activity_about_book);
         initControls();
-        presenter.onStartWitchData(getIntent().getExtras());
+        presenter.onStartWithData(getIntent().getExtras());
     }
 
     private void initControls() {

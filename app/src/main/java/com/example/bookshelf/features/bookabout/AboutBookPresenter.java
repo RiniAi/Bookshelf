@@ -10,7 +10,7 @@ public class AboutBookPresenter extends BasePresenter<AboutBookContract.View> im
     private Book book;
 
     @Override
-    public void onStartWitchData(Bundle bundle) {
+    public void onStartWithData(Bundle bundle) {
         loadBook(bundle);
     }
 

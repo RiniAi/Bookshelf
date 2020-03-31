@@ -14,6 +14,6 @@ public interface AboutBookContract {
     }
 
     interface Presenter {
-        void onStartWitchData(Bundle bundle);
+        void onStartWithData(Bundle bundle);
     }
 }

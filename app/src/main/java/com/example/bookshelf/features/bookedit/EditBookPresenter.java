@@ -27,7 +27,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     LocalBookStorage storage;
 
     @Override
-    public void onStartWitchData(Bundle bundle) {
+    public void onStartWithData(Bundle bundle) {
         App.getAppComponent().presenterComponent().inject(this);
         loadBook(bundle);
         searchBook();
