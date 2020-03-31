@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.example.bookshelf.database.Book.BookStatus.resolveStatuses;
+
 public class EditBookPresenter implements EditBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";
     private BookStorage storage = new BookStorage();
@@ -38,7 +40,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
 
             view.showBook(book);
             loadCover();
-            resolveStatus();
+            resolveBookStatus();
             loadStatus();
         }
     }
@@ -52,8 +54,8 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         }
     }
 
-    private void resolveStatus() {
-        Book.BookStatus.resolveStatuses(context,Book.BookStatus.values());
+    private void resolveBookStatus() {
+        resolveStatuses(context,Book.BookStatus.values());
     }
 
     private void loadStatus() {
