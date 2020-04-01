@@ -7,22 +7,13 @@ import androidx.room.Room;
 import com.example.bookshelf.database.BookDao;
 import com.example.bookshelf.database.BookDatabase;
 
-import javax.inject.Inject;
-
 import dagger.Module;
 import dagger.Provides;
 
 @Module
 public class BookDataBaseModule {
-    @Inject
-    Context context;
-
-    public BookDataBaseModule(Context context) {
-        this.context = context;
-    }
-
     @Provides
-    public BookDatabase providesDatabase() {
+    public BookDatabase providesDatabase(Context context) {
         return Room.databaseBuilder(
                 context,
                 BookDatabase.class,
