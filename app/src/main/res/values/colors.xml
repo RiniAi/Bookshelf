@@ -8,4 +8,5 @@
     <color name="color_toolbar_title">#F1F1F1</color>
 
     <color name="fon">#FBFBFB</color>
+    <color name="spinner_item_primary">#7A7A7A</color>
 </resources>

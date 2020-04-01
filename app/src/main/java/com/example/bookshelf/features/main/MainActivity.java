@@ -5,32 +5,37 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
+import com.example.bookshelf.databinding.ActivityListOfBooksBinding;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements MainContract.View {
-    private Toolbar toolbar;
-    private RecyclerView books;
-    private LinearLayout emptyView;
-    private BookAdapter bookAdapter;
-    private MainContract.Presenter presenter;
+    private ActivityListOfBooksBinding binding;
+    @Inject
+    BookAdapter bookAdapter;
+    @Inject
+    MainContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_books);
-
-        initControls();
-        presenter = new MainPresenter(this, this);
+        App.getAppComponent().activityComponent().inject(this);
+        ((BasePresenter) presenter).setView(this);
+        binding = ActivityListOfBooksBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        updateToolbar();
+        setSupportActionBar(binding.toolbarMain.toolbar);
+        buildRecyclerView();
     }
 
     @Override
@@ -39,48 +44,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         presenter.onStart();
     }
 
-    private void initControls() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        books = (RecyclerView) findViewById(R.id.rv_list);
-        emptyView = (LinearLayout) findViewById(R.id.ll_empty_list);
-        buildToolbar();
-        buildRecyclerView();
-    }
-
-    private void buildToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.main_activity_title);
+    private void updateToolbar() {
+        binding.toolbarMain.toolbar.setTitle(R.string.main_activity_title);
     }
 
     private void buildRecyclerView() {
-        bookAdapter = new BookAdapter(getApplicationContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
-        books.setLayoutManager(layoutManager);
-        books.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Book book) {
-                presenter.openBook(book);
-            }
-        });
-        bookAdapter.setOnEditClickListener(new BookAdapter.OnEditClickListener() {
-            @Override
-            public void onEditClick(Book book) {
-                presenter.editBook(book);
-            }
-        });
+        binding.rvBooks.setLayoutManager(layoutManager);
+        binding.rvBooks.setAdapter(bookAdapter);
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
+        bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
     }
 
     @Override
     public void hideList() {
-        books.setVisibility(View.GONE);
-        emptyView.setVisibility(View.VISIBLE);
+        binding.rvBooks.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showList(List<Book> booksList) {
-        books.setVisibility(View.VISIBLE);
-        emptyView.setVisibility(View.GONE);
+        binding.rvBooks.setVisibility(View.VISIBLE);
+        binding.llEmptyList.setVisibility(View.GONE);
         bookAdapter.setList(booksList);
     }
 

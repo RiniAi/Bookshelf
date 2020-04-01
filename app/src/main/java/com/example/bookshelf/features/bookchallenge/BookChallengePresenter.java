@@ -1,27 +1,30 @@
 package com.example.bookshelf.features.bookchallenge;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.LocalBookStorage;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
 
-public class BookChallengePresenter implements BookChallengeContract.Presenter {
-    private BookChallengeContract.View view;
-    private Navigator navigator;
+public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     private static final String STORAGE_COUNTER = "counter";
-    private SharedPreferences sharedPreferences;
+    @Inject
+    LocalBookStorage storage;
+    @Inject
+    SharedPreferences sharedPreferences;
+    @Inject
+    Navigator navigator;
 
-    public BookChallengePresenter(BookChallengeContract.View view, Context context) {
-        this.view = view;
-        this.navigator = new Navigator(context);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+    public BookChallengePresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
     }
 
     @Override
@@ -41,7 +44,6 @@ public class BookChallengePresenter implements BookChallengeContract.Presenter {
     }
 
     private void loadBooks() {
-        BookStorage storage = new BookStorage();
         List<Book> books = storage.getAllWithStatus(FINISH_READING);
         view.showList(books);
         changeProgress(books);

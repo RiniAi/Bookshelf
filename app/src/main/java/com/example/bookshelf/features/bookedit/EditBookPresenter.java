@@ -4,32 +4,36 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 
+import com.example.bookshelf.App;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStatusConverter;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.LocalBookStorage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.inject.Inject;
+
 import static com.example.bookshelf.database.Book.BookStatus.resolveStatuses;
 
-public class EditBookPresenter implements EditBookContract.Presenter {
+public class EditBookPresenter extends BasePresenter<EditBookContract.View> implements EditBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";
-    private BookStorage storage = new BookStorage();
-    private EditBookContract.View view;
-    private Context context;
     private Book book;
     private String date;
+    @Inject
+    Context context;
+    @Inject
+    LocalBookStorage storage;
 
-    public EditBookPresenter(EditBookContract.View view, Context context) {
-        this.view = view;
-        this.context = context;
+    public EditBookPresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
     }
 
     @Override
-    public void onStartWitchData(Bundle bundle) {
+    public void onStartWithData(Bundle bundle) {
         loadBook(bundle);
         searchBook();
     }
@@ -114,3 +118,4 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         storage.delete(book);
     }
 }
+

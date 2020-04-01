@@ -5,75 +5,61 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
+import com.example.bookshelf.databinding.ActivityBookChallengeBinding;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
-    private BookChallengeContract.Presenter presenter;
-    private BookChallengeAdapter bookAdapter;
-    private RecyclerView books;
-    private TextView progress;
-    private TextView counter;
-    private Toolbar toolbar;
-    private SeekBar seekBar;
+    private ActivityBookChallengeBinding binding;
+    @Inject
+    BookChallengeAdapter bookAdapter;
+    @Inject
+    BookChallengeContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_challenge);
-
-        initControls();
-        presenter = new BookChallengePresenter(this, this);
+        App.getAppComponent().activityComponent().inject(this);
+        ((BasePresenter) presenter).setView(this);
+        binding = ActivityBookChallengeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        updateToolbar();
+        buildRecyclerView();
+        setSupportActionBar(binding.toolbarBookChallenge.toolbar);
         presenter.onStart();
     }
 
-    private void initControls() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        progress = (TextView) findViewById(R.id.tv_progress);
-        counter = (TextView) findViewById(R.id.tv_counter);
-        books = (RecyclerView) findViewById(R.id.rv_list);
-        seekBar = (SeekBar) findViewById(R.id.sb_counter);
-        seekBar.setOnSeekBarChangeListener(this);
-        buildToolbar();
-        buildRecyclerView();
-    }
-
-    private void buildToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.book_challenge_title);
+    private void updateToolbar() {
+        binding.toolbarBookChallenge.toolbar.setTitle(R.string.book_challenge_title);
     }
 
     private void buildRecyclerView() {
         GridLayoutManager layoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
-        books.setLayoutManager(layoutManager);
-        bookAdapter = new BookChallengeAdapter(getApplicationContext());
-        books.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(new BookChallengeAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Book book) {
-                presenter.openBook(book);
-            }
-        });
+        binding.rvBooks.setLayoutManager(layoutManager);
+        binding.rvBooks.setAdapter(bookAdapter);
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
     }
 
     @Override
     public void changeCounter(String counter) {
-        this.counter.setText(counter);
+        binding.tvCounter.setText(counter);
     }
 
     @Override
     public void changeCounterForBar(int counter) {
-        seekBar.setProgress(counter);
+        binding.sbCounter.setOnSeekBarChangeListener(this);
+        binding.sbCounter.setProgress(counter);
     }
 
     @Override
@@ -83,7 +69,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void changeProgress(String progress) {
-        this.progress.setText(progress);
+        binding.tvProgress.setText(progress);
     }
 
     @Override
@@ -102,7 +88,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        presenter.saveCounter(counter.getText().toString());
+        presenter.saveCounter(binding.tvCounter.getText().toString());
     }
 
     @Override

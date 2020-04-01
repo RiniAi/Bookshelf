@@ -1,35 +1,15 @@
 package com.example.bookshelf.database;
 
-import com.example.bookshelf.App;
-
 import java.util.List;
 
-public class BookStorage {
-    private BookDatabase db = App.getInstance().getDatabase();
-    private BookDao bookDao = db.bookDao();
+public interface BookStorage {
+    Book searchBookDb(Book book);
 
-    public Book searchBookDb(Book book) {
-        return bookDao.findBookTitleAndAuthor(book.title, book.authors);
-    }
+    List<Book> getAllWithStatus(Book.BookStatus status);
 
-    public List<Book> getAllWithStatus(Book.BookStatus status) {
-        return bookDao.getAllWithStatus(BookStatusConverter.fromStatusToString(status));
-    }
+    List<Book> getAll();
 
-    public List<Book> getAll() {
-        return bookDao.getAll();
-    }
+    void insertOrUpdate(Book book);
 
-    public void insertOrUpdate(Book book) {
-        Book bookDb = searchBookDb(book);
-        if (bookDb != null) {
-            bookDao.update(book);
-        } else {
-            bookDao.insert(book);
-        }
-    }
-
-    public void delete(Book book) {
-        bookDao.delete(book);
-    }
+    void delete(Book book);
 }

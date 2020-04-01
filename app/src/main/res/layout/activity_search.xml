@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/toolbar_search"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,11 +26,13 @@
             android:id="@+id/ib_send_query"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_search" />
+            android:background="@null"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_search_primary" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bar"
+        android:id="@+id/progress_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

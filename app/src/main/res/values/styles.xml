@@ -10,4 +10,9 @@
         <item name="android:background">@color/color_primary</item>
         <item name="titleTextColor">@color/color_toolbar_title</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/color_favorite_button</item>
+        <item name="colorControlActivated">@color/color_primary</item>
+    </style>
 </resources>

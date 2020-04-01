@@ -1,21 +1,24 @@
 package com.example.bookshelf.features.bookssearch;
 
-import android.content.Context;
 import android.util.Log;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
-public class SearchPresenter implements SearchContract.Presenter {
-    private SearchContract.View view;
-    private BookRepository repository;
-    private Navigator navigator;
+import javax.inject.Inject;
 
-    public SearchPresenter(SearchContract.View view, Context context) {
-        this.view = view;
-        this.navigator = new Navigator(context);
+public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
+    @Inject
+    BookRepository repository;
+    @Inject
+    Navigator navigator;
+
+    public SearchPresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
     }
 
     @Override
@@ -24,7 +27,6 @@ public class SearchPresenter implements SearchContract.Presenter {
             @Override
             public void onSuccess(List<Book> books) {
                 view.showBooks(books);
-
             }
 
             @Override
@@ -33,8 +35,6 @@ public class SearchPresenter implements SearchContract.Presenter {
                 view.showError();
             }
         };
-
-        repository = new BookRepository();
         repository.requestBooksFromApi(query, responseListener);
     }
 

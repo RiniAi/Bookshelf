@@ -16,6 +16,8 @@ import com.example.bookshelf.base.BaseViewHolder;
 import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter.BookViewHolder> {
     private OnItemClickListener onClickListener;
 
@@ -23,6 +25,7 @@ public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter
         this.onClickListener = onClickListener;
     }
 
+    @Inject
     public BookChallengeAdapter(Context context) {
         super(context);
     }
@@ -59,15 +62,11 @@ public class BookChallengeAdapter extends BaseAdapter<Book, BookChallengeAdapter
             author = (TextView) itemView.findViewById(R.id.tv_author);
             title = (TextView) itemView.findViewById(R.id.tv_title);
             userRating = (TextView) itemView.findViewById(R.id.tv_rating);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (onClickListener != null && position != RecyclerView.NO_POSITION) {
-                        onClickListener.onItemClick(getItem(position));
-                    }
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (onClickListener != null && position != RecyclerView.NO_POSITION) {
+                    onClickListener.onItemClick(getItem(position));
                 }
-
             });
         }
     }

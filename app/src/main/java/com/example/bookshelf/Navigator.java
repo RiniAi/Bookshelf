@@ -12,11 +12,14 @@ import com.example.bookshelf.features.bookedit.EditBookPresenter;
 import com.example.bookshelf.features.bookssearch.SearchActivity;
 import com.example.bookshelf.features.main.MainActivity;
 
-public class Navigator {
-    private Context context;
+import javax.inject.Inject;
 
-    public Navigator(Context context) {
-        this.context = context;
+public class Navigator {
+    @Inject
+    Context context;
+
+    @Inject
+    public Navigator() {
     }
 
     public void openBook(Book book) {

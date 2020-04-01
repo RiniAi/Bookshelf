@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    viewBinding.enabled = true
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
 
@@ -47,4 +48,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.2.3"
 
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.4'
+
+    api 'com.google.dagger:dagger:2.27'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.27'
 }

@@ -1,83 +1,58 @@
 package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import com.example.bookshelf.App;
 import com.example.bookshelf.R;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
+import com.example.bookshelf.databinding.ActivityAboutBookBinding;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
-    private AboutBookContract.Presenter presenter;
-    private Toolbar toolbar;
-    private TextView title;
-    private TextView author;
-    private ImageView cover;
-    private ImageView coverBack;
-    private RatingBar rating;
-    private TextView publishedDate;
-    private TextView publisher;
-    private TextView pageCount;
-    private TextView lang;
-    private TextView description;
+    private ActivityAboutBookBinding binding;
+    @Inject
+    AboutBookContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_book);
-
-        initControls();
-        presenter = new AboutBookPresenter(this);
-        presenter.onStartWitchData(getIntent().getExtras());
+        App.getAppComponent().activityComponent().inject(this);
+        ((BasePresenter) presenter).setView(this);
+        binding = ActivityAboutBookBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        presenter.onStartWithData(getIntent().getExtras());
+        setSupportActionBar(binding.toolbarAboutBook.toolbar);
     }
 
-    private void initControls() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        title = (TextView) findViewById(R.id.tv_title);
-        author = (TextView) findViewById(R.id.tv_author);
-        coverBack = (ImageView) findViewById(R.id.iv_cover_back);
-        rating = (RatingBar) findViewById(R.id.rb_rating);
-        publishedDate = (TextView) findViewById(R.id.tv_published_date);
-        publisher = (TextView) findViewById(R.id.tv_publisher);
-        pageCount = (TextView) findViewById(R.id.tv_page_count);
-        lang = (TextView) findViewById(R.id.tv_lang);
-        description = (TextView) findViewById(R.id.tv_description);
-        cover = (ImageView) findViewById(R.id.iv_cover);
-        cover.setClipToOutline(true);
-        buildToolbar();
-    }
-
-    private void buildToolbar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.about_book_title);
+    private void updateToolbar(String title) {
+        binding.toolbarAboutBook.toolbar.setTitle(title);
     }
 
     @Override
     public void showBook(Book book) {
-        title.setText(book.getTitle());
-        author.setText(book.getAuthors());
-        rating.setRating(book.getAverageRating());
-        publishedDate.setText(book.getPublishedDate());
-        publisher.setText(book.getPublisher());
-        pageCount.setText(String.valueOf(book.getPageCount()));
-        lang.setText(book.getLanguage());
-        description.setText(book.getDescription());
+        binding.rbRating.setRating(book.getAverageRating());
+        binding.tvPublishedDate.setText(book.getPublishedDate());
+        binding.tvPublisher.setText(book.getPublisher());
+        binding.tvPageCount.setText(String.valueOf(book.getPageCount()));
+        binding.tvLang.setText(book.getLanguage());
+        binding.tvDescription.setText(book.getDescription());
+        binding.ivCover.setClipToOutline(true);
+        String title = getString(R.string.about_book_title, book.getAuthors(), book.getTitle());
+        updateToolbar(title);
     }
 
     @Override
     public void showBookCover(String cover) {
-        Picasso.get().load(cover).into(this.cover);
-        Picasso.get().load(cover).into(this.coverBack);
+        Picasso.get().load(cover).into(binding.ivCover);
     }
 
     @Override
     public void showBookBrokenCover() {
-        cover.setImageResource(R.drawable.ic_broken_image);
-        coverBack.setImageResource(R.drawable.ic_broken_image);
+        binding.ivCover.setImageResource(R.drawable.ic_broken_image);
     }
 }

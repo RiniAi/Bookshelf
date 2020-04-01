@@ -2,19 +2,15 @@ package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
 
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 
-public class AboutBookPresenter implements AboutBookContract.Presenter {
+public class AboutBookPresenter extends BasePresenter<AboutBookContract.View> implements AboutBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";
-    private AboutBookContract.View view;
     private Book book;
 
-    public AboutBookPresenter(AboutBookContract.View view) {
-        this.view = view;
-    }
-
     @Override
-    public void onStartWitchData(Bundle bundle) {
+    public void onStartWithData(Bundle bundle) {
         loadBook(bundle);
     }
 

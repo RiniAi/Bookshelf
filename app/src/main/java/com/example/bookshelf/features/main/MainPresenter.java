@@ -1,20 +1,23 @@
 package com.example.bookshelf.features.main;
 
-import android.content.Context;
-
+import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
+import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.LocalBookStorage;
 
 import java.util.List;
 
-public class MainPresenter implements MainContract.Presenter {
-    private MainContract.View view;
-    private Navigator navigator;
+import javax.inject.Inject;
 
-    public MainPresenter(MainContract.View view, Context context) {
-        this.view = view;
-        this.navigator = new Navigator(context);
+public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
+    @Inject
+    LocalBookStorage storage;
+    @Inject
+    Navigator navigator;
+
+    public MainPresenter() {
+        App.getAppComponent().presenterComponent().inject(this);
     }
 
     @Override
@@ -23,7 +26,6 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     private void loadBooks() {
-        BookStorage storage = new BookStorage();
         List<Book> books = storage.getAll();
         if (books.isEmpty()) {
             view.hideList();

@@ -17,10 +17,12 @@ import com.example.bookshelf.base.BaseViewHolder;
 import com.example.bookshelf.database.Book;
 import com.squareup.picasso.Picasso;
 
+import javax.inject.Inject;
+
 public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
     private OnItemClickListener onClickListener;
     private OnEditClickListener onEditListener;
-
+    @Inject
     public BookSearchAdapter(Context context) {
         super(context);
     }
@@ -68,23 +70,16 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
             author = (TextView) itemView.findViewById(R.id.tv_author);
             title = (TextView) itemView.findViewById(R.id.tv_title);
             button = (ImageButton) itemView.findViewById(R.id.btn_edd);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (onClickListener != null && position != RecyclerView.NO_POSITION) {
-                        onClickListener.onItemClick(getItem(position));
-                    }
+            itemView.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (onClickListener != null && position != RecyclerView.NO_POSITION) {
+                    onClickListener.onItemClick(getItem(position));
                 }
-
             });
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getAdapterPosition();
-                    if (onEditListener != null && position != RecyclerView.NO_POSITION) {
-                        onEditListener.onEditClick(getItem(position));
-                    }
+            button.setOnClickListener(view -> {
+                int position = getAdapterPosition();
+                if (onEditListener != null && position != RecyclerView.NO_POSITION) {
+                    onEditListener.onEditClick(getItem(position));
                 }
             });
         }
