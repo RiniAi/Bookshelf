@@ -56,4 +56,9 @@
     <string name="toolbar_go_to_book_challenge_activity">Go to book challenge</string>
     <string name="list_item_book_text_view_status">Status:</string>
     <string name="list_item_book_text_view_read_data">Read data:</string>
+
+    <string name="list_item_search_add_book">Add book</string>
+
+    <string name="book_search_author_unknown">Author unknown</string>
+    <string name="book_search_title_unknown">Title unknown</string>
 </resources>

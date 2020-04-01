@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,15 +53,26 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
         } else {
             Picasso.get().load(book.getImageLinks()).into(holder.cover);
         }
-        holder.author.setText(book.getAuthors());
-        holder.title.setText(book.getTitle());
+        if (book.getAuthors().equals("")){
+            holder.author.setText(R.string.book_search_author_unknown);
+
+        } else {
+            holder.author.setText(book.getAuthors());
+
+        }
+        if (book.getAuthors().equals("")){
+            holder.title.setText(R.string.book_search_title_unknown);
+
+        } else {
+            holder.title.setText(book.getTitle());
+        }
     }
 
     class BookViewHolder extends BaseViewHolder {
         ImageView cover;
         TextView author;
         TextView title;
-        ImageButton button;
+        Button button;
 
         BookViewHolder(View itemView, OnItemClickListener onClickListener, OnEditClickListener onEditListener) {
             super(itemView);
@@ -69,7 +80,7 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
             cover.setClipToOutline(true);
             author = (TextView) itemView.findViewById(R.id.tv_author);
             title = (TextView) itemView.findViewById(R.id.tv_title);
-            button = (ImageButton) itemView.findViewById(R.id.btn_edd);
+            button = (Button) itemView.findViewById(R.id.btn_edd);
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 if (onClickListener != null && position != RecyclerView.NO_POSITION) {

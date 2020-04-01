@@ -52,9 +52,24 @@ public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
         if (book == null) {
             return;
         }
-        Picasso.get().load(book.getImageLinks()).into(holder.cover);
-        holder.author.setText(book.getAuthors());
-        holder.title.setText(book.getTitle());
+        if (book.getImageLinks() == null) {
+            holder.cover.setImageResource(R.drawable.ic_broken_image);
+        } else {
+            Picasso.get().load(book.getImageLinks()).into(holder.cover);
+        }
+        if (book.getAuthors().equals("")){
+            holder.author.setText(R.string.book_search_author_unknown);
+
+        } else {
+            holder.author.setText(book.getAuthors());
+
+        }
+        if (book.getAuthors().equals("")){
+            holder.title.setText(R.string.book_search_title_unknown);
+
+        } else {
+            holder.title.setText(book.getTitle());
+        }
         holder.userRating.setRating(book.getUserRating());
         if (book.getReadDate().equals("")) {
             holder.data.setVisibility(View.GONE);
@@ -62,6 +77,7 @@ public class BookAdapter extends BaseAdapter<Book, BookAdapter.BookViewHolder> {
             holder.data.setVisibility(View.VISIBLE);
             holder.readData.setText(book.getReadDate());
         }
+
         holder.status.setText(BookStatusConverter.fromStatusToString(book.getStatus()));
     }
 

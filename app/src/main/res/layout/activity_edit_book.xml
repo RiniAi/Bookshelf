@@ -106,17 +106,24 @@
 
                 <Button
                     android:id="@+id/btn_save"
-                    android:layout_width="@dimen/edit_book_button_width"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/default_button_width"
+                    android:layout_height="@dimen/default_button_height"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/edit_book_save" />
+                    android:background="@drawable/my_button_bg"
+                    android:text="@string/edit_book_save"
+                    android:layout_marginBottom="@dimen/margin_8dp"
+                    android:textColor="@color/fon"
+                    android:textSize="@dimen/text_size_super_small" />
 
                 <Button
                     android:id="@+id/btn_delete"
-                    android:layout_width="@dimen/edit_book_button_width"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/default_button_width"
+                    android:layout_height="@dimen/default_button_height"
                     android:layout_gravity="center_horizontal"
-                    android:text="@string/edit_book_delete" />
+                    android:background="@drawable/my_button_bg"
+                    android:text="@string/edit_book_delete"
+                    android:textColor="@color/fon"
+                    android:textSize="@dimen/text_size_super_small" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
