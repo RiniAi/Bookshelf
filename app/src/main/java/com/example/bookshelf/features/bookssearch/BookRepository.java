@@ -29,11 +29,11 @@ public class BookRepository implements Repository {
         call.enqueue(new Callback<BooksApiResponse>() {
             @Override
             public void onResponse(@NotNull Call<BooksApiResponse> call, @NotNull Response<BooksApiResponse> response) {
-                List<BooksApiResponseItem> bookResult = new ArrayList<>();
+                List<BooksApiResponseItem> booksResponse = new ArrayList<>();
                 if (response.body() != null) {
-                    bookResult = response.body().getItems();
+                    booksResponse = response.body().getItems();
                 }
-                responseListener.onSuccess(mapResponseToDomain(bookResult));
+                responseListener.onSuccess(mapResponseToDomain(booksResponse));
             }
 
             @Override
