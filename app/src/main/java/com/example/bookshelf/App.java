@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.example.bookshelf.di.AppComponent;
 import com.example.bookshelf.di.AppModule;
-import com.example.bookshelf.di.BookDataBaseModule;
 import com.example.bookshelf.di.DaggerAppComponent;
 
 public class App extends Application {
@@ -21,7 +20,6 @@ public class App extends Application {
 
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(App.this))
-                .bookDataBaseModule(new BookDataBaseModule(this))
                 .build();
     }
 }
