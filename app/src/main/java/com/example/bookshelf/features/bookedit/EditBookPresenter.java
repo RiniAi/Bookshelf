@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.example.bookshelf.database.Book.BookStatus.resolveStatuses;
+
 public class EditBookPresenter implements EditBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";
     private BookStorage storage = new BookStorage();
@@ -38,6 +40,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
 
             view.showBook(book);
             loadCover();
+            resolveStatuses(context, Book.BookStatus.values());
             loadStatus();
         }
     }
@@ -55,7 +58,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         if (book.getStatus() != null) {
             view.showStatus(book.getStatus());
         }
-        if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
+        if (book.isFinishedOrQuit()) {
             getDate();
         }
     }
@@ -98,7 +101,7 @@ public class EditBookPresenter implements EditBookContract.Presenter {
         book.userRating = rating;
         book.isFavorite = isFavorite;
         book.setStatus(BookStatusConverter.fromStringToStatus(status));
-        if (book.getStatus() == Book.BookStatus.FINISH_READING || book.getStatus() == Book.BookStatus.QUIT_READING) {
+        if (book.isFinishedOrQuit()) {
             book.readDate = date;
         } else {
             book.readDate = "";

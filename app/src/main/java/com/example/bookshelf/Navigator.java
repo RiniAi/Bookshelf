@@ -10,6 +10,7 @@ import com.example.bookshelf.features.bookchallenge.BookChallengeActivity;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
 import com.example.bookshelf.features.bookedit.EditBookPresenter;
 import com.example.bookshelf.features.bookssearch.SearchActivity;
+import com.example.bookshelf.features.main.MainActivity;
 
 public class Navigator {
     private Context context;
@@ -31,7 +32,7 @@ public class Navigator {
     }
 
     public void openMain() {
-        Intent intent = new Intent(context, SearchActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
