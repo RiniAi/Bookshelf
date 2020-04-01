@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookshelf.App;
@@ -21,7 +20,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
-    private Toolbar toolbar;
     private ActivityListOfBooksBinding binding;
     @Inject
     BookAdapter bookAdapter;
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         binding = ActivityListOfBooksBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         updateToolbar();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbarMain.toolbar);
         buildRecyclerView();
     }
 
@@ -47,8 +45,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     private void updateToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.main_activity_title);
+        binding.toolbarMain.toolbar.setTitle(R.string.main_activity_title);
     }
 
     private void buildRecyclerView() {

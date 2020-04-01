@@ -3,7 +3,6 @@ package com.example.bookshelf.features.bookabout;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
@@ -15,7 +14,6 @@ import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 
 public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
-    private Toolbar toolbar;
     private ActivityAboutBookBinding binding;
     @Inject
     AboutBookContract.Presenter presenter;
@@ -27,13 +25,12 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         ((BasePresenter) presenter).setView(this);
         binding = ActivityAboutBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(toolbar);
         presenter.onStartWithData(getIntent().getExtras());
+        setSupportActionBar(binding.toolbarAboutBook.toolbar);
     }
 
     private void updateToolbar(String title) {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
+        binding.toolbarAboutBook.toolbar.setTitle(title);
     }
 
     @Override

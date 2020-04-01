@@ -13,7 +13,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -28,7 +27,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
-    private Toolbar toolbar;
     private ActivitySearchBinding binding;
     @Inject
     BookSearchAdapter bookAdapter;
@@ -46,12 +44,11 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         updateToolbar();
         buildRecyclerView();
         buildButtons();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbarSearch.toolbar);
     }
 
     private void updateToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.search_activity_title);
+        binding.toolbarSearch.toolbar.setTitle(R.string.search_activity_title);
     }
 
     private void buildButtons() {

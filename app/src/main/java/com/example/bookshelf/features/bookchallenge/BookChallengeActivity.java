@@ -8,7 +8,6 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.bookshelf.App;
@@ -22,9 +21,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
-    private Toolbar toolbar;
     private ActivityBookChallengeBinding binding;
-
     @Inject
     BookChallengeAdapter bookAdapter;
     @Inject
@@ -39,13 +36,12 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
         setContentView(binding.getRoot());
         updateToolbar();
         buildRecyclerView();
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbarBookChallenge.toolbar);
         presenter.onStart();
     }
 
     private void updateToolbar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.book_challenge_title);
+        binding.toolbarBookChallenge.toolbar.setTitle(R.string.book_challenge_title);
     }
 
     private void buildRecyclerView() {

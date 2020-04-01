@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
@@ -18,7 +17,6 @@ import javax.inject.Inject;
 
 public class EditBookActivity extends AppCompatActivity implements EditBookContract.View {
     private boolean isFavorite = false;
-    private Toolbar toolbar;
     private ActivityEditBookBinding binding;
     @Inject
     EditBookContract.Presenter presenter;
@@ -32,9 +30,9 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         ((BasePresenter) presenter).setView(this);
         binding = ActivityEditBookBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(toolbar);
         buildButtons();
         presenter.onStartWithData(getIntent().getExtras());
+        setSupportActionBar(binding.toolbarEditBook.toolbar);
     }
 
     private void buildButtons() {
@@ -55,8 +53,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     }
 
     private void updateToolbar(String title) {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(title);
+        binding.toolbarEditBook.toolbar.setTitle(title);
     }
 
     private void buildStatusSpinner() {
