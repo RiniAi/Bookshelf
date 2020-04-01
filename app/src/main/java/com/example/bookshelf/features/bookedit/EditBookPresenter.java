@@ -17,6 +17,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import static com.example.bookshelf.database.Book.BookStatus.resolveStatuses;
+
 public class EditBookPresenter extends BasePresenter<EditBookContract.View> implements EditBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";
     private Book book;
@@ -42,7 +44,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
 
             view.showBook(book);
             loadCover();
-            initStatus();
+            resolveStatuses(context, Book.BookStatus.values());
             loadStatus();
         }
     }
@@ -54,10 +56,6 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         } else {
             view.showCover(image);
         }
-    }
-
-    private void initStatus() {
-        Book.BookStatus.resolveStatuses(context, Book.BookStatus.values());
     }
 
     private void loadStatus() {
@@ -120,3 +118,4 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         storage.delete(book);
     }
 }
+
