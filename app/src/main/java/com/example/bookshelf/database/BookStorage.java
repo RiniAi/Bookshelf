@@ -3,7 +3,7 @@ package com.example.bookshelf.database;
 import java.util.List;
 
 public interface BookStorage {
-    Book searchBookDb(Book book);
+    Book search(Book book);
 
     List<Book> getAllWithStatus(Book.BookStatus status);
 

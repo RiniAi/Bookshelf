@@ -11,7 +11,7 @@ public class LocalBookStorage implements BookStorage {
     public LocalBookStorage() {
     }
 
-    public Book searchBookDb(Book book) {
+    public Book search(Book book) {
         return bookDao.findBookTitleAndAuthor(book.title, book.authors);
     }
 
@@ -24,7 +24,7 @@ public class LocalBookStorage implements BookStorage {
     }
 
     public void insertOrUpdate(Book book) {
-        if (searchBookDb(book) != null) {
+        if (search(book) != null) {
             bookDao.update(book);
         } else {
             bookDao.insert(book);
