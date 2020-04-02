@@ -4,7 +4,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.LocalBookStorage;
+import com.example.bookshelf.features.usecases.LoadUseCase;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
-    LocalBookStorage storage;
+    LoadUseCase loadUseCase;
     @Inject
     Navigator navigator;
 
@@ -26,7 +26,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     }
 
     private void loadBooks() {
-        List<Book> books = storage.getAll();
+        List<Book> books = loadUseCase.run();
         if (books.isEmpty()) {
             view.hideList();
         } else {
