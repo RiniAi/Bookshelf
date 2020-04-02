@@ -6,18 +6,16 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.LocalBookStorage;
+import com.example.bookshelf.features.usecases.SearchStatusUseCase;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
-
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     private static final String STORAGE_COUNTER = "counter";
     @Inject
-    LocalBookStorage storage;
+    SearchStatusUseCase searchUseCase;
     @Inject
     SharedPreferences sharedPreferences;
     @Inject
@@ -44,7 +42,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     }
 
     private void loadBooks() {
-        List<Book> books = storage.getAllWithStatus(FINISH_READING);
+        List<Book> books = searchUseCase.run();
         view.showList(books);
         changeProgress(books);
     }
