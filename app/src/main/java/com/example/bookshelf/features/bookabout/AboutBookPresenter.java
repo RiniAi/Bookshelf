@@ -18,7 +18,6 @@ public class AboutBookPresenter extends BasePresenter<AboutBookContract.View> im
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
         }
-
         view.showBook(book);
         loadCover();
     }

@@ -7,8 +7,9 @@ import android.text.format.DateUtils;
 import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStatusConverter;
-import com.example.bookshelf.database.LocalBookStorage;
+import com.example.bookshelf.features.usecases.DeleteBookUseCase;
+import com.example.bookshelf.features.usecases.InsertOrUpdateBookUseCase;
+import com.example.bookshelf.features.usecases.SearchBookUseCase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,7 +27,11 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     Context context;
     @Inject
-    LocalBookStorage storage;
+    SearchBookUseCase searchUseCase;
+    @Inject
+    InsertOrUpdateBookUseCase insertOrUpdateUseCase;
+    @Inject
+    DeleteBookUseCase deleteUseCase;
 
     public EditBookPresenter() {
         App.getAppComponent().presenterComponent().inject(this);
@@ -41,7 +46,6 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     private void loadBook(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
-
             view.showBook(book);
             loadCover();
             resolveStatuses(context, Book.BookStatus.values());
@@ -84,7 +88,8 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     }
 
     private void searchBook() {
-        Book bookDb = storage.searchBookDb(book);
+        SearchBookUseCase.Params params = new SearchBookUseCase.Params(book);
+        Book bookDb = searchUseCase.run(params);
         if (bookDb != null) {
             view.showButtonDelete();
         } else {
@@ -102,20 +107,14 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Override
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
         view.showDate();
-        book.userRating = rating;
-        book.isFavorite = isFavorite;
-        book.setStatus(BookStatusConverter.fromStringToStatus(status));
-        if (book.isFinishedOrQuit()) {
-            book.readDate = date;
-        } else {
-            book.readDate = "";
-        }
-        storage.insertOrUpdate(book);
+        InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params(book, rating, status, isFavorite, date);
+        insertOrUpdateUseCase.run(params);
     }
 
     @Override
     public void deleteBook() {
-        storage.delete(book);
+        DeleteBookUseCase.Params params = new DeleteBookUseCase.Params(book);
+        deleteUseCase.run(params);
     }
 }
 
