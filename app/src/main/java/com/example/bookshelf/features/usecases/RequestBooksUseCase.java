@@ -1,13 +1,13 @@
 package com.example.bookshelf.features.usecases;
 
-import com.example.bookshelf.features.bookssearch.BookRepository;
+import com.example.bookshelf.features.bookssearch.Repository;
 import com.example.bookshelf.features.bookssearch.SearchCall;
 
 import javax.inject.Inject;
 
 public class RequestBooksUseCase {
     @Inject
-    BookRepository repository;
+    Repository repository;
 
     @Inject
     public RequestBooksUseCase() {

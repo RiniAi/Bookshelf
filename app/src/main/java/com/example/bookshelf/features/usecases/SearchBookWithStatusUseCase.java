@@ -1,7 +1,7 @@
 package com.example.bookshelf.features.usecases;
 
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.LocalBookStorage;
+import com.example.bookshelf.database.BookStorage;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
 
 public class SearchBookWithStatusUseCase {
     @Inject
-    LocalBookStorage storage;
+    BookStorage storage;
 
     @Inject
     public SearchBookWithStatusUseCase() {

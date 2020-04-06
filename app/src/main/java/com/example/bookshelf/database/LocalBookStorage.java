@@ -1,5 +1,7 @@
 package com.example.bookshelf.database;
 
+import com.example.bookshelf.App;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +11,7 @@ public class LocalBookStorage implements BookStorage {
     BookDao bookDao;
     @Inject
     public LocalBookStorage() {
+        App.getAppComponent().inject(this);
     }
 
     public Book search(Book book) {
