@@ -88,7 +88,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     }
 
     private void searchBook() {
-        SearchBookUseCase.Params params = new SearchBookUseCase.Params<Book>(book);
+        SearchBookUseCase.Params params = new SearchBookUseCase.Params(book);
         Book bookDb = searchUseCase.run(params);
         if (bookDb != null) {
             view.showButtonDelete();
@@ -107,13 +107,13 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Override
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
         view.showDate();
-        InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params<Book>(book,rating,status,isFavorite, date);
+        InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params(book, rating, status, isFavorite, date);
         insertOrUpdateUseCase.run(params);
     }
 
     @Override
     public void deleteBook() {
-        DeleteBookUseCase.Params params = new DeleteBookUseCase.Params<Book>(book);
+        DeleteBookUseCase.Params params = new DeleteBookUseCase.Params(book);
         deleteUseCase.run(params);
     }
 }

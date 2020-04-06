@@ -14,27 +14,27 @@ public class InsertOrUpdateBookUseCase {
     public InsertOrUpdateBookUseCase() {
     }
 
-    public static class Params<T> {
-        private T book;
+    public static class Params {
+        private Book book;
 
-        public T getBook() {
+        public Book getBook() {
             return book;
         }
 
-        public Params(T book, float rating, String status, boolean isFavorite, String date) {
-            ((Book) book).userRating = rating;
-            ((Book) book).isFavorite = isFavorite;
-            ((Book) book).setStatus(BookStatusConverter.fromStringToStatus(status));
-            if (((Book) book).isFinishedOrQuit()) {
-                ((Book) book).readDate = date;
+        public Params(Book book, float rating, String status, boolean isFavorite, String date) {
+            book.userRating = rating;
+            book.isFavorite = isFavorite;
+            book.setStatus(BookStatusConverter.fromStringToStatus(status));
+            if (book.isFinishedOrQuit()) {
+                book.readDate = date;
             } else {
-                ((Book) book).readDate = "";
+                book.readDate = "";
             }
             this.book = book;
         }
     }
 
     public void run(Params params) {
-        storage.insertOrUpdate((Book) params.getBook());
+        storage.insertOrUpdate(params.getBook());
     }
 }

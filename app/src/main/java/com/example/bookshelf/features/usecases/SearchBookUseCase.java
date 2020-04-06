@@ -13,19 +13,19 @@ public class SearchBookUseCase {
     public SearchBookUseCase() {
     }
 
-    public static class Params<T> {
-        private T book;
+    public static class Params {
+        private Book book;
 
-        public T getBook() {
+        public Book getBook() {
             return book;
         }
 
-        public Params(T book) {
+        public Params(Book book) {
             this.book = book;
         }
     }
 
     public Book run(Params params) {
-        return storage.search((Book) params.getBook());
+        return storage.search(params.getBook());
     }
 }
