@@ -9,12 +9,12 @@ import javax.inject.Inject;
 
 import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
 
-public class SearchStatusUseCase {
+public class SearchBookWithStatusUseCase {
     @Inject
     LocalBookStorage storage;
 
     @Inject
-    public SearchStatusUseCase() {
+    public SearchBookWithStatusUseCase() {
     }
 
     public List<Book> run() {

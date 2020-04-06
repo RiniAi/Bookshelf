@@ -6,7 +6,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.SearchStatusUseCase;
+import com.example.bookshelf.features.usecases.SearchBookWithStatusUseCase;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import javax.inject.Inject;
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     private static final String STORAGE_COUNTER = "counter";
     @Inject
-    SearchStatusUseCase searchUseCase;
+    SearchBookWithStatusUseCase searchUseCase;
     @Inject
     SharedPreferences sharedPreferences;
     @Inject

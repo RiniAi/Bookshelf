@@ -4,7 +4,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.LoadUseCase;
+import com.example.bookshelf.features.usecases.LoadBookUseCase;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
-    LoadUseCase loadUseCase;
+    LoadBookUseCase loadUseCase;
     @Inject
     Navigator navigator;
 

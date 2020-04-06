@@ -6,12 +6,12 @@ import com.example.bookshelf.database.LocalBookStorage;
 
 import javax.inject.Inject;
 
-public class InsertOrUpdateUseCase {
+public class InsertOrUpdateBookUseCase {
     @Inject
     LocalBookStorage storage;
 
     @Inject
-    public InsertOrUpdateUseCase() {
+    public InsertOrUpdateBookUseCase() {
     }
 
     public static class Params<T> {

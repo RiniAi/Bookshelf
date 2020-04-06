@@ -7,9 +7,9 @@ import android.text.format.DateUtils;
 import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.DeleteUseCase;
-import com.example.bookshelf.features.usecases.InsertOrUpdateUseCase;
-import com.example.bookshelf.features.usecases.SearchUseCase;
+import com.example.bookshelf.features.usecases.DeleteBookUseCase;
+import com.example.bookshelf.features.usecases.InsertOrUpdateBookUseCase;
+import com.example.bookshelf.features.usecases.SearchBookUseCase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,11 +27,11 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     Context context;
     @Inject
-    SearchUseCase searchUseCase;
+    SearchBookUseCase searchUseCase;
     @Inject
-    InsertOrUpdateUseCase insertOrUpdateUseCase;
+    InsertOrUpdateBookUseCase insertOrUpdateUseCase;
     @Inject
-    DeleteUseCase deleteUseCase;
+    DeleteBookUseCase deleteUseCase;
 
     public EditBookPresenter() {
         App.getAppComponent().presenterComponent().inject(this);
@@ -88,7 +88,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     }
 
     private void searchBook() {
-        SearchUseCase.Params params = new SearchUseCase.Params<Book>(book);
+        SearchBookUseCase.Params params = new SearchBookUseCase.Params<Book>(book);
         Book bookDb = searchUseCase.run(params);
         if (bookDb != null) {
             view.showButtonDelete();
@@ -107,13 +107,13 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Override
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
         view.showDate();
-        InsertOrUpdateUseCase.Params params = new InsertOrUpdateUseCase.Params<Book>(book,rating,status,isFavorite, date);
+        InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params<Book>(book,rating,status,isFavorite, date);
         insertOrUpdateUseCase.run(params);
     }
 
     @Override
     public void deleteBook() {
-        DeleteUseCase.Params params = new DeleteUseCase.Params<Book>(book);
+        DeleteBookUseCase.Params params = new DeleteBookUseCase.Params<Book>(book);
         deleteUseCase.run(params);
     }
 }

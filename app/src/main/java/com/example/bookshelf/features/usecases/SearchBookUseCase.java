@@ -5,12 +5,12 @@ import com.example.bookshelf.database.LocalBookStorage;
 
 import javax.inject.Inject;
 
-public class DeleteUseCase {
+public class SearchBookUseCase {
     @Inject
     LocalBookStorage storage;
 
     @Inject
-    public DeleteUseCase() {
+    public SearchBookUseCase() {
     }
 
     public static class Params<T> {
@@ -25,7 +25,7 @@ public class DeleteUseCase {
         }
     }
 
-    public void run(Params params) {
-        storage.delete((Book) params.getBook());
+    public Book run(Params params) {
+        return storage.search((Book) params.getBook());
     }
 }

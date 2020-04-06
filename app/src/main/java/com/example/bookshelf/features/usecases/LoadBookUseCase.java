@@ -7,12 +7,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class LoadUseCase {
+public class LoadBookUseCase {
     @Inject
     LocalBookStorage storage;
 
     @Inject
-    public LoadUseCase() {
+    public LoadBookUseCase() {
     }
 
     public List<Book> run() {

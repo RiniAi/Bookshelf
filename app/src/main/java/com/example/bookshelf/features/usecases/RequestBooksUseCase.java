@@ -5,12 +5,12 @@ import com.example.bookshelf.features.bookssearch.SearchCall;
 
 import javax.inject.Inject;
 
-public class RequestUseCase {
+public class RequestBooksUseCase {
     @Inject
     BookRepository repository;
 
     @Inject
-    public RequestUseCase() {
+    public RequestBooksUseCase() {
     }
 
     public void run(String query, SearchCall.responseListener responseListener) {

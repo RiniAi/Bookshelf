@@ -6,7 +6,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.RequestUseCase;
+import com.example.bookshelf.features.usecases.RequestBooksUseCase;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     @Inject
-    RequestUseCase requestUseCase;
+    RequestBooksUseCase requestUseCase;
     @Inject
     Navigator navigator;
 
