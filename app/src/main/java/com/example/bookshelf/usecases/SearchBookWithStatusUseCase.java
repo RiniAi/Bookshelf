@@ -14,7 +14,8 @@ public class SearchBookWithStatusUseCase {
     BookStorage storage;
 
     @Inject
-    public SearchBookWithStatusUseCase() {
+    public SearchBookWithStatusUseCase(BookStorage storage) {
+        this.storage = storage;
     }
 
     public List<Book> run() {

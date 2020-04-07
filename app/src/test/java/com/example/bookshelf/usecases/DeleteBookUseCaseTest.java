@@ -6,17 +6,23 @@ import com.example.bookshelf.usecases.DeleteBookUseCase.Params;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class DeleteBookUseCaseTest {
+    @InjectMocks
+    DeleteBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
     private Book book;
     private Params params;
 
     @BeforeEach
     void prepareData() {
+        useCase = new DeleteBookUseCase(storage);
+
         book = new Book();
         book.setAuthors("Фрай");
         book.setTitle("Чужак");
@@ -31,14 +37,14 @@ public class DeleteBookUseCaseTest {
     @Test
     public void deleteBookUseCaseDeleteBook() {
         params = new Params(book);
-        storage.delete(params.getBook());
-        verify(storage).delete(book);
+        useCase.run(params);
+        verify(storage).delete(params.getBook());
     }
 
     @Test
     public void deleteBookUseCaseDeleteNull() {
         params = new Params(null);
-        storage.delete(params.getBook());
-        verify(storage).delete(null);
+        useCase.run(params);
+        verify(storage).delete(params.getBook());
     }
 }

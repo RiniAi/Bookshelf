@@ -10,7 +10,8 @@ public class DeleteBookUseCase {
     BookStorage storage;
 
     @Inject
-    public DeleteBookUseCase() {
+    public DeleteBookUseCase(BookStorage storage) {
+        this.storage = storage;
     }
 
     public static class Params {
