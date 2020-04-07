@@ -1,4 +1,4 @@
-package com.example.bookshelf.features.usecases;
+package com.example.bookshelf.usecases;
 
 import com.example.bookshelf.features.bookssearch.Repository;
 import com.example.bookshelf.features.bookssearch.SearchCall;
@@ -13,7 +13,7 @@ public class RequestBooksUseCase {
     public RequestBooksUseCase() {
     }
 
-    public void run(String query, SearchCall.responseListener responseListener) {
+    public void run(String query, SearchCall.ResponseListener responseListener) {
         repository.requestBooksFromApi(query, responseListener);
     }
 }

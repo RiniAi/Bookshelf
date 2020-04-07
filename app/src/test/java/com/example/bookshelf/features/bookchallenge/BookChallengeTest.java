@@ -2,7 +2,7 @@ package com.example.bookshelf.features.bookchallenge;
 
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;
-import com.example.bookshelf.features.usecases.SearchBookWithStatusUseCase;
+import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -4,7 +4,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.LoadBookUseCase;
+import com.example.bookshelf.usecases.LoadBookUseCase;
 
 import java.util.List;
 

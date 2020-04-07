@@ -7,9 +7,9 @@ import android.text.format.DateUtils;
 import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.DeleteBookUseCase;
-import com.example.bookshelf.features.usecases.InsertOrUpdateBookUseCase;
-import com.example.bookshelf.features.usecases.SearchBookUseCase;
+import com.example.bookshelf.usecases.DeleteBookUseCase;
+import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
+import com.example.bookshelf.usecases.SearchBookUseCase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

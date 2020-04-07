@@ -1,16 +1,16 @@
-package com.example.bookshelf.features.usecases;
+package com.example.bookshelf.usecases;
 
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;
 
 import javax.inject.Inject;
 
-public class DeleteBookUseCase {
+public class SearchBookUseCase {
     @Inject
     BookStorage storage;
 
     @Inject
-    public DeleteBookUseCase() {
+    public SearchBookUseCase() {
     }
 
     public static class Params {
@@ -25,7 +25,7 @@ public class DeleteBookUseCase {
         }
     }
 
-    public void run(Params params) {
-        storage.delete(params.getBook());
+    public Book run(Params params) {
+        return storage.search(params.getBook());
     }
 }

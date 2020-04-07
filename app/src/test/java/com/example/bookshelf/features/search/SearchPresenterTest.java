@@ -3,7 +3,7 @@ package com.example.bookshelf.features.search;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.features.bookssearch.SearchContract;
 import com.example.bookshelf.features.bookssearch.SearchPresenter;
-import com.example.bookshelf.features.usecases.RequestBooksUseCaseTest;
+import com.example.bookshelf.usecases.RequestBooksUseCaseTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

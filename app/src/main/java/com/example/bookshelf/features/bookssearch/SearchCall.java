@@ -5,7 +5,7 @@ import com.example.bookshelf.database.Book;
 import java.util.List;
 
 public interface SearchCall {
-    interface responseListener {
+    interface ResponseListener {
         void onSuccess(List<Book> books);
 
         void onFailure(Throwable t);

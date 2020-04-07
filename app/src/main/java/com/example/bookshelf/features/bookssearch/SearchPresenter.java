@@ -6,7 +6,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.RequestBooksUseCase;
+import com.example.bookshelf.usecases.RequestBooksUseCase;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void searchBook(String query) {
-        SearchCall.responseListener responseListener = new SearchCall.responseListener() {
+        SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
             @Override
             public void onSuccess(List<Book> books) {
                 view.showBooks(books);

@@ -23,7 +23,7 @@ public class BookRepository implements Repository {
     @Inject
     public BookRepository() {
     }
-    public void requestBooksFromApi(String query, SearchCall.responseListener responseListener) {
+    public void requestBooksFromApi(String query, SearchCall.ResponseListener responseListener) {
         GoogleBooksApiService service = RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
         Call<BooksApiResponse> call = service.getBooks(query, QUERY_COUNTER);
         call.enqueue(new Callback<BooksApiResponse>() {

@@ -6,7 +6,7 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.SearchBookWithStatusUseCase;
+import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import java.util.List;
 

@@ -106,6 +106,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     @Override
+    public void showErrorMessage() {
+        binding.progressBar.setVisibility(View.GONE);
+        Toast.makeText(SearchActivity.this, "You didn't enter a search query!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toolbar_search, menu);
