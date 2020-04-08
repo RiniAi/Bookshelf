@@ -15,7 +15,7 @@ import javax.inject.Inject;
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     private static final String STORAGE_COUNTER = "counter";
     @Inject
-    SearchBookWithStatusUseCase searchUseCase;
+    SearchBookWithStatusUseCase useCase;
     @Inject
     SharedPreferences sharedPreferences;
     @Inject
@@ -25,6 +25,13 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
         App.getAppComponent().presenterComponent().inject(this);
     }
 
+    public BookChallengePresenter(SearchBookWithStatusUseCase useCase, SharedPreferences sharedPreferences, Navigator navigator, BookChallengeContract.View view) {
+        this.useCase = useCase;
+        this.sharedPreferences = sharedPreferences;
+        this.navigator = navigator;
+        this.view = view;
+    }
+
     @Override
     public void onStart() {
         loadCounter();
@@ -32,19 +39,32 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     }
 
     private void loadCounter() {
-        String counter = sharedPreferences.getString(STORAGE_COUNTER, "0");
+        String counter;
+        try {
+            counter = sharedPreferences.getString(STORAGE_COUNTER, "0");
+        } catch (NullPointerException e) {
+            counter = "0";
+        }
         view.changeCounter(counter);
         changeCounterForBar(counter);
     }
 
     private void changeCounterForBar(String counter) {
-        view.changeCounterForBar(Integer.parseInt(counter));
+        try {
+            view.changeCounterForBar(Integer.parseInt(counter));
+        } catch (NumberFormatException e) {
+            view.changeCounterForBar(0);
+        }
     }
 
     private void loadBooks() {
-        List<Book> books = searchUseCase.run();
-        view.showList(books);
-        changeProgress(books);
+        List<Book> books = useCase.run();
+        if (books.isEmpty()) {
+            view.hideList();
+        } else {
+            view.showList(books);
+            changeProgress(books);
+        }
     }
 
     private void changeProgress(List<Book> books) {
