@@ -9,14 +9,14 @@ import org.mockito.InjectMocks;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class RequestBooksUseCaseTest {
+class RequestBooksUseCaseTest {
     @InjectMocks
     RequestBooksUseCase useCase;
     private Repository repository = mock(Repository.class);
     private ResponseListener listener = mock(ResponseListener.class);
 
     @Test
-    public void requestBooksUseCaseRepositoryCorrectCall() {
+    void requestBooksUseCaseRepositoryCorrectCall() {
         useCase = new RequestBooksUseCase(repository);
 
         useCase.run("Tom", listener);

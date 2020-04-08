@@ -9,13 +9,13 @@ import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class SearchBookWithStatusUseCaseTest {
+class SearchBookWithStatusUseCaseTest {
     @InjectMocks
     SearchBookWithStatusUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
 
     @Test
-    public void loadBookUseCaseCorrectDataLoading() {
+    void loadBookUseCaseCorrectDataLoading() {
         useCase = new SearchBookWithStatusUseCase(storage);
 
         useCase.run();

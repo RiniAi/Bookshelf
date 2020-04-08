@@ -8,13 +8,13 @@ import org.mockito.InjectMocks;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class LoadBookUseCaseTest {
+class LoadBookUseCaseTest {
     @InjectMocks
     LoadBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
 
     @Test
-    public void loadBookUseCaseCorrectDataLoading() {
+    void loadBookUseCaseCorrectDataLoading() {
         useCase = new LoadBookUseCase(storage);
 
         useCase.run();

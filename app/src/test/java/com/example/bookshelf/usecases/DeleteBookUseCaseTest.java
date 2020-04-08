@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class DeleteBookUseCaseTest {
+class DeleteBookUseCaseTest {
     @InjectMocks
     DeleteBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
@@ -29,20 +29,20 @@ public class DeleteBookUseCaseTest {
     }
 
     @Test
-    public void deleteBookUseCaseParamsReturnsBookCorrectly() {
+    void deleteBookUseCaseParamsReturnsBookCorrectly() {
         params = new Params(book);
         assertEquals(book, params.getBook());
     }
 
     @Test
-    public void deleteBookUseCaseDeleteBook() {
+    void deleteBookUseCaseDeleteBook() {
         params = new Params(book);
         useCase.run(params);
         verify(storage).delete(params.getBook());
     }
 
     @Test
-    public void deleteBookUseCaseDeleteNull() {
+    void deleteBookUseCaseDeleteNull() {
         params = new Params(null);
         useCase.run(params);
         verify(storage).delete(params.getBook());

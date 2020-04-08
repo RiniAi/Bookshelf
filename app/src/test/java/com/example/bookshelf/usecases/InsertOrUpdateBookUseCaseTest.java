@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class InsertOrUpdateBookUseCaseTest {
+class InsertOrUpdateBookUseCaseTest {
     @InjectMocks
     InsertOrUpdateBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
@@ -39,20 +39,20 @@ public class InsertOrUpdateBookUseCaseTest {
     }
 
     @Test
-    public void insertOrUpdateBookUseCaseParamsReturnsBookCorrectly() {
+    void insertOrUpdateBookUseCaseParamsReturnsBookCorrectly() {
         params = new Params(book, rating, status, isFavorite, date);
         assertEquals(book, params.getBook());
     }
 
     @Test
-    public void insertOrUpdateBookUseCaseInsertOrUpdateBook() {
+    void insertOrUpdateBookUseCaseInsertOrUpdateBook() {
         params = new Params(book, rating, status, isFavorite, date);
         useCase.run(params);
         verify(storage).insertOrUpdate(params.getBook());
     }
 
     @Test
-    public void insertOrUpdateBookUseCaseInsertOrUpdateNull() {
+    void insertOrUpdateBookUseCaseInsertOrUpdateNull() {
         try {
             params = new Params(null, rating, status, isFavorite, date);
             useCase.run(params);
