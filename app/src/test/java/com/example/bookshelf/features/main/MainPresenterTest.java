@@ -51,6 +51,12 @@ public class MainPresenterTest {
     }
 
     @Test
+    public void mainPresenterViewLoadListOfBooks() {
+        view.showList(books);
+        verify(view).showList(books);
+    }
+
+    @Test
     public void mainPresenterOpenBook() {
         presenter.openBook(book);
         verify(navigator).openBook(book);
