@@ -9,17 +9,22 @@ public class AboutBookPresenter extends BasePresenter<AboutBookContract.View> im
     public static final String EXTRA_BOOK = "book";
     private Book book;
 
-    @Override
-    public void onStartWithData(Bundle bundle) {
-        loadBook(bundle);
+    public AboutBookPresenter() {
     }
 
-    private void loadBook(Bundle bundle) {
+    public AboutBookPresenter(AboutBookContract.View view) {
+        this.view = view;
+    }
+
+    @Override
+    public void onStartWithData(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
+            view.showBook(book);
+            loadCover();
+        } else {
+            view.showErrorMessage();
         }
-        view.showBook(book);
-        loadCover();
     }
 
     private void loadCover() {
