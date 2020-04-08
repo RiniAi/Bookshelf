@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     @Inject
-    RequestBooksUseCase requestUseCase;
+    RequestBooksUseCase useCase;
     @Inject
     Navigator navigator;
 
@@ -22,21 +22,35 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
         App.getAppComponent().presenterComponent().inject(this);
     }
 
+    public SearchPresenter(RequestBooksUseCase useCase, Navigator navigator, SearchContract.View view) {
+        this.useCase = useCase;
+        this.navigator = navigator;
+        this.view = view;
+    }
+
     @Override
     public void searchBook(String query) {
-        SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
-            @Override
-            public void onSuccess(List<Book> books) {
-                view.showBooks(books);
-            }
+        if (query.isEmpty()) {
+            view.showErrorMessage();
+        } else {
+            SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
+                @Override
+                public void onSuccess(List<Book> books) {
+                    if (books.isEmpty()) {
+                        view.showEmptyView();
+                    } else {
+                        view.showBooks(books);
+                    }
+                }
 
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e("error", t.toString());
-                view.showError();
-            }
-        };
-        requestUseCase.run(query, responseListener);
+                @Override
+                public void onFailure(Throwable t) {
+                    Log.e("error", t.toString());
+                    view.showError();
+                }
+            };
+            useCase.run(query, responseListener);
+        }
     }
 
     @Override

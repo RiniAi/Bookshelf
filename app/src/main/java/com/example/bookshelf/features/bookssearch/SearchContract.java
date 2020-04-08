@@ -11,6 +11,8 @@ public interface SearchContract {
         void showError();
 
         void showErrorMessage();
+
+        void showEmptyView();
     }
 
     interface Presenter {

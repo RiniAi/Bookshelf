@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +39,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         ((BasePresenter) presenter).setView(this);
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.llEmptyList.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.GONE);
         updateToolbar();
         buildRecyclerView();
@@ -53,16 +53,16 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
 
     private void buildButtons() {
         binding.ibSendQuery.setOnClickListener(view -> {
+            hideList();
             presenter.searchBook(binding.etQuery.getText().toString());
             hideKeyboard(SearchActivity.this, view);
-            hideList();
         });
 
         binding.etQuery.setOnEditorActionListener((view, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                hideList();
                 presenter.searchBook(binding.etQuery.getText().toString());
                 hideKeyboard(SearchActivity.this, view);
-                hideList();
                 return true;
             }
             return false;
@@ -78,8 +78,9 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     }
 
     private void hideList() {
-        binding.progressBar.setVisibility(ProgressBar.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         binding.rvOfBooks.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.GONE);
     }
 
     public static void hideKeyboard(Context context, View view) {
@@ -91,12 +92,9 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void showBooks(List<Book> bookList) {
         binding.progressBar.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.GONE);
         binding.rvOfBooks.setVisibility(View.VISIBLE);
-        if (bookList == null) {
-            Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
-        } else {
-            bookAdapter.setList(bookList);
-        }
+        bookAdapter.setList(bookList);
     }
 
     @Override
@@ -108,7 +106,16 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void showErrorMessage() {
         binding.progressBar.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.VISIBLE);
         Toast.makeText(SearchActivity.this, "You didn't enter a search query!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showEmptyView() {
+        binding.progressBar.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.VISIBLE);
+        binding.rvOfBooks.setVisibility(View.GONE);
+        Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
