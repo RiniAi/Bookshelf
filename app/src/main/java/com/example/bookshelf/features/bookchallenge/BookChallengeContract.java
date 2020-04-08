@@ -10,6 +10,8 @@ public interface BookChallengeContract {
 
         void changeCounterForBar(int counter);
 
+        void hideList();
+
         void showList(List<Book> books);
 
         void changeProgress(String progress);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -63,7 +64,15 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     }
 
     @Override
+    public void hideList() {
+        binding.rvBooks.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void showList(List<Book> books) {
+        binding.rvBooks.setVisibility(View.VISIBLE);
+        binding.llEmptyList.setVisibility(View.GONE);
         bookAdapter.setList(books);
     }
 
