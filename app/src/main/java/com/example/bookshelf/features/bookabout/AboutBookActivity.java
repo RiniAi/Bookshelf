@@ -1,6 +1,7 @@
 package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,5 +60,10 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
     @Override
     public void showBookBrokenCover() {
         binding.ivCover.setImageResource(R.drawable.ic_broken_image);
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(AboutBookActivity.this, "The book is not found!", Toast.LENGTH_SHORT).show();
     }
 }
