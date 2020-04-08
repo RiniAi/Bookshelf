@@ -7,34 +7,40 @@ import com.example.bookshelf.database.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class AboutBookPresenterTest {
     @InjectMocks
     AboutBookPresenter presenter;
-    @Mock
-    AboutBookContract.View view;
-    @Mock
-    Bundle bundle;
-
+    private AboutBookContract.View view = mock(AboutBookContract.View.class);
+    private Bundle bundle = mock(Bundle.class);
     private Book book;
 
     @BeforeEach
-    void createBook(){
-        presenter = new AboutBookPresenter();
+    void prepareData() {
+        presenter = new AboutBookPresenter(view);
         book = new Book();
-        book.setTitle("Чужак");
-        book.setAuthors("Фрай");
     }
 
     @Test
-    void onStartWithData() {
+    void aboutBookPresenterBundleIsNotEmpty() {
         bundle.putSerializable("book", book);
         presenter.onStartWithData(bundle);
+        verify(view).showBook(book);
+    }
 
-        assertEquals(book, bundle);
+    @Test
+    void aboutBookPresenterBundleIsEmpty() {
+        presenter.onStartWithData(bundle);
+        verify(view).showErrorMessage();
+    }
+
+    @Test
+    void aboutBookPresenterViewBundleIsNotEmpty() {
+        bundle.putSerializable("book", book);
+        view.showBook(book);
+        verify(view).showBook(book);
     }
 }
