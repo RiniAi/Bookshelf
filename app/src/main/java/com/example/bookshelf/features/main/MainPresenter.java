@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
-    LoadBookUseCase loadUseCase;
+    LoadBookUseCase useCase;
     @Inject
     Navigator navigator;
 
@@ -20,13 +20,15 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
         App.getAppComponent().presenterComponent().inject(this);
     }
 
-    @Override
-    public void onStart() {
-        loadBooks();
+    public MainPresenter(LoadBookUseCase useCase, Navigator navigator, MainContract.View view) {
+        this.useCase = useCase;
+        this.navigator = navigator;
+        this.view = view;
     }
 
-    private void loadBooks() {
-        List<Book> books = loadUseCase.run();
+    @Override
+    public void onStart() {
+        List<Book> books = useCase.run();
         if (books.isEmpty()) {
             view.hideList();
         } else {
