@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class SearchBookUseCaseTest {
     @InjectMocks
@@ -39,6 +40,7 @@ class SearchBookUseCaseTest {
     void searchBookUseCaseSearchBook() {
         params = new Params(book);
         useCase.run(params);
+        when(useCase.run(params)).thenReturn(book);
         verify(storage).search(params.getBook());
     }
 
@@ -46,6 +48,7 @@ class SearchBookUseCaseTest {
     void searchBookUseCaseCaseSearchNull() {
         params = new Params(null);
         useCase.run(params);
+        when(useCase.run(params)).thenReturn(book);
         verify(storage).search(params.getBook());
     }
 }

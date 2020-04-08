@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class BookChallengeTest {
     @InjectMocks
@@ -46,6 +47,7 @@ class BookChallengeTest {
     void bookChallengePresenterLoadEmptyList(){
         presenter.onStart();
         verify(useCase).run();
+        when(useCase.run()).thenReturn(books);
         verify(view).hideList();
     }
 
