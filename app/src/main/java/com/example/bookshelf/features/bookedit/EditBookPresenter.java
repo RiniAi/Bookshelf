@@ -37,6 +37,11 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         App.getAppComponent().presenterComponent().inject(this);
     }
 
+    public EditBookPresenter(SearchBookUseCase searchUseCase, EditBookContract.View view) {
+        this.searchUseCase = searchUseCase;
+        this.view = view;
+    }
+
     @Override
     public void onStartWithData(Bundle bundle) {
         loadBook(bundle);
@@ -50,6 +55,8 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
             loadCover();
             resolveStatuses(context, Book.BookStatus.values());
             loadStatus();
+        } else {
+            view.showErrorMessage();
         }
     }
 
