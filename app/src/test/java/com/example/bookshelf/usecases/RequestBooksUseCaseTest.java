@@ -18,7 +18,6 @@ class RequestBooksUseCaseTest {
     @Test
     void requestBooksUseCaseRepositoryCorrectCall() {
         useCase = new RequestBooksUseCase(repository);
-
         useCase.run("Tom", listener);
         verify(repository).requestBooksFromApi("Tom", listener);
     }

@@ -17,7 +17,7 @@ class InsertOrUpdateBookUseCaseTest {
     @InjectMocks
     InsertOrUpdateBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
-    private Book book;
+    private Book book = mock(Book.class);
     private Params params;
     private float rating;
     private String status;
@@ -27,11 +27,6 @@ class InsertOrUpdateBookUseCaseTest {
     @BeforeEach
     void prepareData() {
         useCase = new InsertOrUpdateBookUseCase(storage);
-
-        book = new Book();
-        book.setAuthors("Фрай");
-        book.setTitle("Чужак");
-
         rating = 5;
         status = BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING);
         isFavorite = true;

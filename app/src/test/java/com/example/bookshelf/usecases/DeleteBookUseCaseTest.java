@@ -16,16 +16,12 @@ class DeleteBookUseCaseTest {
     @InjectMocks
     DeleteBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
-    private Book book;
+    private Book book = mock(Book.class);
     private Params params;
 
     @BeforeEach
     void prepareData() {
         useCase = new DeleteBookUseCase(storage);
-
-        book = new Book();
-        book.setAuthors("Фрай");
-        book.setTitle("Чужак");
     }
 
     @Test

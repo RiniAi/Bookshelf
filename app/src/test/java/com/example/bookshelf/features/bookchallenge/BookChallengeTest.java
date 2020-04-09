@@ -26,14 +26,13 @@ class BookChallengeTest {
     private Navigator navigator = mock(Navigator.class);
     private String counter;
     private List<Book> books;
-    private Book book;
+    private Book book = mock(Book.class);
 
     @BeforeEach
     void prepareData() {
         presenter = new  BookChallengePresenter(useCase, sharedPreferences, navigator, view);
         counter = null;
         books = new ArrayList<>();
-        book = new Book();
     }
 
     @Test

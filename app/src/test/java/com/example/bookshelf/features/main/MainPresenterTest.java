@@ -22,16 +22,12 @@ public class MainPresenterTest {
     private Navigator navigator = mock(Navigator.class);
     private MainContract.View view = mock(MainContract.View.class);
     private List<Book> books;
-    private Book book;
+    private Book book = mock(Book.class);
 
     @BeforeEach
     void prepareData() {
         presenter = new MainPresenter(useCase, navigator, view);
-
         books = new ArrayList<>();
-        book = new Book();
-        book.setAuthors("Фрай");
-        book.setTitle("Чужак");
     }
 
     @Test

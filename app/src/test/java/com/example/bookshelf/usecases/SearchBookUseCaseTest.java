@@ -18,16 +18,12 @@ class SearchBookUseCaseTest {
     @InjectMocks
     SearchBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
-    private Book book;
+    private Book book = mock(Book.class);
     private Params params;
 
     @BeforeEach
     void prepareData() {
         useCase = new SearchBookUseCase(storage);
-
-        book = new Book();
-        book.setAuthors("Фрай");
-        book.setTitle("Чужак");
     }
 
     @Test
@@ -48,7 +44,6 @@ class SearchBookUseCaseTest {
     void searchBookUseCaseCaseSearchNull() {
         params = new Params(null);
         useCase.run(params);
-        when(useCase.run(params)).thenReturn(book);
-        verify(storage).search(params.getBook());
+        when(useCase.run(params)).thenReturn(null);
     }
 }

@@ -25,13 +25,12 @@ public class SearchPresenterTest {
     private SearchCall.ResponseListener responseListener = mock(SearchCall.ResponseListener.class);
     private Navigator navigator = mock(Navigator.class);
     private List<Book> books;
-    private Book book;
+    private Book book = mock(Book.class);
 
     @BeforeEach
     void prepareData() {
         presenter = new  SearchPresenter(useCase, navigator, view);
         books = new ArrayList<>();
-        book = new Book();
     }
 
     @Test

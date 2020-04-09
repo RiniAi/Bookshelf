@@ -23,7 +23,6 @@ class SearchBookWithStatusUseCaseTest {
     void loadBookUseCaseCorrectDataLoading() {
         useCase = new SearchBookWithStatusUseCase(storage);
         List<Book> books = new ArrayList<>();
-
         useCase.run();
         when(useCase.run()).thenReturn(books);
         verify(storage).getAllWithStatus(FINISH_READING);
