@@ -11,6 +11,9 @@ public class InsertOrUpdateBookUseCase {
     BookStorage storage;
 
     @Inject
+    public InsertOrUpdateBookUseCase() {
+    }
+
     public InsertOrUpdateBookUseCase(BookStorage storage) {
         this.storage = storage;
     }

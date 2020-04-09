@@ -10,6 +10,9 @@ public class SearchBookUseCase {
     BookStorage storage;
 
     @Inject
+    public SearchBookUseCase() {
+    }
+
     public SearchBookUseCase(BookStorage storage) {
         this.storage = storage;
     }

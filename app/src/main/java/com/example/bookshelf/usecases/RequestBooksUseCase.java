@@ -10,6 +10,9 @@ public class RequestBooksUseCase {
     Repository repository;
 
     @Inject
+    public RequestBooksUseCase() {
+    }
+
     public RequestBooksUseCase(Repository repository) {
         this.repository = repository;
     }

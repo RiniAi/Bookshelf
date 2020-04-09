@@ -12,6 +12,9 @@ public class LoadBookUseCase {
     BookStorage storage;
 
     @Inject
+    public LoadBookUseCase() {
+    }
+
     public LoadBookUseCase(BookStorage storage) {
         this.storage = storage;
     }
