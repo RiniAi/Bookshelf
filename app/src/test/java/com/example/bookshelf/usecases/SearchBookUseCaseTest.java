@@ -18,7 +18,7 @@ class SearchBookUseCaseTest {
     @InjectMocks
     SearchBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
-    private Book book = mock(Book.class);
+    private Book book = new Book();
     private Params params;
 
     @BeforeEach

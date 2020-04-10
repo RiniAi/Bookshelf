@@ -26,7 +26,7 @@ class BookChallengeTest {
     private Navigator navigator = mock(Navigator.class);
     private String counter;
     private List<Book> books;
-    private Book book = mock(Book.class);
+    private Book book = new Book();
 
     @BeforeEach
     void prepareData() {

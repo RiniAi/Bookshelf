@@ -21,7 +21,7 @@ class EditBookPresenterTest {
     private SearchBookUseCase useCase = mock(SearchBookUseCase.class);
     private EditBookContract.View view = mock(EditBookContract.View.class);
     private Bundle bundle = mock(Bundle.class);
-    private Book book = mock(Book.class);
+    private Book book = new Book();
 
     @BeforeEach
     void prepareData() {

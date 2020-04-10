@@ -16,7 +16,7 @@ class AboutBookPresenterTest {
     AboutBookPresenter presenter;
     private AboutBookContract.View view = mock(AboutBookContract.View.class);
     private Bundle bundle = mock(Bundle.class);
-    private Book book = mock(Book.class);
+    private Book book = new Book();
 
     @BeforeEach
     void prepareData() {

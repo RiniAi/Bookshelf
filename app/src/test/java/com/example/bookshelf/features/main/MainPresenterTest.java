@@ -22,7 +22,7 @@ public class MainPresenterTest {
     private Navigator navigator = mock(Navigator.class);
     private MainContract.View view = mock(MainContract.View.class);
     private List<Book> books;
-    private Book book = mock(Book.class);
+    private Book book = new Book();
 
     @BeforeEach
     void prepareData() {
