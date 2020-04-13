@@ -13,7 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
-    private static final String STORAGE_COUNTER = "counter";
+    public static final String STORAGE_COUNTER = "counter";
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
     @Inject

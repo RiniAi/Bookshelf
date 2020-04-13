@@ -43,6 +43,15 @@ class BookChallengeTest {
     }
 
     @Test
+    void bookChallengePresenterViewLoadNotNullCounter(){
+        counter = "5";
+        when(sharedPreferences.getString(BookChallengePresenter.STORAGE_COUNTER, "0")).thenReturn(counter);
+        presenter.onStart();
+        verify(view).changeCounter(counter);
+        verify(view).changeCounterForBar(5);
+    }
+
+    @Test
     void bookChallengePresenterLoadEmptyList(){
         when(useCase.run()).thenReturn(books);
         presenter.onStart();
@@ -58,26 +67,6 @@ class BookChallengeTest {
         verify(useCase).run();
         verify(view).showList(books);
         view.changeProgress("1");
-    }
-
-    @Test
-    void bookChallengePresenterViewLoadNotNullCounter(){
-        counter = "5";
-        view.changeCounter(counter);
-        verify(view).changeCounter(counter);
-    }
-
-    @Test
-    void bookChallengePresenterViewChangeNotNullCounter(){
-        counter = "5";
-        view.changeCounterForBar(Integer.parseInt(counter));
-        verify(view).changeCounterForBar(5);
-    }
-
-    @Test
-    void bookChallengePresenterViewLoadListOfBooks(){
-        view.showList(books);
-        verify(view).showList(books);
     }
 
     @Test
