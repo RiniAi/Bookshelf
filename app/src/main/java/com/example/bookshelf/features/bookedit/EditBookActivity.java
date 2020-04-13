@@ -112,6 +112,6 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
 
     @Override
     public void showErrorMessage() {
-        Toast.makeText(EditBookActivity.this, "The book is not found!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditBookActivity.this, R.string.book_is_not_found, Toast.LENGTH_SHORT).show();
     }
 }

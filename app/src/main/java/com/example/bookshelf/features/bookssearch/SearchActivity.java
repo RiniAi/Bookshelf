@@ -100,14 +100,14 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void showError() {
         binding.progressBar.setVisibility(View.GONE);
-        Toast.makeText(SearchActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SearchActivity.this, R.string.search_activity_try_later, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showErrorMessage() {
         binding.progressBar.setVisibility(View.GONE);
         binding.llEmptyList.setVisibility(View.VISIBLE);
-        Toast.makeText(SearchActivity.this, "You didn't enter a search query!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SearchActivity.this, R.string.search_activity_enter_query, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -115,7 +115,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         binding.progressBar.setVisibility(View.GONE);
         binding.llEmptyList.setVisibility(View.VISIBLE);
         binding.rvOfBooks.setVisibility(View.GONE);
-        Toast.makeText(SearchActivity.this, "Nothing was found for your request!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SearchActivity.this, R.string.search_activity_nothing_was_found, Toast.LENGTH_SHORT).show();
     }
 
     @Override
