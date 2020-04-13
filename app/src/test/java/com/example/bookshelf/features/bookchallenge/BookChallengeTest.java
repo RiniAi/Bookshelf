@@ -44,10 +44,20 @@ class BookChallengeTest {
 
     @Test
     void bookChallengePresenterLoadEmptyList(){
+        when(useCase.run()).thenReturn(books);
         presenter.onStart();
         verify(useCase).run();
-        when(useCase.run()).thenReturn(books);
         verify(view).hideList();
+    }
+
+    @Test
+    void bookChallengePresenterLoadNotEmptyList(){
+        books.add(book);
+        when(useCase.run()).thenReturn(books);
+        presenter.onStart();
+        verify(useCase).run();
+        verify(view).showList(books);
+        view.changeProgress("1");
     }
 
     @Test
