@@ -14,7 +14,7 @@ import javax.inject.Inject;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     @Inject
-    RequestBooksUseCase useCase;
+    RequestBooksUseCase requestBooksUseCase;
     @Inject
     Navigator navigator;
 
@@ -22,8 +22,8 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
         App.getAppComponent().presenterComponent().inject(this);
     }
 
-    public SearchPresenter(RequestBooksUseCase useCase, Navigator navigator, SearchContract.View view) {
-        this.useCase = useCase;
+    public SearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator, SearchContract.View view) {
+        this.requestBooksUseCase = requestBooksUseCase;
         this.navigator = navigator;
         this.view = view;
     }
@@ -49,7 +49,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                     view.showError();
                 }
             };
-            useCase.run(query, responseListener);
+            requestBooksUseCase.run(query, responseListener);
         }
     }
 

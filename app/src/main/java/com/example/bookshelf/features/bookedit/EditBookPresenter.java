@@ -27,18 +27,18 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     Context context;
     @Inject
-    SearchBookUseCase searchUseCase;
+    SearchBookUseCase searchBookUseCase;
     @Inject
-    InsertOrUpdateBookUseCase insertOrUpdateUseCase;
+    InsertOrUpdateBookUseCase insertOrUpdateBookUseCase;
     @Inject
-    DeleteBookUseCase deleteUseCase;
+    DeleteBookUseCase deleteBookUseCase;
 
     public EditBookPresenter() {
         App.getAppComponent().presenterComponent().inject(this);
     }
 
-    public EditBookPresenter(SearchBookUseCase searchUseCase, EditBookContract.View view) {
-        this.searchUseCase = searchUseCase;
+    public EditBookPresenter(SearchBookUseCase searchBookUseCase, EditBookContract.View view) {
+        this.searchBookUseCase = searchBookUseCase;
         this.view = view;
     }
 
@@ -96,7 +96,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
 
     private void searchBook() {
         SearchBookUseCase.Params params = new SearchBookUseCase.Params(book);
-        Book bookDb = searchUseCase.run(params);
+        Book bookDb = searchBookUseCase.run(params);
         if (bookDb != null) {
             view.showButtonDelete();
         } else {
@@ -115,13 +115,13 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
         view.showDate();
         InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params(book, rating, status, isFavorite, date);
-        insertOrUpdateUseCase.run(params);
+        insertOrUpdateBookUseCase.run(params);
     }
 
     @Override
     public void deleteBook() {
         DeleteBookUseCase.Params params = new DeleteBookUseCase.Params(book);
-        deleteUseCase.run(params);
+        deleteBookUseCase.run(params);
     }
 }
 

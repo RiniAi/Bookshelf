@@ -15,7 +15,7 @@ import javax.inject.Inject;
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     private static final String STORAGE_COUNTER = "counter";
     @Inject
-    SearchBookWithStatusUseCase useCase;
+    SearchBookWithStatusUseCase searchBookWithStatusUseCase;
     @Inject
     SharedPreferences sharedPreferences;
     @Inject
@@ -25,8 +25,8 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
         App.getAppComponent().presenterComponent().inject(this);
     }
 
-    public BookChallengePresenter(SearchBookWithStatusUseCase useCase, SharedPreferences sharedPreferences, Navigator navigator, BookChallengeContract.View view) {
-        this.useCase = useCase;
+    public BookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences, Navigator navigator, BookChallengeContract.View view) {
+        this.searchBookWithStatusUseCase = searchBookWithStatusUseCase;
         this.sharedPreferences = sharedPreferences;
         this.navigator = navigator;
         this.view = view;
@@ -58,7 +58,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     }
 
     private void loadBooks() {
-        List<Book> books = useCase.run();
+        List<Book> books = searchBookWithStatusUseCase.run();
         if (books.isEmpty()) {
             view.hideList();
         } else {
