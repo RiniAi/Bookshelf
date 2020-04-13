@@ -37,9 +37,10 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         App.getAppComponent().presenterComponent().inject(this);
     }
 
-    public EditBookPresenter(SearchBookUseCase searchBookUseCase, EditBookContract.View view) {
+    public EditBookPresenter(SearchBookUseCase searchBookUseCase, EditBookContract.View view, Context context) {
         this.searchBookUseCase = searchBookUseCase;
         this.view = view;
+        this.context = context;
     }
 
     @Override
