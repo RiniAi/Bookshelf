@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class AboutBookPresenterTest {
     @InjectMocks
@@ -25,7 +26,8 @@ class AboutBookPresenterTest {
 
     @Test
     void aboutBookPresenterBundleIsNotEmpty() {
-        bundle.putSerializable("book", book);
+        when(bundle.containsKey(AboutBookPresenter.EXTRA_BOOK)).thenReturn(true);
+        when(bundle.getSerializable(AboutBookPresenter.EXTRA_BOOK)).thenReturn(book);
         presenter.onStartWithData(bundle);
         verify(view).showBook(book);
     }
@@ -38,7 +40,7 @@ class AboutBookPresenterTest {
 
     @Test
     void aboutBookPresenterViewBundleIsNotEmpty() {
-        bundle.putSerializable("book", book);
+        bundle.putSerializable(AboutBookPresenter.EXTRA_BOOK, book);
         view.showBook(book);
         verify(view).showBook(book);
     }
