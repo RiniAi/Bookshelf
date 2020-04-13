@@ -32,23 +32,18 @@ public class MainPresenterTest {
 
     @Test
     public void mainPresenterLoadEmptyList() {
+        when(useCase.run()).thenReturn(books);
         presenter.onStart();
         verify(useCase).run();
-        when(useCase.run()).thenReturn(books);
         verify(view).hideList();
     }
 
     @Test
     public void mainPresenterLoadListOfBooks() {
+        books.add(book);
+        when(useCase.run()).thenReturn(books);
         presenter.onStart();
         verify(useCase).run();
-        when(useCase.run()).thenReturn(books);
-        verify(view).showList(books);
-    }
-
-    @Test
-    public void mainPresenterViewLoadListOfBooks() {
-        view.showList(books);
         verify(view).showList(books);
     }
 
