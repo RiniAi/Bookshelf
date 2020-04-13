@@ -41,10 +41,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         binding.tvPublisher.setText(book.getPublisher());
         binding.tvPageCount.setText(String.valueOf(book.getPageCount()));
         binding.tvLang.setText(book.getLanguage());
-        if (book.getDescription() == null){
-            binding.tvDescription.setText(R.string.about_book_not_description);
-
-        } else {
+        if (book.getDescription() != null) {
             binding.tvDescription.setText(book.getDescription());
         }
         binding.ivCover.setClipToOutline(true);
