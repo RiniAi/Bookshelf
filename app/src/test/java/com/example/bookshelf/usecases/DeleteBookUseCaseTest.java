@@ -22,24 +22,23 @@ class DeleteBookUseCaseTest {
     @BeforeEach
     void prepareData() {
         useCase = new DeleteBookUseCase(storage);
+        params = new Params(book);
     }
 
     @Test
     void deleteBookUseCaseParamsReturnsBookCorrectly() {
-        params = new Params(book);
         assertEquals(book, params.getBook());
     }
 
     @Test
     void deleteBookUseCaseDeleteBook() {
-        params = new Params(book);
         useCase.run(params);
         verify(storage).delete(params.getBook());
     }
 
     @Test
     void deleteBookUseCaseDeleteNull() {
-        params = new Params(null);
+        Params params = new Params(null);
         useCase.run(params);
         verify(storage).delete(params.getBook());
     }

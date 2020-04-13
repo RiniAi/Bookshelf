@@ -3,6 +3,7 @@ package com.example.bookshelf.usecases;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
@@ -18,13 +19,18 @@ class SearchBookWithStatusUseCaseTest {
     @InjectMocks
     SearchBookWithStatusUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
+    private List<Book> books;
+
+    @BeforeEach
+    void prepareData() {
+        useCase = new SearchBookWithStatusUseCase(storage);
+        books = new ArrayList<>();
+    }
 
     @Test
     void loadBookUseCaseCorrectDataLoading() {
-        useCase = new SearchBookWithStatusUseCase(storage);
-        List<Book> books = new ArrayList<>();
-        useCase.run();
         when(useCase.run()).thenReturn(books);
+        useCase.run();
         verify(storage).getAllWithStatus(FINISH_READING);
     }
 }

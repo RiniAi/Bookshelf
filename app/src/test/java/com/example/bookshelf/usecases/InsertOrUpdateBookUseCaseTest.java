@@ -31,17 +31,16 @@ class InsertOrUpdateBookUseCaseTest {
         status = BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING);
         isFavorite = true;
         date = "02.02.2020";
+        params = new Params(book, rating, status, isFavorite, date);
     }
 
     @Test
     void insertOrUpdateBookUseCaseParamsReturnsBookCorrectly() {
-        params = new Params(book, rating, status, isFavorite, date);
         assertEquals(book, params.getBook());
     }
 
     @Test
     void insertOrUpdateBookUseCaseInsertOrUpdateBook() {
-        params = new Params(book, rating, status, isFavorite, date);
         useCase.run(params);
         verify(storage).insertOrUpdate(params.getBook());
     }
@@ -49,7 +48,7 @@ class InsertOrUpdateBookUseCaseTest {
     @Test
     void insertOrUpdateBookUseCaseInsertOrUpdateNull() {
         try {
-            params = new Params(null, rating, status, isFavorite, date);
+            Params params = new Params(null, rating, status, isFavorite, date);
             useCase.run(params);
             verify(storage).insertOrUpdate(params.getBook());
         } catch (NullPointerException e) {

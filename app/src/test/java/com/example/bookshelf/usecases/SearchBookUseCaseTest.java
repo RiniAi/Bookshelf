@@ -24,26 +24,25 @@ class SearchBookUseCaseTest {
     @BeforeEach
     void prepareData() {
         useCase = new SearchBookUseCase(storage);
+        params = new Params(book);
     }
 
     @Test
     void searchBookUseCaseParamsReturnsBookCorrectly() {
-        params = new Params(book);
         assertEquals(book, params.getBook());
     }
 
     @Test
     void searchBookUseCaseSearchBook() {
-        params = new Params(book);
-        useCase.run(params);
         when(useCase.run(params)).thenReturn(book);
+        useCase.run(params);
         verify(storage).search(params.getBook());
     }
 
     @Test
     void searchBookUseCaseCaseSearchNull() {
-        params = new Params(null);
-        useCase.run(params);
+        Params params = new Params(null);
         when(useCase.run(params)).thenReturn(null);
+        useCase.run(params);
     }
 }
