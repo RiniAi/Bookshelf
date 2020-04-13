@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:paddingTop="8dp"
+            android:paddingTop="@dimen/margin_8dp"
             android:text="@string/search_activity_empty_list"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>

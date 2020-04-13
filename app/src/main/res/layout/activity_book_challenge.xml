@@ -26,8 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingTop="8dp"
+            android:paddingTop="@dimen/padding_8dp"
             android:text="@string/book_challenge_activity_list_empty"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
