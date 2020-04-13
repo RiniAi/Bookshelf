@@ -37,11 +37,4 @@ class AboutBookPresenterTest {
         presenter.onStartWithData(bundle);
         verify(view).showErrorMessage();
     }
-
-    @Test
-    void aboutBookPresenterViewBundleIsNotEmpty() {
-        bundle.putSerializable(AboutBookPresenter.EXTRA_BOOK, book);
-        view.showBook(book);
-        verify(view).showBook(book);
-    }
 }
