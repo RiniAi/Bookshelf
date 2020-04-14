@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -18,7 +17,6 @@ class InsertOrUpdateBookUseCaseTest {
     InsertOrUpdateBookUseCase useCase;
     private BookStorage storage = mock(BookStorage.class);
     private Book book = new Book();
-    private Params params;
     private float rating;
     private String status;
     private boolean isFavorite;
@@ -31,16 +29,11 @@ class InsertOrUpdateBookUseCaseTest {
         status = BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING);
         isFavorite = true;
         date = "02.02.2020";
-        params = new Params(book, rating, status, isFavorite, date);
-    }
-
-    @Test
-    void insertOrUpdateBookUseCaseParamsReturnsBookCorrectly() {
-        assertEquals(book, params.getBook());
     }
 
     @Test
     void insertOrUpdateBookUseCaseInsertOrUpdateBook() {
+        Params params = new Params(book, rating, status, isFavorite, date);
         useCase.run(params);
         verify(storage).insertOrUpdate(params.getBook());
     }
