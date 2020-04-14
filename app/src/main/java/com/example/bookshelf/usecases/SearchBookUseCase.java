@@ -13,6 +13,10 @@ public class SearchBookUseCase {
     public SearchBookUseCase() {
     }
 
+    public Book run(Params params) {
+        return storage.search(params.getBook());
+    }
+
     public static class Params {
         private Book book;
 
@@ -23,9 +27,5 @@ public class SearchBookUseCase {
         public Params(Book book) {
             this.book = book;
         }
-    }
-
-    public Book run(Params params) {
-        return storage.search(params.getBook());
     }
 }

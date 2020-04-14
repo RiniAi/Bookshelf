@@ -13,6 +13,10 @@ public class DeleteBookUseCase {
     public DeleteBookUseCase() {
     }
 
+    public void run(Params params) {
+        storage.delete(params.getBook());
+    }
+
     public static class Params {
         private Book book;
 
@@ -23,9 +27,5 @@ public class DeleteBookUseCase {
         public Params(Book book) {
             this.book = book;
         }
-    }
-
-    public void run(Params params) {
-        storage.delete(params.getBook());
     }
 }

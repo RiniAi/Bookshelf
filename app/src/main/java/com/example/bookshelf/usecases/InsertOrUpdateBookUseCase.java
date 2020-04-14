@@ -14,6 +14,10 @@ public class InsertOrUpdateBookUseCase {
     public InsertOrUpdateBookUseCase() {
     }
 
+    public void run(Params params) {
+        storage.insertOrUpdate(params.getBook());
+    }
+
     public static class Params {
         private Book book;
 
@@ -32,9 +36,5 @@ public class InsertOrUpdateBookUseCase {
             }
             this.book = book;
         }
-    }
-
-    public void run(Params params) {
-        storage.insertOrUpdate(params.getBook());
     }
 }
