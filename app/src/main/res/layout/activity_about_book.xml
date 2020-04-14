@@ -149,7 +149,7 @@
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/about_book_not_description" />
+                tools:text="@tools:sample/first_names"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
