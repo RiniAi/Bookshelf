@@ -13,10 +13,6 @@ public class SearchBookUseCase {
     public SearchBookUseCase() {
     }
 
-    public SearchBookUseCase(BookStorage storage) {
-        this.storage = storage;
-    }
-
     public static class Params {
         private Book book;
 
