@@ -4,34 +4,25 @@ import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;
 import com.example.bookshelf.usecases.DeleteBookUseCase.Params;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class DeleteBookUseCaseTest {
     @InjectMocks
     DeleteBookUseCase useCase;
-    private BookStorage storage = mock(BookStorage.class);
-    private Book book = new Book();
-
-    @BeforeEach
-    void prepareData() {
-        useCase = new DeleteBookUseCase(storage);
-    }
+    @Mock
+    BookStorage storage;
 
     @Test
     void deleteBookUseCaseDeleteBook() {
+        Book book = new Book();
         Params params = new Params(book);
-        useCase.run(params);
-        verify(storage).delete(params.getBook());
-    }
-
-    @Test
-    void deleteBookUseCaseDeleteNull() {
-        Params params = new Params(null);
         useCase.run(params);
         verify(storage).delete(params.getBook());
     }
