@@ -2,7 +2,6 @@ package com.example.bookshelf.features.bookssearch;
 
 import android.util.Log;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
@@ -18,14 +17,10 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Inject
     Navigator navigator;
 
-    public SearchPresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
-    }
-
-    public SearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator, SearchContract.View view) {
+    @Inject
+    public SearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
         this.requestBooksUseCase = requestBooksUseCase;
         this.navigator = navigator;
-        this.view = view;
     }
 
     @Override
@@ -33,23 +28,31 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
         if (query.isEmpty()) {
             view.showErrorMessage();
         } else {
-            SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
-                @Override
-                public void onSuccess(List<Book> books) {
-                    if (books.isEmpty()) {
-                        view.showEmptyView();
-                    } else {
-                        view.showBooks(books);
-                    }
-                }
+            runQuery(query);
+        }
+    }
 
-                @Override
-                public void onFailure(Throwable t) {
-                    Log.e("error", t.toString());
-                    view.showError();
-                }
-            };
-            requestBooksUseCase.run(query, responseListener);
+    private void runQuery(String query) {
+        SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
+            @Override
+            public void onSuccess(List<Book> books) {
+                showListOrEmptyView(books);
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("error", t.toString());
+                view.showError();
+            }
+        };
+        requestBooksUseCase.run(query, responseListener);
+    }
+
+    private void showListOrEmptyView(List<Book> books) {
+        if (books.isEmpty()) {
+            view.showEmptyView();
+        } else {
+            view.showBooks(books);
         }
     }
 
