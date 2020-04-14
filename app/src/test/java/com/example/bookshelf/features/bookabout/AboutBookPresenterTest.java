@@ -6,22 +6,39 @@ import com.example.bookshelf.database.Book;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class AboutBookPresenterTest {
     @InjectMocks
     AboutBookPresenter presenter;
-    private AboutBookContract.View view = mock(AboutBookContract.View.class);
-    private Bundle bundle = mock(Bundle.class);
-    private Book book = new Book();
+    @Mock
+    AboutBookContract.View view;
+    @Mock
+    Bundle bundle;
+
+    private Book book;
 
     @BeforeEach
-    void prepareData() {
-        presenter = new AboutBookPresenter(view);
+    void setUp() {
+        presenter.setView(view);
+        book = new Book();
+    }
+
+    @Test
+    void aboutBookPresenterBundleIsNotEmptyAndCoverIsNotEmpty() {
+        book.setImageLinks("https://www.rd.com/wp-content/uploads/2019/11/shutterstock_509582812-e1574100998595.jpg");
+        when(bundle.containsKey(AboutBookPresenter.EXTRA_BOOK)).thenReturn(true);
+        when(bundle.getSerializable(AboutBookPresenter.EXTRA_BOOK)).thenReturn(book);
+        presenter.onStartWithData(bundle);
+        verify(view).showBook(book);
+        verify(view).showBookCover(book.getImageLinks());
     }
 
     @Test
@@ -34,18 +51,8 @@ class AboutBookPresenterTest {
     }
 
     @Test
-    void aboutBookPresenterBundleIsNotEmptyAndCoverIsBotEmpty() {
-        book.setImageLinks("https://www.rd.com/wp-content/uploads/2019/11/shutterstock_509582812-e1574100998595.jpg");
-        when(bundle.containsKey(AboutBookPresenter.EXTRA_BOOK)).thenReturn(true);
-        when(bundle.getSerializable(AboutBookPresenter.EXTRA_BOOK)).thenReturn(book);
-        presenter.onStartWithData(bundle);
-        verify(view).showBook(book);
-        verify(view).showBookCover(book.getImageLinks());
-    }
-
-    @Test
     void aboutBookPresenterBundleIsEmpty() {
-        presenter.onStartWithData(bundle);
+        presenter.onStartWithData(null);
         verify(view).showErrorMessage();
     }
 }
