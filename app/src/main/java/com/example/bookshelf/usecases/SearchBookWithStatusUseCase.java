@@ -17,10 +17,6 @@ public class SearchBookWithStatusUseCase {
     public SearchBookWithStatusUseCase() {
     }
 
-    public SearchBookWithStatusUseCase(BookStorage storage) {
-        this.storage = storage;
-    }
-
     public List<Book> run() {
         return storage.getAllWithStatus(FINISH_READING);
     }
