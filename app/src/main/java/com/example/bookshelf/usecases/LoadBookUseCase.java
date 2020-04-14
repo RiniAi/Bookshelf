@@ -15,10 +15,6 @@ public class LoadBookUseCase {
     public LoadBookUseCase() {
     }
 
-    public LoadBookUseCase(BookStorage storage) {
-        this.storage = storage;
-    }
-
     public List<Book> run() {
         return storage.getAll();
     }
