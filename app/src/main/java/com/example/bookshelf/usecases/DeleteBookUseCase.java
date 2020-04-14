@@ -13,10 +13,6 @@ public class DeleteBookUseCase {
     public DeleteBookUseCase() {
     }
 
-    public DeleteBookUseCase(BookStorage storage) {
-        this.storage = storage;
-    }
-
     public static class Params {
         private Book book;
 
