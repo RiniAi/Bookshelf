@@ -7,16 +7,20 @@ import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase.Params;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class InsertOrUpdateBookUseCaseTest {
     @InjectMocks
     InsertOrUpdateBookUseCase useCase;
-    private BookStorage storage = mock(BookStorage.class);
-    private Book book = new Book();
+    @Mock
+    BookStorage storage;
+
     private float rating;
     private String status;
     private boolean isFavorite;
@@ -24,7 +28,6 @@ class InsertOrUpdateBookUseCaseTest {
 
     @BeforeEach
     void prepareData() {
-        useCase = new InsertOrUpdateBookUseCase(storage);
         rating = 5;
         status = BookStatusConverter.fromStatusToString(Book.BookStatus.FINISH_READING);
         isFavorite = true;
@@ -33,6 +36,7 @@ class InsertOrUpdateBookUseCaseTest {
 
     @Test
     void insertOrUpdateBookUseCaseInsertOrUpdateBook() {
+        Book book = new Book();
         Params params = new Params(book, rating, status, isFavorite, date);
         useCase.run(params);
         verify(storage).insertOrUpdate(params.getBook());
