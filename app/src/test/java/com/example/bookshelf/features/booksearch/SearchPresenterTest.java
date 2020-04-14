@@ -9,85 +9,66 @@ import com.example.bookshelf.usecases.RequestBooksUseCase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.mockito.Mockito.mock;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.verify;
 
-public class SearchPresenterTest {
+@ExtendWith(MockitoExtension.class)
+class SearchPresenterTest {
     @InjectMocks
     SearchPresenter presenter;
-    private SearchContract.View view = mock(SearchContract.View.class);
-    private RequestBooksUseCase useCase = mock(RequestBooksUseCase.class);
-    private SearchCall.ResponseListener responseListener = mock(SearchCall.ResponseListener.class);
-    private Navigator navigator = mock(Navigator.class);
-    private List<Book> books;
-    private Book book = new Book();
+    @Mock
+    RequestBooksUseCase requestBooksUseCase;
+    @Mock
+    SearchContract.View view;
+    @Mock
+    Navigator navigator;
+
+    private Book book;
 
     @BeforeEach
-    void prepareData() {
-        presenter = new  SearchPresenter(useCase, navigator, view);
-        books = new ArrayList<>();
+    void setUp() {
+        presenter.setView(view);
+        book = new Book();
     }
 
     @Test
-    void searchPresenterEmptyRequestShowErrorMessage(){
+    void searchPresenterRunSomeRequest() {
+        presenter.searchBook("Tom");
+        verify(requestBooksUseCase).run(anyString(), isA(SearchCall.ResponseListener.class));
+    }
+
+    @Test
+    void searchPresenterRunEmptyRequest() {
         presenter.searchBook("");
         verify(view).showErrorMessage();
     }
 
     @Test
-    void searchPresenterViewSomeRequestShowEmptyView(){
-        view.showEmptyView();
-        verify(view).showEmptyView();
-    }
-
-    @Test
-    void searchPresenterViewSomeRequestShowBookList(){
-        view.showBooks(books);
-        verify(view).showBooks(books);
-    }
-
-    @Test
-    void searchPresenterViewSomeRequestShowError(){
-        view.showError();
-        verify(view).showError();
-    }
-    @Test
-    public void searchPresenterOpenBook() {
+    void searchPresenterOpenBook() {
         presenter.openBook(book);
         verify(navigator).openBook(book);
     }
 
     @Test
-    public void searchPresenterOpenNull() {
-        presenter.openBook(null);
-        verify(navigator).openBook(null);
-    }
-
-    @Test
-    public void searchPresenterEditBook() {
+    void searchPresenterEditBook() {
         presenter.editBook(book);
         verify(navigator).editBook(book);
     }
 
     @Test
-    public void searchPresenterEditNull() {
-        presenter.editBook(null);
-        verify(navigator).editBook(null);
-    }
-
-    @Test
-    public void searchPresenterOpenMain() {
+    void searchPresenterOpenMain() {
         presenter.openMain();
         verify(navigator).openMain();
     }
 
     @Test
-    public void searchPresenterOpenBookChallenge() {
+    void searchPresenterOpenBookChallenge() {
         presenter.openBookChallenge();
         verify(navigator).openBookChallenge();
     }
