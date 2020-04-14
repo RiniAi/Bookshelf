@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
@@ -33,18 +32,22 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     DeleteBookUseCase deleteBookUseCase;
 
-    public EditBookPresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
-    }
-
-    public EditBookPresenter(SearchBookUseCase searchBookUseCase, EditBookContract.View view, Context context) {
-        this.searchBookUseCase = searchBookUseCase;
-        this.view = view;
+    @Inject
+    public EditBookPresenter(
+            Context context,
+            SearchBookUseCase searchBookUseCase,
+            InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
+            DeleteBookUseCase deleteBookUseCase
+    ) {
         this.context = context;
+        this.searchBookUseCase = searchBookUseCase;
+        this.insertOrUpdateBookUseCase = insertOrUpdateBookUseCase;
+        this.deleteBookUseCase = deleteBookUseCase;
     }
 
     @Override
     public void onStartWithData(Bundle bundle) {
+        resolveStatuses(context, Book.BookStatus.values());
         loadBook(bundle);
         searchBook();
     }
@@ -54,7 +57,6 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
             view.showBook(book);
             loadCover();
-            resolveStatuses(context, Book.BookStatus.values());
             loadStatus();
         } else {
             view.showErrorMessage();
