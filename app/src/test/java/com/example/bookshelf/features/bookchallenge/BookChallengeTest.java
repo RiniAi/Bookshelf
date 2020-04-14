@@ -66,7 +66,7 @@ class BookChallengeTest {
         presenter.onStart();
         verify(useCase).run();
         verify(view).showList(books);
-        view.changeProgress("1");
+        verify(view).changeProgress("1");
     }
 
     @Test
