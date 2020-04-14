@@ -14,7 +14,5 @@ import dagger.Component;
 public interface AppComponent {
     ActivityComponent activityComponent();
 
-    PresenterComponent presenterComponent();
-
     void inject(LocalBookStorage storage);
 }
