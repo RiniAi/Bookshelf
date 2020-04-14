@@ -1,6 +1,5 @@
 package com.example.bookshelf.features.main;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
@@ -16,14 +15,10 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Inject
     Navigator navigator;
 
-    public MainPresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
-    }
-
-    public MainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator, MainContract.View view) {
+    @Inject
+    public MainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
         this.loadBookUseCase = loadBookUseCase;
         this.navigator = navigator;
-        this.view = view;
     }
 
     @Override
