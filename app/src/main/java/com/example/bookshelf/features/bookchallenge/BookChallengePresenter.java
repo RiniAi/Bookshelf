@@ -2,7 +2,6 @@ package com.example.bookshelf.features.bookchallenge;
 
 import android.content.SharedPreferences;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
@@ -21,15 +20,11 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     @Inject
     Navigator navigator;
 
-    public BookChallengePresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
-    }
-
-    public BookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences, Navigator navigator, BookChallengeContract.View view) {
+    @Inject
+    public BookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences, Navigator navigator) {
         this.searchBookWithStatusUseCase = searchBookWithStatusUseCase;
         this.sharedPreferences = sharedPreferences;
         this.navigator = navigator;
-        this.view = view;
     }
 
     @Override
