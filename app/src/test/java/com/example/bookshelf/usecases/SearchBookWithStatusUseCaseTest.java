@@ -21,7 +21,7 @@ class SearchBookWithStatusUseCaseTest {
     @InjectMocks
     SearchBookWithStatusUseCase useCase;
     @Mock
-    private BookStorage storage;
+    BookStorage storage;
 
     @Test
     void loadBookUseCaseCorrectDataLoading() {
