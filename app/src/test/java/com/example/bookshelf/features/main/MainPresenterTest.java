@@ -6,40 +6,40 @@ import com.example.bookshelf.usecases.LoadBookUseCase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class MainPresenterTest {
+@ExtendWith(MockitoExtension.class)
+class MainPresenterTest {
     @InjectMocks
     MainPresenter presenter;
-    private LoadBookUseCase useCase = mock(LoadBookUseCase.class);
-    private Navigator navigator = mock(Navigator.class);
-    private MainContract.View view = mock(MainContract.View.class);
+    @Mock
+    LoadBookUseCase useCase;
+    @Mock
+    Navigator navigator;
+    @Mock
+    MainContract.View view;
+
+    private Book book;
     private List<Book> books;
-    private Book book = new Book();
 
     @BeforeEach
-    void prepareData() {
-        presenter = new MainPresenter(useCase, navigator, view);
+    void setUp() {
+        presenter.setView(view);
+        book = new Book();
         books = new ArrayList<>();
     }
 
     @Test
-    public void mainPresenterLoadEmptyList() {
-        when(useCase.run()).thenReturn(books);
-        presenter.onStart();
-        verify(useCase).run();
-        verify(view).hideList();
-    }
-
-    @Test
-    public void mainPresenterLoadListOfBooks() {
+    void mainPresenterLoadListOfBooks() {
         books.add(book);
         when(useCase.run()).thenReturn(books);
         presenter.onStart();
@@ -48,37 +48,33 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void mainPresenterOpenBook() {
+    void mainPresenterLoadEmptyList() {
+        when(useCase.run()).thenReturn(books);
+        presenter.onStart();
+        verify(useCase).run();
+        verify(view).hideList();
+    }
+
+    @Test
+    void mainPresenterOpenBook() {
         presenter.openBook(book);
         verify(navigator).openBook(book);
     }
 
     @Test
-    public void mainPresenterOpenNull() {
-        presenter.openBook(null);
-        verify(navigator).openBook(null);
-    }
-
-    @Test
-    public void mainPresenterEditBook() {
+    void mainPresenterEditBook() {
         presenter.editBook(book);
         verify(navigator).editBook(book);
     }
 
     @Test
-    public void mainPresenterEditNull() {
-        presenter.editBook(null);
-        verify(navigator).editBook(null);
-    }
-
-    @Test
-    public void mainPresenterOpenBookChallenge() {
+    void mainPresenterOpenBookChallenge() {
         presenter.openBookChallenge();
         verify(navigator).openBookChallenge();
     }
 
     @Test
-    public void mainPresenterOpenSearch() {
+    void mainPresenterOpenSearch() {
         presenter.openSearch();
         verify(navigator).openSearch();
     }
