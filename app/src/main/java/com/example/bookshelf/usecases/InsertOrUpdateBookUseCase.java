@@ -26,6 +26,7 @@ public class InsertOrUpdateBookUseCase {
         }
 
         public Params(Book book, float rating, String status, boolean isFavorite, String date) {
+            book.setTitle("dsaf");
             book.userRating = rating;
             book.isFavorite = isFavorite;
             book.setStatus(BookStatusConverter.fromStringToStatus(status));
@@ -35,6 +36,21 @@ public class InsertOrUpdateBookUseCase {
                 book.readDate = "";
             }
             this.book = book;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Params params = (Params) o;
+
+            return book.equals(params.book);
+        }
+
+        @Override
+        public int hashCode() {
+            return book.hashCode();
         }
     }
 }
