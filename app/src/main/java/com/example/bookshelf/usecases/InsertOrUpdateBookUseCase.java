@@ -26,7 +26,6 @@ public class InsertOrUpdateBookUseCase {
         }
 
         public Params(Book book, float rating, String status, boolean isFavorite, String date) {
-            book.setTitle("dsaf");
             book.userRating = rating;
             book.isFavorite = isFavorite;
             book.setStatus(BookStatusConverter.fromStringToStatus(status));
