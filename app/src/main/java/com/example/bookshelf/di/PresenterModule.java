@@ -28,36 +28,20 @@ import dagger.Provides;
 public class PresenterModule {
 
     @Provides
-    public MainContract.Presenter providesMainPresenter(
-            LoadBookUseCase loadBookUseCase,
-            Navigator navigator) {
-        return new MainPresenter(
-                loadBookUseCase,
-                navigator);
+    public MainContract.Presenter providesMainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
+        return new MainPresenter(loadBookUseCase, navigator);
     }
 
     @Provides
-    public SearchContract.Presenter providesSearchPresenter(
-            RequestBooksUseCase requestBooksUseCase,
-            Navigator navigator) {
-        return new SearchPresenter(
-                requestBooksUseCase,
-                navigator);
+    public SearchContract.Presenter providesSearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
+        return new SearchPresenter(requestBooksUseCase, navigator);
     }
 
     @Provides
-    public EditBookContract.Presenter providesEditBookPresenter(
-            Context context,
-            SearchBookUseCase searchBookUseCase,
-            InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
-            DeleteBookUseCase deleteBookUseCase
+    public EditBookContract.Presenter providesEditBookPresenter(Context context, SearchBookUseCase searchBookUseCase, InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
+                                                                DeleteBookUseCase deleteBookUseCase
     ) {
-        return new EditBookPresenter(
-                context,
-                searchBookUseCase,
-                insertOrUpdateBookUseCase,
-                deleteBookUseCase
-        );
+        return new EditBookPresenter(context, searchBookUseCase, insertOrUpdateBookUseCase, deleteBookUseCase);
     }
 
     @Provides
@@ -66,14 +50,8 @@ public class PresenterModule {
     }
 
     @Provides
-    public BookChallengeContract.Presenter providesBookChallengePresenter(
-            SearchBookWithStatusUseCase searchBookWithStatusUseCase,
-            SharedPreferences sharedPreferences,
-            Navigator navigator) {
-        return new BookChallengePresenter(
-                searchBookWithStatusUseCase,
-                sharedPreferences,
-                navigator
-        );
+    public BookChallengeContract.Presenter providesBookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences,
+                                                                          Navigator navigator) {
+        return new BookChallengePresenter(searchBookWithStatusUseCase, sharedPreferences, navigator);
     }
 }
