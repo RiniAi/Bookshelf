@@ -190,40 +190,24 @@ public class Book implements Serializable {
 
         Book book = (Book) o;
 
-        if (Float.compare(book.averageRating, averageRating) != 0) return false;
-        if (Float.compare(book.userRating, userRating) != 0) return false;
-        if (isFavorite != book.isFavorite) return false;
         if (pageCount != book.pageCount) return false;
         if (!title.equals(book.title)) return false;
         if (!authors.equals(book.authors)) return false;
-        if (readDate != null ? !readDate.equals(book.readDate) : book.readDate != null)
-            return false;
         if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null)
             return false;
         if (publishedDate != null ? !publishedDate.equals(book.publishedDate) : book.publishedDate != null)
             return false;
-        if (lang != null ? !lang.equals(book.lang) : book.lang != null) return false;
-        if (status != book.status) return false;
-        if (imageLinks != null ? !imageLinks.equals(book.imageLinks) : book.imageLinks != null)
-            return false;
-        return description != null ? description.equals(book.description) : book.description == null;
+        return lang != null ? lang.equals(book.lang) : book.lang == null;
     }
 
     @Override
     public int hashCode() {
         int result = title.hashCode();
         result = 31 * result + authors.hashCode();
-        result = 31 * result + (averageRating != +0.0f ? Float.floatToIntBits(averageRating) : 0);
-        result = 31 * result + (userRating != +0.0f ? Float.floatToIntBits(userRating) : 0);
-        result = 31 * result + (isFavorite ? 1 : 0);
-        result = 31 * result + (readDate != null ? readDate.hashCode() : 0);
         result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
         result = 31 * result + (publishedDate != null ? publishedDate.hashCode() : 0);
         result = 31 * result + pageCount;
         result = 31 * result + (lang != null ? lang.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (imageLinks != null ? imageLinks.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 }
