@@ -1,4 +1,4 @@
-package com.example.bookshelf.features.usecases;
+package com.example.bookshelf.usecases;
 
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStorage;

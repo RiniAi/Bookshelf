@@ -11,15 +11,13 @@ public class AboutBookPresenter extends BasePresenter<AboutBookContract.View> im
 
     @Override
     public void onStartWithData(Bundle bundle) {
-        loadBook(bundle);
-    }
-
-    private void loadBook(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
+            view.showBook(book);
+            loadCover();
+        } else {
+            view.showErrorMessage();
         }
-        view.showBook(book);
-        loadCover();
     }
 
     private void loadCover() {

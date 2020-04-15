@@ -1,10 +1,9 @@
 package com.example.bookshelf.features.main;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.LoadBookUseCase;
+import com.example.bookshelf.usecases.LoadBookUseCase;
 
 import java.util.List;
 
@@ -12,21 +11,19 @@ import javax.inject.Inject;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
     @Inject
-    LoadBookUseCase loadUseCase;
+    LoadBookUseCase loadBookUseCase;
     @Inject
     Navigator navigator;
 
-    public MainPresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
+    @Inject
+    public MainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
+        this.loadBookUseCase = loadBookUseCase;
+        this.navigator = navigator;
     }
 
     @Override
     public void onStart() {
-        loadBooks();
-    }
-
-    private void loadBooks() {
-        List<Book> books = loadUseCase.run();
+        List<Book> books = loadBookUseCase.run();
         if (books.isEmpty()) {
             view.hideList();
         } else {

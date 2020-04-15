@@ -61,4 +61,12 @@
 
     <string name="book_search_author_unknown">Author unknown</string>
     <string name="book_search_title_unknown">Title unknown</string>
+    <string name="about_book_no_description">No description available</string>
+    <string name="book_challenge_activity_list_empty">The list is empty</string>
+    <string name="search_activity_empty_list">Try again!</string>
+
+    <string name="book_is_not_found">The book is not found!</string>
+    <string name="search_activity_try_later">Something went wrong...Please try later!</string>
+    <string name="search_activity_enter_query">You didn\'t enter a search query!</string>
+    <string name="search_activity_nothing_was_found">Nothing was found for your request!</string>
 </resources>

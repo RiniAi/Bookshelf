@@ -1,4 +1,4 @@
-package com.example.bookshelf.features.usecases;
+package com.example.bookshelf.usecases;
 
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookStatusConverter;
@@ -12,6 +12,10 @@ public class InsertOrUpdateBookUseCase {
 
     @Inject
     public InsertOrUpdateBookUseCase() {
+    }
+
+    public void run(Params params) {
+        storage.insertOrUpdate(params.getBook());
     }
 
     public static class Params {
@@ -32,9 +36,20 @@ public class InsertOrUpdateBookUseCase {
             }
             this.book = book;
         }
-    }
 
-    public void run(Params params) {
-        storage.insertOrUpdate(params.getBook());
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Params params = (Params) o;
+
+            return book.equals(params.book);
+        }
+
+        @Override
+        public int hashCode() {
+            return book.hashCode();
+        }
     }
 }

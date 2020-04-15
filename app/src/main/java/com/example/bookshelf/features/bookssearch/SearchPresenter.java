@@ -2,11 +2,10 @@ package com.example.bookshelf.features.bookssearch;
 
 import android.util.Log;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.RequestBooksUseCase;
+import com.example.bookshelf.usecases.RequestBooksUseCase;
 
 import java.util.List;
 
@@ -14,20 +13,30 @@ import javax.inject.Inject;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     @Inject
-    RequestBooksUseCase requestUseCase;
+    RequestBooksUseCase requestBooksUseCase;
     @Inject
     Navigator navigator;
 
-    public SearchPresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
+    @Inject
+    public SearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
+        this.requestBooksUseCase = requestBooksUseCase;
+        this.navigator = navigator;
     }
 
     @Override
     public void searchBook(String query) {
-        SearchCall.responseListener responseListener = new SearchCall.responseListener() {
+        if (query.isEmpty()) {
+            view.showErrorMessage();
+        } else {
+            runQuery(query);
+        }
+    }
+
+    private void runQuery(String query) {
+        SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
             @Override
             public void onSuccess(List<Book> books) {
-                view.showBooks(books);
+                showListOrEmptyView(books);
             }
 
             @Override
@@ -36,7 +45,15 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                 view.showError();
             }
         };
-        requestUseCase.run(query, responseListener);
+        requestBooksUseCase.run(query, responseListener);
+    }
+
+    private void showListOrEmptyView(List<Book> books) {
+        if (books.isEmpty()) {
+            view.showEmptyView();
+        } else {
+            view.showBooks(books);
+        }
     }
 
     @Override

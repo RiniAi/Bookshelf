@@ -11,6 +11,8 @@ public interface AboutBookContract {
         void showBookCover(String cover);
 
         void showBookBrokenCover();
+
+        void showErrorMessage();
     }
 
     interface Presenter {

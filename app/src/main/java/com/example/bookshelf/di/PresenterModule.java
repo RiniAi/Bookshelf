@@ -1,5 +1,9 @@
 package com.example.bookshelf.di;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.example.bookshelf.Navigator;
 import com.example.bookshelf.features.bookabout.AboutBookContract;
 import com.example.bookshelf.features.bookabout.AboutBookPresenter;
 import com.example.bookshelf.features.bookchallenge.BookChallengeContract;
@@ -10,6 +14,12 @@ import com.example.bookshelf.features.bookssearch.SearchContract;
 import com.example.bookshelf.features.bookssearch.SearchPresenter;
 import com.example.bookshelf.features.main.MainContract;
 import com.example.bookshelf.features.main.MainPresenter;
+import com.example.bookshelf.usecases.DeleteBookUseCase;
+import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
+import com.example.bookshelf.usecases.LoadBookUseCase;
+import com.example.bookshelf.usecases.RequestBooksUseCase;
+import com.example.bookshelf.usecases.SearchBookUseCase;
+import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,18 +28,20 @@ import dagger.Provides;
 public class PresenterModule {
 
     @Provides
-    public MainContract.Presenter providesMainPresenter() {
-        return new MainPresenter();
+    public MainContract.Presenter providesMainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
+        return new MainPresenter(loadBookUseCase, navigator);
     }
 
     @Provides
-    public SearchContract.Presenter providesSearchPresenter() {
-        return new SearchPresenter();
+    public SearchContract.Presenter providesSearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
+        return new SearchPresenter(requestBooksUseCase, navigator);
     }
 
     @Provides
-    public EditBookContract.Presenter providesEditBookPresenter() {
-        return new EditBookPresenter();
+    public EditBookContract.Presenter providesEditBookPresenter(Context context, SearchBookUseCase searchBookUseCase, InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
+                                                                DeleteBookUseCase deleteBookUseCase
+    ) {
+        return new EditBookPresenter(context, searchBookUseCase, insertOrUpdateBookUseCase, deleteBookUseCase);
     }
 
     @Provides
@@ -38,7 +50,8 @@ public class PresenterModule {
     }
 
     @Provides
-    public BookChallengeContract.Presenter providesBookChallengePresenter() {
-        return new BookChallengePresenter();
+    public BookChallengeContract.Presenter providesBookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences,
+                                                                          Navigator navigator) {
+        return new BookChallengePresenter(searchBookWithStatusUseCase, sharedPreferences, navigator);
     }
 }

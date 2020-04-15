@@ -4,12 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 
-import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.features.usecases.DeleteBookUseCase;
-import com.example.bookshelf.features.usecases.InsertOrUpdateBookUseCase;
-import com.example.bookshelf.features.usecases.SearchBookUseCase;
+import com.example.bookshelf.usecases.DeleteBookUseCase;
+import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
+import com.example.bookshelf.usecases.SearchBookUseCase;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,18 +26,28 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Inject
     Context context;
     @Inject
-    SearchBookUseCase searchUseCase;
+    SearchBookUseCase searchBookUseCase;
     @Inject
-    InsertOrUpdateBookUseCase insertOrUpdateUseCase;
+    InsertOrUpdateBookUseCase insertOrUpdateBookUseCase;
     @Inject
-    DeleteBookUseCase deleteUseCase;
+    DeleteBookUseCase deleteBookUseCase;
 
-    public EditBookPresenter() {
-        App.getAppComponent().presenterComponent().inject(this);
+    @Inject
+    public EditBookPresenter(
+            Context context,
+            SearchBookUseCase searchBookUseCase,
+            InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
+            DeleteBookUseCase deleteBookUseCase
+    ) {
+        this.context = context;
+        this.searchBookUseCase = searchBookUseCase;
+        this.insertOrUpdateBookUseCase = insertOrUpdateBookUseCase;
+        this.deleteBookUseCase = deleteBookUseCase;
     }
 
     @Override
     public void onStartWithData(Bundle bundle) {
+        resolveStatuses(context, Book.BookStatus.values());
         loadBook(bundle);
         searchBook();
     }
@@ -48,8 +57,9 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
             view.showBook(book);
             loadCover();
-            resolveStatuses(context, Book.BookStatus.values());
             loadStatus();
+        } else {
+            view.showErrorMessage();
         }
     }
 
@@ -89,7 +99,7 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
 
     private void searchBook() {
         SearchBookUseCase.Params params = new SearchBookUseCase.Params(book);
-        Book bookDb = searchUseCase.run(params);
+        Book bookDb = searchBookUseCase.run(params);
         if (bookDb != null) {
             view.showButtonDelete();
         } else {
@@ -108,13 +118,13 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
         view.showDate();
         InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params(book, rating, status, isFavorite, date);
-        insertOrUpdateUseCase.run(params);
+        insertOrUpdateBookUseCase.run(params);
     }
 
     @Override
     public void deleteBook() {
         DeleteBookUseCase.Params params = new DeleteBookUseCase.Params(book);
-        deleteUseCase.run(params);
+        deleteBookUseCase.run(params);
     }
 }
 

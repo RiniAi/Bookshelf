@@ -9,6 +9,10 @@ public interface SearchContract {
         void showBooks(List<Book> bookList);
 
         void showError();
+
+        void showErrorMessage();
+
+        void showEmptyView();
     }
 
     interface Presenter {

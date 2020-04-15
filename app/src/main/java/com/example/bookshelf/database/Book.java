@@ -182,4 +182,32 @@ public class Book implements Serializable {
     public void setStatus(BookStatus status) {
         this.status = status;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (pageCount != book.pageCount) return false;
+        if (!title.equals(book.title)) return false;
+        if (!authors.equals(book.authors)) return false;
+        if (publisher != null ? !publisher.equals(book.publisher) : book.publisher != null)
+            return false;
+        if (publishedDate != null ? !publishedDate.equals(book.publishedDate) : book.publishedDate != null)
+            return false;
+        return lang != null ? lang.equals(book.lang) : book.lang == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + authors.hashCode();
+        result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
+        result = 31 * result + (publishedDate != null ? publishedDate.hashCode() : 0);
+        result = 31 * result + pageCount;
+        result = 31 * result + (lang != null ? lang.hashCode() : 0);
+        return result;
+    }
 }

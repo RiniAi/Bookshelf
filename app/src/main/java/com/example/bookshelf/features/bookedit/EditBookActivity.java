@@ -3,6 +3,7 @@ package com.example.bookshelf.features.bookedit;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -107,5 +108,10 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         int month = binding.dateOfReading.getMonth();
         int dayOfMonth = binding.dateOfReading.getDayOfMonth();
         presenter.setDate(year, month, dayOfMonth);
+    }
+
+    @Override
+    public void showErrorMessage() {
+        Toast.makeText(EditBookActivity.this, R.string.book_is_not_found, Toast.LENGTH_SHORT).show();
     }
 }

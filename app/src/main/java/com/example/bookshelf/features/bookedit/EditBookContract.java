@@ -21,6 +21,8 @@ public interface EditBookContract {
         void hideButtonDelete();
 
         void showDate();
+
+        void showErrorMessage();
     }
 
     interface Presenter {
