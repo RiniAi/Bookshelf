@@ -1,7 +1,5 @@
 package com.example.bookshelf.features.bookssearch;
 
-import android.util.Log;
-
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
@@ -11,7 +9,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     @Inject
@@ -48,19 +49,22 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     }
 
     private void runQuery(String query) {
-        SearchCall.ResponseListener responseListener = new SearchCall.ResponseListener() {
-            @Override
-            public void onSuccess(List<Book> books) {
-                showListOrEmptyView(books);
-            }
+        RequestBooksUseCase.Params searchParams = new RequestBooksUseCase.Params(query);
+        Disposable subscription = requestBooksUseCase.run(searchParams)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        // onNext
+                        books -> {
+                            showListOrEmptyView(books);
+                        },
+                        // onError
+                        throwable -> {
+                            view.showError();
+                        }
 
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e("error", t.toString());
-                view.showError();
-            }
-        };
-        requestBooksUseCase.run(query, responseListener);
+                );
+        disposables.add(subscription);
     }
 
     private void showListOrEmptyView(List<Book> books) {
