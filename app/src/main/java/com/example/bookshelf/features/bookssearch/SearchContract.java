@@ -16,6 +16,10 @@ public interface SearchContract {
     }
 
     interface Presenter {
+        void subscribe();
+
+        void unsubscribe();
+
         void searchBook(String query);
 
         void openBook(Book book);

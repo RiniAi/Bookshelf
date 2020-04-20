@@ -11,16 +11,31 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
     @Inject
     RequestBooksUseCase requestBooksUseCase;
     @Inject
     Navigator navigator;
 
+    private CompositeDisposable disposables;
+
     @Inject
     public SearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
         this.requestBooksUseCase = requestBooksUseCase;
         this.navigator = navigator;
+        this.disposables = new CompositeDisposable();
+    }
+
+    @Override
+    public void subscribe() {
+
+    }
+
+    @Override
+    public void unsubscribe() {
+        disposables.clear();
     }
 
     @Override
