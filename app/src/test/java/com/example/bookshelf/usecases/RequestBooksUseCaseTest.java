@@ -1,7 +1,6 @@
 package com.example.bookshelf.usecases;
 
 import com.example.bookshelf.features.bookssearch.Repository;
-import com.example.bookshelf.features.bookssearch.SearchCall.ResponseListener;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,12 +16,11 @@ class RequestBooksUseCaseTest {
     RequestBooksUseCase useCase;
     @Mock
     Repository repository;
-    @Mock
-    ResponseListener listener;
 
     @Test
     void requestBooksUseCaseRepositoryCorrectCall() {
-        useCase.run("Tom", listener);
-        verify(repository).requestBooksFromApi("Tom", listener);
+        RequestBooksUseCase.Params params = new RequestBooksUseCase.Params("Tom");
+        useCase.run(params);
+        verify(repository).getBooks(params.getQuery());
     }
 }
