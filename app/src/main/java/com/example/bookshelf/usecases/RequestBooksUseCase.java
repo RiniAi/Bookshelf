@@ -34,5 +34,20 @@ public class RequestBooksUseCase {
         public void setQuery(String query) {
             this.query = query;
         }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Params params = (Params) o;
+
+            return query != null ? query.equals(params.query) : params.query == null;
+        }
+
+        @Override
+        public int hashCode() {
+            return query != null ? query.hashCode() : 0;
+        }
     }
 }
