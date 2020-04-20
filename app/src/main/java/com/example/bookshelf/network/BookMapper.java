@@ -6,9 +6,14 @@ import com.example.bookshelf.models.BooksApiResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookMapper {
+import javax.inject.Inject;
 
-    public static List<Book> mapResponseToDomain(BooksApiResponse bookResult) {
+public class BookMapper {
+    @Inject
+    public BookMapper() {
+    }
+
+    public List<Book> mapResponseToDomain(BooksApiResponse bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (int i = 0; i < bookResult.getItems().size(); i++) {
             Book book = new Book();
