@@ -30,16 +30,6 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     }
 
     @Override
-    public void subscribe() {
-
-    }
-
-    @Override
-    public void unsubscribe() {
-        disposables.clear();
-    }
-
-    @Override
     public void searchBook(String query) {
         if (query.isEmpty()) {
             view.showErrorMessage();
@@ -93,5 +83,10 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Override
     public void openBookChallenge() {
         navigator.openBookChallenge();
+    }
+
+    @Override
+    public void unsubscribe() {
+        disposables.clear();
     }
 }

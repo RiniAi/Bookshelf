@@ -15,11 +15,7 @@ public interface SearchContract {
         void showEmptyView();
     }
 
-    interface Presenter {
-        void subscribe();
-
-        void unsubscribe();
-
+    interface Presenter  {
         void searchBook(String query);
 
         void openBook(Book book);
@@ -29,5 +25,7 @@ public interface SearchContract {
         void openMain();
 
         void openBookChallenge();
+
+        void unsubscribe();
     }
 }
