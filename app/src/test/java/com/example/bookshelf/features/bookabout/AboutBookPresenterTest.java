@@ -32,7 +32,7 @@ class AboutBookPresenterTest {
     }
 
     @Test
-    void aboutBookPresenterBundleIsNotEmptyAndCoverIsNotEmpty() {
+    void presenterGetBookFromBundleThatIsNotEmptyCoverIsNotEmpty() {
         book.setImageLinks("https://www.rd.com/wp-content/uploads/2019/11/shutterstock_509582812-e1574100998595.jpg");
         when(bundle.containsKey(AboutBookPresenter.EXTRA_BOOK)).thenReturn(true);
         when(bundle.getSerializable(AboutBookPresenter.EXTRA_BOOK)).thenReturn(book);
@@ -42,7 +42,7 @@ class AboutBookPresenterTest {
     }
 
     @Test
-    void aboutBookPresenterBundleIsNotEmptyAndCoverIsEmpty() {
+    void presenterGetBookFromBundleThatIsNotEmptyCoverIsEmpty() {
         when(bundle.containsKey(AboutBookPresenter.EXTRA_BOOK)).thenReturn(true);
         when(bundle.getSerializable(AboutBookPresenter.EXTRA_BOOK)).thenReturn(book);
         presenter.onStartWithData(bundle);
@@ -51,7 +51,7 @@ class AboutBookPresenterTest {
     }
 
     @Test
-    void aboutBookPresenterBundleIsEmpty() {
+    void presenterGetBookFromBundleThatIsEmpty() {
         presenter.onStartWithData(null);
         verify(view).showErrorMessage();
     }

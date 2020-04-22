@@ -46,7 +46,7 @@ class SearchPresenterTest {
     }
 
     @Test
-    void searchPresenterRunSomeRequest() {
+    void presenterRunSomeRequest() {
         RequestBooksUseCase.Params params = new RequestBooksUseCase.Params("Tom");
         when(requestBooksUseCase.run(params)).thenReturn(books);
         presenter.searchBook("Tom");
@@ -54,31 +54,31 @@ class SearchPresenterTest {
     }
 
     @Test
-    void searchPresenterRunEmptyRequest() {
+    void presenterRunEmptyRequest() {
         presenter.searchBook("");
         verify(view).showErrorMessage();
     }
 
     @Test
-    void searchPresenterOpenBook() {
+    void presenterOpenBook() {
         presenter.openBook(book);
         verify(navigator).openBook(book);
     }
 
     @Test
-    void searchPresenterEditBook() {
+    void presenterEditBook() {
         presenter.editBook(book);
         verify(navigator).editBook(book);
     }
 
     @Test
-    void searchPresenterOpenMain() {
+    void presenterOpenMain() {
         presenter.openMain();
         verify(navigator).openMain();
     }
 
     @Test
-    void searchPresenterOpenBookChallenge() {
+    void presenterOpenBookChallenge() {
         presenter.openBookChallenge();
         verify(navigator).openBookChallenge();
     }

@@ -39,7 +39,7 @@ class MainPresenterTest {
     }
 
     @Test
-    void mainPresenterLoadListOfBooks() {
+    void presenterLoadListOfBooks() {
         books.add(book);
         when(useCase.run()).thenReturn(books);
         presenter.onStart();
@@ -48,7 +48,7 @@ class MainPresenterTest {
     }
 
     @Test
-    void mainPresenterLoadEmptyList() {
+    void presenterLoadEmptyList() {
         when(useCase.run()).thenReturn(books);
         presenter.onStart();
         verify(useCase).run();
@@ -56,25 +56,25 @@ class MainPresenterTest {
     }
 
     @Test
-    void mainPresenterOpenBook() {
+    void presenterOpenBook() {
         presenter.openBook(book);
         verify(navigator).openBook(book);
     }
 
     @Test
-    void mainPresenterEditBook() {
+    void presenterEditBook() {
         presenter.editBook(book);
         verify(navigator).editBook(book);
     }
 
     @Test
-    void mainPresenterOpenBookChallenge() {
+    void presenterOpenBookChallenge() {
         presenter.openBookChallenge();
         verify(navigator).openBookChallenge();
     }
 
     @Test
-    void mainPresenterOpenSearch() {
+    void presenterOpenSearch() {
         presenter.openSearch();
         verify(navigator).openSearch();
     }

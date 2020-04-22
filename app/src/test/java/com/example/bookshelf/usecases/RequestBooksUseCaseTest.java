@@ -24,7 +24,7 @@ class RequestBooksUseCaseTest {
     Repository repository;
 
     @Test
-    void requestBooksUseCaseSingleReturnDate() {
+    void useCaseReturnsBooksOnSuccess() {
         List<Book> list = new ArrayList<>();
         RequestBooksUseCase.Params params = new RequestBooksUseCase.Params("Tom");
         when(repository.getBooks(params.getQuery())).thenReturn(Single.just(list));
@@ -35,7 +35,7 @@ class RequestBooksUseCaseTest {
     }
 
     @Test
-    void requestBooksUseCaseSingleReturnError() {
+    void useCaseReturnsBooksOnError() {
         RequestBooksUseCase.Params params = new RequestBooksUseCase.Params("");
         when(repository.getBooks(params.getQuery())).thenReturn(Single.error(new RuntimeException()));
         useCase.run(params)
