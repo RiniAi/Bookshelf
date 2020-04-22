@@ -15,7 +15,7 @@ public interface SearchContract {
         void showEmptyView();
     }
 
-    interface Presenter  {
+    interface Presenter {
         void searchBook(String query);
 
         void openBook(Book book);
