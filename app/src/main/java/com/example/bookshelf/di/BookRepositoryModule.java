@@ -11,7 +11,7 @@ import dagger.Provides;
 @Module
 public class BookRepositoryModule {
     @Provides
-    public Repository providesBookStorage(GoogleBooksApiService service, BookMapper mapper) {
+    public Repository providesBookRepository(GoogleBooksApiService service, BookMapper mapper) {
         return new BookRepository(service, mapper);
     }
 }
