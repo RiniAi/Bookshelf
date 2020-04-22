@@ -11,12 +11,12 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.bookshelf"
+        applicationId 'com.example.bookshelf'
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -65,5 +65,5 @@ dependencies {
 
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+    implementation 'com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0'
 }
