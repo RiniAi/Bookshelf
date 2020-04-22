@@ -2,6 +2,7 @@ package com.example.bookshelf.network;
 
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.models.BooksApiResponse;
+import com.example.bookshelf.models.BooksApiResponseItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,26 +16,26 @@ public class BookMapper {
 
     public List<Book> mapResponseToDomain(BooksApiResponse bookResult) {
         List<Book> booksSearch = new ArrayList<>();
-        for (int i = 0; i < bookResult.getItems().size(); i++) {
+        for (BooksApiResponseItem item: bookResult.getItems()) {
             Book book = new Book();
-            if (bookResult.getItems().get(i).getVolumeInfo().getAuthors() == null) {
+            if (item.getVolumeInfo().getAuthors() == null) {
                 book.setAuthors("");
             } else {
-                book.setAuthors(bookResult.getItems().get(i).getVolumeInfo().getAuthors().toString()
+                book.setAuthors(item.getVolumeInfo().getAuthors().toString()
                         .replace("[", "")
                         .replace("]", ""));
             }
-            book.setTitle(bookResult.getItems().get(i).getVolumeInfo().getTitle());
-            if (bookResult.getItems().get(i).getVolumeInfo().getImageLinks() != null
-                    && bookResult.getItems().get(i).getVolumeInfo().getImageLinks().getThumbnail() != null) {
-                book.setImageLinks(bookResult.getItems().get(i).getVolumeInfo().getImageLinks().getThumbnail());
+            book.setTitle(item.getVolumeInfo().getTitle());
+            if (item.getVolumeInfo().getImageLinks() != null
+                    && item.getVolumeInfo().getImageLinks().getThumbnail() != null) {
+                book.setImageLinks(item.getVolumeInfo().getImageLinks().getThumbnail());
             }
-            book.setAverageRating(bookResult.getItems().get(i).getVolumeInfo().getAverageRating());
-            book.setPublisher(bookResult.getItems().get(i).getVolumeInfo().getPublisher());
-            book.setPublishedDate(bookResult.getItems().get(i).getVolumeInfo().getPublishedDate());
-            book.setPageCount(bookResult.getItems().get(i).getVolumeInfo().getPageCount());
-            book.setLanguage(bookResult.getItems().get(i).getVolumeInfo().getLanguage());
-            book.setDescription(bookResult.getItems().get(i).getVolumeInfo().getDescription());
+            book.setAverageRating(item.getVolumeInfo().getAverageRating());
+            book.setPublisher(item.getVolumeInfo().getPublisher());
+            book.setPublishedDate(item.getVolumeInfo().getPublishedDate());
+            book.setPageCount(item.getVolumeInfo().getPageCount());
+            book.setLanguage(item.getVolumeInfo().getLanguage());
+            book.setDescription(item.getVolumeInfo().getDescription());
 
             booksSearch.add(book);
         }
