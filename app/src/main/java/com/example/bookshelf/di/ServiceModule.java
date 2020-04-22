@@ -9,7 +9,7 @@ import dagger.Provides;
 @Module
 public class ServiceModule {
     @Provides
-    public GoogleBooksApiService providesService() {
+    public GoogleBooksApiService providesGoogleBooksApiService() {
         return RetrofitClientInstance.getRetrofitInstance().create(GoogleBooksApiService.class);
     }
 }
