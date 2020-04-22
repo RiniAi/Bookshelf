@@ -52,7 +52,6 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                         throwable -> {
                             view.showError();
                         }
-
                 );
         disposables.add(subscription);
     }
