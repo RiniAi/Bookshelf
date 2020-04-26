@@ -47,6 +47,12 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         setSupportActionBar(binding.toolbarSearch.toolbar);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.unsubscribe();
+    }
+
     private void updateToolbar() {
         binding.toolbarSearch.toolbar.setTitle(R.string.search_activity_title);
     }

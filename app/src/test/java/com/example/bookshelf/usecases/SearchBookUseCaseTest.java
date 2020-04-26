@@ -21,7 +21,7 @@ class SearchBookUseCaseTest {
     BookStorage storage;
 
     @Test
-    void searchBookUseCaseSearchBook() {
+    void useCaseSearchBookToDataBase() {
         Book book = new Book();
         Params params = new Params(book);
         when(useCase.run(params)).thenReturn(book);

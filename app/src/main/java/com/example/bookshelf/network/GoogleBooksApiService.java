@@ -2,7 +2,7 @@ package com.example.bookshelf.network;
 
 import com.example.bookshelf.models.BooksApiResponse;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -17,5 +17,5 @@ public interface GoogleBooksApiService {
      * @return books list from response
      */
     @GET("volumes/")
-    Call<BooksApiResponse> getBooks(@Query("q") String query, @Query("maxResults") int count);
+    Single<BooksApiResponse> getBooks(@Query("q") String query, @Query("maxResults") int count);
 }

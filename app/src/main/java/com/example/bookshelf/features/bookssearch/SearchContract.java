@@ -25,5 +25,7 @@ public interface SearchContract {
         void openMain();
 
         void openBookChallenge();
+
+        void unsubscribe();
     }
 }

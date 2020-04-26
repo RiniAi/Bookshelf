@@ -35,7 +35,7 @@ class InsertOrUpdateBookUseCaseTest {
     }
 
     @Test
-    void insertOrUpdateBookUseCaseInsertOrUpdateBook() {
+    void useCaseInsertOrUpdateBookSuccessfully() {
         Book book = new Book();
         Params params = new Params(book, rating, status, isFavorite, date);
         useCase.run(params);
@@ -43,7 +43,7 @@ class InsertOrUpdateBookUseCaseTest {
     }
 
     @Test
-    void insertOrUpdateBookUseCaseInsertOrUpdateNull() {
+    void useCaseInsertOrUpdateNullNotSuccessfully() {
         try {
             Params params = new Params(null, rating, status, isFavorite, date);
             useCase.run(params);

@@ -23,7 +23,7 @@ class LoadBookUseCaseTest {
     BookStorage storage;
 
     @Test
-    void loadBookUseCaseCorrectDataLoading() {
+    void useCaseCorrectDataLoading() {
         List<Book> books = new ArrayList<>();
         when(useCase.run()).thenReturn(books);
         useCase.run();

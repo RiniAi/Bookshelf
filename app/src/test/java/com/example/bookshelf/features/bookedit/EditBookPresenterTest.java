@@ -46,7 +46,7 @@ class EditBookPresenterTest {
     }
 
     @Test
-    void editBookPresenterLoadBookBundleIsNotEmptyAndNotEmptyCoverNotEmptyStatusAndBookDbIsNotNull() {
+    void presenterGetBookFromBundleThatIsNotEmptyCoverIsNotEmptyStatusIsNotEmptyBookDbIsNotNull() {
         book.setImageLinks("https://www.rd.com/wp-content/uploads/2019/11/shutterstock_509582812-e1574100998595.jpg");
         book.setStatus(Book.BookStatus.PLAN_READING);
         when(context.getString(anyInt())).thenReturn("");
@@ -62,7 +62,7 @@ class EditBookPresenterTest {
     }
 
     @Test
-    void editBookPresenterLoadBookBundleIsNotEmptyAndEmptyCoverEmptyStatusAndBookDbIsNotNull() {
+    void presenterGetBookFromBundleThatIsNotEmptyCoverIsEmptyStatusIsEmptyBookDbIsNotNull() {
         when(context.getString(anyInt())).thenReturn("");
         when(bundle.containsKey(EditBookPresenter.EXTRA_BOOK)).thenReturn(true);
         when(bundle.getSerializable(EditBookPresenter.EXTRA_BOOK)).thenReturn(book);
@@ -75,7 +75,7 @@ class EditBookPresenterTest {
     }
 
     @Test
-    void editBookPresenterLoadBookBundleIsNotEmptyAndEmptyCoverEmptyStatusAndBookDbIsNull() {
+    void presenterGetBookFromBundleThatIsNotEmptyCoverIsEmptyStatusIsEmptyBookDbIsNull() {
         when(context.getString(anyInt())).thenReturn("");
         when(bundle.containsKey(EditBookPresenter.EXTRA_BOOK)).thenReturn(true);
         when(bundle.getSerializable(EditBookPresenter.EXTRA_BOOK)).thenReturn(book);
@@ -86,13 +86,13 @@ class EditBookPresenterTest {
     }
 
     @Test
-    void editBookPresenterLoadBookBundleIsEmpty() {
+    void presenterGetBookFromBundleIsEmpty() {
         presenter.onStartWithData(null);
         verify(view).showErrorMessage();
     }
 
     @Test
-    void editBookPresenterInsertOrUpdateBook() {
+    void presenterInsertOrUpdateBook() {
         when(bundle.containsKey(EditBookPresenter.EXTRA_BOOK)).thenReturn(true);
         when(bundle.getSerializable(EditBookPresenter.EXTRA_BOOK)).thenReturn(book);
         presenter.onStartWithData(bundle);
@@ -109,7 +109,7 @@ class EditBookPresenterTest {
     }
 
     @Test
-    void editBookPresenterDeleteBook() {
+    void presenterDeleteBook() {
         presenter.deleteBook();
         verify(deleteBookUseCase).run(isA(DeleteBookUseCase.Params.class));
     }

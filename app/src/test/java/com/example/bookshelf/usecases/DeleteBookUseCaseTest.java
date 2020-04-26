@@ -20,7 +20,7 @@ class DeleteBookUseCaseTest {
     BookStorage storage;
 
     @Test
-    void deleteBookUseCaseDeleteBook() {
+    void useCaseDeleteBook() {
         Book book = new Book();
         Params params = new Params(book);
         useCase.run(params);

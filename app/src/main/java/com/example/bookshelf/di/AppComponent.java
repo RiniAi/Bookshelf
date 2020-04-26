@@ -6,6 +6,7 @@ import dagger.Component;
 
 @Component(modules = {
         AppModule.class,
+        ServiceModule.class,
         BookDataBaseModule.class,
         PresenterModule.class,
         BookStorageModule.class,
