@@ -49,15 +49,12 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     public void onStartWithData(Bundle bundle) {
         resolveStatuses(context, Book.BookStatus.values());
         loadBook(bundle);
-        searchBook();
     }
 
     private void loadBook(Bundle bundle) {
         if (bundle != null && bundle.containsKey(EXTRA_BOOK)) {
             book = (Book) bundle.getSerializable(EXTRA_BOOK);
-            view.showBook(book);
-            loadCover();
-            loadStatus();
+            searchBook();
         } else {
             view.showErrorMessage();
         }
@@ -101,10 +98,14 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         SearchBookUseCase.Params params = new SearchBookUseCase.Params(book);
         Book bookDb = searchBookUseCase.run(params);
         if (bookDb != null) {
+            book = bookDb;
             view.showButtonDelete();
         } else {
             view.hideButtonDelete();
         }
+        view.showBook(book);
+        loadCover();
+        loadStatus();
     }
 
     @Override
