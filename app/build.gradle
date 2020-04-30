@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     viewBinding.enabled = true
     compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.3"
 
     compileOptions {
         sourceCompatibility 1.8
@@ -19,8 +19,14 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -43,7 +49,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
 
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.okhttp3:okhttp:4.3.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'androidx.room:room-runtime:2.2.5'

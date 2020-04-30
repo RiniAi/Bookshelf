@@ -17,7 +17,7 @@ public class BookDataBaseModule {
         return Room.databaseBuilder(
                 context,
                 BookDatabase.class,
-                "db_bookss")
+                "db_books")
                 .allowMainThreadQueries()
                 .build();
     }
