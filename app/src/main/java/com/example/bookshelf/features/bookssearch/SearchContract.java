@@ -22,10 +22,6 @@ public interface SearchContract {
 
         void editBook(Book book);
 
-        void openMain();
-
-        void openBookChallenge();
-
         void unsubscribe();
     }
 }

@@ -3,15 +3,15 @@ package com.example.bookshelf.features.bookssearch;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -25,7 +25,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SearchActivity extends AppCompatActivity implements SearchContract.View {
+public class SearchFragment extends Fragment implements SearchContract.View {
     private ActivitySearchBinding binding;
     @Inject
     BookSearchAdapter bookAdapter;
@@ -33,22 +33,32 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     SearchContract.Presenter presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView (LayoutInflater inflater,
+                              ViewGroup container,
+                              Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        binding = ActivitySearchBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         binding.llEmptyList.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.GONE);
         updateToolbar();
-        buildRecyclerView();
         buildButtons();
-        setSupportActionBar(binding.toolbarSearch.toolbar);
+        return view;
     }
 
     @Override
-    protected void onPause() {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        LinearLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        binding.rvOfBooks.setLayoutManager(layoutManager);
+        binding.rvOfBooks.setAdapter(bookAdapter);
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
+        bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
+    }
+
+    @Override
+    public void onPause() {
         super.onPause();
         presenter.unsubscribe();
     }
@@ -61,26 +71,18 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         binding.ibSendQuery.setOnClickListener(view -> {
             hideList();
             presenter.searchBook(binding.etQuery.getText().toString());
-            hideKeyboard(SearchActivity.this, view);
+            hideKeyboard(getActivity(), view);
         });
 
         binding.etQuery.setOnEditorActionListener((view, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideList();
                 presenter.searchBook(binding.etQuery.getText().toString());
-                hideKeyboard(SearchActivity.this, view);
+                hideKeyboard(getActivity(), view);
                 return true;
             }
             return false;
         });
-    }
-
-    private void buildRecyclerView() {
-        LinearLayoutManager layoutManager = new GridLayoutManager(SearchActivity.this, 2);
-        binding.rvOfBooks.setLayoutManager(layoutManager);
-        binding.rvOfBooks.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
-        bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
     }
 
     private void hideList() {
@@ -106,14 +108,14 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
     @Override
     public void showError() {
         binding.progressBar.setVisibility(View.GONE);
-        Toast.makeText(SearchActivity.this, R.string.search_activity_try_later, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.search_activity_try_later, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showErrorMessage() {
         binding.progressBar.setVisibility(View.GONE);
         binding.llEmptyList.setVisibility(View.VISIBLE);
-        Toast.makeText(SearchActivity.this, R.string.search_activity_enter_query, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.search_activity_enter_query, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -121,28 +123,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         binding.progressBar.setVisibility(View.GONE);
         binding.llEmptyList.setVisibility(View.VISIBLE);
         binding.rvOfBooks.setVisibility(View.GONE);
-        Toast.makeText(SearchActivity.this, R.string.search_activity_nothing_was_found, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_search, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.go_to_main:
-                presenter.openMain();
-                break;
-
-            case R.id.go_to_challenge:
-                presenter.openBookChallenge();
-                break;
-        }
-        return true;
+        Toast.makeText(getActivity(), R.string.search_activity_nothing_was_found, Toast.LENGTH_SHORT).show();
     }
 }
 

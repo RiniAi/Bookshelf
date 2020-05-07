@@ -75,16 +75,6 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     }
 
     @Override
-    public void openMain() {
-        navigator.openMain();
-    }
-
-    @Override
-    public void openBookChallenge() {
-        navigator.openBookChallenge();
-    }
-
-    @Override
     public void unsubscribe() {
         disposables.clear();
     }
