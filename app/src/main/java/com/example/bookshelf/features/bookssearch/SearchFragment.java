@@ -19,14 +19,14 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.databinding.ActivitySearchBinding;
+import com.example.bookshelf.databinding.FragmentSearchBinding;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class SearchFragment extends Fragment implements SearchContract.View {
-    private ActivitySearchBinding binding;
+    private FragmentSearchBinding binding;
     @Inject
     BookSearchAdapter bookAdapter;
     @Inject
@@ -38,11 +38,10 @@ public class SearchFragment extends Fragment implements SearchContract.View {
                               Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        binding = ActivitySearchBinding.inflate(inflater, container, false);
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         binding.llEmptyList.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.GONE);
-        updateToolbar();
         buildButtons();
         return view;
     }
@@ -61,10 +60,6 @@ public class SearchFragment extends Fragment implements SearchContract.View {
     public void onPause() {
         super.onPause();
         presenter.unsubscribe();
-    }
-
-    private void updateToolbar() {
-        binding.toolbarSearch.toolbar.setTitle(R.string.search_activity_title);
     }
 
     private void buildButtons() {

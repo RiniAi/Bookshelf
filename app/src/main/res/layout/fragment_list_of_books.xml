@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/toolbar_main"
-        layout="@layout/toolbar" />
-
     <LinearLayout
         android:id="@+id/ll_empty_list"
         android:layout_width="match_parent"

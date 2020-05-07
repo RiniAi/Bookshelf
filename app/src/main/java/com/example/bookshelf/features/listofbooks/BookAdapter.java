@@ -1,4 +1,4 @@
-package com.example.bookshelf.features.main;
+package com.example.bookshelf.features.listofbooks;
 
 import android.content.Context;
 import android.view.LayoutInflater;

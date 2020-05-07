@@ -4,7 +4,7 @@ import com.example.bookshelf.features.bookabout.AboutBookActivity;
 import com.example.bookshelf.features.bookchallenge.BookChallengeFragment;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
 import com.example.bookshelf.features.bookssearch.SearchFragment;
-import com.example.bookshelf.features.main.ListOfBooksFragment;
+import com.example.bookshelf.features.listofbooks.ListOfBooksFragment;
 
 import dagger.Subcomponent;
 

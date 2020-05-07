@@ -15,14 +15,14 @@ import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.databinding.ActivityBookChallengeBinding;
+import com.example.bookshelf.databinding.FragmentBookChallengeBinding;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
-    private ActivityBookChallengeBinding binding;
+    private FragmentBookChallengeBinding binding;
     @Inject
     BookChallengeAdapter bookAdapter;
     @Inject
@@ -34,9 +34,8 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
                                  Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        binding = ActivityBookChallengeBinding.inflate(inflater, container, false);
+        binding = FragmentBookChallengeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        updateToolbar();
         presenter.onStart();
         return view;
     }
@@ -48,10 +47,6 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
         binding.rvBooks.setLayoutManager(layoutManager);
         binding.rvBooks.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
-    }
-
-    private void updateToolbar() {
-        binding.toolbarBookChallenge.toolbar.setTitle(R.string.book_challenge_title);
     }
 
     @Override

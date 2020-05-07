@@ -1,4 +1,4 @@
-package com.example.bookshelf.features.main;
+package com.example.bookshelf.features.listofbooks;
 
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;

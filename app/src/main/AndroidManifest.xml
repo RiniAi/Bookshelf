@@ -16,7 +16,7 @@
         <activity android:name=".features.bookchallenge.BookChallengeFragment" />
         <activity android:name=".features.bookabout.AboutBookActivity" />
         <activity android:name=".features.bookssearch.SearchFragment" />
-        <activity android:name=".features.main.ListOfBooksFragment" />
+        <activity android:name=".features.listofbooks.ListOfBooksFragment" />
         <activity android:name=".features.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.bookshelf.features.main;
+package com.example.bookshelf.features.listofbooks;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,17 +10,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookshelf.App;
-import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.databinding.ActivityListOfBooksBinding;
+import com.example.bookshelf.databinding.FragmentListOfBooksBinding;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class ListOfBooksFragment extends Fragment implements ListOfBooksContract.View {
-    private ActivityListOfBooksBinding binding;
+    private FragmentListOfBooksBinding binding;
     @Inject
     BookAdapter bookAdapter;
     @Inject
@@ -32,9 +31,8 @@ public class ListOfBooksFragment extends Fragment implements ListOfBooksContract
                               Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        binding = ActivityListOfBooksBinding.inflate(inflater, container, false);
+        binding = FragmentListOfBooksBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        updateToolbar();
         presenter.onStart();
         return view;
     }
@@ -47,10 +45,6 @@ public class ListOfBooksFragment extends Fragment implements ListOfBooksContract
         binding.rvBooks.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
         bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
-    }
-
-    private void updateToolbar() {
-        binding.toolbarMain.toolbar.setTitle(R.string.main_activity_title);
     }
 
     @Override

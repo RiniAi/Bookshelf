@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.example.bookshelf.R;
 import com.example.bookshelf.features.bookchallenge.BookChallengeFragment;
 import com.example.bookshelf.features.bookssearch.SearchFragment;
-import com.example.bookshelf.features.main.ListOfBooksFragment;
+import com.example.bookshelf.features.listofbooks.ListOfBooksFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
