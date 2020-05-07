@@ -12,8 +12,8 @@ import com.example.bookshelf.features.bookedit.EditBookContract;
 import com.example.bookshelf.features.bookedit.EditBookPresenter;
 import com.example.bookshelf.features.bookssearch.SearchContract;
 import com.example.bookshelf.features.bookssearch.SearchPresenter;
-import com.example.bookshelf.features.main.MainContract;
-import com.example.bookshelf.features.main.MainPresenter;
+import com.example.bookshelf.features.main.ListOfBooksContract;
+import com.example.bookshelf.features.main.ListOfBooksPresenter;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
 import com.example.bookshelf.usecases.LoadBookUseCase;
@@ -28,8 +28,8 @@ import dagger.Provides;
 public class PresenterModule {
 
     @Provides
-    public MainContract.Presenter providesMainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
-        return new MainPresenter(loadBookUseCase, navigator);
+    public ListOfBooksContract.Presenter providesMainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
+        return new ListOfBooksPresenter(loadBookUseCase, navigator);
     }
 
     @Provides

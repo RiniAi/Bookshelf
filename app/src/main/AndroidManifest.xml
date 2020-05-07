@@ -13,10 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".features.bookedit.EditBookActivity" />
-        <activity android:name=".features.bookchallenge.BookChallengeActivity" />
+        <activity android:name=".features.bookchallenge.BookChallengeFragment" />
         <activity android:name=".features.bookabout.AboutBookActivity" />
-        <activity android:name=".features.bookssearch.SearchActivity" />
-        <activity android:name=".features.main.MainActivity">
+        <activity android:name=".features.bookssearch.SearchFragment" />
+        <activity android:name=".features.main.ListOfBooksFragment" />
+        <activity android:name=".features.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

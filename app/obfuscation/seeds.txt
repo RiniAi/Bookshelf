@@ -38,7 +38,7 @@ com.google.android.material.R$style: int Widget_AppCompat_DropDownItem_Spinner
 com.google.android.material.R$attr: int textAppearanceHeadline2
 com.google.android.material.R$drawable: int abc_text_select_handle_left_mtrl_dark
 androidx.appcompat.R$style: int Animation_AppCompat_Tooltip
-com.example.bookshelf.features.bookchallenge.BookChallengeActivity: BookChallengeActivity()
+com.example.bookshelf.features.bookchallenge.BookChallengeFragment: BookChallengeActivity()
 androidx.appcompat.widget.AppCompatEditText: java.lang.CharSequence getText()
 com.google.android.material.R$style: int Widget_AppCompat_TextView_SpinnerItem
 com.google.android.material.R$style: int Widget_MaterialComponents_TextInputEditText_OutlinedBox
@@ -1753,7 +1753,7 @@ androidx.appcompat.resources.R$drawable: int notification_bg_low_pressed
 androidx.appcompat.R$styleable: int MenuView_android_headerBackground
 com.google.android.material.R$style: int CardView_Dark
 com.google.android.material.floatingactionbutton.FloatingActionButton$Behavior
-com.example.bookshelf.features.main.MainActivity: MainActivity()
+com.example.bookshelf.features.main.ListOfBooksFragment: MainActivity()
 com.google.android.material.R$drawable: int abc_switch_track_mtrl_alpha
 com.google.android.material.R$dimen: int abc_cascading_menus_min_smallest_width
 androidx.appcompat.R$attr: int titleTextStyle
@@ -2402,7 +2402,7 @@ androidx.core.R$id: int accessibility_custom_action_10
 com.google.android.material.R$id: int textinput_counter
 com.google.android.material.R$styleable: int DrawerArrowToggle_gapBetweenBars
 androidx.appcompat.R$dimen: int abc_action_bar_stacked_max_height
-com.example.bookshelf.features.bookssearch.SearchActivity: SearchActivity()
+com.example.bookshelf.features.bookssearch.SearchFragment: SearchActivity()
 com.google.android.material.R$styleable: int CoordinatorLayout_Layout_layout_keyline
 androidx.appcompat.R$id: int textSpacerNoButtons
 com.google.android.material.button.MaterialButton: void setStrokeColorResource(int)
@@ -3409,7 +3409,7 @@ androidx.appcompat.widget.LinearLayoutCompat: float getWeightSum()
 com.google.android.material.floatingactionbutton.FloatingActionButton: float getCompatHoveredFocusedTranslationZ()
 androidx.appcompat.app.AppCompatViewInflater: java.lang.Class[] sConstructorSignature
 com.google.android.material.R$attr: int maxImageSize
-com.example.bookshelf.features.bookchallenge.BookChallengeActivity
+com.example.bookshelf.features.bookchallenge.BookChallengeFragment
 androidx.cardview.widget.CardView: void setCardElevation(float)
 androidx.appcompat.R$style: int TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse
 androidx.appcompat.R$styleable: int AppCompatTheme_colorButtonNormal
@@ -4329,7 +4329,7 @@ androidx.coordinatorlayout.widget.CoordinatorLayout: void setStatusBarBackground
 com.google.android.material.R$attr: int buttonIconDimen
 androidx.appcompat.R$style: int Widget_AppCompat_PopupWindow
 com.google.android.material.R$attr: int cardPreventCornerOverlap
-com.example.bookshelf.features.main.MainActivity
+com.example.bookshelf.features.main.ListOfBooksFragment
 com.google.android.material.R$styleable: int AppCompatTheme_actionModePopupWindowStyle
 com.google.android.material.R$dimen: int mtrl_bottomappbar_fab_cradle_rounded_corner_radius
 androidx.appcompat.R$styleable: int ActionBar_navigationMode
@@ -4714,7 +4714,7 @@ com.google.android.material.R$drawable: int abc_btn_colored_material
 com.google.android.material.R$style: int Platform_V21_AppCompat_Light
 androidx.appcompat.resources.R$styleable: int[] FontFamilyFont
 androidx.appcompat.R$styleable: int Toolbar_navigationContentDescription
-com.example.bookshelf.features.bookssearch.SearchActivity
+com.example.bookshelf.features.bookssearch.SearchFragment
 androidx.appcompat.R$attr: int imageButtonStyle
 com.google.android.material.R$style: int Theme_MaterialComponents
 androidx.appcompat.R$styleable: int GradientColor_android_startX
