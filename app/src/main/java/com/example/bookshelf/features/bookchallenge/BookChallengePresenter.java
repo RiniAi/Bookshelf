@@ -83,9 +83,4 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     public void openBook(Book book) {
         navigator.openBook(book);
     }
-
-    @Override
-    public void openMain() {
-        navigator.openMain();
-    }
 }

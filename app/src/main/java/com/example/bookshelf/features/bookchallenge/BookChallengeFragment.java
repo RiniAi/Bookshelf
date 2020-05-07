@@ -1,14 +1,14 @@
 package com.example.bookshelf.features.bookchallenge;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.bookshelf.App;
@@ -21,7 +21,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class BookChallengeActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
+public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBarChangeListener, BookChallengeContract.View {
     private ActivityBookChallengeBinding binding;
     @Inject
     BookChallengeAdapter bookAdapter;
@@ -29,27 +29,29 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     BookChallengeContract.Presenter presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView (LayoutInflater inflater,
+                                 ViewGroup container,
+                                 Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        binding = ActivityBookChallengeBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        binding = ActivityBookChallengeBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         updateToolbar();
-        buildRecyclerView();
-        setSupportActionBar(binding.toolbarBookChallenge.toolbar);
         presenter.onStart();
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        binding.rvBooks.setLayoutManager(layoutManager);
+        binding.rvBooks.setAdapter(bookAdapter);
+        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
     }
 
     private void updateToolbar() {
         binding.toolbarBookChallenge.toolbar.setTitle(R.string.book_challenge_title);
-    }
-
-    private void buildRecyclerView() {
-        GridLayoutManager layoutManager = new GridLayoutManager(BookChallengeActivity.this, 2);
-        binding.rvBooks.setLayoutManager(layoutManager);
-        binding.rvBooks.setAdapter(bookAdapter);
-        bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
     }
 
     @Override
@@ -83,7 +85,7 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
 
     @Override
     public void showCounterSavedMessage() {
-        Toast.makeText(BookChallengeActivity.this, R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -98,22 +100,5 @@ public class BookChallengeActivity extends AppCompatActivity implements SeekBar.
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         presenter.saveCounter(binding.tvCounter.getText().toString());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar_book_challenge, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.go_to_main_activity:
-                presenter.openMain();
-                break;
-        }
-        return true;
     }
 }

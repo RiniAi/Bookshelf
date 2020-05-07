@@ -27,7 +27,5 @@ public interface BookChallengeContract {
         void saveCounter(String counter);
 
         void openBook(Book book);
-
-        void openMain();
     }
 }
