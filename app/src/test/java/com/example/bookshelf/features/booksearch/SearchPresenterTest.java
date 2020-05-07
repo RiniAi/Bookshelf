@@ -70,16 +70,4 @@ class SearchPresenterTest {
         presenter.editBook(book);
         verify(navigator).editBook(book);
     }
-
-    @Test
-    void presenterOpenMain() {
-        presenter.openMain();
-        verify(navigator).openMain();
-    }
-
-    @Test
-    void presenterOpenBookChallenge() {
-        presenter.openBookChallenge();
-        verify(navigator).openBookChallenge();
-    }
 }

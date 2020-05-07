@@ -18,15 +18,15 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class MainPresenterTest {
+class ListOfBooksPresenterTest {
     @InjectMocks
-    MainPresenter presenter;
+    ListOfBooksPresenter presenter;
     @Mock
     LoadBookUseCase useCase;
     @Mock
     Navigator navigator;
     @Mock
-    MainContract.View view;
+    ListOfBooksContract.View view;
 
     private Book book;
     private List<Book> books;
@@ -65,17 +65,5 @@ class MainPresenterTest {
     void presenterEditBook() {
         presenter.editBook(book);
         verify(navigator).editBook(book);
-    }
-
-    @Test
-    void presenterOpenBookChallenge() {
-        presenter.openBookChallenge();
-        verify(navigator).openBookChallenge();
-    }
-
-    @Test
-    void presenterOpenSearch() {
-        presenter.openSearch();
-        verify(navigator).openSearch();
     }
 }

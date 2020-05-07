@@ -81,10 +81,4 @@ class BookChallengeTest {
         presenter.openBook(book);
         verify(navigator).openBook(book);
     }
-
-    @Test
-    void presenterOpenMain() {
-        presenter.openMain();
-        verify(navigator).openMain();
-    }
 }
