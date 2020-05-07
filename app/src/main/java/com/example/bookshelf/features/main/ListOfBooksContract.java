@@ -4,7 +4,7 @@ import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
-public interface MainContract {
+public interface ListOfBooksContract {
     interface View {
         void hideList();
 
@@ -17,9 +17,5 @@ public interface MainContract {
         void openBook(Book book);
 
         void editBook(Book book);
-
-        void openBookChallenge();
-
-        void openSearch();
     }
 }

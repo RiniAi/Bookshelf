@@ -9,14 +9,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
+public class ListOfBooksPresenter extends BasePresenter<ListOfBooksContract.View> implements ListOfBooksContract.Presenter {
     @Inject
     LoadBookUseCase loadBookUseCase;
     @Inject
     Navigator navigator;
 
     @Inject
-    public MainPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
+    public ListOfBooksPresenter(LoadBookUseCase loadBookUseCase, Navigator navigator) {
         this.loadBookUseCase = loadBookUseCase;
         this.navigator = navigator;
     }
@@ -39,15 +39,5 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     @Override
     public void editBook(Book book) {
         navigator.editBook(book);
-    }
-
-    @Override
-    public void openBookChallenge() {
-        navigator.openBookChallenge();
-    }
-
-    @Override
-    public void openSearch() {
-        navigator.openSearch();
     }
 }
