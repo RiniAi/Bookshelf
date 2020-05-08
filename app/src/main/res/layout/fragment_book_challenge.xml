@@ -8,6 +8,89 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/book_challenge_height"
+        android:background="#adc2c8"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dynalight"
+            android:gravity="center_horizontal"
+            android:text="@string/book_challenge_bookshelf"
+            android:textColor="@color/color_primary_dark"
+            android:textSize="64sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="144dp"
+            android:src="@drawable/bookshelf" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dynalight"
+            android:gravity="center_horizontal"
+            android:text="@string/book_challenge_you_have_read"
+            android:textColor="@color/color_primary_dark"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dynalight"
+                android:textColor="@color/color_primary_dark"
+                android:textSize="20sp"
+                tools:text="12" />
+
+            <TextView
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dynalight"
+                android:gravity="center_horizontal"
+                android:text="@string/book_challenge_books_out_of"
+                android:textColor="@color/color_primary_dark"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tv_counter"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dynalight"
+                android:textColor="@color/color_primary_dark"
+                android:textSize="20sp"
+                tools:text="500" />
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/sb_counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="500"
+            android:paddingTop="@dimen/padding_8dp"
+            android:paddingBottom="@dimen/padding_8dp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_books"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        tools:layoutManager="GridLayoutManager"
+        tools:listitem="@layout/list_item_book_challenge"
+        tools:spanCount="2" />
+
+    <LinearLayout
         android:id="@+id/ll_empty_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,49 +109,5 @@
             android:text="@string/book_challenge_activity_list_empty"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_progress"
-            android:layout_width="@dimen/padding_24dp"
-            android:layout_height="wrap_content"
-            tools:text="12" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/padding_128dp"
-            android:paddingEnd="@dimen/padding_128dp"
-            android:src="@drawable/ic_favorite_on" />
-
-        <TextView
-            android:id="@+id/tv_counter"
-            android:layout_width="@dimen/padding_24dp"
-            android:layout_height="wrap_content"
-            tools:text="500" />
-    </LinearLayout>
-
-    <SeekBar
-        android:id="@+id/sb_counter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:max="500"
-        android:paddingTop="@dimen/padding_8dp"
-        android:paddingBottom="@dimen/padding_8dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_books"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        tools:layoutManager="GridLayoutManager"
-        tools:listitem="@layout/list_item_book_challenge"
-        tools:spanCount="2" />
 </LinearLayout>
+

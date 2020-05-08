@@ -29,6 +29,10 @@
     <string name="edit_book_quit_status">Quit reading</string>
 
     <string name="book_challenge_save_counter">The counter number is saved!</string>
+    <string name="book_challenge_activity_list_empty">The list is empty</string>
+    <string name="book_challenge_bookshelf">BookShelf</string>
+    <string name="book_challenge_you_have_read">You have read</string>
+    <string name="book_challenge_books_out_of">books out of</string>
 
     <string name="rating_about_book">Rating</string>
 
@@ -42,30 +46,32 @@
 
     <string name="navigation_main_challenge">Challenge</string>
     <string name="navigation_main_list_of_books">List of books</string>
-    <string name="navigation_main_profile_information">Profile information</string>
+    <string name="navigation_main_profile">Profile</string>
     <string name="navigation_main_search">Search</string>
+
     <string name="main_activity_db_empty">The database is empty...</string>
+
     <string name="about_book_publisher">Publisher:</string>
     <string name="about_book_published_date">Published date:</string>
     <string name="about_book_page_count">Page count:</string>
     <string name="about_book_language">Language:</string>
     <string name="about_book_description">About book</string>
+    <string name="about_book_no_description">No description available</string>
 
     <string name="toolbar_go_to_main_activity">Go to main activity</string>
     <string name="toolbar_go_to_search_activity">Go to search activity</string>
     <string name="toolbar_go_to_book_challenge_activity">Go to book challenge</string>
+
     <string name="list_item_book_text_view_status">Status:</string>
     <string name="list_item_book_text_view_read_data">Read data:</string>
-
     <string name="list_item_search_add_book">Add book</string>
 
     <string name="book_search_author_unknown">Author unknown</string>
     <string name="book_search_title_unknown">Title unknown</string>
-    <string name="about_book_no_description">No description available</string>
-    <string name="book_challenge_activity_list_empty">The list is empty</string>
-    <string name="search_activity_empty_list">Try again!</string>
 
     <string name="book_is_not_found">The book is not found!</string>
+
+    <string name="search_activity_empty_list">Try again!</string>
     <string name="search_activity_try_later">Something went wrong...Please try later!</string>
     <string name="search_activity_enter_query">You didn\'t enter a search query!</string>
     <string name="search_activity_nothing_was_found">Nothing was found for your request!</string>
