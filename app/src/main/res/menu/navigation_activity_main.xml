@@ -15,4 +15,9 @@
         android:id="@+id/search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/navigation_main_search"  />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/navigation_main_profile"  />
 </menu>
