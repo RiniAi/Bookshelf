@@ -53,7 +53,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     }
 
     private void loadBooks() {
-        List<Book> books = searchBookWithStatusUseCase.run();
+        List<Book> books = searchBookWithStatusUseCase.run(Book.BookStatus.FINISH_READING);
         if (books.isEmpty()) {
             view.hideList();
         } else {

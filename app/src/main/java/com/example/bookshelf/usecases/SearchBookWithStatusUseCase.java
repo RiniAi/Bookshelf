@@ -7,8 +7,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
-
 public class SearchBookWithStatusUseCase {
     @Inject
     BookStorage storage;
@@ -17,7 +15,7 @@ public class SearchBookWithStatusUseCase {
     public SearchBookWithStatusUseCase() {
     }
 
-    public List<Book> run() {
-        return storage.getAllWithStatus(FINISH_READING);
+    public List<Book> run(Book.BookStatus status) {
+        return storage.getAllWithStatus(status);
     }
 }
