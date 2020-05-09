@@ -9,37 +9,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/book_challenge_height"
-        android:background="#adc2c8"
+        android:layout_height="300dp"
+        android:background="@drawable/bookshelf"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dynalight"
-            android:gravity="center_horizontal"
-            android:text="@string/book_challenge_bookshelf"
-            android:textColor="@color/color_primary_dark"
-            android:textSize="64sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="144dp"
-            android:src="@drawable/bookshelf" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dynalight"
-            android:gravity="center_horizontal"
-            android:text="@string/book_challenge_you_have_read"
-            android:textColor="@color/color_primary_dark"
-            android:textSize="24sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -47,27 +23,24 @@
                 android:id="@+id/tv_progress"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dynalight"
                 android:textColor="@color/color_primary_dark"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:layout_marginTop="240dp"
                 tools:text="12" />
 
-            <TextView
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dynalight"
-                android:gravity="center_horizontal"
-                android:text="@string/book_challenge_books_out_of"
-                android:textColor="@color/color_primary_dark"
-                android:textSize="24sp" />
+            <ImageView
+                android:layout_width="262dp"
+                android:layout_marginTop="208dp"
+                android:layout_height="64dp"
+                android:src="@drawable/nooks" />
 
             <TextView
                 android:id="@+id/tv_counter"
                 android:layout_width="32dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dynalight"
+                android:layout_marginTop="240dp"
                 android:textColor="@color/color_primary_dark"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 tools:text="500" />
         </LinearLayout>
 
