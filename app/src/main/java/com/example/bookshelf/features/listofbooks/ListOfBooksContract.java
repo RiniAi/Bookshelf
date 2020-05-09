@@ -12,7 +12,7 @@ public interface ListOfBooksContract {
     }
 
     interface Presenter {
-        void onStart();
+        void onStart(Book.BookStatus status);
 
         void openBook(Book book);
 
