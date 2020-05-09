@@ -2,7 +2,7 @@ package com.example.bookshelf.features.listofbooks;
 
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.database.Book;
-import com.example.bookshelf.usecases.LoadBookUseCase;
+import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ class ListOfBooksPresenterTest {
     @InjectMocks
     ListOfBooksPresenter presenter;
     @Mock
-    LoadBookUseCase useCase;
+    SearchBookWithStatusUseCase useCase;
     @Mock
     Navigator navigator;
     @Mock
@@ -41,17 +41,17 @@ class ListOfBooksPresenterTest {
     @Test
     void presenterLoadListOfBooks() {
         books.add(book);
-        when(useCase.run()).thenReturn(books);
-        presenter.onStart();
-        verify(useCase).run();
+        when(useCase.run(Book.BookStatus.PLAN_READING)).thenReturn(books);
+        presenter.onStart(Book.BookStatus.PLAN_READING);
+        verify(useCase).run(Book.BookStatus.PLAN_READING);
         verify(view).showList(books);
     }
 
     @Test
     void presenterLoadEmptyList() {
-        when(useCase.run()).thenReturn(books);
-        presenter.onStart();
-        verify(useCase).run();
+        when(useCase.run(Book.BookStatus.PLAN_READING)).thenReturn(books);
+        presenter.onStart(Book.BookStatus.PLAN_READING);
+        verify(useCase).run(Book.BookStatus.PLAN_READING);
         verify(view).hideList();
     }
 

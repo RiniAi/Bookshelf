@@ -12,7 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.bookshelf.database.Book.BookStatus.FINISH_READING;
+import static com.example.bookshelf.database.Book.BookStatus.PLAN_READING;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -26,8 +26,8 @@ class SearchBookWithStatusUseCaseTest {
     @Test
     void useCaseCorrectDataLoading() {
         List<Book> books = new ArrayList<>();
-        when(useCase.run()).thenReturn(books);
-        useCase.run();
-        verify(storage).getAllWithStatus(FINISH_READING);
+        when(useCase.run(Book.BookStatus.PLAN_READING)).thenReturn(books);
+        useCase.run(Book.BookStatus.PLAN_READING);
+        verify(storage).getAllWithStatus(PLAN_READING);
     }
 }
