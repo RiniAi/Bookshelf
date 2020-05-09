@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/book_challenge_height"
         android:background="@drawable/bookshelf"
         android:orientation="vertical">
 
@@ -21,26 +21,26 @@
 
             <TextView
                 android:id="@+id/tv_progress"
-                android:layout_width="32dp"
+                android:layout_width="@dimen/book_challenge_tv_progress_width"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_primary_dark"
-                android:textSize="18sp"
-                android:layout_marginTop="240dp"
+                android:textSize="@dimen/text_size_super_medium"
+                android:layout_marginTop="@dimen/margin_240dp"
                 tools:text="12" />
 
             <ImageView
-                android:layout_width="262dp"
-                android:layout_marginTop="208dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/book_challenge_iv_progress_width"
+                android:layout_marginTop="@dimen/margin_204dp"
+                android:layout_height="@dimen/book_challenge_iv_progress_height"
                 android:src="@drawable/nooks" />
 
             <TextView
                 android:id="@+id/tv_counter"
-                android:layout_width="32dp"
+                android:layout_width="@dimen/book_challenge_tv_progress_width"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="240dp"
+                android:layout_marginTop="@dimen/margin_240dp"
                 android:textColor="@color/color_primary_dark"
-                android:textSize="18sp"
+                android:textSize="@dimen/text_size_super_medium"
                 tools:text="500" />
         </LinearLayout>
 

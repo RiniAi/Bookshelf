@@ -7,6 +7,7 @@
     <dimen name="margin_48dp">48dp</dimen>
     <dimen name="margin_184dp">184dp</dimen>
     <dimen name="margin_204dp">204dp</dimen>
+    <dimen name="margin_240dp">240dp</dimen>
 
     <dimen name="padding_4dp">4dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
@@ -42,5 +43,12 @@
     <dimen name="list_search_text_view_width">200dp</dimen>
     <dimen name="default_button_width">104dp</dimen>
     <dimen name="default_button_height">40dp</dimen>
-    <dimen name="book_challenge_height">262dp</dimen>
+
+    <dimen name="book_challenge_height">296dp</dimen>
+    <dimen name="book_challenge_tv_progress_width">32dp</dimen>
+    <dimen name="book_challenge_iv_progress_height">64dp</dimen>
+    <dimen name="book_challenge_iv_progress_width">256dp</dimen>
+
+    <dimen name="list_of_books_navigation_height">48dp</dimen>
+
 </resources>
