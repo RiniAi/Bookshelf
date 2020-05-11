@@ -5,15 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingTop="48dp"
     android:orientation="vertical">
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/list_of_books_navigation_height"
-        android:background="@drawable/lists"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/navigation_fragment_list" />
 
     <LinearLayout
         android:id="@+id/ll_empty_list"
@@ -31,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/padding_8dp"
-            android:text="@string/main_activity_db_empty"
+            android:text="@string/main_activity_list_empty"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
 

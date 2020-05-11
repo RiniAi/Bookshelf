@@ -35,9 +35,8 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentBookChallengeBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
         presenter.onStart();
-        return view;
+        return binding.getRoot();
     }
 
     @Override

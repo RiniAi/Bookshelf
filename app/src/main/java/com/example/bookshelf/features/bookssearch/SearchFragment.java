@@ -39,11 +39,10 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentSearchBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
         binding.llEmptyList.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.GONE);
         buildButtons();
-        return view;
+        return binding.getRoot();
     }
 
     @Override

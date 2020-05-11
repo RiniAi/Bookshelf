@@ -3,6 +3,7 @@
     <color name="color_primary">#79a7b6</color>
     <color name="color_primary_dark">#4a7886</color>
     <color name="color_accent">#678f9c</color>
+    <color name="color_bar">#c1d1d6</color>
 
     <color name="color_favorite_button">#d2d4d6</color>
     <color name="color_toolbar_title">#F1F1F1</color>
