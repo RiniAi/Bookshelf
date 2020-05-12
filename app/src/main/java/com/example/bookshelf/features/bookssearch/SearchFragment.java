@@ -41,8 +41,15 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         binding.llEmptyList.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
+        poppingKeyboard();
         buildButtons();
         return binding.getRoot();
+    }
+
+    private void poppingKeyboard() {
+        binding.toolbarSearchFragment.etQuery.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
     }
 
     @Override
