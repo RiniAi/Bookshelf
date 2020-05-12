@@ -9,14 +9,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class ListOfBooksPresenter extends BasePresenter<ListOfBooksContract.View> implements ListOfBooksContract.Presenter {
+public class BookStatusPresenter extends BasePresenter<BookStatusContract.View> implements BookStatusContract.Presenter {
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
     @Inject
     Navigator navigator;
 
     @Inject
-    public ListOfBooksPresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, Navigator navigator) {
+    public BookStatusPresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, Navigator navigator) {
         this.searchBookWithStatusUseCase = searchBookWithStatusUseCase;
         this.navigator = navigator;
     }

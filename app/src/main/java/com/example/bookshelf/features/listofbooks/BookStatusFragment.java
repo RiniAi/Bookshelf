@@ -19,12 +19,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class BookStatusFragment extends Fragment implements ListOfBooksContract.View {
+public class BookStatusFragment extends Fragment implements BookStatusContract.View {
     private FragmentListOfBooksBinding binding;
     @Inject
     BookAdapter bookAdapter;
     @Inject
-    ListOfBooksContract.Presenter presenter;
+    BookStatusContract.Presenter presenter;
 
     public static BookStatusFragment newInstance (Book.BookStatus status) {
         Bundle bundle = new Bundle();

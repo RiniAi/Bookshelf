@@ -5,56 +5,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-import com.example.bookshelf.R;
 import com.example.bookshelf.database.Book;
 import com.example.bookshelf.databinding.FragmentListsBinding;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class ListsOfBooksFragment extends Fragment {
-    private FragmentListsBinding binding;
+    private TabLayout navigation;
+    private ViewPager pager;
 
     @Override
-    public View onCreateView (LayoutInflater inflater,
+    public View onCreateView (@NonNull LayoutInflater inflater,
                               ViewGroup container,
                               Bundle savedInstanceState) {
-        binding = FragmentListsBinding.inflate(inflater, container, false);
-        BottomNavigationView navigation = binding.navView;
-        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelected);
-        navigation.setSelectedItemId(R.id.finish);
-        loadFragment(BookStatusFragment.newInstance(Book.BookStatus.FINISH_READING));
+        FragmentListsBinding binding = FragmentListsBinding.inflate(inflater, container, false);
+        navigation = binding.navigation;
+        pager = binding.fragmentContainer;
+        loadFragment();
         return binding.getRoot();
     }
 
-    private boolean loadFragment(Fragment fragment) {
-        if (fragment != null) {
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit();
-            return true;
-        }
-        return false;
+    private void loadFragment() {
+        StatusFragmentPageAdapter adapter = new StatusFragmentPageAdapter(getChildFragmentManager());
+        adapter.addFragment(BookStatusFragment.newInstance(Book.BookStatus.IN_THE_PROCESS_OF_READING), "Read");
+        adapter.addFragment(BookStatusFragment.newInstance(Book.BookStatus.PLAN_READING), "Plan");
+        adapter.addFragment(BookStatusFragment.newInstance(Book.BookStatus.FINISH_READING), "Finish");
+        adapter.addFragment(BookStatusFragment.newInstance(Book.BookStatus.QUIT_READING), "Quit");
+        pager.setAdapter(adapter);
+        navigation.setupWithViewPager(pager);
     }
-
-    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelected
-            = item -> {
-        Fragment fragment = null;
-        switch (item.getItemId()) {
-            case R.id.process:
-                fragment = BookStatusFragment.newInstance(Book.BookStatus.IN_THE_PROCESS_OF_READING);
-                break;
-            case R.id.plan:
-                fragment = BookStatusFragment.newInstance(Book.BookStatus.PLAN_READING);
-                break;
-            case R.id.finish:
-                fragment = BookStatusFragment.newInstance(Book.BookStatus.FINISH_READING);
-                break;
-            case R.id.quit:
-                fragment = BookStatusFragment.newInstance(Book.BookStatus.QUIT_READING);
-                break;
-        }
-        return loadFragment(fragment);
-    };
 }

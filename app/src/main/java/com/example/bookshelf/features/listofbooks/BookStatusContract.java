@@ -4,7 +4,7 @@ import com.example.bookshelf.database.Book;
 
 import java.util.List;
 
-public interface ListOfBooksContract {
+public interface BookStatusContract {
     interface View {
         void hideList();
 
