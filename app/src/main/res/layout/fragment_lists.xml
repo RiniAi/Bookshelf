@@ -12,26 +12,6 @@
         app:tabSelectedTextColor="@color/color_primary_dark"
         app:layout_constraintTop_toTopOf="parent"
         app:tabMode="fixed">
-
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/navigation_list_read"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/navigation_list_want_to_read"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/navigation_list_reading"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-
-        <com.google.android.material.tabs.TabItem
-            android:text="@string/navigation_list_not_reading"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
