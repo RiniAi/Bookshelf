@@ -26,7 +26,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_on" />
+            android:src="@android:drawable/ic_menu_search" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,5 +53,5 @@
         android:layout_height="match_parent"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_item_search"></androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/list_item_search" />
 </LinearLayout>

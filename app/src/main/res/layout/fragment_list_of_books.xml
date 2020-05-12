@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_on" />
+            android:src="@android:drawable/ic_menu_sort_by_size" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,5 +36,5 @@
         android:layout_marginBottom="@dimen/margin_4dp"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/list_item_book"></androidx.recyclerview.widget.RecyclerView>
+        tools:listitem="@layout/list_item_book" />
 </LinearLayout>
