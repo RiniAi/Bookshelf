@@ -11,8 +11,15 @@
         android:id="@+id/toolbar_profile_fragment"
         layout="@layout/toolbar_profile_fragment" />
 
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/toolbar_dropshadow" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/margin_8dp"
         android:layout_marginStart="@dimen/margin_16dp"
         android:layout_marginEnd="@dimen/margin_16dp"
         android:layout_marginBottom="@dimen/margin_16dp"

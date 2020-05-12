@@ -7,10 +7,19 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_8dp">
+        android:layout_marginBottom="@dimen/margin_8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +37,7 @@
                     android:id="@+id/tv_progress"
                     android:layout_width="@dimen/book_challenge_tv_progress_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_240dp"
+                    android:layout_marginTop="@dimen/margin_204dp"
                     android:textColor="@color/color_primary_dark"
                     android:textSize="@dimen/text_size_super_medium"
                     tools:text="12" />
@@ -36,14 +45,14 @@
                 <ImageView
                     android:layout_width="@dimen/book_challenge_iv_progress_width"
                     android:layout_height="@dimen/book_challenge_iv_progress_height"
-                    android:layout_marginTop="@dimen/margin_204dp"
+                    android:layout_marginTop="@dimen/margin_184dp"
                     android:src="@drawable/nooks" />
 
                 <TextView
                     android:id="@+id/tv_counter"
                     android:layout_width="@dimen/book_challenge_tv_progress_width"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_240dp"
+                    android:layout_marginTop="@dimen/margin_204dp"
                     android:textColor="@color/color_primary_dark"
                     android:textSize="@dimen/text_size_super_medium"
                     tools:text="500" />
@@ -60,15 +69,22 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_books"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        tools:layoutManager="GridLayoutManager"
-        tools:listitem="@layout/list_item_book_challenge"
-        tools:spanCount="2" />
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:layout_marginBottom="@dimen/margin_4dp">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layoutManager="LinearLayoutManager"
+        android:layout_margin="@dimen/margin_8dp"
+        tools:listitem="@layout/list_item_book_challenge" />
+    </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/ll_empty_list"
@@ -86,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/padding_8dp"
-            android:text="@string/book_challenge_activity_list_empty"
+            android:text="@string/main_activity_list_empty"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
 </LinearLayout>

@@ -10,6 +10,12 @@
         android:id="@+id/toolbar_search_fragment"
         layout="@layout/toolbar_search_fragment" />
 
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/toolbar_dropshadow" />
+
     <LinearLayout
         android:id="@+id/ll_empty_list"
         android:layout_width="match_parent"
@@ -25,9 +31,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:paddingTop="@dimen/margin_8dp"
-            android:text="@string/search_activity_empty_list"
+            android:paddingTop="@dimen/padding_8dp"
+            android:text="@string/main_activity_list_empty"
             android:textAppearance="?android:textAppearanceSmall" />
     </LinearLayout>
 
@@ -46,8 +51,6 @@
         android:id="@+id/rv_of_books"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/padding_8dp"
-        android:paddingBottom="@dimen/padding_8dp"
         android:scrollbars="vertical"
         tools:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/list_item_search"></androidx.recyclerview.widget.RecyclerView>

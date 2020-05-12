@@ -5,13 +5,14 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="48dp"
+    android:paddingBottom="@dimen/padding_4dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_empty_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="@dimen/padding_4dp"
         android:gravity="center"
         android:orientation="vertical">
 

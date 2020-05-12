@@ -9,26 +9,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/et_query"
+            android:layout_width="@dimen/search_edit_text_width"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:hint="@string/search_fragment_search_the_entire_site"
+            android:backgroundTint="@color/fon"
+            android:textColor="@color/spinner_item_primary" />
 
-            <EditText
-                android:id="@+id/et_query"
-                android:layout_width="@dimen/search_edit_text_width"
-                android:layout_height="wrap_content"
-                android:textColor="@color/fon"
-                android:imeOptions="actionSearch"
-                android:inputType="text" />
-
-            <ImageButton
-                android:id="@+id/ib_send_query"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_search_primary" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/ib_send_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_search_primary" />
     </androidx.appcompat.widget.Toolbar>
 </FrameLayout>

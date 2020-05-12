@@ -85,4 +85,5 @@
     <string name="profile_fragment_quit">quit:</string>
     <string name="profile_fragment_progress">progress:</string>
     <string name="profile_fragment_number_of_books_with_the_status">Number of books with the status</string>
+    <string name="search_fragment_search_the_entire_site">Search the entire site</string>
 </resources>

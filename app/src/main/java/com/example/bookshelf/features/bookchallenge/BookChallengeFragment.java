@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
@@ -42,7 +42,7 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         binding.rvBooks.setLayoutManager(layoutManager);
         binding.rvBooks.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
