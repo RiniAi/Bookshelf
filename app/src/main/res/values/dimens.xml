@@ -3,6 +3,7 @@
     <dimen name="margin_4dp">4dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
     <dimen name="margin_32dp">32dp</dimen>
     <dimen name="margin_48dp">48dp</dimen>
     <dimen name="margin_184dp">184dp</dimen>
@@ -50,5 +51,7 @@
     <dimen name="book_challenge_iv_progress_width">256dp</dimen>
 
     <dimen name="list_of_books_navigation_height">48dp</dimen>
+    <dimen name="fragment_profile_width">184dp</dimen>
+    <dimen name="fragment_profile_avatar">120dp</dimen>
 
 </resources>
