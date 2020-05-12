@@ -30,10 +30,6 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         setSupportActionBar(binding.toolbarAboutBook.toolbar);
     }
 
-    private void updateToolbar(String title) {
-        binding.toolbarAboutBook.toolbar.setTitle(title);
-    }
-
     @Override
     public void showBook(Book book) {
         binding.rbRating.setRating(book.getAverageRating());
@@ -43,8 +39,7 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
         binding.tvLang.setText(book.getLanguage());
         binding.tvDescription.setText(book.getDescription());
         binding.ivCover.setClipToOutline(true);
-        String title = getString(R.string.about_book_title, book.getAuthors(), book.getTitle());
-        updateToolbar(title);
+        binding.toolbarAboutBook.toolbar.setTitle(getString(R.string.about_book_title, book.getAuthors(), book.getTitle()));
     }
 
     @Override

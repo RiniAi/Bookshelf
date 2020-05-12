@@ -53,10 +53,6 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         buildStatusSpinner();
     }
 
-    private void updateToolbar(String title) {
-        binding.toolbarEditBook.toolbar.setTitle(title);
-    }
-
     private void buildStatusSpinner() {
         ArrayAdapter<?> statusAdapter = new ArrayAdapter<Book.BookStatus>(this, R.layout.spinner_item, Book.BookStatus.values());
         statusAdapter.setDropDownViewResource(R.layout.spinner_item);
@@ -68,8 +64,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         binding.rbUserRating.setRating(book.getUserRating());
         binding.btnFavorite.setChecked(book.isFavorite);
         isFavorite = book.isFavorite;
-        String title = getString(R.string.edit_book_title, book.getAuthors(), book.getTitle());
-        updateToolbar(title);
+        binding.toolbarEditBook.toolbar.setTitle(getString(R.string.edit_book_title, book.getAuthors(), book.getTitle()));
     }
 
     @Override

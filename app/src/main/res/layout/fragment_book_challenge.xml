@@ -7,52 +7,58 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/book_challenge_height"
-        android:background="@drawable/bookshelf"
-        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_height="@dimen/book_challenge_height"
+            android:background="@drawable/bookshelf"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_progress"
-                android:layout_width="@dimen/book_challenge_tv_progress_width"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_primary_dark"
-                android:textSize="@dimen/text_size_super_medium"
-                android:layout_marginTop="@dimen/margin_240dp"
-                tools:text="12" />
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="@dimen/book_challenge_iv_progress_width"
-                android:layout_marginTop="@dimen/margin_204dp"
-                android:layout_height="@dimen/book_challenge_iv_progress_height"
-                android:src="@drawable/nooks" />
+                <TextView
+                    android:id="@+id/tv_progress"
+                    android:layout_width="@dimen/book_challenge_tv_progress_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_240dp"
+                    android:textColor="@color/color_primary_dark"
+                    android:textSize="@dimen/text_size_super_medium"
+                    tools:text="12" />
 
-            <TextView
-                android:id="@+id/tv_counter"
-                android:layout_width="@dimen/book_challenge_tv_progress_width"
+                <ImageView
+                    android:layout_width="@dimen/book_challenge_iv_progress_width"
+                    android:layout_height="@dimen/book_challenge_iv_progress_height"
+                    android:layout_marginTop="@dimen/margin_204dp"
+                    android:src="@drawable/nooks" />
+
+                <TextView
+                    android:id="@+id/tv_counter"
+                    android:layout_width="@dimen/book_challenge_tv_progress_width"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_240dp"
+                    android:textColor="@color/color_primary_dark"
+                    android:textSize="@dimen/text_size_super_medium"
+                    tools:text="500" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/sb_counter"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_240dp"
-                android:textColor="@color/color_primary_dark"
-                android:textSize="@dimen/text_size_super_medium"
-                tools:text="500" />
+                android:indeterminate="false"
+                android:max="500"
+                android:paddingTop="@dimen/padding_8dp"
+                android:paddingBottom="@dimen/padding_8dp" />
         </LinearLayout>
-
-        <SeekBar
-            android:id="@+id/sb_counter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:indeterminate="false"
-            android:max="500"
-            android:paddingTop="@dimen/padding_8dp"
-            android:paddingBottom="@dimen/padding_8dp" />
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_books"
@@ -62,6 +68,7 @@
         tools:layoutManager="GridLayoutManager"
         tools:listitem="@layout/list_item_book_challenge"
         tools:spanCount="2" />
+
 
     <LinearLayout
         android:id="@+id/ll_empty_list"

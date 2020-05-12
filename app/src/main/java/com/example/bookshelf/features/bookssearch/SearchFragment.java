@@ -39,7 +39,7 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentSearchBinding.inflate(inflater, container, false);
-        binding.llEmptyList.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
         buildButtons();
         return binding.getRoot();
@@ -62,16 +62,16 @@ public class SearchFragment extends Fragment implements SearchContract.View {
     }
 
     private void buildButtons() {
-        binding.ibSendQuery.setOnClickListener(view -> {
+        binding.toolbarSearchFragment.ibSendQuery.setOnClickListener(view -> {
             hideList();
-            presenter.searchBook(binding.etQuery.getText().toString());
+            presenter.searchBook(binding.toolbarSearchFragment.etQuery.getText().toString());
             hideKeyboard(getActivity(), view);
         });
 
-        binding.etQuery.setOnEditorActionListener((view, actionId, event) -> {
+        binding.toolbarSearchFragment.etQuery.setOnEditorActionListener((view, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideList();
-                presenter.searchBook(binding.etQuery.getText().toString());
+                presenter.searchBook(binding.toolbarSearchFragment.etQuery.getText().toString());
                 hideKeyboard(getActivity(), view);
                 return true;
             }

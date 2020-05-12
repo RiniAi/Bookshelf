@@ -6,26 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/et_query"
-            android:layout_width="@dimen/search_edit_text_width"
-            android:layout_height="wrap_content"
-            android:imeOptions="actionSearch"
-            android:inputType="text" />
-
-        <ImageButton
-            android:id="@+id/ib_send_query"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_search_primary" />
-    </LinearLayout>
+    <include
+        android:id="@+id/toolbar_search_fragment"
+        layout="@layout/toolbar_search_fragment" />
 
     <LinearLayout
         android:id="@+id/ll_empty_list"
