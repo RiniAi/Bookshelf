@@ -7,8 +7,8 @@
     </style>
 
     <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/color_primary</item>
-        <item name="titleTextColor">@color/color_toolbar_title</item>
+        <item name="android:background">@color/fon</item>
+        <item name="titleTextColor">@color/color_primary_dark</item>
     </style>
 
     <style name="RatingBar" parent="Theme.AppCompat">

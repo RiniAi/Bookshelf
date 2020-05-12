@@ -39,7 +39,7 @@
     <dimen name="edit_book_date_picker_top">-24dp</dimen>
     <dimen name="edit_book_date_picker_bottom">-8dp</dimen>
 
-    <dimen name="search_edit_text_width">320dp</dimen>
+    <dimen name="search_edit_text_width">292dp</dimen>
     <dimen name="list_search_text_view_width">200dp</dimen>
     <dimen name="default_button_width">104dp</dimen>
     <dimen name="default_button_height">40dp</dimen>

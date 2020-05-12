@@ -12,8 +12,10 @@ import com.example.bookshelf.features.bookedit.EditBookContract;
 import com.example.bookshelf.features.bookedit.EditBookPresenter;
 import com.example.bookshelf.features.bookssearch.SearchContract;
 import com.example.bookshelf.features.bookssearch.SearchPresenter;
-import com.example.bookshelf.features.listofbooks.ListOfBooksContract;
-import com.example.bookshelf.features.listofbooks.ListOfBooksPresenter;
+import com.example.bookshelf.features.listofbooks.BookStatusContract;
+import com.example.bookshelf.features.listofbooks.BookStatusPresenter;
+import com.example.bookshelf.features.profile.ProfileContract;
+import com.example.bookshelf.features.profile.ProfilePresenter;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
 import com.example.bookshelf.usecases.RequestBooksUseCase;
@@ -24,33 +26,36 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class PresenterModule {
-
+class PresenterModule {
     @Provides
-    public ListOfBooksContract.Presenter providesMainPresenter(SearchBookWithStatusUseCase searchBookUseCase, Navigator navigator) {
-        return new ListOfBooksPresenter(searchBookUseCase, navigator);
+    BookStatusContract.Presenter providesBookStatusPresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, Navigator navigator) {
+        return new BookStatusPresenter(searchBookWithStatusUseCase, navigator);
     }
 
     @Provides
-    public SearchContract.Presenter providesSearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
+    SearchContract.Presenter providesSearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
         return new SearchPresenter(requestBooksUseCase, navigator);
     }
 
     @Provides
-    public EditBookContract.Presenter providesEditBookPresenter(Context context, SearchBookUseCase searchBookUseCase, InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
-                                                                DeleteBookUseCase deleteBookUseCase
-    ) {
+    EditBookContract.Presenter providesEditBookPresenter(Context context, SearchBookUseCase searchBookUseCase, InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
+                                                                DeleteBookUseCase deleteBookUseCase) {
         return new EditBookPresenter(context, searchBookUseCase, insertOrUpdateBookUseCase, deleteBookUseCase);
     }
 
     @Provides
-    public AboutBookContract.Presenter providesAboutBookAboutBookPresenter() {
+    AboutBookContract.Presenter providesAboutBookAboutBookPresenter() {
         return new AboutBookPresenter();
     }
 
     @Provides
-    public BookChallengeContract.Presenter providesBookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences,
+    BookChallengeContract.Presenter providesBookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences,
                                                                           Navigator navigator) {
         return new BookChallengePresenter(searchBookWithStatusUseCase, sharedPreferences, navigator);
+    }
+
+    @Provides
+    ProfileContract.Presenter providesProfilePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase) {
+        return new ProfilePresenter(searchBookWithStatusUseCase);
     }
 }

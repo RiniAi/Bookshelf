@@ -9,6 +9,7 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.features.bookchallenge.BookChallengeFragment;
 import com.example.bookshelf.features.bookssearch.SearchFragment;
 import com.example.bookshelf.features.listofbooks.ListsOfBooksFragment;
+import com.example.bookshelf.features.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().popBackStack();
                 }
                 fragment = new SearchFragment();
+                break;
+            case R.id.profile:
+                if (navigation.getSelectedItemId() == R.id.profile) {
+                    getSupportFragmentManager().popBackStack();
+                }
+                fragment = new ProfileFragment();
                 break;
         }
         return loadFragment(fragment);
