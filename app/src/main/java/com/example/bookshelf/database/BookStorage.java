@@ -7,8 +7,6 @@ public interface BookStorage {
 
     List<Book> getAllWithStatus(Book.BookStatus status);
 
-    List<Book> getAll();
-
     void insertOrUpdate(Book book);
 
     void delete(Book book);

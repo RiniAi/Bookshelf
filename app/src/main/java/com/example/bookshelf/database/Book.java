@@ -16,14 +16,14 @@ public class Book implements Serializable {
     public String title;
     @NonNull
     public String authors;
-    public float averageRating;
+    float averageRating;
     public float userRating;
     public boolean isFavorite;
     public String readDate;
-    public String publisher;
-    public String publishedDate;
-    public int pageCount;
-    public String lang;
+    String publisher;
+    String publishedDate;
+    int pageCount;
+    String lang;
     @TypeConverters(BookStatusConverter.class)
     BookStatus status;
 
@@ -76,8 +76,8 @@ public class Book implements Serializable {
         }
     }
 
-    public String imageLinks;
-    public String description;
+    String imageLinks;
+    String description;
 
     public String getTitle() {
         return title;

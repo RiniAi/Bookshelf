@@ -22,10 +22,6 @@ public class LocalBookStorage implements BookStorage {
         return bookDao.getAllWithStatus(BookStatusConverter.fromStatusToString(status));
     }
 
-    public List<Book> getAll() {
-        return bookDao.getAll();
-    }
-
     public void insertOrUpdate(Book book) {
         if (search(book) != null) {
             bookDao.update(book);

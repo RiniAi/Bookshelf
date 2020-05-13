@@ -21,6 +21,7 @@ import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
 import com.example.bookshelf.usecases.RequestBooksUseCase;
 import com.example.bookshelf.usecases.SearchBookUseCase;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
+import com.example.bookshelf.usecases.SearchListOfBookChallengeUseCase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -55,7 +56,7 @@ class PresenterModule {
     }
 
     @Provides
-    ProfileContract.Presenter providesProfilePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase) {
-        return new ProfilePresenter(searchBookWithStatusUseCase);
+    ProfileContract.Presenter providesProfilePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SearchListOfBookChallengeUseCase searchListOfBookChallengeUseCase) {
+        return new ProfilePresenter(searchBookWithStatusUseCase, searchListOfBookChallengeUseCase);
     }
 }

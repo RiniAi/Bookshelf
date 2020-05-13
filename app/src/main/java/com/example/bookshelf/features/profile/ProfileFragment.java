@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment;
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
+import com.example.bookshelf.database.BookChallenge;
 import com.example.bookshelf.databinding.FragmentProfileBinding;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -43,5 +46,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         binding.tvNumberOfBooksInPlan.setText(numberBooksPlan);
         binding.tvNumberOfBooksInFinish.setText(numberBooksRead);
         binding.tvNumberOfBooksInQuit.setText(numberBooksQuit);
+    }
+
+    @Override
+    public void loadStatisticsBookChallenge(List<BookChallenge> listsBookChallenge) {
+        binding.tvListsChallenges.setText(listsBookChallenge.toString());
     }
 }

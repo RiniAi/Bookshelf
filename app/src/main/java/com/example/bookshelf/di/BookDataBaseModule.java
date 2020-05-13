@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.room.Room;
 
+import com.example.bookshelf.database.BookChallengeDao;
 import com.example.bookshelf.database.BookDao;
 import com.example.bookshelf.database.BookDatabase;
 
@@ -11,19 +12,24 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class BookDataBaseModule {
+class BookDataBaseModule {
     @Provides
-    public BookDatabase providesDatabase(Context context) {
+    BookDatabase providesDatabase(Context context) {
         return Room.databaseBuilder(
                 context,
                 BookDatabase.class,
-                "db_books")
+                "db_bookssssss")
                 .allowMainThreadQueries()
                 .build();
     }
 
     @Provides
-    public BookDao providesBookDao(BookDatabase bookDataBase) {
+    BookDao providesBookDao(BookDatabase bookDataBase) {
         return bookDataBase.bookDao();
+    }
+
+    @Provides
+    BookChallengeDao providesBookChallengeDao(BookDatabase bookDataBase) {
+        return bookDataBase.bookChallengeDao();
     }
 }
