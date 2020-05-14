@@ -1,4 +1,4 @@
-package com.example.bookshelf.database;
+package com.example.bookshelf.database.book;
 
 import android.content.Context;
 

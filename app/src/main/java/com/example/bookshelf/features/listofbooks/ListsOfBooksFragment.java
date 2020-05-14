@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.databinding.FragmentListsBinding;
 import com.google.android.material.tabs.TabLayout;
 

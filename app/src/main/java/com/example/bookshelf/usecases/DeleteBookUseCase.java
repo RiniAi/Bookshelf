@@ -1,7 +1,7 @@
 package com.example.bookshelf.usecases;
 
-import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.database.book.BookStorage;
 
 import javax.inject.Inject;
 

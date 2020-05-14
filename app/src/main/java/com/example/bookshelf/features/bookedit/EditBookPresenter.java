@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.text.format.DateUtils;
 
 import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
 import com.example.bookshelf.usecases.SearchBookUseCase;
@@ -17,7 +17,7 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
-import static com.example.bookshelf.database.Book.BookStatus.resolveStatuses;
+import static com.example.bookshelf.database.book.Book.BookStatus.resolveStatuses;
 
 public class EditBookPresenter extends BasePresenter<EditBookContract.View> implements EditBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";

@@ -4,8 +4,8 @@ import android.content.SharedPreferences;
 
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookChallenge;
+import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.database.bookChallenge.BookChallenge;
 import com.example.bookshelf.usecases.InsertOrUpdateBookChallengeUseCase;
 import com.example.bookshelf.usecases.SearchBookChallengeUseCase;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;

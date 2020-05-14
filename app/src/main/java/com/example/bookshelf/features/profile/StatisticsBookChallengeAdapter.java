@@ -11,18 +11,18 @@ import androidx.annotation.NonNull;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BaseBookChallengeAdapter;
 import com.example.bookshelf.base.BaseViewHolder;
-import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookChallenge;
+import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.database.bookChallenge.BookChallenge;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import javax.inject.Inject;
 
-public class BookChallengeAdapter extends BaseBookChallengeAdapter <BookChallenge, BookChallengeAdapter.BookChallengeViewHolder> {
+public class StatisticsBookChallengeAdapter extends BaseBookChallengeAdapter <BookChallenge, StatisticsBookChallengeAdapter.BookChallengeViewHolder> {
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
 
     @Inject
-    public BookChallengeAdapter(Context context) {
+    public StatisticsBookChallengeAdapter(Context context) {
         super(context);
     }
 
@@ -30,7 +30,7 @@ public class BookChallengeAdapter extends BaseBookChallengeAdapter <BookChalleng
     @Override
     public BookChallengeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_statistics_book_challenge, parent, false);
-        return new BookChallengeAdapter.BookChallengeViewHolder(view);
+        return new StatisticsBookChallengeAdapter.BookChallengeViewHolder(view);
     }
 
     @Override

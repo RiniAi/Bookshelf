@@ -2,7 +2,7 @@ package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 
 public interface AboutBookContract {
     interface View {

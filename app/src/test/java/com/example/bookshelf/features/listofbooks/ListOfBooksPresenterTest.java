@@ -1,7 +1,7 @@
 package com.example.bookshelf.features.listofbooks;
 
 import com.example.bookshelf.Navigator;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package com.example.bookshelf.database;
+package com.example.bookshelf.database.bookChallenge;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

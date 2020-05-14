@@ -4,7 +4,7 @@ import android.content.Context;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 
 import java.util.List;
 

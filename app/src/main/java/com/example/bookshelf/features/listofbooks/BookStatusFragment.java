@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStatusConverter;
+import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.database.book.BookStatusConverter;
 import com.example.bookshelf.databinding.FragmentListOfBooksBinding;
 
 import java.util.List;

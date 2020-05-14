@@ -2,7 +2,7 @@ package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

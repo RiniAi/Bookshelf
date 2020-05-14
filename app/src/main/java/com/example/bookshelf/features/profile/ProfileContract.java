@@ -1,6 +1,6 @@
 package com.example.bookshelf.features.profile;
 
-import com.example.bookshelf.database.BookChallenge;
+import com.example.bookshelf.database.bookChallenge.BookChallenge;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.bookshelf.network;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.models.BooksApiResponse;
 import com.example.bookshelf.models.BooksApiResponseItem;
 

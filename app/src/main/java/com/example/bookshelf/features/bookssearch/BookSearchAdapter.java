@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BaseAdapter;
 import com.example.bookshelf.base.BaseViewHolder;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;

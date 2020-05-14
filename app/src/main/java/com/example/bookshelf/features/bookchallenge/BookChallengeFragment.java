@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.databinding.FragmentBookChallengeBinding;
 
 import java.util.List;

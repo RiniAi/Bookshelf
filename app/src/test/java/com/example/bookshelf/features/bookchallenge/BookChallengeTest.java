@@ -3,7 +3,7 @@ package com.example.bookshelf.features.bookchallenge;
 import android.content.SharedPreferences;
 
 import com.example.bookshelf.Navigator;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import org.junit.jupiter.api.BeforeEach;

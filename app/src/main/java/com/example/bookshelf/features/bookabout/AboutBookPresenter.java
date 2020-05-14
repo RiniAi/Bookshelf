@@ -3,7 +3,7 @@ package com.example.bookshelf.features.bookabout;
 import android.os.Bundle;
 
 import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 
 public class AboutBookPresenter extends BasePresenter<AboutBookContract.View> implements AboutBookContract.Presenter {
     public static final String EXTRA_BOOK = "book";

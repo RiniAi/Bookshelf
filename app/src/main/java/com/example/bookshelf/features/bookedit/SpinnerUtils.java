@@ -2,7 +2,7 @@ package com.example.bookshelf.features.bookedit;
 
 import android.widget.Spinner;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 
 import javax.inject.Inject;
 

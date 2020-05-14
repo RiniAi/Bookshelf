@@ -1,8 +1,8 @@
 package com.example.bookshelf.usecases;
 
-import com.example.bookshelf.database.Book;
-import com.example.bookshelf.database.BookStatusConverter;
-import com.example.bookshelf.database.BookStorage;
+import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.database.book.BookStatusConverter;
+import com.example.bookshelf.database.book.BookStorage;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase.Params;
 
 import org.junit.jupiter.api.BeforeEach;

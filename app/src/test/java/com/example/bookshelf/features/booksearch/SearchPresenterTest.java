@@ -1,7 +1,7 @@
 package com.example.bookshelf.features.booksearch;
 
 import com.example.bookshelf.Navigator;
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.features.bookssearch.SearchContract;
 import com.example.bookshelf.features.bookssearch.SearchPresenter;
 import com.example.bookshelf.usecases.RequestBooksUseCase;

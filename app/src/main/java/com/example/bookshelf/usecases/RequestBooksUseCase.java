@@ -1,6 +1,6 @@
 package com.example.bookshelf.usecases;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.features.bookssearch.Repository;
 
 import java.util.List;

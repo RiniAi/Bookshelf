@@ -1,7 +1,7 @@
 package com.example.bookshelf.usecases;
 
-import com.example.bookshelf.database.BookChallenge;
-import com.example.bookshelf.database.BookChallengeStorage;
+import com.example.bookshelf.database.bookChallenge.BookChallenge;
+import com.example.bookshelf.database.bookChallenge.BookChallengeStorage;
 
 import java.util.Objects;
 

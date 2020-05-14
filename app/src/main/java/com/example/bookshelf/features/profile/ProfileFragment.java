@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
-import com.example.bookshelf.database.BookChallenge;
+import com.example.bookshelf.database.bookChallenge.BookChallenge;
 import com.example.bookshelf.databinding.FragmentProfileBinding;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     @Inject
     ProfileContract.Presenter presenter;
     @Inject
-    BookChallengeAdapter bookChallengeAdapter;
+    StatisticsBookChallengeAdapter bookChallengeAdapter;
 
     @Override
     public View onCreateView (LayoutInflater inflater,

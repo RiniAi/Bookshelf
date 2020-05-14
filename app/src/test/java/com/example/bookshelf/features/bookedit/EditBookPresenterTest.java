@@ -3,7 +3,7 @@ package com.example.bookshelf.features.bookedit;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
 import com.example.bookshelf.usecases.SearchBookUseCase;
