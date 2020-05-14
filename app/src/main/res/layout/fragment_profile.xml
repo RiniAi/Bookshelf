@@ -221,11 +221,18 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/tv_lists_challenges"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginEnd="@dimen/margin_16dp"
+        android:layout_marginBottom="@dimen/margin_16dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_statistics_book_challenge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            tools:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/list_item_statistics_book_challenge" />
     </androidx.cardview.widget.CardView>
 </LinearLayout>
 

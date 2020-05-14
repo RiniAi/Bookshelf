@@ -22,6 +22,8 @@ public interface BookChallengeContract {
     interface Presenter {
         void onStart();
 
+        void saveOrUpdateCounterAndProgress();
+
         void onProgressChanged(int i);
 
         void saveCounter(String counter);

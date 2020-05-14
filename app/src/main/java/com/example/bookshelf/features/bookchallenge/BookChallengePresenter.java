@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.Book;
+import com.example.bookshelf.database.BookChallenge;
+import com.example.bookshelf.usecases.InsertOrUpdateBookChallengeUseCase;
+import com.example.bookshelf.usecases.SearchBookChallengeUseCase;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import java.util.List;
@@ -13,16 +16,24 @@ import javax.inject.Inject;
 
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     public static final String STORAGE_COUNTER = "counter";
+    private BookChallenge bookChallenge = new BookChallenge();
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
+    @Inject
+    InsertOrUpdateBookChallengeUseCase challengeUseCase;
+    @Inject
+    SearchBookChallengeUseCase searchBookChallengeUseCase;
     @Inject
     SharedPreferences sharedPreferences;
     @Inject
     Navigator navigator;
 
     @Inject
-    public BookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences, Navigator navigator) {
+    public BookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, InsertOrUpdateBookChallengeUseCase challengeUseCase,
+                                  SearchBookChallengeUseCase searchBookChallengeUseCase, SharedPreferences sharedPreferences, Navigator navigator) {
         this.searchBookWithStatusUseCase = searchBookWithStatusUseCase;
+        this.challengeUseCase = challengeUseCase;
+        this.searchBookChallengeUseCase = searchBookChallengeUseCase;
         this.sharedPreferences = sharedPreferences;
         this.navigator = navigator;
     }
@@ -33,10 +44,21 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
         loadBooks();
     }
 
+    @Override
+    public void saveOrUpdateCounterAndProgress() {
+        bookChallenge.setYear(2020);
+        SearchBookChallengeUseCase.Params paramsSearch = new SearchBookChallengeUseCase.Params(bookChallenge);
+        InsertOrUpdateBookChallengeUseCase.Params paramsInsertOrUpdate = new InsertOrUpdateBookChallengeUseCase.Params(bookChallenge, bookChallenge.progress, bookChallenge.counter);
+        BookChallenge dbBookChallenge = searchBookChallengeUseCase.run(paramsSearch);
+        if (bookChallenge != dbBookChallenge)
+        challengeUseCase.run(paramsInsertOrUpdate);
+    }
+
     private void loadCounter() {
         String counter;
         try {
             counter = sharedPreferences.getString(STORAGE_COUNTER, "0");
+            bookChallenge.setCounter(Integer.parseInt(counter));
         } catch (NullPointerException e) {
             counter = "0";
         }
@@ -64,6 +86,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
 
     private void changeProgress(List<Book> books) {
         view.changeProgress(String.valueOf(books.size()));
+        bookChallenge.setProgress(books.size());
     }
 
     @Override
@@ -77,6 +100,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
         editor.putString(STORAGE_COUNTER, counter);
         editor.apply();
         view.showCounterSavedMessage();
+        bookChallenge.setCounter(Integer.parseInt(counter));
     }
 
     @Override

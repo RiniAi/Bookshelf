@@ -17,8 +17,10 @@ import com.example.bookshelf.features.listofbooks.BookStatusPresenter;
 import com.example.bookshelf.features.profile.ProfileContract;
 import com.example.bookshelf.features.profile.ProfilePresenter;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
+import com.example.bookshelf.usecases.InsertOrUpdateBookChallengeUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
 import com.example.bookshelf.usecases.RequestBooksUseCase;
+import com.example.bookshelf.usecases.SearchBookChallengeUseCase;
 import com.example.bookshelf.usecases.SearchBookUseCase;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 import com.example.bookshelf.usecases.SearchListOfBookChallengeUseCase;
@@ -50,9 +52,10 @@ class PresenterModule {
     }
 
     @Provides
-    BookChallengeContract.Presenter providesBookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SharedPreferences sharedPreferences,
-                                                                          Navigator navigator) {
-        return new BookChallengePresenter(searchBookWithStatusUseCase, sharedPreferences, navigator);
+    BookChallengeContract.Presenter providesBookChallengePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, InsertOrUpdateBookChallengeUseCase challengeUseCase,
+                                                                   SearchBookChallengeUseCase searchBookChallengeUseCase, SharedPreferences sharedPreferences,
+                                                                   Navigator navigator) {
+        return new BookChallengePresenter(searchBookWithStatusUseCase, challengeUseCase, searchBookChallengeUseCase, sharedPreferences, navigator);
     }
 
     @Provides

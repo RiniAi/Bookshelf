@@ -49,6 +49,12 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.saveOrUpdateCounterAndProgress();
+    }
+
+    @Override
     public void changeCounter(String counter) {
         binding.tvCounter.setText(counter);
     }

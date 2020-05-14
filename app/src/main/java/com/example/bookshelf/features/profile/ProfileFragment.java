@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
@@ -22,6 +23,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     private FragmentProfileBinding binding;
     @Inject
     ProfileContract.Presenter presenter;
+    @Inject
+    BookChallengeAdapter bookChallengeAdapter;
 
     @Override
     public View onCreateView (LayoutInflater inflater,
@@ -38,6 +41,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        binding.rvStatisticsBookChallenge.setLayoutManager(layoutManager);
+        binding.rvStatisticsBookChallenge.setAdapter(bookChallengeAdapter);
     }
 
     @Override
@@ -50,6 +56,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
 
     @Override
     public void loadStatisticsBookChallenge(List<BookChallenge> listsBookChallenge) {
-        binding.tvListsChallenges.setText(listsBookChallenge.toString());
+        bookChallengeAdapter.setList(listsBookChallenge);
     }
 }
