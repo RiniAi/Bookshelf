@@ -11,11 +11,15 @@ import androidx.annotation.NonNull;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BaseBookChallengeAdapter;
 import com.example.bookshelf.base.BaseViewHolder;
+import com.example.bookshelf.database.Book;
 import com.example.bookshelf.database.BookChallenge;
+import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import javax.inject.Inject;
 
 public class BookChallengeAdapter extends BaseBookChallengeAdapter <BookChallenge, BookChallengeAdapter.BookChallengeViewHolder> {
+    @Inject
+    SearchBookWithStatusUseCase searchBookWithStatusUseCase;
 
     @Inject
     public BookChallengeAdapter(Context context) {
@@ -36,7 +40,7 @@ public class BookChallengeAdapter extends BaseBookChallengeAdapter <BookChalleng
             return;
         }
         holder.year.setText(String.valueOf(bookChallenge.getYear()));
-        holder.progress.setText(String.valueOf(bookChallenge.getProgress()));
+        holder.progress.setText(String.valueOf(searchBookWithStatusUseCase.run(Book.BookStatus.FINISH_READING).size()));
         holder.counter.setText(String.valueOf(bookChallenge.getCounter()));
     }
 
@@ -51,6 +55,5 @@ public class BookChallengeAdapter extends BaseBookChallengeAdapter <BookChalleng
             progress = (TextView) itemView.findViewById(R.id.tv_progress_list_item);
             counter = (TextView) itemView.findViewById(R.id.tv_counter_list_item);
         }
-
     }
 }
