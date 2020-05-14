@@ -34,6 +34,7 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
         buildButtons();
         presenter.onStartWithData(getIntent().getExtras());
         setSupportActionBar(binding.toolbarEditBook.toolbar);
+        binding.toolbarEditBook.toolbar.setNavigationOnClickListener(view -> finish());
     }
 
     private void buildButtons() {
