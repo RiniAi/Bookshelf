@@ -3,6 +3,7 @@ package com.example.bookshelf.features.bookssearch;
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.features.bookabout.AboutBookFragment;
 import com.example.bookshelf.usecases.RequestBooksUseCase;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void openBook(Book book) {
-        navigator.openBook(book);
+        view.openBook(AboutBookFragment.newInstance(book));
     }
 
     @Override

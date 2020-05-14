@@ -14,7 +14,7 @@ public interface BookChallengeDao {
     List<BookChallenge> getAll();
 
     @Query("SELECT * FROM challenges WHERE year = :year")
-    BookChallenge findBookChallengeYear (int year);
+    BookChallenge findBookChallengeYear(int year);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(BookChallenge challenge);

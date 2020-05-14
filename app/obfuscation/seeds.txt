@@ -1987,7 +1987,7 @@ com.google.android.material.floatingactionbutton.FloatingActionButton: void setB
 com.google.android.material.R$attr: int tabIconTintMode
 com.google.android.material.R$styleable: int[] ChipGroup
 androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView: void setSupportBackgroundTintList(android.content.res.ColorStateList)
-com.example.bookshelf.features.bookabout.AboutBookActivity
+com.example.bookshelf.features.bookabout.AboutBookFragment
 com.google.android.material.R$style: int Widget_AppCompat_RatingBar
 androidx.appcompat.R$attr: int theme
 com.google.android.material.R$style: int Base_Widget_AppCompat_Spinner
@@ -2186,7 +2186,7 @@ androidx.appcompat.resources.R$styleable: int StateListDrawable_android_exitFade
 androidx.appcompat.R$style: int Base_DialogWindowTitle_AppCompat
 com.google.android.material.button.MaterialButton: void setBackgroundTintMode(android.graphics.PorterDuff$Mode)
 com.squareup.picasso.Picasso$Priority: com.squareup.picasso.Picasso$Priority[] values()
-com.example.bookshelf.features.bookabout.AboutBookActivity: AboutBookActivity()
+com.example.bookshelf.features.bookabout.AboutBookFragment: AboutBookActivity()
 androidx.lifecycle.CompositeGeneratedAdaptersObserver
 com.google.android.material.R$styleable: int[] AppCompatSeekBar
 com.google.android.material.R$styleable: int AppCompatTheme_editTextBackground

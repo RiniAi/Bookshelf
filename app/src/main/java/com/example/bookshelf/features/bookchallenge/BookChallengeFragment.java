@@ -16,6 +16,7 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.databinding.FragmentBookChallengeBinding;
+import com.example.bookshelf.features.bookabout.AboutBookFragment;
 
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
     BookChallengeContract.Presenter presenter;
 
     @Override
-    public View onCreateView (LayoutInflater inflater,
-                                 ViewGroup container,
-                                 Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentBookChallengeBinding.inflate(inflater, container, false);
@@ -86,6 +87,14 @@ public class BookChallengeFragment extends Fragment implements SeekBar.OnSeekBar
     @Override
     public void showCounterSavedMessage() {
         Toast.makeText(getActivity(), R.string.book_challenge_save_counter, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void openBook(AboutBookFragment fragment) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

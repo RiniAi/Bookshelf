@@ -42,7 +42,7 @@ class PresenterModule {
 
     @Provides
     EditBookContract.Presenter providesEditBookPresenter(Context context, SearchBookUseCase searchBookUseCase, InsertOrUpdateBookUseCase insertOrUpdateBookUseCase,
-                                                                DeleteBookUseCase deleteBookUseCase) {
+                                                         DeleteBookUseCase deleteBookUseCase) {
         return new EditBookPresenter(context, searchBookUseCase, insertOrUpdateBookUseCase, deleteBookUseCase);
     }
 

@@ -6,6 +6,7 @@ import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.database.bookChallenge.BookChallenge;
+import com.example.bookshelf.features.bookabout.AboutBookFragment;
 import com.example.bookshelf.usecases.InsertOrUpdateBookChallengeUseCase;
 import com.example.bookshelf.usecases.SearchBookChallengeUseCase;
 import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
@@ -51,7 +52,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
         InsertOrUpdateBookChallengeUseCase.Params paramsInsertOrUpdate = new InsertOrUpdateBookChallengeUseCase.Params(bookChallenge, bookChallenge.progress, bookChallenge.counter);
         BookChallenge dbBookChallenge = searchBookChallengeUseCase.run(paramsSearch);
         if (bookChallenge != dbBookChallenge)
-        challengeUseCase.run(paramsInsertOrUpdate);
+            challengeUseCase.run(paramsInsertOrUpdate);
     }
 
     private void loadCounter() {
@@ -105,6 +106,6 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
 
     @Override
     public void openBook(Book book) {
-        navigator.openBook(book);
+        view.openBook(AboutBookFragment.newInstance(book));
     }
 }

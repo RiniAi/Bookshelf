@@ -7,9 +7,7 @@ import com.example.bookshelf.di.AppModule;
 import com.example.bookshelf.di.DaggerAppComponent;
 
 public class App extends Application {
-
     private static AppComponent appComponent;
-
     public static AppComponent getAppComponent() {
         return appComponent;
     }
@@ -17,7 +15,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(App.this))
                 .build();

@@ -20,6 +20,7 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.databinding.FragmentSearchBinding;
+import com.example.bookshelf.features.bookabout.AboutBookFragment;
 
 import java.util.List;
 
@@ -33,9 +34,9 @@ public class SearchFragment extends Fragment implements SearchContract.View {
     SearchContract.Presenter presenter;
 
     @Override
-    public View onCreateView (LayoutInflater inflater,
-                              ViewGroup container,
-                              Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentSearchBinding.inflate(inflater, container, false);
@@ -49,7 +50,7 @@ public class SearchFragment extends Fragment implements SearchContract.View {
     private void poppingKeyboard() {
         binding.toolbarSearchFragment.etQuery.requestFocus();
         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
     @Override
@@ -126,6 +127,12 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         binding.rvOfBooks.setVisibility(View.GONE);
         Toast.makeText(getActivity(), R.string.search_activity_nothing_was_found, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void openBook(AboutBookFragment fragment) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }
-
-

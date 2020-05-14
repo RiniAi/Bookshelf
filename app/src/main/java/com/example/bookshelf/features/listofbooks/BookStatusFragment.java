@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.bookshelf.App;
+import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.database.book.BookStatusConverter;
 import com.example.bookshelf.databinding.FragmentListOfBooksBinding;
+import com.example.bookshelf.features.bookabout.AboutBookFragment;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class BookStatusFragment extends Fragment implements BookStatusContract.V
     @Inject
     BookStatusContract.Presenter presenter;
 
-    public static BookStatusFragment newInstance (Book.BookStatus status) {
+    public static BookStatusFragment newInstance(Book.BookStatus status) {
         Bundle bundle = new Bundle();
         bundle.putString("status", BookStatusConverter.fromStatusToString(status));
         BookStatusFragment fragment = new BookStatusFragment();
@@ -35,9 +37,9 @@ public class BookStatusFragment extends Fragment implements BookStatusContract.V
     }
 
     @Override
-    public View onCreateView (LayoutInflater inflater,
-                              ViewGroup container,
-                              Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentListOfBooksBinding.inflate(inflater, container, false);
@@ -71,5 +73,13 @@ public class BookStatusFragment extends Fragment implements BookStatusContract.V
         binding.rvBooks.setVisibility(View.VISIBLE);
         binding.llEmptyList.setVisibility(View.GONE);
         bookAdapter.setList(booksList);
+    }
+
+    @Override
+    public void openBook(AboutBookFragment fragment) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

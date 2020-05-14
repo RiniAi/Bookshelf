@@ -9,6 +9,7 @@ import javax.inject.Inject;
 public class LocalBookStorage implements BookStorage {
     @Inject
     BookDao bookDao;
+
     @Inject
     public LocalBookStorage() {
         App.getAppComponent().inject(this);

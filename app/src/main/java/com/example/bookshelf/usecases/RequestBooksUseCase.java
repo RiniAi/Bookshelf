@@ -23,6 +23,7 @@ public class RequestBooksUseCase {
 
     public static class Params {
         String query;
+
         public Params(String query) {
             this.query = query;
         }
@@ -39,9 +40,7 @@ public class RequestBooksUseCase {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-
             Params params = (Params) o;
-
             return query != null ? query.equals(params.query) : params.query == null;
         }
 

@@ -1,33 +1,47 @@
 package com.example.bookshelf.features.bookabout;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.bookshelf.App;
 import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
-import com.example.bookshelf.databinding.ActivityAboutBookBinding;
+import com.example.bookshelf.databinding.FragmentAboutBookBinding;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
-public class AboutBookActivity extends AppCompatActivity implements AboutBookContract.View {
-    private ActivityAboutBookBinding binding;
+import static com.example.bookshelf.features.bookabout.AboutBookPresenter.EXTRA_BOOK;
+
+public class AboutBookFragment extends Fragment implements AboutBookContract.View {
+    private FragmentAboutBookBinding binding;
     @Inject
     AboutBookContract.Presenter presenter;
 
+    public static AboutBookFragment newInstance(Book book) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(EXTRA_BOOK, book);
+        AboutBookFragment fragment = new AboutBookFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
-        binding = ActivityAboutBookBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        presenter.onStartWithData(getIntent().getExtras());
-        setSupportActionBar(binding.toolbarAboutBook.toolbar);
+        binding = FragmentAboutBookBinding.inflate(inflater, container, false);
+        presenter.onStartWithData(getArguments());
+        binding.toolbarAboutBook.toolbar.setNavigationOnClickListener(view -> getActivity().onBackPressed());
+        return binding.getRoot();
     }
 
     @Override
@@ -54,6 +68,6 @@ public class AboutBookActivity extends AppCompatActivity implements AboutBookCon
 
     @Override
     public void showErrorMessage() {
-        Toast.makeText(AboutBookActivity.this, R.string.book_is_not_found, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), R.string.book_is_not_found, Toast.LENGTH_SHORT).show();
     }
 }

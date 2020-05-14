@@ -10,13 +10,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class BookMapper {
+
     @Inject
     public BookMapper() {
     }
 
     public List<Book> mapResponseToDomain(BooksApiResponse bookResult) {
         List<Book> booksSearch = new ArrayList<>();
-        for (BooksApiResponseItem item: bookResult.getItems()) {
+        for (BooksApiResponseItem item : bookResult.getItems()) {
             Book book = new Book();
             if (item.getVolumeInfo().getAuthors() == null) {
                 book.setAuthors("");

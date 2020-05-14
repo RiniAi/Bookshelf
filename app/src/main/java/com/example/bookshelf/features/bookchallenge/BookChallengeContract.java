@@ -1,6 +1,7 @@
 package com.example.bookshelf.features.bookchallenge;
 
 import com.example.bookshelf.database.book.Book;
+import com.example.bookshelf.features.bookabout.AboutBookFragment;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface BookChallengeContract {
         void changeProgress(String progress);
 
         void showCounterSavedMessage();
+
+        void openBook(AboutBookFragment newInstance);
     }
 
     interface Presenter {

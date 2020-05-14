@@ -22,6 +22,7 @@ import javax.inject.Inject;
 public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
     private OnItemClickListener onClickListener;
     private OnEditClickListener onEditListener;
+
     @Inject
     public BookSearchAdapter(Context context) {
         super(context);
@@ -53,14 +54,14 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
         } else {
             Picasso.get().load(book.getImageLinks()).into(holder.cover);
         }
-        if (book.getAuthors().equals("")){
+        if (book.getAuthors().equals("")) {
             holder.author.setText(R.string.book_search_author_unknown);
 
         } else {
             holder.author.setText(book.getAuthors());
 
         }
-        if (book.getAuthors().equals("")){
+        if (book.getAuthors().equals("")) {
             holder.title.setText(R.string.book_search_title_unknown);
 
         } else {

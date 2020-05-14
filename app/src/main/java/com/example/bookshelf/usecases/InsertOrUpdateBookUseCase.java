@@ -41,9 +41,7 @@ public class InsertOrUpdateBookUseCase {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-
             Params params = (Params) o;
-
             return book.equals(params.book);
         }
 

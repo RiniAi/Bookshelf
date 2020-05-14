@@ -1,7 +1,7 @@
 package com.example.bookshelf.di;
 
-import com.example.bookshelf.database.bookChallenge.LocalBookChallengeStorage;
 import com.example.bookshelf.database.book.LocalBookStorage;
+import com.example.bookshelf.database.bookChallenge.LocalBookChallengeStorage;
 
 import dagger.Component;
 

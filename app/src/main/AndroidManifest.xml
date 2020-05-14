@@ -13,9 +13,7 @@
             android:name=".features.bookedit.EditBookActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".features.bookchallenge.BookChallengeFragment" />
-        <activity
-            android:name=".features.bookabout.AboutBookActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".features.bookabout.AboutBookFragment" />
         <activity android:name=".features.bookssearch.SearchFragment" />
         <activity android:name=".features.listofbooks.BookStatusFragment" />
         <activity

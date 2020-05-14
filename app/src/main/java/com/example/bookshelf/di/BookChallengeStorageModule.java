@@ -9,7 +9,7 @@ import dagger.Provides;
 @Module
 public class BookChallengeStorageModule {
     @Provides
-    public BookChallengeStorage providesBookChallengeStorage () {
+    public BookChallengeStorage providesBookChallengeStorage() {
         return new LocalBookChallengeStorage();
     }
 }

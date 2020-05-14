@@ -56,8 +56,8 @@ public class Book implements Serializable {
             this.statusResId = statusResId;
         }
 
-        public static void resolveStatuses(Context context, BookStatus[] statuses){
-            for (BookStatus status: statuses){
+        public static void resolveStatuses(Context context, BookStatus[] statuses) {
+            for (BookStatus status : statuses) {
                 status.setStatus(context.getString(status.getStatusResId()));
             }
         }

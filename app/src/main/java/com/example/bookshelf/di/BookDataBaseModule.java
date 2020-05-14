@@ -4,9 +4,9 @@ import android.content.Context;
 
 import androidx.room.Room;
 
-import com.example.bookshelf.database.bookChallenge.BookChallengeDao;
-import com.example.bookshelf.database.book.BookDao;
 import com.example.bookshelf.database.BookDatabase;
+import com.example.bookshelf.database.book.BookDao;
+import com.example.bookshelf.database.bookChallenge.BookChallengeDao;
 
 import dagger.Module;
 import dagger.Provides;

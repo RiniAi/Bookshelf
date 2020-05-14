@@ -12,5 +12,6 @@ import com.example.bookshelf.database.bookChallenge.BookChallengeDao;
 @Database(entities = {Book.class, BookChallenge.class}, version = 1, exportSchema = false)
 public abstract class BookDatabase extends RoomDatabase {
     public abstract BookDao bookDao();
+
     public abstract BookChallengeDao bookChallengeDao();
 }
