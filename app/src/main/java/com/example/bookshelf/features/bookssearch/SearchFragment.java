@@ -27,6 +27,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 public class SearchFragment extends Fragment implements SearchContract.View {
+    private List<Book> lists;
     private FragmentSearchBinding binding;
     @Inject
     BookSearchAdapter bookAdapter;
@@ -42,15 +43,16 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         binding.llEmptyList.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
-        poppingKeyboard();
         buildButtons();
         return binding.getRoot();
     }
 
     private void poppingKeyboard() {
+        if (binding.toolbarSearchFragment.etQuery.getText().toString().equals("")) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
         binding.toolbarSearchFragment.etQuery.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
 
     @Override
@@ -61,6 +63,14 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         binding.rvOfBooks.setAdapter(bookAdapter);
         bookAdapter.setOnItemClickListener(book -> presenter.openBook(book));
         bookAdapter.setOnEditClickListener(book -> presenter.editBook(book));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        poppingKeyboard();
+        if (lists != null)
+            showBooks(lists);
     }
 
     @Override
@@ -105,6 +115,7 @@ public class SearchFragment extends Fragment implements SearchContract.View {
         binding.llEmptyList.setVisibility(View.GONE);
         binding.rvOfBooks.setVisibility(View.VISIBLE);
         bookAdapter.setList(bookList);
+        lists = bookList;
     }
 
     @Override
