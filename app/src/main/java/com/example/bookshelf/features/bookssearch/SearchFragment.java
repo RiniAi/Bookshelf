@@ -29,6 +29,8 @@ import javax.inject.Inject;
 public class SearchFragment extends Fragment implements SearchContract.View {
     private List<Book> lists;
     private FragmentSearchBinding binding;
+    int startIndex = 0;
+
     @Inject
     BookSearchAdapter bookAdapter;
     @Inject
@@ -82,14 +84,14 @@ public class SearchFragment extends Fragment implements SearchContract.View {
     private void buildButtons() {
         binding.toolbarSearchFragment.ibSendQuery.setOnClickListener(view -> {
             hideList();
-            presenter.searchBook(binding.toolbarSearchFragment.etQuery.getText().toString());
+            presenter.searchBook(binding.toolbarSearchFragment.etQuery.getText().toString(), startIndex);
             hideKeyboard(getActivity(), view);
         });
 
         binding.toolbarSearchFragment.etQuery.setOnEditorActionListener((view, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 hideList();
-                presenter.searchBook(binding.toolbarSearchFragment.etQuery.getText().toString());
+                presenter.searchBook(binding.toolbarSearchFragment.etQuery.getText().toString(), startIndex);
                 hideKeyboard(getActivity(), view);
                 return true;
             }

@@ -18,14 +18,24 @@ public class RequestBooksUseCase {
     }
 
     public Single<List<Book>> run(Params params) {
-        return repository.getBooks(params.getQuery());
+        return repository.getBooks(params.getQuery(), params.getStartIndex());
     }
 
     public static class Params {
         String query;
+        int startIndex;
 
-        public Params(String query) {
+        public Params(String query, int startIndex) {
             this.query = query;
+            this.startIndex = startIndex;
+        }
+
+        public int getStartIndex() {
+            return startIndex;
+        }
+
+        public void setStartIndex(int startIndex) {
+            this.startIndex = startIndex;
         }
 
         public String getQuery() {

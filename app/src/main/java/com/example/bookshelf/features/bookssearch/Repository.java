@@ -7,5 +7,5 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Single;
 
 public interface Repository {
-    Single<List<Book>> getBooks(String query);
+    Single<List<Book>> getBooks(String query, int startIndex);
 }

@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public abstract class BaseBookChallengeAdapter<T, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
+public abstract class BaseStatisticBookChallengeAdapter<T, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
     private Context context;
     private List<T> list;
 
-    public BaseBookChallengeAdapter(Context context) {
+    public BaseStatisticBookChallengeAdapter(Context context) {
         this.context = context;
     }
 

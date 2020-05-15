@@ -24,8 +24,8 @@ public class BookRepository implements Repository {
         this.mapper = mapper;
     }
 
-    public Single<List<Book>> getBooks(String query) {
-        return service.getBooks(query, QUERY_COUNTER)
+    public Single<List<Book>> getBooks(String query, int startIndex) {
+        return service.getBooks(query, QUERY_COUNTER, startIndex)
                 .map(booksApiResponse -> mapper.mapResponseToDomain(booksApiResponse));
     }
 }

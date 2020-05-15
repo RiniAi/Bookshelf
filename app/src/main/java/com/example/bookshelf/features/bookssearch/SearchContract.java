@@ -19,7 +19,7 @@ public interface SearchContract {
     }
 
     interface Presenter {
-        void searchBook(String query);
+        void searchBook(String query, int startIndex);
 
         void openBook(Book book);
 

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.bookshelf.R;
-import com.example.bookshelf.base.BaseBookChallengeAdapter;
+import com.example.bookshelf.base.BaseStatisticBookChallengeAdapter;
 import com.example.bookshelf.base.BaseViewHolder;
 import com.example.bookshelf.database.book.Book;
 import com.example.bookshelf.database.bookChallenge.BookChallenge;
@@ -17,7 +17,7 @@ import com.example.bookshelf.usecases.SearchBookWithStatusUseCase;
 
 import javax.inject.Inject;
 
-public class StatisticsBookChallengeAdapter extends BaseBookChallengeAdapter <BookChallenge, StatisticsBookChallengeAdapter.BookChallengeViewHolder> {
+public class StatisticsBookChallengeAdapter extends BaseStatisticBookChallengeAdapter<BookChallenge, StatisticsBookChallengeAdapter.BookChallengeViewHolder> {
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
 

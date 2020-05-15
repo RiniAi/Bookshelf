@@ -31,16 +31,16 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     }
 
     @Override
-    public void searchBook(String query) {
+    public void searchBook(String query, int startIndex) {
         if (query.isEmpty()) {
             view.showErrorMessage();
         } else {
-            runQuery(query);
+            runQuery(query, startIndex);
         }
     }
 
-    private void runQuery(String query) {
-        RequestBooksUseCase.Params searchParams = new RequestBooksUseCase.Params(query);
+    private void runQuery(String query, int startIndex) {
+        RequestBooksUseCase.Params searchParams = new RequestBooksUseCase.Params(query, startIndex);
         Disposable subscription = requestBooksUseCase.run(searchParams)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
