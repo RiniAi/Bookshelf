@@ -17,5 +17,5 @@ public interface GoogleBooksApiService {
      * @return books list from response
      */
     @GET("volumes/")
-    Single<BooksApiResponse> getBooks(@Query("q") String query, @Query("maxResults") int count);
+    Single<BooksApiResponse> getBooks(@Query("q") String query, @Query("maxResults") int count, @Query("startIndex") int index);
 }
