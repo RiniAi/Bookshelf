@@ -18,9 +18,9 @@ public class ListsOfBooksFragment extends Fragment {
     private ViewPager pager;
 
     @Override
-    public View onCreateView (@NonNull LayoutInflater inflater,
-                              ViewGroup container,
-                              Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         FragmentListsBinding binding = FragmentListsBinding.inflate(inflater, container, false);
         navigation = binding.navigation;
         pager = binding.fragmentContainer;

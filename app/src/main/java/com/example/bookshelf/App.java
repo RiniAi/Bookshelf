@@ -8,6 +8,7 @@ import com.example.bookshelf.di.DaggerAppComponent;
 
 public class App extends Application {
     private static AppComponent appComponent;
+
     public static AppComponent getAppComponent() {
         return appComponent;
     }

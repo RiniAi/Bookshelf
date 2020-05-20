@@ -128,4 +128,3 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
         deleteBookUseCase.run(params);
     }
 }
-

@@ -27,9 +27,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     StatisticsBookChallengeAdapter bookChallengeAdapter;
 
     @Override
-    public View onCreateView (LayoutInflater inflater,
-                                 ViewGroup container,
-                                 Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
         App.getAppComponent().activityComponent().inject(this);
         ((BasePresenter) presenter).setView(this);
         binding = FragmentProfileBinding.inflate(inflater, container, false);

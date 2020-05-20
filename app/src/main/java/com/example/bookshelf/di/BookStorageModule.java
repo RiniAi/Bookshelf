@@ -9,7 +9,7 @@ import dagger.Provides;
 @Module
 public class BookStorageModule {
     @Provides
-    public BookStorage providesBookStorage () {
+    public BookStorage providesBookStorage() {
         return new LocalBookStorage();
     }
 }

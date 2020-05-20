@@ -39,5 +39,4 @@ public abstract class BaseStatisticBookChallengeAdapter<T, VH extends BaseViewHo
     public Context getContext() {
         return context;
     }
-
 }

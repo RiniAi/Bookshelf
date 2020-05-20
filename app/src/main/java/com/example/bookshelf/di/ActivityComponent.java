@@ -12,9 +12,14 @@ import dagger.Subcomponent;
 @Subcomponent
 public interface ActivityComponent {
     void inject(BookStatusFragment fragment);
+
     void inject(SearchFragment fragment);
+
     void inject(EditBookActivity activity);
+
     void inject(AboutBookFragment activity);
+
     void inject(BookChallengeFragment fragment);
+
     void inject(ProfileFragment fragment);
 }
