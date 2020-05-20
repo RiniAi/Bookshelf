@@ -16,12 +16,12 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
+    private CompositeDisposable disposables;
+
     @Inject
     RequestBooksUseCase requestBooksUseCase;
     @Inject
     Navigator navigator;
-
-    private CompositeDisposable disposables;
 
     @Inject
     public SearchPresenter(RequestBooksUseCase requestBooksUseCase, Navigator navigator) {
@@ -40,6 +40,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     }
 
     private void runQuery(String query, int startIndex) {
+        disposables.clear();
         RequestBooksUseCase.Params searchParams = new RequestBooksUseCase.Params(query, startIndex);
         Disposable subscription = requestBooksUseCase.run(searchParams)
                 .subscribeOn(Schedulers.io())
