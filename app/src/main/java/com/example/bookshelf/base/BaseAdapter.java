@@ -8,6 +8,9 @@ import com.example.bookshelf.database.book.Book;
 
 import java.util.List;
 
+import static com.example.bookshelf.features.bookssearch.BookSearchAdapter.VIEW_TYPE_ITEM;
+import static com.example.bookshelf.features.bookssearch.BookSearchAdapter.VIEW_TYPE_LOADING;
+
 public abstract class BaseAdapter<T, VH extends BaseViewHolder> extends RecyclerView.Adapter<VH> {
     private Context context;
     private List<T> list;
@@ -21,21 +24,22 @@ public abstract class BaseAdapter<T, VH extends BaseViewHolder> extends Recycler
         notifyDataSetChanged();
     }
 
+    public List<T> getList() {
+        return list;
+    }
+
     public T getItem(int position) {
-        if (list.isEmpty()) {
-            return null;
-        } else {
-            return list.get(position);
-        }
+        return list.isEmpty() ? null : list.get(position);
     }
 
     @Override
     public int getItemCount() {
-        if (list == null) {
-            return 0;
-        } else {
-            return list.size();
-        }
+        return list == null ? 0 : list.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return list.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
     }
 
     public Context getContext() {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,9 @@ import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
-public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookViewHolder> {
+public class BookSearchAdapter extends BaseAdapter<Book, BaseViewHolder> {
+    public static final int VIEW_TYPE_ITEM = 0;
+    public static final int VIEW_TYPE_LOADING = 1;
     private OnItemClickListener onClickListener;
     private OnEditClickListener onEditListener;
 
@@ -38,13 +41,26 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
 
     @NonNull
     @Override
-    public BookViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_search, parent, false);
-        return new BookViewHolder(view, onClickListener, onEditListener);
+    public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_ITEM) {
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.list_item_search, parent, false);
+            return new BookViewHolder(view, onClickListener, onEditListener);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
+            return new LoadingViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        if (holder instanceof BookViewHolder) {
+            populateItemRows((BookViewHolder) holder, position);
+        } else if (holder instanceof LoadingViewHolder) {
+            showLoadingView((LoadingViewHolder) holder, position);
+        }
+    }
+
+    private void populateItemRows(BookViewHolder holder, int position) {
         Book book = getItem(position);
         if (book == null) {
             return;
@@ -67,6 +83,9 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
         } else {
             holder.title.setText(book.getTitle());
         }
+    }
+
+    private void showLoadingView(LoadingViewHolder holder, int position) {
     }
 
     class BookViewHolder extends BaseViewHolder {
@@ -94,6 +113,15 @@ public class BookSearchAdapter extends BaseAdapter<Book, BookSearchAdapter.BookV
                     onEditListener.onEditClick(getItem(position));
                 }
             });
+        }
+    }
+
+    class LoadingViewHolder extends BaseViewHolder {
+        ProgressBar progressBar;
+
+        LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.progressBar);
         }
     }
 }
