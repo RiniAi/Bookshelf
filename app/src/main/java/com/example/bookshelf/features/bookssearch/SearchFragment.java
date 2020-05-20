@@ -171,15 +171,15 @@ public class SearchFragment extends Fragment implements SearchContract.View {
 
 
     private void showListView() {
-        binding.llEmptyList.setVisibility(View.VISIBLE);
+        binding.rvOfBooks.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
-        binding.rvOfBooks.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.GONE);
     }
 
     private void showListEmpty() {
-        binding.rvOfBooks.setVisibility(View.VISIBLE);
-        binding.llEmptyList.setVisibility(View.GONE);
+        binding.llEmptyList.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
+        binding.rvOfBooks.setVisibility(View.GONE);
     }
 
     private void showDownloadSign() {
