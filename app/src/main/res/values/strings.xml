@@ -9,13 +9,6 @@
     <string name="edit_book_title">%1$s. %2$s</string>
     <string name="about_book_title">%1$s. %2$s</string>
 
-    <string name="login_sign_already_a_member">Already a member? Login</string>
-    <string name="login_sign_create_account">Create account</string>
-    <string name="login_sign_email">Email</string>
-    <string name="login_sign_login">Login</string>
-    <string name="login_sign_no_account">No account yet? Create one</string>
-    <string name="login_sign_password">Password</string>
-
     <string name="edit_book_add_to_favorites">Add to favorites</string>
     <string name="edit_book_delete">Delete book</string>
     <string name="edit_book_rating">Your rating</string>
@@ -86,4 +79,23 @@
     <string name="profile_fragment_progress">progress:</string>
     <string name="profile_fragment_number_of_books_with_the_status">Number of books with the status</string>
     <string name="search_fragment_search_the_entire_site">Search the entire site</string>
+
+    <string name="register_fragment_login">Login</string>
+    <string name="register_fragment_name">Name</string>
+    <string name="register_fragment_email">Email</string>
+    <string name="register_fragment_password">Password</string>
+    <string name="register_fragment_repeat_password">Repeat the password</string>
+    <string name="register_fragment_create_account">Create account</string>
+    <string name="register_fragment_already_a_member">Already a member? Swipe right to login</string>
+
+    <string name="register_fragment_email_invalid">You entered an invalid email</string>
+    <string name="register_fragment_password_invalid">Password must contain large letter, digit and character</string>
+    <string name="register_fragment_password_less">The password must be at least 8 characters long</string>
+    <string name="register_fragment_passwords_not_match">Passwords don\'t match</string>
+    <string name="register_fragment_registration_was_successful">Registration was successful</string>
+    <string name="register_fragment_check_date">Check whether the data is correct</string>
+    <string name="register_fragment_field_empty">The field must not be empty</string>
+
+    <string name="login_fragment_login_was_successful">Login was successful</string>
+    <string name="login_fragment_no_account">No account yet? Swipe left to register</string>
 </resources>

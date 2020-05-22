@@ -7,5 +7,6 @@
     <color name="color_favorite_button">#d2d4d6</color>
 
     <color name="fon">#FBFBFB</color>
+    <color name="empty_field">#BD4747</color>
     <color name="spinner_item_primary">#7A7A7A</color>
 </resources>
