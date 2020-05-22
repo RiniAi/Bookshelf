@@ -8,6 +8,7 @@ import com.example.bookshelf.features.bookedit.EditBookActivity;
 import com.example.bookshelf.features.bookssearch.SearchFragment;
 import com.example.bookshelf.features.listofbooks.BookStatusFragment;
 import com.example.bookshelf.features.profile.ProfileFragment;
+import com.example.bookshelf.features.splash.SplashActivity;
 
 import dagger.Subcomponent;
 
@@ -28,4 +29,6 @@ public interface ActivityComponent {
     void inject(RegisterFragment fragment);
 
     void inject(LoginFragment fragment);
+
+    void inject(SplashActivity splash);
 }

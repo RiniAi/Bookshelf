@@ -20,6 +20,8 @@ import com.example.bookshelf.features.listofbooks.BookStatusContract;
 import com.example.bookshelf.features.listofbooks.BookStatusPresenter;
 import com.example.bookshelf.features.profile.ProfileContract;
 import com.example.bookshelf.features.profile.ProfilePresenter;
+import com.example.bookshelf.features.splash.SplashContract;
+import com.example.bookshelf.features.splash.SplashPresenter;
 import com.example.bookshelf.usecases.DeleteBookUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookChallengeUseCase;
 import com.example.bookshelf.usecases.InsertOrUpdateBookUseCase;
@@ -75,5 +77,10 @@ class PresenterModule {
     @Provides
     LoginContract.Presenter providesLoginPresenter(Navigator navigator) {
         return new LoginPresenter(navigator);
+    }
+
+    @Provides
+    SplashContract.Presenter providesSplashPresenter(Navigator navigator) {
+        return new SplashPresenter(navigator);
     }
 }
