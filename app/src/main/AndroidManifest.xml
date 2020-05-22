@@ -16,8 +16,11 @@
         <activity android:name=".features.bookabout.AboutBookFragment" />
         <activity android:name=".features.bookssearch.SearchFragment" />
         <activity android:name=".features.listofbooks.BookStatusFragment" />
+        <activity android:name=".features.authentication.register.RegisterFragment" />
+        <activity android:name=".features.authentication.login.LoginFragment" />
+        <activity android:name=".features.MainActivity" />
         <activity
-            android:name=".features.MainActivity"
+            android:name=".features.authentication.LoginRegisterActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
