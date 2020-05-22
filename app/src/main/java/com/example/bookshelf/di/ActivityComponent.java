@@ -1,5 +1,7 @@
 package com.example.bookshelf.di;
 
+import com.example.bookshelf.features.authentication.login.LoginFragment;
+import com.example.bookshelf.features.authentication.register.RegisterFragment;
 import com.example.bookshelf.features.bookabout.AboutBookFragment;
 import com.example.bookshelf.features.bookchallenge.BookChallengeFragment;
 import com.example.bookshelf.features.bookedit.EditBookActivity;
@@ -22,4 +24,8 @@ public interface ActivityComponent {
     void inject(BookChallengeFragment fragment);
 
     void inject(ProfileFragment fragment);
+
+    void inject(RegisterFragment fragment);
+
+    void inject(LoginFragment fragment);
 }
