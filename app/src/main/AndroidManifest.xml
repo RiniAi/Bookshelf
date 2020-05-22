@@ -12,15 +12,11 @@
         <activity
             android:name=".features.bookedit.EditBookActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".features.bookchallenge.BookChallengeFragment" />
-        <activity android:name=".features.bookabout.AboutBookFragment" />
-        <activity android:name=".features.bookssearch.SearchFragment" />
-        <activity android:name=".features.listofbooks.BookStatusFragment" />
-        <activity android:name=".features.authentication.register.RegisterFragment" />
-        <activity android:name=".features.authentication.login.LoginFragment" />
         <activity android:name=".features.MainActivity" />
+        <activity android:name=".features.authentication.LoginRegisterActivity" />
         <activity
-            android:name=".features.authentication.LoginRegisterActivity"
+            android:name=".features.splash.SplashActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
