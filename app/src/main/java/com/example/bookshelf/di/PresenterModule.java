@@ -65,8 +65,9 @@ class PresenterModule {
     }
 
     @Provides
-    ProfileContract.Presenter providesProfilePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SearchListOfBookChallengeUseCase searchListOfBookChallengeUseCase) {
-        return new ProfilePresenter(searchBookWithStatusUseCase, searchListOfBookChallengeUseCase);
+    ProfileContract.Presenter providesProfilePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SearchListOfBookChallengeUseCase searchListOfBookChallengeUseCase,
+                                                       Navigator navigator) {
+        return new ProfilePresenter(searchBookWithStatusUseCase, searchListOfBookChallengeUseCase, navigator);
     }
 
     @Provides

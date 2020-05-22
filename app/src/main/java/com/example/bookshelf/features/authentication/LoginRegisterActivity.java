@@ -28,4 +28,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
         adapter.addFragment(new RegisterFragment());
         pager.setAdapter(adapter);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finishAffinity();
+    }
 }

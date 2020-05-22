@@ -1,5 +1,7 @@
 package com.example.bookshelf.features.profile;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +37,12 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         binding.toolbarProfileFragment.toolbar.setTitle(getString(R.string.profile_fragment_information_about_profile));
         presenter.onStart();
+        initButtons();
         return binding.getRoot();
+    }
+
+    private void initButtons() {
+        binding.btnLogOut.setOnClickListener(view -> presenter.openAuthentication());
     }
 
     @Override
@@ -57,5 +64,10 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     @Override
     public void loadStatisticsBookChallenge(List<BookChallenge> listsBookChallenge) {
         bookChallengeAdapter.setList(listsBookChallenge);
+    }
+
+    @Override
+    public SharedPreferences initSharedPreferences() {
+        return getActivity().getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
     }
 }
