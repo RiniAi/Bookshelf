@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.bookshelf.Navigator;
+import com.example.bookshelf.features.authentication.login.LoginContract;
+import com.example.bookshelf.features.authentication.login.LoginPresenter;
+import com.example.bookshelf.features.authentication.register.RegisterContract;
+import com.example.bookshelf.features.authentication.register.RegisterPresenter;
 import com.example.bookshelf.features.bookabout.AboutBookContract;
 import com.example.bookshelf.features.bookabout.AboutBookPresenter;
 import com.example.bookshelf.features.bookchallenge.BookChallengeContract;
@@ -61,5 +65,15 @@ class PresenterModule {
     @Provides
     ProfileContract.Presenter providesProfilePresenter(SearchBookWithStatusUseCase searchBookWithStatusUseCase, SearchListOfBookChallengeUseCase searchListOfBookChallengeUseCase) {
         return new ProfilePresenter(searchBookWithStatusUseCase, searchListOfBookChallengeUseCase);
+    }
+
+    @Provides
+    RegisterContract.Presenter providesRegisterPresenter(Navigator navigator) {
+        return new RegisterPresenter(navigator);
+    }
+
+    @Provides
+    LoginContract.Presenter providesLoginPresenter(Navigator navigator) {
+        return new LoginPresenter(navigator);
     }
 }
