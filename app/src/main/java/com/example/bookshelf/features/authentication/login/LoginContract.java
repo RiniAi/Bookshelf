@@ -1,5 +1,7 @@
 package com.example.bookshelf.features.authentication.login;
 
+import android.content.SharedPreferences;
+
 public interface LoginContract {
     interface View {
         void successfulLogin();
@@ -15,6 +17,8 @@ public interface LoginContract {
         void showErrorInvalidFields();
 
         void hintErrorFields(String fields);
+
+        SharedPreferences initSharedPreferences();
     }
 
     interface Presenter {

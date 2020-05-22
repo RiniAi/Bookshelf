@@ -2,6 +2,7 @@ package com.example.bookshelf.features.authentication.register;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -136,6 +137,11 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
     public void showView() {
         binding.llCreateAccount.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public SharedPreferences initSharedPreferences() {
+        return getActivity().getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
     }
 
     private void showProgressBar() {

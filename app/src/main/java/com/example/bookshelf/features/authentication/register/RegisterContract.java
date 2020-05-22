@@ -1,5 +1,7 @@
 package com.example.bookshelf.features.authentication.register;
 
+import android.content.SharedPreferences;
+
 public interface RegisterContract {
     interface View {
         void checkDate();
@@ -17,6 +19,8 @@ public interface RegisterContract {
         void errorRegistration(Exception exception);
 
         void showView();
+
+        SharedPreferences initSharedPreferences();
     }
 
     interface Presenter {

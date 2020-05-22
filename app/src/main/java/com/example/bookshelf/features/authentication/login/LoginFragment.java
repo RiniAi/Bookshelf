@@ -2,6 +2,7 @@ package com.example.bookshelf.features.authentication.login;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,9 +81,13 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     }
 
     @Override
+    public SharedPreferences initSharedPreferences() {
+        return getActivity().getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
+    }
+
+    @Override
     public void successfulLogin() {
         hintErrorField();
-        showEmptyField();
         presenter.openMain();
         Toast.makeText(getActivity(), R.string.login_fragment_login_was_successful, Toast.LENGTH_LONG).show();
     }
@@ -113,10 +118,5 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     private void hintErrorField() {
         binding.tvEmptyEmail.setText(R.string.empty_string);
         binding.tvEmptyPassword.setText(R.string.empty_string);
-    }
-
-    private void showEmptyField() {
-        binding.etEmail.setText(R.string.empty_string);
-        binding.etPassword.setText(R.string.empty_string);
     }
 }

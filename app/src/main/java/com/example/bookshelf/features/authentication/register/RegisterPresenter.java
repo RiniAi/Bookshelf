@@ -1,5 +1,6 @@
 package com.example.bookshelf.features.authentication.register;
 
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.example.bookshelf.Navigator;
@@ -13,8 +14,12 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import static com.example.bookshelf.features.splash.SplashPresenter.EMAIL;
+import static com.example.bookshelf.features.splash.SplashPresenter.PASSWORD;
+
 public class RegisterPresenter extends BasePresenter<RegisterContract.View> implements RegisterContract.Presenter {
     private FirebaseAuth firebaseAuth;
+    private SharedPreferences sharedPreferences;
 
     @Inject
     Navigator navigator;
@@ -74,6 +79,7 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
                                 .addOnCompleteListener(taskDB -> {
                                     if (taskDB.isSuccessful()) {
                                         view.successfulRegistration();
+                                        saveDateForLoginToSharedPreferences(user);
                                     } else {
                                         view.showView();
                                         view.errorRegistration(taskDB.getException());
@@ -84,6 +90,19 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
                         view.errorRegistration(task.getException());
                     }
                 });
+    }
+
+    private void saveDateForLoginToSharedPreferences(User user) {
+        sharedPreferences = view.initSharedPreferences();
+        String emailSharedPreferences = sharedPreferences.getString(EMAIL, "");
+        String passwordSharedPreferences = sharedPreferences.getString(PASSWORD, "");
+        if ((emailSharedPreferences.isEmpty() || passwordSharedPreferences.isEmpty()) ||
+                !user.getEmail().equals(emailSharedPreferences) || !user.getPassword().equals(passwordSharedPreferences)) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(EMAIL, user.getEmail());
+            editor.putString(PASSWORD, user.getPassword());
+            editor.apply();
+        }
     }
 
     private void checkName(String name) {
