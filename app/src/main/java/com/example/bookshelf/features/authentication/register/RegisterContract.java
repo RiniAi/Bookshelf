@@ -15,6 +15,8 @@ public interface RegisterContract {
         void showView();
 
         SharedPreferences initSharedPreferences();
+
+        void errorAlreadyRegistered();
     }
 
     interface Presenter {

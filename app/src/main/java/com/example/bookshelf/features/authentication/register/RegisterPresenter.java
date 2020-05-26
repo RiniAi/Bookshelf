@@ -7,6 +7,7 @@ import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.models.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
@@ -85,8 +86,13 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
                                     }
                                 });
                     } else {
-                        view.showView();
-                        view.errorRegistration(task.getException());
+                        if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                            view.showView();
+                            view.errorAlreadyRegistered();
+                        } else {
+                            view.showView();
+                            view.errorRegistration(task.getException());
+                        }
                     }
                 });
     }

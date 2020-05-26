@@ -104,6 +104,11 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
         Toast.makeText(getActivity(), "Authentication failed" + "\n" + exception.getMessage(), Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void errorAlreadyRegistered() {
+        Toast.makeText(getActivity(), R.string.register_fragment_already_registered, Toast.LENGTH_LONG).show();
+    }
+
     private static void hideKeyboard(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         if (imm != null)

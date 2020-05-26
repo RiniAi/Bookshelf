@@ -98,4 +98,5 @@
     <string name="login_fragment_login_was_successful">Login was successful</string>
     <string name="login_fragment_no_account">No account yet? Swipe left to register</string>
     <string name="profile_fragment">Log out</string>
+    <string name="register_fragment_already_registered">You are already registered</string>
 </resources>
