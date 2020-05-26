@@ -55,29 +55,20 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     public void showErrorEmptyFields(String fields) {
         switch (fields) {
             case "email":
-                binding.tvEmptyEmail.setText(R.string.register_fragment_field_empty);
+                binding.etEmail.setError(getString(R.string.register_fragment_field_empty));
+                binding.etEmail.requestFocus();
                 break;
             case "password":
-                binding.tvEmptyPassword.setText(R.string.register_fragment_field_empty);
+                binding.etPassword.setError(getString(R.string.register_fragment_field_empty));
+                binding.etPassword.requestFocus();
                 break;
         }
     }
 
     @Override
     public void showErrorInvalidFields() {
-        binding.tvEmptyEmail.setText(R.string.register_fragment_email_invalid);
-    }
-
-    @Override
-    public void hintErrorFields(String fields) {
-        switch (fields) {
-            case "email":
-                binding.tvEmptyEmail.setText(R.string.empty_string);
-                break;
-            case "password":
-                binding.tvEmptyPassword.setText(R.string.empty_string);
-                break;
-        }
+        binding.etEmail.setError(getString(R.string.register_fragment_email_invalid));
+        binding.etEmail.requestFocus();
     }
 
     @Override
@@ -87,7 +78,6 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @Override
     public void successfulLogin() {
-        hintErrorField();
         presenter.openMain();
         Toast.makeText(getActivity(), R.string.login_fragment_login_was_successful, Toast.LENGTH_LONG).show();
     }
@@ -113,10 +103,5 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     private void showProgressBar() {
         binding.llCreateAccount.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void hintErrorField() {
-        binding.tvEmptyEmail.setText(R.string.empty_string);
-        binding.tvEmptyPassword.setText(R.string.empty_string);
     }
 }

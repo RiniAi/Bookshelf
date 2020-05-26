@@ -48,16 +48,12 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
             } else if (!isValidEmail(email)) {
                 view.showErrorInvalidFields();
             }
-        } else {
-            view.hintErrorFields("email");
         }
     }
 
     private void checkPassword(String password) {
         if (password.isEmpty()) {
             view.showErrorEmptyFields("password");
-        } else {
-            view.hintErrorFields("password");
         }
     }
 

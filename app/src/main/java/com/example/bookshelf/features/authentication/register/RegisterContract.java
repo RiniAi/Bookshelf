@@ -4,15 +4,9 @@ import android.content.SharedPreferences;
 
 public interface RegisterContract {
     interface View {
-        void checkDate();
-
         void showErrorEmptyFields(String fields);
 
         void showErrorInvalidFields(String fields);
-
-        void showErrorLengthPassword();
-
-        void hintErrorFields(String fields);
 
         void successfulRegistration();
 

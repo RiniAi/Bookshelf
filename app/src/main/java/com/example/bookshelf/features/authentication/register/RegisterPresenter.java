@@ -32,12 +32,11 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
     @Override
     public void start(String name, String email, String password, String rePassword) {
         if (name.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || !isValidEmail(email) || !isValidPassword(password) || password.length() < 8 || (!password.equals(rePassword))) {
-            view.checkDate();
             view.showView();
-            checkName(name);
-            checkEmail(email);
-            checkPassword(password);
             checkRePassword(password, rePassword);
+            checkPassword(password);
+            checkEmail(email);
+            checkName(name);
         } else {
             initFireBase();
             saveUser(name, email, password);
@@ -108,8 +107,6 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
     private void checkName(String name) {
         if (name.isEmpty()) {
             view.showErrorEmptyFields("name");
-        } else {
-            view.hintErrorFields("name");
         }
     }
 
@@ -120,8 +117,6 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
             } else if (!isValidEmail(email)) {
                 view.showErrorInvalidFields("email");
             }
-        } else {
-            view.hintErrorFields("email");
         }
     }
 
@@ -129,13 +124,9 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
         if (password.isEmpty() || password.length() < 8 || !isValidPassword(password)) {
             if (password.isEmpty()) {
                 view.showErrorEmptyFields("password");
-            } else if (password.length() < 8) {
-                view.showErrorLengthPassword();
-            } else if (!isValidPassword(password)) {
+            } else if (password.length() < 8 || !isValidPassword(password)) {
                 view.showErrorInvalidFields("password");
             }
-        } else {
-            view.hintErrorFields("password");
         }
     }
 
@@ -146,8 +137,6 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
             } else {
                 view.showErrorInvalidFields("rePassword");
             }
-        } else {
-            view.hintErrorFields("rePassword");
         }
     }
 

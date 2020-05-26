@@ -89,8 +89,7 @@
     <string name="register_fragment_already_a_member">Already a member? Swipe right to login</string>
 
     <string name="register_fragment_email_invalid">You entered an invalid email</string>
-    <string name="register_fragment_password_invalid">Password must contain large letter, digit and character</string>
-    <string name="register_fragment_password_less">The password must be at least 8 characters long</string>
+    <string name="register_fragment_password_invalid">The password must be at least 8 characters long and must contain large letter, digit and character</string>
     <string name="register_fragment_passwords_not_match">Passwords don\'t match</string>
     <string name="register_fragment_registration_was_successful">Registration was successful</string>
     <string name="register_fragment_check_date">Check whether the data is correct</string>

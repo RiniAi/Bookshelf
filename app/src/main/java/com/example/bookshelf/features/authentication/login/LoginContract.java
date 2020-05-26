@@ -16,8 +16,6 @@ public interface LoginContract {
 
         void showErrorInvalidFields();
 
-        void hintErrorFields(String fields);
-
         SharedPreferences initSharedPreferences();
     }
 

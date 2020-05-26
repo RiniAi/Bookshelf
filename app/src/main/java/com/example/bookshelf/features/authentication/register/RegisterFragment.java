@@ -54,24 +54,23 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
     }
 
     @Override
-    public void checkDate() {
-        Toast.makeText(getActivity(), R.string.register_fragment_check_date, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
     public void showErrorEmptyFields(String fields) {
         switch (fields) {
             case "name":
-                binding.tvEmptyName.setText(R.string.register_fragment_field_empty);
+                binding.etName.setError(getString(R.string.register_fragment_field_empty));
+                binding.etName.requestFocus();
                 break;
             case "email":
-                binding.tvEmptyEmail.setText(R.string.register_fragment_field_empty);
+                binding.etEmail.setError(getString(R.string.register_fragment_field_empty));
+                binding.etEmail.requestFocus();
                 break;
             case "password":
-                binding.tvEmptyPassword.setText(R.string.register_fragment_field_empty);
+                binding.etPassword.setError(getString(R.string.register_fragment_field_empty));
+                binding.etPassword.requestFocus();
                 break;
             case "rePassword":
-                binding.tvEmptyRepassword.setText(R.string.register_fragment_field_empty);
+                binding.etRepassword.setError(getString(R.string.register_fragment_field_empty));
+                binding.etRepassword.requestFocus();
                 break;
         }
     }
@@ -80,44 +79,22 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
     public void showErrorInvalidFields(String fields) {
         switch (fields) {
             case "email":
-                binding.tvEmptyEmail.setText(R.string.register_fragment_email_invalid);
+                binding.etEmail.setError(getString(R.string.register_fragment_email_invalid));
+                binding.etEmail.requestFocus();
                 break;
             case "password":
-                binding.tvEmptyPassword.setText(R.string.register_fragment_password_invalid);
+                binding.etPassword.setError(getString(R.string.register_fragment_password_invalid));
+                binding.etPassword.requestFocus();
                 break;
             case "rePassword":
-                binding.tvEmptyRepassword.setText(R.string.register_fragment_passwords_not_match);
-                break;
-        }
-    }
-
-    @Override
-    public void showErrorLengthPassword() {
-        binding.tvEmptyPassword.setText(getString(R.string.register_fragment_password_less));
-    }
-
-    @Override
-    public void hintErrorFields(String fields) {
-        switch (fields) {
-            case "name":
-                binding.tvEmptyName.setText(R.string.empty_string);
-                break;
-            case "email":
-                binding.tvEmptyEmail.setText(R.string.empty_string);
-                break;
-            case "password":
-                binding.tvEmptyPassword.setText(R.string.empty_string);
-                break;
-            case "rePassword":
-                binding.tvEmptyRepassword.setText(R.string.empty_string);
+                binding.etRepassword.setError(getString(R.string.register_fragment_passwords_not_match));
+                binding.etRepassword.requestFocus();
                 break;
         }
     }
 
     @Override
     public void successfulRegistration() {
-        hintErrorField();
-        showEmptyField();
         presenter.openMain();
         Toast.makeText(getActivity(), R.string.register_fragment_registration_was_successful, Toast.LENGTH_LONG).show();
     }
@@ -147,19 +124,5 @@ public class RegisterFragment extends Fragment implements RegisterContract.View 
     private void showProgressBar() {
         binding.llCreateAccount.setVisibility(View.GONE);
         binding.progressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void hintErrorField() {
-        binding.tvEmptyName.setText(R.string.empty_string);
-        binding.tvEmptyEmail.setText(R.string.empty_string);
-        binding.tvEmptyPassword.setText(R.string.empty_string);
-        binding.tvEmptyRepassword.setText(R.string.empty_string);
-    }
-
-    private void showEmptyField() {
-        binding.etName.setText(R.string.empty_string);
-        binding.etEmail.setText(R.string.empty_string);
-        binding.etPassword.setText(R.string.empty_string);
-        binding.etRepassword.setText(R.string.empty_string);
     }
 }
