@@ -2,7 +2,6 @@ package com.example.bookshelf.features.authentication.login;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,11 +68,6 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     public void showErrorInvalidFields() {
         binding.etEmail.setError(getString(R.string.register_fragment_email_invalid));
         binding.etEmail.requestFocus();
-    }
-
-    @Override
-    public SharedPreferences initSharedPreferences() {
-        return getActivity().getSharedPreferences("LOGIN", Context.MODE_PRIVATE);
     }
 
     @Override

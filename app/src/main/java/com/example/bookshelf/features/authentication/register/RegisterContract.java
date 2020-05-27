@@ -1,7 +1,5 @@
 package com.example.bookshelf.features.authentication.register;
 
-import android.content.SharedPreferences;
-
 public interface RegisterContract {
     interface View {
         void showErrorEmptyFields(String fields);
@@ -14,15 +12,11 @@ public interface RegisterContract {
 
         void showView();
 
-        SharedPreferences initSharedPreferences();
-
         void errorAlreadyRegistered();
     }
 
     interface Presenter {
         void start(String etName, String etEmail, String etPassword, String etRepassword);
-
-        void checkSignUser();
 
         void openMain();
     }

@@ -1,6 +1,5 @@
 package com.example.bookshelf.features.authentication.login;
 
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.example.bookshelf.Navigator;
@@ -8,9 +7,6 @@ import com.example.bookshelf.base.BasePresenter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Inject;
-
-import static com.example.bookshelf.features.splash.SplashPresenter.EMAIL;
-import static com.example.bookshelf.features.splash.SplashPresenter.PASSWORD;
 
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
     private FirebaseAuth firebaseAuth;
@@ -65,22 +61,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
                     view.successfulLogin();
-                    saveDateForLoginToSharedPreferences(email, password);
                 })
                 .addOnFailureListener(exception -> view.errorLogin(exception));
-    }
-
-    private void saveDateForLoginToSharedPreferences(String email, String password) {
-        SharedPreferences sharedPreferences = view.initSharedPreferences();
-        String emailSharedPreferences = sharedPreferences.getString(EMAIL, "");
-        String passwordSharedPreferences = sharedPreferences.getString(PASSWORD, "");
-        if ((emailSharedPreferences.isEmpty() || passwordSharedPreferences.isEmpty()) ||
-                !email.equals(emailSharedPreferences) || !password.equals(passwordSharedPreferences)) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(EMAIL, email);
-            editor.putString(PASSWORD, password);
-            editor.apply();
-        }
     }
 
     private static boolean isValidEmail(CharSequence target) {
