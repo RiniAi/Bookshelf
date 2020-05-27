@@ -7,7 +7,7 @@ import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,17 +59,11 @@ public class RegisterPresenter extends BasePresenter<RegisterContract.View> impl
         firebaseAuth.createUserWithEmailAndPassword(user.getEmail(), user.getPassword())
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user)
-                                .addOnCompleteListener(taskDB -> {
-                                    if (taskDB.isSuccessful()) {
-                                        view.successfulRegistration();
-                                    } else {
-                                        view.showView();
-                                        view.errorRegistration(taskDB.getException());
-                                    }
-                                });
+                        UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(user.getName())
+                                .build();
+                        firebaseAuth.getCurrentUser().updateProfile(profile);
+                        view.successfulRegistration();
                     } else {
                         if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                             view.showView();
