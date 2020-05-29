@@ -7,13 +7,5 @@
         android:id="@+id/toolbar"
         style="@style/Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageButton
-            android:id="@+id/btn_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:background="@android:drawable/ic_menu_edit" />
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="match_parent"/>
 </FrameLayout>

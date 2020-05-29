@@ -1,7 +1,5 @@
 package com.example.bookshelf.features.profile;
 
-import android.content.SharedPreferences;
-
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.book.Book;
@@ -10,10 +8,9 @@ import com.example.bookshelf.usecases.SearchListOfBookChallengeUseCase;
 
 import javax.inject.Inject;
 
-import static com.example.bookshelf.features.splash.SplashPresenter.EMAIL;
-import static com.example.bookshelf.features.splash.SplashPresenter.PASSWORD;
-
 public class ProfilePresenter extends BasePresenter<ProfileContract.View> implements ProfileContract.Presenter {
+    private static final int CHOOSE_IMAGE = 101;
+
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
     @Inject
@@ -37,16 +34,7 @@ public class ProfilePresenter extends BasePresenter<ProfileContract.View> implem
 
     @Override
     public void openAuthentication() {
-        loadDateForLoginFromSharedPreferences();
         navigator.openAuthentication();
-    }
-
-    private void loadDateForLoginFromSharedPreferences() {
-        SharedPreferences sharedPreferences = view.initSharedPreferences();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(EMAIL, "");
-        editor.putString(PASSWORD, "");
-        editor.apply();
     }
 
     private void countNumberBooks() {

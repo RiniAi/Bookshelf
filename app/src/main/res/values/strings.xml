@@ -94,9 +94,12 @@
     <string name="register_fragment_registration_was_successful">Registration was successful</string>
     <string name="register_fragment_check_date">Check whether the data is correct</string>
     <string name="register_fragment_field_empty">The field must not be empty</string>
+    <string name="register_fragment_already_registered">You are already registered</string>
 
     <string name="login_fragment_login_was_successful">Login was successful</string>
     <string name="login_fragment_no_account">No account yet? Swipe left to register</string>
-    <string name="profile_fragment">Log out</string>
-    <string name="register_fragment_already_registered">You are already registered</string>
+
+    <string name="profile_fragment_log_out">Log out</string>
+    <string name="profile_fragment_save">Save</string>
+    <string name="profile_fragment_change_password">Change pass</string>
 </resources>
