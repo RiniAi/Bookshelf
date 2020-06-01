@@ -82,33 +82,45 @@ public class ProfilePresenter extends BasePresenter<ProfileContract.View> implem
     @Override
     public void saveUserInformation(String name) {
         if (isOnline()) {
-            StorageReference storageReference = FirebaseStorage.getInstance().getReference("images/" + userFirebase.getUid() + ".jpg");
             if (uriProfileImage != null) {
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference("images/" + userFirebase.getUid() + ".jpg");
                 storageReference.putFile(uriProfileImage)
                         .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl()
                                 .addOnSuccessListener(uri -> {
                                     profileImage = uri.toString();
-                                    saveProfile(name);
+                                    saveProfile(name, 1);
                                 }).addOnFailureListener(e -> view.showError())
                         ).addOnFailureListener(e -> view.showError());
+            } else {
+                saveProfile(name, 0);
             }
         } else {
             view.showErrorConnection();
         }
     }
 
-    private void saveProfile(String name) {
-        UserProfileChangeRequest profile;
-        if (!profileImage.isEmpty()) {
-            profile = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name)
-                    .setPhotoUri(Uri.parse(profileImage))
-                    .build();
-        } else {
-            profile = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name)
-                    .build();
+    private void saveProfile(String name, int i) {
+        switch (i) {
+            case 1: {
+                if (!profileImage.isEmpty()) {
+                    UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(name)
+                            .setPhotoUri(Uri.parse(profileImage))
+                            .build();
+                    updateProfile(profile);
+                }
+            }
+            case 0: {
+                UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(name)
+                        .build();
+                updateProfile(profile);
+            }
+
         }
+    }
+
+    private void updateProfile(UserProfileChangeRequest profile) {
         userFirebase.updateProfile(profile).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 view.updateProfile();

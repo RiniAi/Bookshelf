@@ -59,14 +59,28 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
 
     @Override
     public void initStartProfileView() {
+        hideProgressBar();
+        hideSaveButton();
+    }
+
+    private void hideSaveButton(){
         binding.btnSave.setVisibility(View.GONE);
         binding.tvChangeAvatar.setVisibility(View.GONE);
         binding.btnChangePassword.setVisibility(View.GONE);
-        binding.pbSaveProfileInformation.setVisibility(View.GONE);
         binding.etName.setEnabled(false);
         binding.etEmail.setEnabled(false);
         binding.userAvatar.setEnabled(false);
+    }
+
+    private void showProgressBar() {
+        binding.btnEdit.setVisibility(View.GONE);
+        binding.pbSaveProfileInformation.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
         binding.userAvatar.setAlpha(1f);
+        binding.btnEdit.setVisibility(View.VISIBLE);
+        binding.pbSaveProfileInformation.setVisibility(View.GONE);
     }
 
     private void initButtons() {
@@ -80,6 +94,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     public void initProfileViewForEditButton() {
         binding.btnSave.setVisibility(View.VISIBLE);
         binding.tvChangeAvatar.setVisibility(View.VISIBLE);
+        binding.btnChangePassword.setVisibility(View.VISIBLE);
         binding.etName.setEnabled(true);
         binding.userAvatar.setEnabled(true);
         binding.etName.requestFocus();
@@ -108,31 +123,23 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     }
 
     private void saveProfileInformation() {
-        binding.btnEdit.setVisibility(View.GONE);
-        binding.pbSaveProfileInformation.setVisibility(View.VISIBLE);
         if (binding.etName.getText().toString().isEmpty()) {
             binding.etName.setError("Name required");
             binding.etName.requestFocus();
-            binding.btnEdit.setVisibility(View.VISIBLE);
-            binding.pbSaveProfileInformation.setVisibility(View.GONE);
+            hideProgressBar();
             return;
         }
+        showProgressBar();
         presenter.saveUserInformation(binding.etName.getText().toString());
-        initProfileViewForFinishSave();
-    }
-
-    private void initProfileViewForFinishSave() {
-        binding.btnSave.setVisibility(View.GONE);
-        binding.tvChangeAvatar.setVisibility(View.GONE);
-        binding.btnChangePassword.setVisibility(View.GONE);
-        binding.etName.setEnabled(false);
-        binding.etEmail.setEnabled(false);
+        hideSaveButton();
     }
 
     @Override
     public void getProfileImage(String profileImage) {
-        Picasso.get().load(profileImage).placeholder(R.drawable.ic_broken_image)
-                .error(R.drawable.ic_broken_image).into(binding.userAvatar);
+        Picasso.get().load(profileImage)
+                .placeholder(R.drawable.ic_broken_image)
+                .error(R.drawable.ic_broken_image)
+                .into(binding.userAvatar);
     }
 
     @Override
@@ -156,10 +163,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
 
     @Override
     public void updateProfile() {
+        hideProgressBar();
         Toast.makeText(getActivity(), "Update profile", Toast.LENGTH_SHORT).show();
-        binding.userAvatar.setAlpha(1f);
-        binding.btnEdit.setVisibility(View.VISIBLE);
-        binding.pbSaveProfileInformation.setVisibility(View.GONE);
     }
 
     @Override
@@ -169,14 +174,13 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
 
     @Override
     public void showError() {
+        hideProgressBar();
         Toast.makeText(getActivity(), "Data could not be updated. Try again later!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showErrorConnection() {
-        binding.userAvatar.setAlpha(1f);
-        binding.btnEdit.setVisibility(View.VISIBLE);
-        binding.pbSaveProfileInformation.setVisibility(View.GONE);
+        hideProgressBar();
         Toast.makeText(getActivity(), "Check your Internet connection!", Toast.LENGTH_SHORT).show();
     }
 }
