@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,15 +19,6 @@ import com.example.bookshelf.R;
 import com.example.bookshelf.base.BasePresenter;
 import com.example.bookshelf.database.bookChallenge.BookChallenge;
 import com.example.bookshelf.databinding.FragmentProfileBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -36,15 +26,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static android.app.Activity.RESULT_OK;
-
 public class ProfileFragment extends Fragment implements ProfileContract.View {
-    private static final int CHOOSE_IMAGE = 101;
+    public static final int CHOOSE_IMAGE = 101;
     private FragmentProfileBinding binding;
-    private Uri uriProfileImage;
-    private FirebaseAuth firebaseAuth;
-    private String profileImage;
-    private FirebaseUser userFirebase;
+
     @Inject
     ProfileContract.Presenter presenter;
     @Inject
@@ -59,25 +44,11 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         binding.toolbarProfileFragment.toolbar.setTitle(getString(R.string.profile_fragment_information_about_profile));
 
-        initFirebase();
-        initProfileView();
         initAdapter();
+        initStartProfileView();
         initButtons();
         presenter.onStart();
         return binding.getRoot();
-    }
-    private void initFirebase() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        userFirebase = firebaseAuth.getCurrentUser();
-    }
-
-    private void initProfileView() {
-        binding.etName.setText(userFirebase.getDisplayName());
-        binding.etEmail.setText(userFirebase.getEmail());
-        if (userFirebase.getPhotoUrl() != null) {
-            Picasso.get().load(userFirebase.getPhotoUrl().toString()).placeholder(R.drawable.ic_broken_image)
-                    .error(R.drawable.ic_broken_image).into(binding.userAvatar);
-        }
     }
 
     private void initAdapter() {
@@ -86,118 +57,89 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         binding.rvStatisticsBookChallenge.setAdapter(bookChallengeAdapter);
     }
 
-    private void initButtons() {
+    @Override
+    public void initStartProfileView() {
+        binding.btnSave.setVisibility(View.GONE);
+        binding.tvChangeAvatar.setVisibility(View.GONE);
+        binding.btnChangePassword.setVisibility(View.GONE);
+        binding.pbSaveProfileInformation.setVisibility(View.GONE);
         binding.etName.setEnabled(false);
         binding.etEmail.setEnabled(false);
         binding.userAvatar.setEnabled(false);
-        binding.btnSave.setVisibility(View.GONE);
-        binding.btnChangePassword.setVisibility(View.GONE);
-        binding.tvChangeAvatar.setVisibility(View.GONE);
-        binding.btnLogOut.setOnClickListener(view -> {
-            firebaseAuth.signOut();
-            presenter.openAuthentication();
-        });
-        binding.btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.btnSave.setVisibility(View.VISIBLE);
-                binding.tvChangeAvatar.setVisibility(View.VISIBLE);
-                binding.userAvatar.setAlpha(0.5f);
-                binding.etName.setEnabled(true);
-                binding.etName.requestFocus();
-                binding.userAvatar.setEnabled(true);
-            }
-        });
-
-        binding.userAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showImageChooser();
-            }
-        });
-
-        binding.btnSave.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                if (binding.etName.getText().toString().isEmpty()) {
-                    binding.etName.setError("Name required");
-                    binding.etName.requestFocus();
-                    return;
-                }
-                saveUserInformation();
-                finishSave();
-            }
-        });
+        binding.userAvatar.setAlpha(1f);
     }
 
-    private void finishSave() {
-        binding.btnSave.setVisibility(View.GONE);
-        binding.tvChangeAvatar.setVisibility(View.GONE);
-        binding.etName.setEnabled(false);
-        binding.etEmail.setEnabled(false);
-        binding.btnChangePassword.setVisibility(View.GONE);
+    private void initButtons() {
+        binding.btnLogOut.setOnClickListener(view -> presenter.signOut());
+        binding.btnEdit.setOnClickListener(view -> presenter.editProfile());
+        binding.userAvatar.setOnClickListener(view -> showImageChooser());
+        binding.btnSave.setOnClickListener(view -> saveProfileInformation());
     }
 
-    private void saveUserInformation() {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("images/" + userFirebase.getUid() + ".jpg");
-        if (uriProfileImage != null) {
-            storageReference.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            profileImage = uri.toString();
-                            saveProfile();
-                        }
-                    });
-                }
-            });
-        }
+    @Override
+    public void initProfileViewForEditButton() {
+        binding.btnSave.setVisibility(View.VISIBLE);
+        binding.tvChangeAvatar.setVisibility(View.VISIBLE);
+        binding.etName.setEnabled(true);
+        binding.userAvatar.setEnabled(true);
+        binding.etName.requestFocus();
+        binding.userAvatar.setAlpha(0.5f);
     }
 
-    private void saveProfile() {
-        if (!profileImage.isEmpty()) {
-            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(binding.etName.getText().toString())
-                    .setPhotoUri(Uri.parse(profileImage))
-                    .build();
-
-            userFirebase.updateProfile(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getActivity(), "Update profile ", Toast.LENGTH_SHORT).show();
-                        binding.userAvatar.setAlpha(1f);
-                    }
-                }
-            });
-        }
+    private void showImageChooser() {
+        presenter.openGallery();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            uriProfileImage = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriProfileImage);
-                binding.userAvatar.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        presenter.setProfileImage(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void setProfileImage(Uri uriProfileImage) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriProfileImage);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        binding.userAvatar.setImageBitmap(bitmap);
     }
 
-    private void showImageChooser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_PICK);
-        startActivityForResult(Intent.createChooser(intent, "Select profile image"), CHOOSE_IMAGE);
+    private void saveProfileInformation() {
+        binding.btnEdit.setVisibility(View.GONE);
+        binding.pbSaveProfileInformation.setVisibility(View.VISIBLE);
+        if (binding.etName.getText().toString().isEmpty()) {
+            binding.etName.setError("Name required");
+            binding.etName.requestFocus();
+            binding.btnEdit.setVisibility(View.VISIBLE);
+            binding.pbSaveProfileInformation.setVisibility(View.GONE);
+            return;
+        }
+        presenter.saveUserInformation(binding.etName.getText().toString());
+        initProfileViewForFinishSave();
     }
 
+    private void initProfileViewForFinishSave() {
+        binding.btnSave.setVisibility(View.GONE);
+        binding.tvChangeAvatar.setVisibility(View.GONE);
+        binding.btnChangePassword.setVisibility(View.GONE);
+        binding.etName.setEnabled(false);
+        binding.etEmail.setEnabled(false);
+    }
+
+    @Override
+    public void getProfileImage(String profileImage) {
+        Picasso.get().load(profileImage).placeholder(R.drawable.ic_broken_image)
+                .error(R.drawable.ic_broken_image).into(binding.userAvatar);
+    }
+
+    @Override
+    public void getProfileInformation(String name, String email) {
+        binding.etName.setText(name);
+        binding.etEmail.setText(email);
+    }
 
     @Override
     public void setCountNumberBooks(String numberBooksProgress, String numberBooksPlan, String numberBooksRead, String numberBooksQuit) {
@@ -210,5 +152,31 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     @Override
     public void loadStatisticsBookChallenge(List<BookChallenge> listsBookChallenge) {
         bookChallengeAdapter.setList(listsBookChallenge);
+    }
+
+    @Override
+    public void updateProfile() {
+        Toast.makeText(getActivity(), "Update profile", Toast.LENGTH_SHORT).show();
+        binding.userAvatar.setAlpha(1f);
+        binding.btnEdit.setVisibility(View.VISIBLE);
+        binding.pbSaveProfileInformation.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void openGallery(Intent intent) {
+        startActivityForResult(Intent.createChooser(intent, "Select profile image"), CHOOSE_IMAGE);
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(getActivity(), "Data could not be updated. Try again later!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showErrorConnection() {
+        binding.userAvatar.setAlpha(1f);
+        binding.btnEdit.setVisibility(View.VISIBLE);
+        binding.pbSaveProfileInformation.setVisibility(View.GONE);
+        Toast.makeText(getActivity(), "Check your Internet connection!", Toast.LENGTH_SHORT).show();
     }
 }
