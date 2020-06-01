@@ -1,10 +1,10 @@
 package com.example.bookshelf.features.profile;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +21,14 @@ import com.example.bookshelf.database.bookChallenge.BookChallenge;
 import com.example.bookshelf.databinding.FragmentProfileBinding;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import static androidx.core.content.ContextCompat.checkSelfPermission;
+
 public class ProfileFragment extends Fragment implements ProfileContract.View {
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 110;
     public static final int CHOOSE_IMAGE = 101;
     private FragmentProfileBinding binding;
 
@@ -63,7 +65,7 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         hideSaveButton();
     }
 
-    private void hideSaveButton(){
+    private void hideSaveButton() {
         binding.btnSave.setVisibility(View.GONE);
         binding.tvChangeAvatar.setVisibility(View.GONE);
         binding.btnChangePassword.setVisibility(View.GONE);
@@ -86,8 +88,43 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     private void initButtons() {
         binding.btnLogOut.setOnClickListener(view -> presenter.signOut());
         binding.btnEdit.setOnClickListener(view -> presenter.editProfile());
-        binding.userAvatar.setOnClickListener(view -> showImageChooser());
+        binding.userAvatar.setOnClickListener(view -> {
+            checkPermission();
+        });
         binding.btnSave.setOnClickListener(view -> saveProfileInformation());
+    }
+
+    private void checkPermission() {
+        if (checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            }
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+            return;
+        } else {
+            presenter.openGallery();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE) {
+            for (int i = 0, len = permissions.length; i < len; i++) {
+                String permission = permissions[i];
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    boolean showRationale = shouldShowRequestPermissionRationale(permission);
+                    if (!showRationale) {
+                        binding.tvChangeAvatar.setVisibility(View.GONE);
+                        binding.userAvatar.setAlpha(1f);
+                        binding.userAvatar.setEnabled(false);
+                        Toast.makeText(getActivity(), "You have disabled permission to read and write data. You can enable permission in the app settings",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    presenter.openGallery();
+                }
+            }
+        }
     }
 
     @Override
@@ -101,8 +138,9 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
         binding.userAvatar.setAlpha(0.5f);
     }
 
-    private void showImageChooser() {
-        presenter.openGallery();
+    @Override
+    public void openGallery(Intent intent) {
+        startActivityForResult(Intent.createChooser(intent, "Select profile image"), CHOOSE_IMAGE);
     }
 
     @Override
@@ -112,14 +150,8 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     }
 
     @Override
-    public void setProfileImage(Uri uriProfileImage) {
-        Bitmap bitmap = null;
-        try {
-            bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriProfileImage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        binding.userAvatar.setImageBitmap(bitmap);
+    public void setProfileImage(Bitmap profileImage) {
+        binding.userAvatar.setImageBitmap(profileImage);
     }
 
     private void saveProfileInformation() {
@@ -165,11 +197,6 @@ public class ProfileFragment extends Fragment implements ProfileContract.View {
     public void updateProfile() {
         hideProgressBar();
         Toast.makeText(getActivity(), "Update profile", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void openGallery(Intent intent) {
-        startActivityForResult(Intent.createChooser(intent, "Select profile image"), CHOOSE_IMAGE);
     }
 
     @Override

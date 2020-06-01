@@ -1,7 +1,7 @@
 package com.example.bookshelf.features.profile;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Bitmap;
 
 import com.example.bookshelf.database.bookChallenge.BookChallenge;
 
@@ -23,7 +23,7 @@ public interface ProfileContract {
 
         void initProfileViewForEditButton();
 
-        void setProfileImage(Uri uriProfileImage);
+        void setProfileImage(Bitmap uriProfileImage);
 
         void openGallery(Intent intent);
 

@@ -2,9 +2,12 @@ package com.example.bookshelf.features.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
 
 import com.example.bookshelf.Navigator;
 import com.example.bookshelf.base.BasePresenter;
@@ -16,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.io.ByteArrayOutputStream;
 
 import javax.inject.Inject;
 
@@ -123,13 +128,23 @@ public class ProfilePresenter extends BasePresenter<ProfileContract.View> implem
     @Override
     public void setProfileImage(int requestCode, int resultCode, Intent data) {
         if (isOnline()) {
-            if (requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-                uriProfileImage = data.getData();
-                view.setProfileImage(uriProfileImage);
+            if (requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getExtras() != null) {
+                Bundle extras = data.getExtras();
+                Bitmap photo = extras.getParcelable("data");
+
+                uriProfileImage = getImageUri(photo);
+                view.setProfileImage(photo);
             }
         } else {
             view.showErrorConnection();
         }
+    }
+
+    private Uri getImageUri(Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), inImage, "image", null);
+        return Uri.parse(path);
     }
 
     @Override

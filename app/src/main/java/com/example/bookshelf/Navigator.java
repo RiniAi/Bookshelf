@@ -39,8 +39,14 @@ public class Navigator {
 
     public Intent openGallery() {
         Intent intent = new Intent();
-        intent.setType("image/*");
         intent.setAction(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        intent.putExtra("outputX", 120);
+        intent.putExtra("outputY", 120);
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        intent.putExtra("crop", true);
+        intent.putExtra("return-data", true);
         return intent;
     }
 }

@@ -75,7 +75,7 @@
                 android:layout_width="@dimen/fragment_profile_avatar"
                 android:layout_height="@dimen/fragment_profile_avatar"
                 android:layout_margin="@dimen/margin_8dp"
-                android:scaleType="center"
+                android:scaleType="centerCrop"
                 android:src="@drawable/ic_broken_image"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
