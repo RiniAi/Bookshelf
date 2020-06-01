@@ -25,8 +25,8 @@ import static com.example.bookshelf.features.profile.ProfileFragment.CHOOSE_IMAG
 public class ProfilePresenter extends BasePresenter<ProfileContract.View> implements ProfileContract.Presenter {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser userFirebase;
-    private String profileImage;
     private Uri uriProfileImage;
+    private String profileImage = "";
 
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
@@ -88,39 +88,29 @@ public class ProfilePresenter extends BasePresenter<ProfileContract.View> implem
                         .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl()
                                 .addOnSuccessListener(uri -> {
                                     profileImage = uri.toString();
-                                    saveProfile(name, 1);
+                                    saveProfile(name);
                                 }).addOnFailureListener(e -> view.showError())
                         ).addOnFailureListener(e -> view.showError());
             } else {
-                saveProfile(name, 0);
+                saveProfile(name);
             }
         } else {
             view.showErrorConnection();
         }
     }
 
-    private void saveProfile(String name, int i) {
-        switch (i) {
-            case 1: {
-                if (!profileImage.isEmpty()) {
-                    UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(name)
-                            .setPhotoUri(Uri.parse(profileImage))
-                            .build();
-                    updateProfile(profile);
-                }
-            }
-            case 0: {
-                UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(name)
-                        .build();
-                updateProfile(profile);
-            }
-
+    private void saveProfile(String name) {
+        UserProfileChangeRequest profile;
+        if (!profileImage.isEmpty()) {
+            profile = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(name)
+                    .setPhotoUri(Uri.parse(profileImage))
+                    .build();
+        } else {
+            profile = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(name)
+                    .build();
         }
-    }
-
-    private void updateProfile(UserProfileChangeRequest profile) {
         userFirebase.updateProfile(profile).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 view.updateProfile();
