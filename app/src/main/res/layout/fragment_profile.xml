@@ -74,7 +74,7 @@
                 android:id="@+id/user_avatar"
                 android:layout_width="@dimen/fragment_profile_avatar"
                 android:layout_height="@dimen/fragment_profile_avatar"
-                android:layout_margin="@dimen/margin_8dp"
+                android:layout_margin="@dimen/margin_16dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_broken_image"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,26 +117,29 @@
 
                     <EditText
                         android:id="@+id/et_name"
-                        android:layout_width="156dp"
+                        android:layout_width="176dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLength="20"
                         android:maxLines="1"
+                        android:textSize="@dimen/text_size_small"
                         android:hint="@string/register_fragment_name" />
 
                     <EditText
                         android:id="@+id/et_email"
-                        android:layout_width="156dp"
+                        android:layout_width="176dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLength="20"
                         android:maxLines="1"
+                        android:textSize="@dimen/text_size_small"
                         android:hint="@string/register_fragment_email" />
 
                     <Button
                         android:id="@+id/btn_change_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16dp"
                         android:layout_marginBottom="@dimen/margin_8dp"
                         android:text="@string/profile_fragment_change_password"/>
                 </LinearLayout>
@@ -145,7 +148,6 @@
                     android:id="@+id/btn_save"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_8dp"
                     android:text="@string/profile_fragment_save"/>
             </LinearLayout>
         </LinearLayout>
