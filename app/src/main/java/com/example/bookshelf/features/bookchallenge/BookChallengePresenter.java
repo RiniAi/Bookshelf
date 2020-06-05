@@ -48,8 +48,9 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
     @Override
     public void saveOrUpdateCounterAndProgress() {
         bookChallenge.setYear(2020);
-        SearchBookChallengeUseCase.Params paramsSearch = new SearchBookChallengeUseCase.Params(bookChallenge);
-        InsertOrUpdateBookChallengeUseCase.Params paramsInsertOrUpdate = new InsertOrUpdateBookChallengeUseCase.Params(bookChallenge, bookChallenge.progress, bookChallenge.counter);
+        // Replacing the constructors with the factories methods
+        SearchBookChallengeUseCase.Params paramsSearch = SearchBookChallengeUseCase.Params.createParams(bookChallenge);
+        InsertOrUpdateBookChallengeUseCase.Params paramsInsertOrUpdate = InsertOrUpdateBookChallengeUseCase.Params.createParams(bookChallenge, bookChallenge.progress, bookChallenge.counter);
         BookChallenge dbBookChallenge = searchBookChallengeUseCase.run(paramsSearch);
         if (bookChallenge != dbBookChallenge)
             challengeUseCase.run(paramsInsertOrUpdate);

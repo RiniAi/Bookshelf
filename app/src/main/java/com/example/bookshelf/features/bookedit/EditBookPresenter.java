@@ -95,7 +95,8 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     }
 
     private void searchBook() {
-        SearchBookUseCase.Params params = new SearchBookUseCase.Params(book);
+        // Replacing the constructor with the factory method
+        SearchBookUseCase.Params params = SearchBookUseCase.Params.createParams(book);
         Book bookDb = searchBookUseCase.run(params);
         if (bookDb != null) {
             book = bookDb;
@@ -118,13 +119,15 @@ public class EditBookPresenter extends BasePresenter<EditBookContract.View> impl
     @Override
     public void insertOrUpdateBook(float rating, String status, boolean isFavorite) {
         view.showDate();
-        InsertOrUpdateBookUseCase.Params params = new InsertOrUpdateBookUseCase.Params(book, rating, status, isFavorite, date);
+        // Replacing the constructor with the factory method
+        InsertOrUpdateBookUseCase.Params params = InsertOrUpdateBookUseCase.Params.createParams(book, rating, status, isFavorite, date);
         insertOrUpdateBookUseCase.run(params);
     }
 
     @Override
     public void deleteBook() {
-        DeleteBookUseCase.Params params = new DeleteBookUseCase.Params(book);
+        // Replacing the constructor with the factory method
+        DeleteBookUseCase.Params params = DeleteBookUseCase.Params.createParams(book);
         deleteBookUseCase.run(params);
     }
 }

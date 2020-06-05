@@ -20,12 +20,17 @@ public class SearchBookChallengeUseCase {
     public static class Params {
         private BookChallenge bookChallenge;
 
-        BookChallenge getBookChallenge() {
+        private BookChallenge getBookChallenge() {
             return bookChallenge;
         }
 
-        public Params(BookChallenge bookChallenge) {
+        private Params(BookChallenge bookChallenge) {
             this.bookChallenge = bookChallenge;
+        }
+
+        //Replacing the constructor with the factory method
+        public static Params createParams (BookChallenge bookChallenge) {
+            return new Params(bookChallenge);
         }
     }
 }

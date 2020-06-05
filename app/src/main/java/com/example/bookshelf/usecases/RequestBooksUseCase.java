@@ -25,9 +25,14 @@ public class RequestBooksUseCase {
         String query;
         int startIndex;
 
-        public Params(String query, int startIndex) {
+        private Params(String query, int startIndex) {
             this.query = query;
             this.startIndex = startIndex;
+        }
+
+        //Replacing the constructor with the factory method
+        public static Params createParams(String query, int startIndex){
+            return new Params(query, startIndex);
         }
 
         public int getStartIndex() {

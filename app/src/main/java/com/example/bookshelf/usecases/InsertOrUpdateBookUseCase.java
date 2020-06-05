@@ -21,11 +21,11 @@ public class InsertOrUpdateBookUseCase {
     public static class Params {
         private Book book;
 
-        public Book getBook() {
+        private Book getBook() {
             return book;
         }
 
-        public Params(Book book, float rating, String status, boolean isFavorite, String date) {
+        private Params(Book book, float rating, String status, boolean isFavorite, String date) {
             book.userRating = rating;
             book.isFavorite = isFavorite;
             book.setStatus(BookStatusConverter.fromStringToStatus(status));
@@ -35,6 +35,11 @@ public class InsertOrUpdateBookUseCase {
                 book.readDate = "";
             }
             this.book = book;
+        }
+
+        //Replacing the constructor with the factory method
+        public static Params createParams(Book book, float rating, String status, boolean isFavorite, String date) {
+            return new Params(book, rating, status, isFavorite, date);
         }
 
         @Override

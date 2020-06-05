@@ -16,16 +16,23 @@ public class Book implements Serializable {
     public String title;
     @NonNull
     public String authors;
-    float averageRating;
+    private float averageRating;
     public float userRating;
     public boolean isFavorite;
     public String readDate;
-    String publisher;
-    String publishedDate;
-    int pageCount;
+    private String publisher;
+    private String publishedDate;
+    private int pageCount;
+    private String imageLinks;
+    private String description;
     String lang;
     @TypeConverters(BookStatusConverter.class)
     BookStatus status;
+
+    // Replacing the constructor with the factory method
+    public static Book createBook(){
+        return new Book();
+    }
 
     public enum BookStatus implements Serializable {
         IN_THE_PROCESS_OF_READING(R.string.edit_book_process_status),
@@ -69,15 +76,8 @@ public class Book implements Serializable {
     }
 
     public boolean isFinishedOrQuit() {
-        if (getStatus() == BookStatus.FINISH_READING || getStatus() == BookStatus.QUIT_READING)
-            return true;
-        else {
-            return false;
-        }
+        return getStatus() == BookStatus.FINISH_READING || getStatus() == BookStatus.QUIT_READING;
     }
-
-    String imageLinks;
-    String description;
 
     public String getTitle() {
         return title;

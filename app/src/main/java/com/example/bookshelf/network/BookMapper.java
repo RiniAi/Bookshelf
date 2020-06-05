@@ -18,7 +18,8 @@ public class BookMapper {
     public List<Book> mapResponseToDomain(BooksApiResponse bookResult) {
         List<Book> booksSearch = new ArrayList<>();
         for (BooksApiResponseItem item : bookResult.getItems()) {
-            Book book = new Book();
+            //Replacing the constructor with the factory method
+            Book book = Book.createBook();
             if (item.getVolumeInfo().getAuthors() == null) {
                 book.setAuthors("");
             } else {

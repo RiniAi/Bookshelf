@@ -20,12 +20,17 @@ public class DeleteBookUseCase {
     public static class Params {
         private Book book;
 
-        public Book getBook() {
+        private Book getBook() {
             return book;
         }
 
-        public Params(Book book) {
+        private Params(Book book) {
             this.book = book;
+        }
+
+        //Replacing the constructor with the factory method
+        public static Params createParams(Book book) {
+            return new Params(book);
         }
     }
 }

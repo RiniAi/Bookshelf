@@ -22,14 +22,19 @@ public class InsertOrUpdateBookChallengeUseCase {
     public static class Params {
         private BookChallenge bookChallenge;
 
-        public BookChallenge getBookChallenge() {
+        private BookChallenge getBookChallenge() {
             return bookChallenge;
         }
 
-        public Params(BookChallenge bookChallenge, int progress, int counter) {
+        private Params(BookChallenge bookChallenge, int progress, int counter) {
             bookChallenge.progress = progress;
             bookChallenge.counter = counter;
             this.bookChallenge = bookChallenge;
+        }
+
+        //Replacing the constructor with the factory method
+        public static Params createParams(BookChallenge bookChallenge, int progress, int counter) {
+            return new Params(bookChallenge, progress, counter);
         }
 
         @Override

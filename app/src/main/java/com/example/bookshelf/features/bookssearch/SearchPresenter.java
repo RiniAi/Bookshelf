@@ -41,7 +41,8 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     private void runQuery(String query, int startIndex) {
         disposables.clear();
-        RequestBooksUseCase.Params searchParams = new RequestBooksUseCase.Params(query, startIndex);
+        // Replacing the constructor with the factory method
+        RequestBooksUseCase.Params searchParams = RequestBooksUseCase.Params.createParams(query, startIndex);
         Disposable subscription = requestBooksUseCase.run(searchParams)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
