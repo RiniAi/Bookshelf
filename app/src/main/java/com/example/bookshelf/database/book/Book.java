@@ -11,7 +11,7 @@ import com.example.bookshelf.R;
 import java.io.Serializable;
 
 @Entity(tableName = "books", primaryKeys = {"title", "authors"})
-public class Book implements Serializable {
+public class Book implements Serializable, Comparable<Book> {
     @NonNull
     public String title;
     @NonNull
@@ -217,5 +217,14 @@ public class Book implements Serializable {
                 "title='" + title + '\'' +
                 ", authors='" + authors + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Book book) {
+        int result = title.compareTo(book.title);
+        if (result == 0) {
+            result = authors.compareTo(book.authors);
+        }
+        return result;
     }
 }
