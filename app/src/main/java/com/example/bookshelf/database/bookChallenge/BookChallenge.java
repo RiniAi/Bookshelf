@@ -50,4 +50,13 @@ public class BookChallenge implements Serializable {
     public int hashCode() {
         return year;
     }
+
+    @Override
+    public String toString() {
+        return "BookChallenge{" +
+                "year=" + year +
+                ", progress=" + progress +
+                ", counter=" + counter +
+                '}';
+    }
 }

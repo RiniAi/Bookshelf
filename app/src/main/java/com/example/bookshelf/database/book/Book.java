@@ -30,7 +30,7 @@ public class Book implements Serializable {
     BookStatus status;
 
     // Replacing the constructor with the factory method
-    public static Book createBook(){
+    public static Book createBook() {
         return new Book();
     }
 
@@ -209,5 +209,13 @@ public class Book implements Serializable {
         result = 31 * result + pageCount;
         result = 31 * result + (lang != null ? lang.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", authors='" + authors + '\'' +
+                '}';
     }
 }
