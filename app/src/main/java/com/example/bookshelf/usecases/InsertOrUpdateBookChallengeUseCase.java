@@ -27,8 +27,8 @@ public class InsertOrUpdateBookChallengeUseCase {
         }
 
         private Params(BookChallenge bookChallenge, int progress, int counter) {
-            bookChallenge.progress = progress;
-            bookChallenge.counter = counter;
+            bookChallenge.setProgress(progress);
+            bookChallenge.setCounter(counter);
             this.bookChallenge = bookChallenge;
         }
 

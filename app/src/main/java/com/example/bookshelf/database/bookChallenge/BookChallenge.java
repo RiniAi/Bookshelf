@@ -8,9 +8,9 @@ import java.io.Serializable;
 @Entity(tableName = "challenges", primaryKeys = {"year"})
 public class BookChallenge implements Serializable {
     @NonNull
-    public int year;
-    public int progress;
-    public int counter;
+    private int year;
+    private int progress;
+    private int counter;
 
     // Replacing the constructor with the factory method
     public static BookChallenge createBookChallenge() {

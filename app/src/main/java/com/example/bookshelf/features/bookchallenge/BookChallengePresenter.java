@@ -52,7 +52,7 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
         bookChallenge.setYear(2020);
         // Replacing the constructors with the factories methods
         SearchBookChallengeUseCase.Params paramsSearch = SearchBookChallengeUseCase.Params.createParams(bookChallenge);
-        InsertOrUpdateBookChallengeUseCase.Params paramsInsertOrUpdate = InsertOrUpdateBookChallengeUseCase.Params.createParams(bookChallenge, bookChallenge.progress, bookChallenge.counter);
+        InsertOrUpdateBookChallengeUseCase.Params paramsInsertOrUpdate = InsertOrUpdateBookChallengeUseCase.Params.createParams(bookChallenge, bookChallenge.getProgress(), bookChallenge.getCounter());
         BookChallenge dbBookChallenge = searchBookChallengeUseCase.run(paramsSearch);
         if (bookChallenge != dbBookChallenge)
             challengeUseCase.run(paramsInsertOrUpdate);

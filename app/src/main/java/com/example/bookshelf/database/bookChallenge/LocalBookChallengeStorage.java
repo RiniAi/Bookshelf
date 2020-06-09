@@ -28,6 +28,6 @@ public class LocalBookChallengeStorage implements BookChallengeStorage {
     }
 
     public BookChallenge search(BookChallenge bookChallenge) {
-        return bookChallengeDao.findBookChallengeYear(bookChallenge.year);
+        return bookChallengeDao.findBookChallengeYear(bookChallenge.getYear());
     }
 }
