@@ -17,7 +17,7 @@ import javax.inject.Inject;
 
 public class BookChallengePresenter extends BasePresenter<BookChallengeContract.View> implements BookChallengeContract.Presenter {
     public static final String STORAGE_COUNTER = "counter";
-    private BookChallenge bookChallenge = new BookChallenge();
+    private BookChallenge bookChallenge;
     @Inject
     SearchBookWithStatusUseCase searchBookWithStatusUseCase;
     @Inject
@@ -41,6 +41,8 @@ public class BookChallengePresenter extends BasePresenter<BookChallengeContract.
 
     @Override
     public void onStart() {
+        // Replacing the constructors with the factories methods
+        bookChallenge = BookChallenge.createBookChallenge();
         loadCounter();
         loadBooks();
     }

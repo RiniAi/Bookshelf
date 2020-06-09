@@ -12,6 +12,11 @@ public class BookChallenge implements Serializable {
     public int progress;
     public int counter;
 
+    // Replacing the constructor with the factory method
+    public static BookChallenge createBookChallenge() {
+        return new BookChallenge();
+    }
+
     public int getYear() {
         return year;
     }
