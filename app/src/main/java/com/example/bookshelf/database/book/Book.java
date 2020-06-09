@@ -13,21 +13,21 @@ import java.io.Serializable;
 @Entity(tableName = "books", primaryKeys = {"title", "authors"})
 public class Book implements Serializable, Comparable<Book> {
     @NonNull
-    public String title;
+    private String title;
     @NonNull
-    public String authors;
+    private String authors;
     private float averageRating;
-    public float userRating;
-    public boolean isFavorite;
-    public String readDate;
+    private float userRating;
+    private boolean isFavorite;
+    private String readDate;
     private String publisher;
     private String publishedDate;
     private int pageCount;
     private String imageLinks;
     private String description;
-    String lang;
+    private String language;
     @TypeConverters(BookStatusConverter.class)
-    BookStatus status;
+    private BookStatus status;
 
     // Replacing the constructor with the factory method
     public static Book createBook() {
@@ -168,11 +168,11 @@ public class Book implements Serializable, Comparable<Book> {
     }
 
     public String getLanguage() {
-        return lang;
+        return language;
     }
 
     public void setLanguage(String language) {
-        this.lang = language;
+        this.language = language;
     }
 
     public BookStatus getStatus() {
@@ -197,7 +197,7 @@ public class Book implements Serializable, Comparable<Book> {
             return false;
         if (publishedDate != null ? !publishedDate.equals(book.publishedDate) : book.publishedDate != null)
             return false;
-        return lang != null ? lang.equals(book.lang) : book.lang == null;
+        return language != null ? language.equals(book.language) : book.language == null;
     }
 
     @Override
@@ -207,7 +207,7 @@ public class Book implements Serializable, Comparable<Book> {
         result = 31 * result + (publisher != null ? publisher.hashCode() : 0);
         result = 31 * result + (publishedDate != null ? publishedDate.hashCode() : 0);
         result = 31 * result + pageCount;
-        result = 31 * result + (lang != null ? lang.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
         return result;
     }
 

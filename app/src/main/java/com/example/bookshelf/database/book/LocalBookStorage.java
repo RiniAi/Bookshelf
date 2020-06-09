@@ -16,7 +16,7 @@ public class LocalBookStorage implements BookStorage {
     }
 
     public Book search(Book book) {
-        return bookDao.findBookTitleAndAuthor(book.title, book.authors);
+        return bookDao.findBookTitleAndAuthor(book.getTitle(), book.getAuthors());
     }
 
     public List<Book> getAllWithStatus(Book.BookStatus status) {

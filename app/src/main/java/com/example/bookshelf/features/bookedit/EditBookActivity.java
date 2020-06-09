@@ -63,8 +63,8 @@ public class EditBookActivity extends AppCompatActivity implements EditBookContr
     @Override
     public void showBook(Book book) {
         binding.rbUserRating.setRating(book.getUserRating());
-        binding.btnFavorite.setChecked(book.isFavorite);
-        isFavorite = book.isFavorite;
+        binding.btnFavorite.setChecked(book.isFavorite());
+        isFavorite = book.isFavorite();
         binding.toolbarEditBook.toolbar.setTitle(getString(R.string.edit_book_title, book.getAuthors(), book.getTitle()));
     }
 

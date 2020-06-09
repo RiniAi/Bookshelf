@@ -26,13 +26,13 @@ public class InsertOrUpdateBookUseCase {
         }
 
         private Params(Book book, float rating, String status, boolean isFavorite, String date) {
-            book.userRating = rating;
-            book.isFavorite = isFavorite;
+            book.setUserRating(rating);
+            book.setFavorite(isFavorite);
             book.setStatus(BookStatusConverter.fromStringToStatus(status));
             if (book.isFinishedOrQuit()) {
-                book.readDate = date;
+                book.setReadDate(date);
             } else {
-                book.readDate = "";
+                book.setReadDate("");
             }
             this.book = book;
         }
