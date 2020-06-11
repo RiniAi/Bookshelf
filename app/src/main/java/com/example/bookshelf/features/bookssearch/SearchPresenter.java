@@ -48,9 +48,7 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         // onNext
-                        books -> {
-                            showListOrEmptyView(books);
-                        },
+                        this::showListOrEmptyView,
                         // onError
                         throwable -> {
                             view.showError();
